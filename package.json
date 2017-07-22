@@ -5,5 +5,18 @@
   "main": "index.js",
   "repository": "https://github.com/notifme/notifme-sdk",
   "author": "Notif.me",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "build": "babel src --out-dir lib",
+    "dev": "babel-node src/index.js",
+    "prepublish": "yarn run build"
+  },
+  "files": [
+    "lib"
+  ],
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1"
+  }
 }
