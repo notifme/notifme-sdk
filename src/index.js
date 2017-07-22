@@ -1,3 +1,4 @@
+/* @flow */
 /*
 TODO:
   - define notification model
@@ -7,14 +8,17 @@ TODO:
   - retry request in case of failure
 */
 
-class NotifmeSdk {
-  options
+type OptionType = {}
+type RequestType = {}
 
-  constructor (options) {
+class NotifmeSdk {
+  options: OptionType
+
+  constructor (options: OptionType) {
     this.options = options
   }
 
-  send (notification) {
+  send (request: RequestType) {
   }
 }
 
