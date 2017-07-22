@@ -9,14 +9,24 @@
   "scripts": {
     "build": "babel src --out-dir lib",
     "dev": "babel-node src/index.js",
+    "lint": "standard",
     "prepublish": "yarn run build"
   },
   "files": [
     "lib"
   ],
+  "standard": {
+    "parser": "babel-eslint",
+    "ignore": [
+      "**/node_modules/**",
+      "**/lib/**"
+    ]
+  },
   "devDependencies": {
     "babel-cli": "^6.24.1",
+    "babel-eslint": "^7.2.3",
     "babel-preset-stage-0": "^6.24.1",
-    "babel-preset-stage-2": "^6.24.1"
+    "babel-preset-stage-2": "^6.24.1",
+    "standard": "^10.0.2"
   }
 }

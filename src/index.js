@@ -8,14 +8,14 @@ TODO:
 */
 
 class NotifmeSdk {
-  options;
+  options
 
-  constructor(options) {
-    this.options = options;
+  constructor (options) {
+    this.options = options
   }
 
-  send(notification) {
+  send (notification) {
   }
 }
 
-module.exports = NotifmeSdk;
+module.exports = NotifmeSdk
