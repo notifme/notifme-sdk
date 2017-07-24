@@ -11,8 +11,8 @@ import type {WebpushProviderType} from './channels/webpush/model-provider'
 import type {WebpushRequestType} from './channels/webpush/model-request'
 
 export type OptionsType = {
-  requestQueue: false | 'in-memory',
-  retryQueue: 'in-memory',
+  requestQueueType: false | 'in-memory',
+  retryQueueType: 'in-memory',
   providers: {
     email?: EmailProviderType[],
     push?: PushProviderType[],
@@ -33,7 +33,7 @@ export type NotificationRequestType = {
 }
 
 export type NotificationStatusType = {
-  // TODO: response to define
+  // TODO: response to complete
   status: 'queued' | 'sent' | 'failed'
 }
 
@@ -44,7 +44,7 @@ export default class NotifmeSdk {
     this.sender = new Sender(options)
   }
 
-  send (request: NotificationRequestType): NotificationStatusType {
+  send (request: NotificationRequestType): Promise<NotificationStatusType> {
     return this.sender.handleRequest(request)
   }
 }

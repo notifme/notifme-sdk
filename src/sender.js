@@ -3,33 +3,37 @@ import Queue from './queue'
 // Types
 import type {OptionsType, NotificationRequestType, NotificationStatusType} from './index'
 
-/*
-TODO:
-  - dequeue notifications and send it to providers
-  - retry request in case of failure
-*/
 export default class Sender {
-  options: OptionsType
-  requestQueue: ?Queue
+  requestQueue: ?Queue<NotificationRequestType>
 
   constructor (options: OptionsType) {
-    this.options = options
-    if (options.requestQueue) {
-      this.requestQueue = new Queue(options.requestQueue)
+    if (options.requestQueueType) {
+      this.requestQueue = new Queue(options.requestQueueType)
+      this.nextRequest()
     }
   }
 
-  handleRequest (request: NotificationRequestType): NotificationStatusType {
+  nextRequest () {
     if (this.requestQueue) {
-      this.requestQueue.enqueue('request', request)
+      this.requestQueue.dequeue('request', async (request: NotificationRequestType) => {
+        await this.send(request)
+        this.nextRequest()
+      })
+    }
+  }
+
+  async handleRequest (request: NotificationRequestType): Promise<NotificationStatusType> {
+    if (this.requestQueue) {
+      await this.requestQueue.enqueue('request', request)
       return {status: 'queued'}
     } else {
       return this.send(request)
     }
   }
 
-  send (request: NotificationRequestType): NotificationStatusType {
+  async send (request: NotificationRequestType): Promise<NotificationStatusType> {
     // TODO: get and call provider
+    // TODO: retry request in case of failure
     return {status: 'sent'}
   }
 }

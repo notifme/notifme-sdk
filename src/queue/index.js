@@ -2,31 +2,30 @@
 import InMemoryQueue from './inMemory'
 
 export type CallbackReturnType = void | Promise<void>
-export type CallbackType = (jobData: Object) => CallbackReturnType
-export type JobDataType = Object
+export type CallbackType<T> = (jobData: T) => CallbackReturnType
 
-interface QueueType {
-  enqueue(type: string, jobData: JobDataType): void;
-  dequeue(type: string, callback: CallbackType): void;
+interface QueueType<T> {
+  enqueue(type: string, jobData: T): Promise<void>;
+  dequeue(type: string, callback: CallbackType<T>): void;
 }
 
-  innerQueue: QueueType
 export default class Queue<T> {
+  innerQueue: QueueType<T>
 
   constructor (type: string) {
     switch (type) {
       case 'in-memory':
       default:
-        this.innerQueue = InMemoryQueue
+        this.innerQueue = new InMemoryQueue()
         break
     }
   }
 
-  enqueue (type: string, jobData: JobDataType): void {
-    this.innerQueue.enqueue(type, jobData)
+  async enqueue (type: string, jobData: T): Promise<void> {
+    return this.innerQueue.enqueue(type, jobData)
   }
 
-  dequeue (type: string, callback: CallbackType): void {
+  dequeue (type: string, callback: CallbackType<T>): void {
     this.innerQueue.dequeue(type, callback)
   }
 }

@@ -1,13 +1,13 @@
 /* @flow */
-import type {CallbackReturnType, CallbackType, JobDataType} from './index'
+import type {CallbackReturnType, CallbackType} from './index'
 
-  jobs: {[type: string]: JobDataType[]} = {}
-  consumers: {[type: string]: CallbackType[]} = {}
 export default class InMemoryQueue<T> {
+  jobs: {[type: string]: T[]} = {}
+  consumers: {[type: string]: CallbackType<T>[]} = {}
 
-  enqueue (type: string, jobData: JobDataType): void {
+  async enqueue (type: string, jobData: T): Promise<void> {
     if (this.consumers[type] !== undefined && this.consumers[type].length > 0) {
-      const callback: CallbackType = this.consumers[type].shift()
+      const callback: CallbackType<T> = this.consumers[type].shift()
       process.nextTick((): CallbackReturnType => callback(jobData))
     } else {
       if (!this.jobs[type]) {
@@ -17,9 +17,9 @@ export default class InMemoryQueue<T> {
     }
   }
 
-  dequeue (type: string, callback: CallbackType): void {
+  dequeue (type: string, callback: CallbackType<T>): void {
     if (this.jobs[type] !== undefined && this.jobs[type].length > 0) {
-      const jobData: JobDataType = this.jobs[type].shift()
+      const jobData: T = this.jobs[type].shift()
       process.nextTick((): CallbackReturnType => callback(jobData))
     } else {
       if (!this.consumers[type]) {
