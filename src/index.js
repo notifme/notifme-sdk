@@ -1,4 +1,6 @@
 /* @flow */
+import Sender from './sender'
+// Types
 import type {EmailProviderType} from './channels/email/model-provider'
 import type {EmailRequestType} from './channels/email/model-request'
 import type {PushProviderType} from './channels/push/model-provider'
@@ -8,14 +10,9 @@ import type {SmsRequestType} from './channels/sms/model-request'
 import type {WebpushProviderType} from './channels/webpush/model-provider'
 import type {WebpushRequestType} from './channels/webpush/model-request'
 
-/*
-TODO:
-  - enqueue received notification
-  - dequeue notifications and send it to provider
-  - retry request in case of failure
-*/
-
-type OptionsType = {
+export type OptionsType = {
+  requestQueue: false | 'in-memory',
+  retryQueue: 'in-memory',
   providers: {
     email?: EmailProviderType[],
     push?: PushProviderType[],
@@ -27,7 +24,7 @@ type OptionsType = {
   }}
 }
 
-type RequestType = {
+export type NotificationRequestType = {
   email: EmailRequestType,
   push: PushRequestType,
   sms: SmsRequestType,
@@ -35,14 +32,20 @@ type RequestType = {
   // TODO: slack, messenger, skype, telegram, kik, spark...
 }
 
+export type NotificationStatusType = {
+  // TODO: response to define
+  status: 'queued' | 'sent' | 'failed'
+}
+
 class NotifmeSdk {
-  options: OptionsType
+  sender: Sender
 
   constructor (options: OptionsType) {
-    this.options = options
+    this.sender = new Sender(options)
   }
 
-  send (request: RequestType) {
+  send (request: NotificationRequestType): NotificationStatusType {
+    return this.sender.handleRequest(request)
   }
 }
 
