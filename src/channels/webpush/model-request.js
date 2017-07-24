@@ -1,3 +1,4 @@
+/* @flow */
 
 export type WebpushRequestType = {
   actions?: {

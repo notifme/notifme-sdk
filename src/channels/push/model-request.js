@@ -1,3 +1,4 @@
+/* @flow */
 
 export type PushRequestType = {
   title: string,
