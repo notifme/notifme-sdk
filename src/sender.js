@@ -8,7 +8,7 @@ TODO:
   - dequeue notifications and send it to providers
   - retry request in case of failure
 */
-class Sender {
+export default class Sender {
   options: OptionsType
   requestQueue: ?Queue
 
@@ -33,5 +33,3 @@ class Sender {
     return {status: 'sent'}
   }
 }
-
-module.exports = Sender

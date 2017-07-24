@@ -10,8 +10,8 @@ interface QueueType {
   dequeue(type: string, callback: CallbackType): void;
 }
 
-class Queue {
   innerQueue: QueueType
+export default class Queue<T> {
 
   constructor (type: string) {
     switch (type) {
@@ -30,5 +30,3 @@ class Queue {
     this.innerQueue.dequeue(type, callback)
   }
 }
-
-module.exports = Queue

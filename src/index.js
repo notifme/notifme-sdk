@@ -37,7 +37,7 @@ export type NotificationStatusType = {
   status: 'queued' | 'sent' | 'failed'
 }
 
-class NotifmeSdk {
+export default class NotifmeSdk {
   sender: Sender
 
   constructor (options: OptionsType) {
@@ -48,5 +48,3 @@ class NotifmeSdk {
     return this.sender.handleRequest(request)
   }
 }
-
-module.exports = NotifmeSdk

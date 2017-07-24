@@ -1,9 +1,9 @@
 /* @flow */
 import type {CallbackReturnType, CallbackType, JobDataType} from './index'
 
-class InMemoryQueue {
   jobs: {[type: string]: JobDataType[]} = {}
   consumers: {[type: string]: CallbackType[]} = {}
+export default class InMemoryQueue<T> {
 
   enqueue (type: string, jobData: JobDataType): void {
     if (this.consumers[type] !== undefined && this.consumers[type].length > 0) {
@@ -29,5 +29,3 @@ class InMemoryQueue {
     }
   }
 }
-
-export default new InMemoryQueue()
