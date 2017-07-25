@@ -1,12 +1,15 @@
 /* @flow */
+import ProviderFactory from '../providers/factory'
 import Queue from '../queue'
 // Types
 import type {OptionsType, NotificationRequestType, NotificationStatusType} from '../index'
 
 export default class Sender {
+  providerFactory: ProviderFactory
   requestQueue: ?Queue<NotificationRequestType>
 
   constructor (options: OptionsType) {
+    this.providerFactory = new ProviderFactory(options.providers, options.multiProviderStrategy)
     if (options.requestQueueType) {
       this.requestQueue = new Queue(options.requestQueueType)
       this.nextRequest()
@@ -32,8 +35,11 @@ export default class Sender {
   }
 
   async send (request: NotificationRequestType): Promise<NotificationStatusType> {
-    // TODO: get and call provider
-    // TODO: retry request in case of failure
+    await Promise.all(Object.keys(request).map(async (channel: string) => {
+      const provider = this.providerFactory.get((channel: any))
+      await provider.send(request[channel])
+      // TODO: retry request in case of failure
+    }))
     return {status: 'sent'}
   }
 }

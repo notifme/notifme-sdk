@@ -1,4 +1,5 @@
 /* @flow */
+/* global $Keys */
 import Sender from './sender'
 // Types
 import type {EmailProviderType} from './providers/model-email'
@@ -7,16 +8,24 @@ import type {SmsProviderType} from './providers/model-sms'
 import type {WebpushProviderType} from './providers/model-webpush'
 import type {EmailRequestType, PushRequestType, SmsRequestType, WebpushRequestType} from './model-request'
 
+export const channels = {
+  email: 'email',
+  push: 'push',
+  sms: 'sms',
+  webpush: 'webpush'
+}
+export type ChannelType = $Keys<typeof channels>
+
 export type OptionsType = {
-  requestQueueType: false | 'in-memory',
-  retryQueueType: 'in-memory',
-  providers: {
+  requestQueueType?: false | 'in-memory',
+  retryQueueType?: 'in-memory',
+  providers?: {
     email?: EmailProviderType[],
     push?: PushProviderType[],
     sms?: SmsProviderType[],
     webpush?: WebpushProviderType[]
   },
-  multiProviderStrategy?: {['email' | 'push' | 'sms' | 'webpush']: {
+  multiProviderStrategy?: {[ChannelType]: {
     type: 'fallback' | 'roundrobin' // Defaults to fallback
   }}
 }
