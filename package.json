@@ -9,7 +9,7 @@
   "scripts": {
     "build": "babel src --out-dir lib && yarn run build-dot-flow",
     "build-dot-flow": "find ./src -name '*.js' | while read filepath; do cp $filepath `echo $filepath | sed 's/\\/src\\//\\/lib\\//g'`.flow; done",
-    "dev": "babel-node src/index.js",
+    "dev": "nodemon -e js -r babel-register examples/development.js",
     "lint": "yarn run flow && standard",
     "prepublish": "yarn run build"
   },
@@ -30,7 +30,9 @@
     "babel-plugin-transform-runtime": "6.23.0",
     "babel-preset-es2015": "6.24.1",
     "babel-preset-stage-2": "6.24.1",
+    "babel-register": "6.24.1",
     "flow-bin": "0.51.0",
+    "nodemon": "1.11.0",
     "standard": "10.0.2"
   },
   "dependencies": {
