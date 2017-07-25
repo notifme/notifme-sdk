@@ -1,14 +1,11 @@
 /* @flow */
 import Sender from './sender'
 // Types
-import type {EmailProviderType} from './channels/email/model-provider'
-import type {EmailRequestType} from './channels/email/model-request'
-import type {PushProviderType} from './channels/push/model-provider'
-import type {PushRequestType} from './channels/push/model-request'
-import type {SmsProviderType} from './channels/sms/model-provider'
-import type {SmsRequestType} from './channels/sms/model-request'
-import type {WebpushProviderType} from './channels/webpush/model-provider'
-import type {WebpushRequestType} from './channels/webpush/model-request'
+import type {EmailProviderType} from './providers/model-email'
+import type {PushProviderType} from './providers/model-push'
+import type {SmsProviderType} from './providers/model-sms'
+import type {WebpushProviderType} from './providers/model-webpush'
+import type {EmailRequestType, PushRequestType, SmsRequestType, WebpushRequestType} from './model-request'
 
 export type OptionsType = {
   requestQueueType: false | 'in-memory',

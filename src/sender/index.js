@@ -1,7 +1,7 @@
 /* @flow */
-import Queue from './queue'
+import Queue from '../queue'
 // Types
-import type {OptionsType, NotificationRequestType, NotificationStatusType} from './index'
+import type {OptionsType, NotificationRequestType, NotificationStatusType} from '../index'
 
 export default class Sender {
   requestQueue: ?Queue<NotificationRequestType>
