@@ -36,6 +36,7 @@
     "standard": "10.0.2"
   },
   "dependencies": {
-    "babel-runtime": "6.23.0"
+    "babel-runtime": "6.23.0",
+    "winston": "2.3.1"
   }
 }

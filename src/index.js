@@ -1,6 +1,7 @@
 /* @flow */
 /* global $Keys */
 import Sender from './sender'
+import logger from './util/logger'
 // Types
 import type {EmailProviderType} from './providers/model-email'
 import type {PushProviderType} from './providers/model-push'
@@ -45,6 +46,7 @@ export type NotificationStatusType = {
 
 export default class NotifmeSdk {
   sender: Sender
+  logger: typeof logger = logger
 
   constructor (options: OptionsType) {
     this.sender = new Sender(options)
