@@ -1,21 +1,18 @@
 /* @flow */
 import ProviderFactory from '../providers/factory'
-import Queue from '../queue'
 // Types
 import type {OptionsType, NotificationRequestType, NotificationStatusType} from '../index'
 import type {QueueType} from '../queue'
 
 export default class Sender {
   providerFactory: ProviderFactory
-  requestQueue: ?QueueType<NotificationRequestType>
+  requestQueue: QueueType<NotificationRequestType> | false
   onError: ?(NotificationStatusType, NotificationRequestType) => any
 
   constructor (options: OptionsType) {
     this.providerFactory = new ProviderFactory(options.providers, options.multiProviderStrategy)
     if (options.requestQueue) {
-      this.requestQueue = typeof options.requestQueue === 'string'
-        ? new Queue(options.requestQueue)
-        : options.requestQueue
+      this.requestQueue = (options.requestQueue: any)
       this.nextRequest()
     }
     this.onError = options.onError

@@ -1,5 +1,6 @@
 /* @flow */
 /* global $Keys */
+import Queue from './queue'
 import Sender from './sender'
 import logger from './util/logger'
 // Types
@@ -34,7 +35,6 @@ export type NotificationStatusType = {
 }
 
 export type OptionsType = {|
-  requestQueue?: false | 'in-memory' | QueueType<NotificationRequestType>,
   providers?: {
     email?: EmailProviderType[],
     push?: PushProviderType[],
@@ -44,6 +44,7 @@ export type OptionsType = {|
   multiProviderStrategy?: {[ChannelType]: {
     type: 'fallback' | 'roundrobin' // Defaults to fallback
   }},
+  requestQueue?: false | 'in-memory' | QueueType<NotificationRequestType>,
   onError?: (NotificationStatusType, NotificationRequestType) => any
 |}
 
@@ -52,7 +53,12 @@ export default class NotifmeSdk {
   logger: typeof logger = logger
 
   constructor (options: OptionsType) {
-    this.sender = new Sender(options)
+    this.sender = new Sender({
+      ...options,
+      requestQueue: typeof options.requestQueue === 'string'
+        ? new Queue(options.requestQueue)
+        : options.requestQueue
+    })
   }
 
   send (request: NotificationRequestType): Promise<NotificationStatusType> {
