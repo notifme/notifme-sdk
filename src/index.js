@@ -29,8 +29,11 @@ export type NotificationRequestType = {|
 |}
 
 export type NotificationStatusType = {
-  // TODO: response to complete
   status: 'queued' | 'success' | 'error',
+  [channel: ChannelType]: {
+    id: string,
+    providerId: ?string
+  },
   errors?: {[channel: ChannelType]: Error}
 }
 

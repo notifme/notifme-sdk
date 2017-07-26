@@ -8,7 +8,7 @@ export interface WebpushProviderType {
 }
 
 export default class WebpushProvider {
-  name: string
+  id: string
   provider: WebpushProviderType
 
   constructor (type: string, config: Object) {
@@ -19,7 +19,7 @@ export default class WebpushProvider {
       default:
         throw new Error(`Unknown webpush provider "${type}".`)
     }
-    this.name = this.provider.name
+    this.id = this.provider.id
   }
 
   send (request: WebpushRequestType): Promise<string> {

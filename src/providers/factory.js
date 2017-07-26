@@ -12,7 +12,7 @@ import type {ChannelType, OptionsType} from '../index'
 type ChannelOptionsType = $PropertyType<OptionsType, 'channels'>
 
 interface ProviderType {
-  name: string;
+  id: string;
   send(Object): Promise<string>;
 }
 

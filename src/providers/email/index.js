@@ -10,7 +10,7 @@ export interface EmailProviderType {
 }
 
 export default class EmailProvider {
-  name: string
+  id: string
   provider: EmailProviderType
 
   constructor (type: string, config: Object) {
@@ -27,7 +27,7 @@ export default class EmailProvider {
       default:
         throw new Error(`Unknown email provider "${type}".`)
     }
-    this.name = this.provider.name
+    this.id = this.provider.id
   }
 
   send (request: EmailRequestType): Promise<string> {

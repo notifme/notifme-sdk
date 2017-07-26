@@ -8,7 +8,7 @@ export interface PushProviderType {
 }
 
 export default class PushProvider {
-  name: string
+  id: string
   provider: PushProviderType
 
   constructor (type: string, config: Object) {
@@ -19,7 +19,7 @@ export default class PushProvider {
       default:
         throw new Error(`Unknown push provider "${type}".`)
     }
-    this.name = this.provider.name
+    this.id = this.provider.id
   }
 
   send (request: PushRequestType): Promise<string> {

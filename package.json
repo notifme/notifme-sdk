@@ -9,6 +9,7 @@
   "scripts": {
     "build": "babel src --out-dir lib && yarn run build-dot-flow",
     "build-dot-flow": "find ./src -name '*.js' | while read filepath; do cp $filepath `echo $filepath | sed 's/\\/src\\//\\/lib\\//g'`.flow; done",
+    "clean": "rm -rf lib/",
     "dev": "nodemon -e js -r babel-register examples/development.js",
     "lint": "yarn run flow && standard",
     "prepublish": "yarn run build"

@@ -1,5 +1,6 @@
 /* @flow */
 
+// TODO: notification-catcher API
 // TODO: provider APIs (mailgun, SES, sendinblue, mailjet, sendgrid, postmark, mandrill, elasticemail...)
 export type EmailProviderType = {
   type: 'logger'

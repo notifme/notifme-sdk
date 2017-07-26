@@ -4,11 +4,11 @@ import nodemailer from 'nodemailer'
 import type {EmailRequestType} from '../../model-request'
 
 export default class EmailSmtpProvider {
-  name: string
+  id: string
   transporter: Object
 
   constructor (config: Object) {
-    this.name = 'email-smtp-provider'
+    this.id = 'email-smtp-provider'
     this.transporter = nodemailer.createTransport(config)
   }
 

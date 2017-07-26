@@ -8,7 +8,7 @@ export interface SmsProviderType {
 }
 
 export default class SmsProvider {
-  name: string
+  id: string
   provider: SmsProviderType
 
   constructor (type: string, config: Object) {
@@ -19,7 +19,7 @@ export default class SmsProvider {
       default:
         throw new Error(`Unknown sms provider "${type}".`)
     }
-    this.name = this.provider.name
+    this.id = this.provider.id
   }
 
   send (request: SmsRequestType): Promise<string> {

@@ -41,7 +41,7 @@ export default class Sender {
     const results = await Promise.all(Object.keys(request).map(async (channel: string) => {
       const provider = this.providerFactory.get((channel: any), {attempt})
       if (provider) {
-        const info = {channel, provider: provider.name}
+        const info = {channel, providerId: provider.id}
         try {
           const id = await provider.send(request[channel])
           return {...info, id, success: true}
@@ -50,12 +50,12 @@ export default class Sender {
           return this.tryWithFallbackProviders((channel: any), request, attempt)
         }
       } else { // should never happen
-        return {channel, provider: null, success: false, error: new Error(`No provider for channel "${channel}"`)}
+        return {channel, providerId: null, success: false, error: new Error(`No provider for channel "${channel}"`)}
       }
     }))
-    return results.reduce((acc, {success, channel, provider, ...rest}) => ({
+    return results.reduce((acc, {success, channel, providerId, ...rest}) => ({
       ...acc,
-      [channel]: {id: rest.id, provider},
+      [channel]: {id: rest.id, providerId},
       ...(!success
         ? {status: 'error', errors: {...acc.errors || null, [channel]: rest.error.message}}
         : null
@@ -70,7 +70,7 @@ export default class Sender {
     do {
       fallbackProvider = this.providerFactory.get((channel: any), {attempt: currentAttempt})
       if (fallbackProvider) {
-        const info = {channel, provider: fallbackProvider.name}
+        const info = {channel, providerId: fallbackProvider.id}
         try {
           const id = await fallbackProvider.send((request[channel]: any))
           return {...info, id, success: true}
