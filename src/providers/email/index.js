@@ -3,7 +3,7 @@ import EmailLoggerProvider from './logger'
 import EmailSendmailProvider from './sendmail'
 import EmailSmtpProvider from './smtp'
 // Types
-import type {EmailRequestType} from '../../model-request'
+import type {EmailRequestType} from '../../models/notification-request'
 
 export interface EmailProviderType {
   send(request: EmailRequestType): Promise<string>
@@ -16,7 +16,7 @@ export default class EmailProvider {
   constructor (type: string, config: Object) {
     switch (type) {
       case 'logger':
-        this.provider = new EmailLoggerProvider('email')
+        this.provider = new EmailLoggerProvider('email', config)
         break
       case 'sendmail':
         this.provider = new EmailSendmailProvider(config)

@@ -7,22 +7,17 @@
   "author": "Notif.me",
   "license": "MIT",
   "scripts": {
-    "build": "babel src --out-dir lib && yarn run build-dot-flow",
+    "build": "yarn run clean && babel src --out-dir lib && yarn run build-dot-flow",
     "build-dot-flow": "find ./src -name '*.js' | while read filepath; do cp $filepath `echo $filepath | sed 's/\\/src\\//\\/lib\\//g'`.flow; done",
     "clean": "rm -rf lib/",
     "dev": "nodemon -e js -r babel-register examples/development.js",
     "lint": "yarn run flow && standard",
     "prepublish": "yarn run build"
   },
-  "files": [
-    "lib"
-  ],
-  "standard": {
-    "parser": "babel-eslint",
-    "ignore": [
-      "**/node_modules/**",
-      "**/lib/**"
-    ]
+  "dependencies": {
+    "babel-runtime": "6.23.0",
+    "nodemailer": "4.0.1",
+    "winston": "2.3.1"
   },
   "devDependencies": {
     "babel-cli": "6.24.1",
@@ -36,9 +31,14 @@
     "nodemon": "1.11.0",
     "standard": "10.0.2"
   },
-  "dependencies": {
-    "babel-runtime": "6.23.0",
-    "nodemailer": "4.0.1",
-    "winston": "2.3.1"
+  "files": [
+    "lib"
+  ],
+  "standard": {
+    "parser": "babel-eslint",
+    "ignore": [
+      "**/node_modules/**",
+      "**/lib/**"
+    ]
   }
 }

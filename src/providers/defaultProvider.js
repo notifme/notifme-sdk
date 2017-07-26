@@ -2,13 +2,13 @@
 import logger from '../util/logger'
 // Types
 import type {ChannelType} from '../index'
-import type {EmailRequestType, PushRequestType, SmsRequestType, WebpushRequestType} from '../model-request'
+import type {EmailRequestType, PushRequestType, SmsRequestType, WebpushRequestType} from '../models/notification-request'
 
 export default class DefaulProvider {
   id: string
   channel: ChannelType
 
-  constructor (channel: ChannelType) {
+  constructor (channel: ChannelType, config: Object) {
     this.id = `${channel}-default-provider`
     this.channel = channel
   }

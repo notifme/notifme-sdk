@@ -1,9 +1,9 @@
 /* @flow */
-import ProviderFactory from '../providers/factory'
-import logger from '../util/logger'
+import ProviderFactory from './providers/factory'
+import logger from './util/logger'
 // Types
-import type {ChannelType, OptionsType, NotificationRequestType, NotificationStatusType} from '../index'
-import type {QueueType} from '../queue'
+import type {ChannelType, OptionsType, NotificationRequestType, NotificationStatusType} from './index'
+import type {QueueType} from './queue'
 
 export default class Sender {
   providerFactory: ProviderFactory

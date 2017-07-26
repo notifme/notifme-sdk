@@ -3,7 +3,7 @@ import SmsLoggerProvider from './logger'
 import SmsNexmoProvider from './nexmo'
 import SmsTwilioProvider from './twilio'
 // Types
-import type {SmsRequestType} from '../../model-request'
+import type {SmsRequestType} from '../../models/notification-request'
 
 export interface SmsProviderType {
   send(request: SmsRequestType): Promise<string>
@@ -16,7 +16,7 @@ export default class SmsProvider {
   constructor (type: string, config: Object) {
     switch (type) {
       case 'logger':
-        this.provider = new SmsLoggerProvider('sms')
+        this.provider = new SmsLoggerProvider('sms', config)
         break
       case 'nexmo':
         this.provider = new SmsNexmoProvider('sms', config)

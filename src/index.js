@@ -4,11 +4,11 @@ import Queue from './queue'
 import Sender from './sender'
 import logger from './util/logger'
 // Types
-import type {EmailRequestType, PushRequestType, SmsRequestType, WebpushRequestType} from './model-request'
-import type {EmailProviderType} from './providers/model-email'
-import type {PushProviderType} from './providers/model-push'
-import type {SmsProviderType} from './providers/model-sms'
-import type {WebpushProviderType} from './providers/model-webpush'
+import type {EmailRequestType, PushRequestType, SmsRequestType, WebpushRequestType} from './models/notification-request'
+import type {EmailProviderType} from './models/provider-email'
+import type {PushProviderType} from './models/provider-push'
+import type {SmsProviderType} from './models/provider-sms'
+import type {WebpushProviderType} from './models/provider-webpush'
 import type {QueueType} from './queue'
 
 export const channels = {

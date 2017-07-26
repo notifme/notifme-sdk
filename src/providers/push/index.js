@@ -5,7 +5,7 @@ import PushFcmProvider from './fcm'
 import PushLoggerProvider from './logger'
 import PushWnsProvider from './wns'
 // Types
-import type {PushRequestType} from '../../model-request'
+import type {PushRequestType} from '../../models/notification-request'
 
 export interface PushProviderType {
   send(request: PushRequestType): Promise<string>
@@ -27,7 +27,7 @@ export default class PushProvider {
         this.provider = new PushFcmProvider('push', config)
         break
       case 'logger':
-        this.provider = new PushLoggerProvider('push')
+        this.provider = new PushLoggerProvider('push', config)
         break
       case 'wns':
         this.provider = new PushWnsProvider('push', config)

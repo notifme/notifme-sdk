@@ -2,7 +2,7 @@
 import WebpushGcmProvider from './gcm'
 import WebpushLoggerProvider from './logger'
 // Types
-import type {WebpushRequestType} from '../../model-request'
+import type {WebpushRequestType} from '../../models/notification-request'
 
 export interface WebpushProviderType {
   send(request: WebpushRequestType): Promise<string>
@@ -18,7 +18,7 @@ export default class WebpushProvider {
         this.provider = new WebpushGcmProvider('webpush', config)
         break
       case 'logger':
-        this.provider = new WebpushLoggerProvider('webpush')
+        this.provider = new WebpushLoggerProvider('webpush', config)
         break
       default:
         throw new Error(`Unknown webpush provider "${type}".`)

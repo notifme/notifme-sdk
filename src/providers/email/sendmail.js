@@ -1,7 +1,7 @@
 /* @flow */
 import nodemailer from 'nodemailer'
 // Types
-import type {EmailRequestType} from '../../model-request'
+import type {EmailRequestType} from '../../models/notification-request'
 
 export default class EmailSendmailProvider {
   id: string
