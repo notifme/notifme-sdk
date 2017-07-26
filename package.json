@@ -37,6 +37,7 @@
   },
   "dependencies": {
     "babel-runtime": "6.23.0",
+    "nodemailer": "4.0.1",
     "winston": "2.3.1"
   }
 }
