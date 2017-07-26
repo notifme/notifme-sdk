@@ -1,4 +1,5 @@
 /* @flow */
+import WebpushGcmProvider from './gcm'
 import WebpushLoggerProvider from './logger'
 // Types
 import type {WebpushRequestType} from '../../model-request'
@@ -13,6 +14,9 @@ export default class WebpushProvider {
 
   constructor (type: string, config: Object) {
     switch (type) {
+      case 'gcm':
+        this.provider = new WebpushGcmProvider('webpush', config)
+        break
       case 'logger':
         this.provider = new WebpushLoggerProvider('webpush')
         break

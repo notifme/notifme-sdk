@@ -1,5 +1,7 @@
 /* @flow */
 import SmsLoggerProvider from './logger'
+import SmsNexmoProvider from './nexmo'
+import SmsTwilioProvider from './twilio'
 // Types
 import type {SmsRequestType} from '../../model-request'
 
@@ -15,6 +17,12 @@ export default class SmsProvider {
     switch (type) {
       case 'logger':
         this.provider = new SmsLoggerProvider('sms')
+        break
+      case 'nexmo':
+        this.provider = new SmsNexmoProvider('sms', config)
+        break
+      case 'twilio':
+        this.provider = new SmsTwilioProvider('sms', config)
         break
       default:
         throw new Error(`Unknown sms provider "${type}".`)
