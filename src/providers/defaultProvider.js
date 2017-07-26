@@ -13,10 +13,10 @@ export default class DefaulProvider {
     this.channel = channel
   }
 
-  async send (request: EmailRequestType | PushRequestType | SmsRequestType | WebpushRequestType): Promise<boolean> {
+  async send (request: EmailRequestType | PushRequestType | SmsRequestType | WebpushRequestType): Promise<string> {
     logger.warn(`No provider for channel "${this.channel}"`)
     logger.info(`[${this.channel.toUpperCase()}] Sent by "${this.name}":`)
     logger.info(request)
-    return true
+    return `id-${Math.round(Math.random() * 1000000000)}`
   }
 }

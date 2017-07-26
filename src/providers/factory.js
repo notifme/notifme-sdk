@@ -13,7 +13,7 @@ type ChannelOptionsType = $PropertyType<OptionsType, 'channels'>
 
 interface ProviderType {
   name: string;
-  send(Object): Promise<boolean>;
+  send(Object): Promise<string>;
 }
 
 type ContextType = {

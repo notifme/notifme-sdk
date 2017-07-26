@@ -4,7 +4,7 @@ import PushLoggerProvider from './logger'
 import type {PushRequestType} from '../../model-request'
 
 export interface PushProviderType {
-  send(request: PushRequestType): Promise<boolean>
+  send(request: PushRequestType): Promise<string>
 }
 
 export default class PushProvider {
@@ -22,7 +22,7 @@ export default class PushProvider {
     this.name = this.provider.name
   }
 
-  send (request: PushRequestType): Promise<boolean> {
+  send (request: PushRequestType): Promise<string> {
     return this.provider.send(request)
   }
 }

@@ -4,7 +4,7 @@ import WebpushLoggerProvider from './logger'
 import type {WebpushRequestType} from '../../model-request'
 
 export interface WebpushProviderType {
-  send(request: WebpushRequestType): Promise<boolean>
+  send(request: WebpushRequestType): Promise<string>
 }
 
 export default class WebpushProvider {
@@ -22,7 +22,7 @@ export default class WebpushProvider {
     this.name = this.provider.name
   }
 
-  send (request: WebpushRequestType): Promise<boolean> {
+  send (request: WebpushRequestType): Promise<string> {
     return this.provider.send(request)
   }
 }

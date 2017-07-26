@@ -4,7 +4,7 @@ import SmsLoggerProvider from './logger'
 import type {SmsRequestType} from '../../model-request'
 
 export interface SmsProviderType {
-  send(request: SmsRequestType): Promise<boolean>
+  send(request: SmsRequestType): Promise<string>
 }
 
 export default class SmsProvider {
@@ -22,7 +22,7 @@ export default class SmsProvider {
     this.name = this.provider.name
   }
 
-  send (request: SmsRequestType): Promise<boolean> {
+  send (request: SmsRequestType): Promise<string> {
     return this.provider.send(request)
   }
 }

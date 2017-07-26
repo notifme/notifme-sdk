@@ -43,8 +43,8 @@ export default class Sender {
       if (provider) {
         const info = {channel, provider: provider.name}
         try {
-          await provider.send(request[channel])
-          return {...info, success: true}
+          const id = await provider.send(request[channel])
+          return {...info, id, success: true}
         } catch (error) {
           logger.warn(error)
           let resultError = error
@@ -71,7 +71,7 @@ export default class Sender {
     }))
     return results.reduce((acc, {success, channel, provider, ...rest}) => ({
       ...acc,
-      [channel]: {provider},
+      [channel]: {id: rest.id, provider},
       ...(!success
         ? {status: 'error', errors: {...acc.errors || null, [channel]: rest.error.message}}
         : null

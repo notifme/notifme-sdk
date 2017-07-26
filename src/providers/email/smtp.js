@@ -9,8 +9,8 @@ export default class EmailSmtpProvider {
     this.name = 'email-smtp-provider'
   }
 
-  async send (request: EmailRequestType): Promise<boolean> {
+  async send (request: EmailRequestType): Promise<string> {
     // TODO: implement SMTP
-    return true
+    return ''
   }
 }

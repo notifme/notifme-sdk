@@ -5,7 +5,7 @@ import EmailSmtpProvider from './smtp'
 import type {EmailRequestType} from '../../model-request'
 
 export interface EmailProviderType {
-  send(request: EmailRequestType): Promise<boolean>
+  send(request: EmailRequestType): Promise<string>
 }
 
 export default class EmailProvider {
@@ -26,7 +26,7 @@ export default class EmailProvider {
     this.name = this.provider.name
   }
 
-  send (request: EmailRequestType): Promise<boolean> {
+  send (request: EmailRequestType): Promise<string> {
     return this.provider.send(request)
   }
 }
