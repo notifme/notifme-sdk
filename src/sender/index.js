@@ -8,6 +8,7 @@ import type {QueueType} from '../queue'
 export default class Sender {
   providerFactory: ProviderFactory
   requestQueue: ?QueueType<NotificationRequestType>
+  onError: ?(NotificationStatusType, NotificationRequestType) => any
 
   constructor (options: OptionsType) {
     this.providerFactory = new ProviderFactory(options.providers, options.multiProviderStrategy)
@@ -17,12 +18,13 @@ export default class Sender {
         : options.requestQueue
       this.nextRequest()
     }
+    this.onError = options.onError
   }
 
   nextRequest () {
     if (this.requestQueue) {
       this.requestQueue.dequeue('notifme:request', async (request: NotificationRequestType) => {
-        await this.send(request)
+        this.handleError(await this.send(request), request)
         this.nextRequest()
       })
     }
@@ -33,16 +35,33 @@ export default class Sender {
       await this.requestQueue.enqueue('notifme:request', request)
       return {status: 'queued'}
     } else {
-      return this.send(request)
+      return this.handleError(await this.send(request), request)
     }
   }
 
   async send (request: NotificationRequestType): Promise<NotificationStatusType> {
-    await Promise.all(Object.keys(request).map(async (channel: string) => {
+    const results = await Promise.all(Object.keys(request).map(async (channel: string) => {
       const provider = this.providerFactory.get((channel: any))
-      await provider.send(request[channel])
-      // TODO: retry request in case of failure
+      try {
+        await provider.send(request[channel])
+        return {channel, success: true}
+      } catch (error) {
+        return {channel, success: false, error}
+      }
     }))
-    return {status: 'sent'}
+    return results.reduce((acc, {success, channel, ...rest}) => ({
+      ...acc,
+      ...(!success
+        ? {status: 'error', errors: {...acc.errors || null, [channel]: rest.error.message}}
+        : null
+      )
+    }), {status: 'success'})
+  }
+
+  handleError (result: NotificationStatusType, request: NotificationRequestType): NotificationStatusType {
+    if (this.onError && result.status === 'error') {
+      this.onError(result, request)
+    }
+    return result
   }
 }

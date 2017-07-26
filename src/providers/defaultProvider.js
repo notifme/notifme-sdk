@@ -17,6 +17,6 @@ export default class DefaulProvider {
     logger.warn(`No provider for channel "${this.channel}"`)
     logger.info(`[${this.channel.toUpperCase()}] Sent by "${this.name}":`)
     logger.info(request)
-    return false
+    return true
   }
 }

@@ -19,12 +19,19 @@ export const channels = {
 export type ChannelType = $Keys<typeof channels>
 
 export type NotificationRequestType = {|
+  id?: string,
   email: EmailRequestType,
   push: PushRequestType,
   sms: SmsRequestType,
   webpush: WebpushRequestType
   // TODO: slack, messenger, skype, telegram, kik, spark...
 |}
+
+export type NotificationStatusType = {
+  // TODO: response to complete
+  status: 'queued' | 'success' | 'error',
+  errors?: {[channel: ChannelType]: Error}
+}
 
 export type OptionsType = {|
   requestQueue?: false | 'in-memory' | QueueType<NotificationRequestType>,
@@ -36,13 +43,9 @@ export type OptionsType = {|
   },
   multiProviderStrategy?: {[ChannelType]: {
     type: 'fallback' | 'roundrobin' // Defaults to fallback
-  }}
+  }},
+  onError?: (NotificationStatusType, NotificationRequestType) => any
 |}
-
-export type NotificationStatusType = {
-  // TODO: response to complete
-  status: 'queued' | 'sent' | 'failed'
-}
 
 export default class NotifmeSdk {
   sender: Sender

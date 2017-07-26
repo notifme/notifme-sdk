@@ -26,4 +26,4 @@ const notificationRequest: NotificationRequestType = {
     body: '...'
   }
 }
-notifmeSdk.send(notificationRequest)
+notifmeSdk.send(notificationRequest).then(console.log)
