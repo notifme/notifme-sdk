@@ -31,17 +31,14 @@ export default class ProviderFactory {
   get (channel: ChannelType, {attempt}: ContextType): ?ProviderType {
     const index = Math.max(0, attempt ? attempt - 1 : 0)
     if (this.channels && this.channels[channel]) {
-      const providerConfig = this.channels[channel].providers[index]
-      if (this.channels[channel].multiProviderStrategy === 'roundrobin') {
-        const nextIndex = this.lastIndexUsedByChannel[channel] !== undefined
-          ? (this.lastIndexUsedByChannel[channel] + 1) % this.channels[channel].providers.length
-          : index
-        this.lastIndexUsedByChannel[channel] = nextIndex
-        return this.getIndex(channel, nextIndex)
+      const channelConfig = this.channels[channel]
+      const providerConfig = channelConfig.providers[index]
+      if (channelConfig.multiProviderStrategy === 'roundrobin') {
+        return this.getUsingRoundRobinStrategy(channel, index, channelConfig.providers.length)
       } else if (providerConfig) {
-        return this.getIndex(channel, index)
+        return this.getProviderByIndex(channel, index)
       } else if (index === 0) {
-        return this.getIndex(channel, index, 'logger')
+        return this.getDefaultProvider(channel)
       } else {
         return null
       }
@@ -50,7 +47,19 @@ export default class ProviderFactory {
     }
   }
 
-  getIndex (channel: ChannelType, index: number, forceType?: string): ?ProviderType {
+  getUsingRoundRobinStrategy (channel: ChannelType, index: number, channelProviderCount: number) {
+    const nextIndex = this.lastIndexUsedByChannel[channel] !== undefined
+      ? (this.lastIndexUsedByChannel[channel] + 1) % channelProviderCount
+      : index
+    this.lastIndexUsedByChannel[channel] = nextIndex
+    return this.getProviderByIndex(channel, nextIndex)
+  }
+
+  getDefaultProvider (channel: ChannelType) {
+    return this.getProviderByIndex(channel, 0, 'logger')
+  }
+
+  getProviderByIndex (channel: ChannelType, index: number, forceType?: string): ?ProviderType {
     if (this.channels && this.channels[channel]) {
       const providerConfig = this.channels[channel].providers[index]
       const type = forceType || providerConfig.type

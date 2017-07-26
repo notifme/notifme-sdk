@@ -2,7 +2,7 @@
 import ProviderFactory from '../providers/factory'
 import logger from '../util/logger'
 // Types
-import type {OptionsType, NotificationRequestType, NotificationStatusType} from '../index'
+import type {ChannelType, OptionsType, NotificationRequestType, NotificationStatusType} from '../index'
 import type {QueueType} from '../queue'
 
 export default class Sender {
@@ -47,23 +47,7 @@ export default class Sender {
           return {...info, id, success: true}
         } catch (error) {
           logger.warn(error)
-          let resultError = error
-          let currentAttempt = attempt + 1
-          let fallbackProvider
-          do {
-            fallbackProvider = this.providerFactory.get((channel: any), {attempt: currentAttempt})
-            if (fallbackProvider) {
-              try {
-                await fallbackProvider.send(request[channel])
-                return {...info, provider: fallbackProvider.name, success: true}
-              } catch (err) {
-                logger.warn(err)
-                resultError = err
-              }
-            }
-            currentAttempt++
-          } while (fallbackProvider)
-          return {...info, success: false, error: resultError}
+          return this.tryWithFallbackProviders((channel: any), request, attempt)
         }
       } else { // should never happen
         return {channel, provider: null, success: false, error: new Error(`No provider for channel "${channel}"`)}
@@ -77,6 +61,27 @@ export default class Sender {
         : null
       )
     }), {status: 'success'})
+  }
+
+  async tryWithFallbackProviders (channel: ChannelType, request: NotificationRequestType, attempt: number) {
+    let resultError = {}
+    let currentAttempt = attempt + 1
+    let fallbackProvider
+    do {
+      fallbackProvider = this.providerFactory.get((channel: any), {attempt: currentAttempt})
+      if (fallbackProvider) {
+        const info = {channel, provider: fallbackProvider.name}
+        try {
+          const id = await fallbackProvider.send((request[channel]: any))
+          return {...info, id, success: true}
+        } catch (err) {
+          logger.warn(err)
+          resultError = {...info, success: false, error: err}
+        }
+      }
+      currentAttempt++
+    } while (fallbackProvider)
+    return resultError
   }
 
   handleError (result: NotificationStatusType, request: NotificationRequestType): NotificationStatusType {
