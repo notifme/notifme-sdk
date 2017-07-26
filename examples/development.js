@@ -25,5 +25,8 @@ const notificationRequest: NotificationRequestType = {
     title: 'Hi',
     body: '...'
   }
+
+const run = async () => {
+  console.log(await notifmeSdk.send(notificationRequest))
 }
-notifmeSdk.send(notificationRequest).then(console.log)
+run()

@@ -19,6 +19,10 @@ class Logger {
     this.innerLogger.configure(options)
   }
 
+  mute () {
+    this.configure({transports: []})
+  }
+
   log (level: LevelType, info: any, extra?: any) {
     this.innerLogger.log(level, info, extra)
   }
