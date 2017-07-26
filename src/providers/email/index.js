@@ -1,5 +1,6 @@
 /* @flow */
 import EmailLoggerProvider from './logger'
+import EmailSendmailProvider from './sendmail'
 import EmailSmtpProvider from './smtp'
 // Types
 import type {EmailRequestType} from '../../model-request'
@@ -16,6 +17,9 @@ export default class EmailProvider {
     switch (type) {
       case 'logger':
         this.provider = new EmailLoggerProvider('email')
+        break
+      case 'sendmail':
+        this.provider = new EmailSendmailProvider(config)
         break
       case 'smtp':
         this.provider = new EmailSmtpProvider(config)

@@ -6,9 +6,10 @@ export type EmailProviderType = {
 } | {
   // Doc: https://nodemailer.com/transports/sendmail/
   type: 'sendmail',
+  sendmail: true,
   path: string, // Defaults to 'sendmail'
   newline: 'windows' | 'unix', // Defaults to 'unix'
-  args: string[],
+  args?: string[],
   attachDataUrls?: boolean,
   disableFileAccess?: boolean,
   disableUrlAccess?: boolean
