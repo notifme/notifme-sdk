@@ -3,11 +3,12 @@
 import Sender from './sender'
 import logger from './util/logger'
 // Types
+import type {EmailRequestType, PushRequestType, SmsRequestType, WebpushRequestType} from './model-request'
 import type {EmailProviderType} from './providers/model-email'
 import type {PushProviderType} from './providers/model-push'
 import type {SmsProviderType} from './providers/model-sms'
 import type {WebpushProviderType} from './providers/model-webpush'
-import type {EmailRequestType, PushRequestType, SmsRequestType, WebpushRequestType} from './model-request'
+import type {QueueType} from './queue'
 
 export const channels = {
   email: 'email',
@@ -17,9 +18,16 @@ export const channels = {
 }
 export type ChannelType = $Keys<typeof channels>
 
-export type OptionsType = {
-  requestQueueType?: false | 'in-memory',
-  retryQueueType?: 'in-memory',
+export type NotificationRequestType = {|
+  email: EmailRequestType,
+  push: PushRequestType,
+  sms: SmsRequestType,
+  webpush: WebpushRequestType
+  // TODO: slack, messenger, skype, telegram, kik, spark...
+|}
+
+export type OptionsType = {|
+  requestQueue?: false | 'in-memory' | QueueType<NotificationRequestType>,
   providers?: {
     email?: EmailProviderType[],
     push?: PushProviderType[],
@@ -29,15 +37,7 @@ export type OptionsType = {
   multiProviderStrategy?: {[ChannelType]: {
     type: 'fallback' | 'roundrobin' // Defaults to fallback
   }}
-}
-
-export type NotificationRequestType = {
-  email: EmailRequestType,
-  push: PushRequestType,
-  sms: SmsRequestType,
-  webpush: WebpushRequestType
-  // TODO: slack, messenger, skype, telegram, kik, spark...
-}
+|}
 
 export type NotificationStatusType = {
   // TODO: response to complete
