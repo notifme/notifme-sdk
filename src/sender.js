@@ -47,7 +47,12 @@ export default class Sender {
           return {...info, id, success: true}
         } catch (error) {
           logger.warn(error)
-          return this.tryWithFallbackProviders((channel: any), request, attempt)
+          const multiProviderStrategy = this.providerFactory.getMultiProviderStrategy((channel: any))
+          if (multiProviderStrategy !== 'no-fallback') {
+            return this.tryWithFallbackProviders((channel: any), request, attempt)
+          } else {
+            return {...info, success: false, error}
+          }
         }
       } else { // should never happen
         return {channel, providerId: null, success: false, error: new Error(`No provider for channel "${channel}"`)}

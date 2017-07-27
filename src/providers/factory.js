@@ -7,7 +7,7 @@ import PushProvider from './push'
 import SmsProvider from './sms'
 import WebpushProvider from './webpush'
 // Types
-import type {ChannelType, OptionsType} from '../index'
+import type {ChannelType, OptionsType, ProviderStrategyType} from '../index'
 
 type ChannelOptionsType = $PropertyType<OptionsType, 'channels'>
 
@@ -33,7 +33,7 @@ export default class ProviderFactory {
     if (this.channels && this.channels[channel]) {
       const channelConfig = this.channels[channel]
       const providerConfig = channelConfig.providers[index]
-      if (channelConfig.multiProviderStrategy === 'roundrobin') {
+      if (this.getMultiProviderStrategy(channel) === 'roundrobin') {
         return this.getUsingRoundRobinStrategy(channel, index, channelConfig.providers.length)
       } else if (providerConfig) {
         return this.getProviderByIndex(channel, index)
@@ -45,6 +45,12 @@ export default class ProviderFactory {
     } else {
       throw new Error(`Unknown channel "${channel}".`)
     }
+  }
+
+  getMultiProviderStrategy (channel: ChannelType): ProviderStrategyType {
+    return this.channels && this.channels[channel] && this.channels[channel].multiProviderStrategy !== undefined
+      ? this.channels[channel].multiProviderStrategy
+      : 'fallback'
   }
 
   getUsingRoundRobinStrategy (channel: ChannelType, index: number, channelProviderCount: number) {

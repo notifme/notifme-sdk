@@ -37,7 +37,7 @@ export type NotificationStatusType = {
   errors?: {[channel: ChannelType]: Error}
 }
 
-export type ProviderStrategyType = 'fallback' | 'roundrobin' // Defaults to fallback
+export type ProviderStrategyType = 'no-fallback' | 'fallback' | 'roundrobin' // Defaults to fallback
 
 export type OptionsType = {|
   channels?: {
@@ -73,22 +73,22 @@ export default class NotifmeSdk {
         email: {
           providers: [],
           multiProviderStrategy: 'fallback',
-          ...channels ? channels.email : null
+          ...(channels ? channels.email : null)
         },
         push: {
           providers: [],
           multiProviderStrategy: 'fallback',
-          ...channels ? channels.push : null
+          ...(channels ? channels.push : null)
         },
         sms: {
           providers: [],
           multiProviderStrategy: 'fallback',
-          ...channels ? channels.sms : null
+          ...(channels ? channels.sms : null)
         },
         webpush: {
           providers: [],
           multiProviderStrategy: 'fallback',
-          ...channels ? channels.webpush : null
+          ...(channels ? channels.webpush : null)
         }
       },
       requestQueue: typeof requestQueue === 'string' ? new Queue(requestQueue) : requestQueue
