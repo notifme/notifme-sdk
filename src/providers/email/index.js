@@ -16,7 +16,7 @@ export default class EmailProvider {
   constructor (type: string, config: Object) {
     switch (type) {
       case 'logger':
-        this.provider = new EmailLoggerProvider('email', config)
+        this.provider = new EmailLoggerProvider(config, 'email')
         break
       case 'sendmail':
         this.provider = new EmailSendmailProvider(config)

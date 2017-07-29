@@ -26,6 +26,7 @@ export type EmailRequestType = {
 }
 
 export type PushRequestType = {
+  registrationToken: string,
   title: string,
   body: string,
   custom?: Object,

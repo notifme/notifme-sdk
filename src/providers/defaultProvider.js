@@ -8,7 +8,7 @@ export default class DefaulProvider {
   id: string
   channel: ChannelType
 
-  constructor (channel: ChannelType, config: Object) {
+  constructor (config: Object, channel: ChannelType) {
     this.id = `${channel}-default-provider`
     this.channel = channel
   }

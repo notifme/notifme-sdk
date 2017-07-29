@@ -15,10 +15,10 @@ export default class WebpushProvider {
   constructor (type: string, config: Object) {
     switch (type) {
       case 'gcm':
-        this.provider = new WebpushGcmProvider('webpush', config)
+        this.provider = new WebpushGcmProvider(config, 'webpush')
         break
       case 'logger':
-        this.provider = new WebpushLoggerProvider('webpush', config)
+        this.provider = new WebpushLoggerProvider(config, 'webpush')
         break
       default:
         throw new Error(`Unknown webpush provider "${type}".`)

@@ -18,19 +18,19 @@ export default class PushProvider {
   constructor (type: string, config: Object) {
     switch (type) {
       case 'adm':
-        this.provider = new PushAdmProvider('push', config)
+        this.provider = new PushAdmProvider(config)
         break
       case 'apn':
-        this.provider = new PushApnProvider('push', config)
+        this.provider = new PushApnProvider(config)
         break
       case 'fcm':
-        this.provider = new PushFcmProvider('push', config)
+        this.provider = new PushFcmProvider(config)
         break
       case 'logger':
-        this.provider = new PushLoggerProvider('push', config)
+        this.provider = new PushLoggerProvider(config, 'push')
         break
       case 'wns':
-        this.provider = new PushWnsProvider('push', config)
+        this.provider = new PushWnsProvider(config)
         break
       default:
         throw new Error(`Unknown push provider "${type}".`)

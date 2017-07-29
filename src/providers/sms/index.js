@@ -16,13 +16,13 @@ export default class SmsProvider {
   constructor (type: string, config: Object) {
     switch (type) {
       case 'logger':
-        this.provider = new SmsLoggerProvider('sms', config)
+        this.provider = new SmsLoggerProvider(config, 'sms')
         break
       case 'nexmo':
-        this.provider = new SmsNexmoProvider('sms', config)
+        this.provider = new SmsNexmoProvider(config, 'sms')
         break
       case 'twilio':
-        this.provider = new SmsTwilioProvider('sms', config)
+        this.provider = new SmsTwilioProvider(config, 'sms')
         break
       default:
         throw new Error(`Unknown sms provider "${type}".`)

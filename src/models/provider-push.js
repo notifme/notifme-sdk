@@ -21,7 +21,8 @@ export type PushProviderType = {
 } | {
   // Doc: https://github.com/ToothlessGear/node-gcm
   type: 'fcm', // Firebase Cloud Messaging (previously called GCM, Google Cloud Messaging)
-  apiKey: string
+  id: string,
+  phonegap?: boolean
 } | {
   // Doc: https://github.com/tjanczuk/wns
   type: 'wns', // Windows Push Notification
