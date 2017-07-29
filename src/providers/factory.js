@@ -48,9 +48,15 @@ export default class ProviderFactory {
   }
 
   getMultiProviderStrategy (channel: ChannelType): ProviderStrategyType {
-    return this.channels && this.channels[channel] && this.channels[channel].multiProviderStrategy !== undefined
-      ? this.channels[channel].multiProviderStrategy
-      : 'fallback'
+    let strategy = 'fallback'
+    if (this.channels && this.channels[channel]) {
+      if (this.channels[channel].providers.length <= 1) {
+        strategy = 'no-fallback'
+      } else if (this.channels[channel].multiProviderStrategy !== undefined) {
+        strategy = this.channels[channel].multiProviderStrategy
+      }
+    }
+    return strategy
   }
 
   getUsingRoundRobinStrategy (channel: ChannelType, index: number, channelProviderCount: number) {
