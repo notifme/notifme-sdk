@@ -17,8 +17,7 @@ export default class SmsTwilioProvider {
       case 'text':
       case 'unicode':
       case undefined:
-        // $FlowIgnore
-        return this.sendTextSms(request.text, request)
+        return this.sendTextSms((request: any).text, request)
 
       case 'binary':
       case 'wappush':
