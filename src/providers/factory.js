@@ -11,7 +11,7 @@ import type {ChannelType, OptionsType, ProviderStrategyType} from '../index'
 
 type ChannelOptionsType = $PropertyType<OptionsType, 'channels'>
 
-interface ProviderType {
+export interface ProviderType {
   id: string;
   send(Object): Promise<string>;
 }
