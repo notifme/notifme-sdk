@@ -15,7 +15,7 @@ export default class WebpushProvider {
   constructor (type: string, config: Object) {
     switch (type) {
       case 'gcm':
-        this.provider = new WebpushGcmProvider(config, 'webpush')
+        this.provider = new WebpushGcmProvider(config)
         break
       case 'logger':
         this.provider = new WebpushLoggerProvider(config, 'webpush')

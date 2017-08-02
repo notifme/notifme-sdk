@@ -85,6 +85,13 @@ export type SmsRequestType = {
 )
 
 export type WebpushRequestType = {
+  subscription: {
+    endpoint: string,
+    keys: {
+      auth: string,
+      p256dh: string
+    }
+  },
   title: string, // C22 F22 S6
   body: string, // C22 F22 S6
   actions?: {

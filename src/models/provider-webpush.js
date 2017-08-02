@@ -6,7 +6,7 @@ export type WebpushProviderType = {
 } | {
   type: 'gcm',
   gcmAPIKey?: string,
-  vapidDetails: {
+  vapidDetails?: {
     subject: string,
     publicKey: string,
     privateKey: string
