@@ -9,8 +9,6 @@ export type SmsProviderType = {
   apiSecret: string
 } | {
   type: 'twilio',
-  apiKey: string,
-  apiSecret: string,
-  applicationId: string,
-  privateKey: string
+  accountSid: string,
+  authToken: string
 }

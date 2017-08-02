@@ -22,7 +22,7 @@ export default class SmsProvider {
         this.provider = new SmsNexmoProvider(config)
         break
       case 'twilio':
-        this.provider = new SmsTwilioProvider(config, 'sms')
+        this.provider = new SmsTwilioProvider(config)
         break
       default:
         throw new Error(`Unknown sms provider "${type}".`)
