@@ -6,9 +6,7 @@ export type SmsProviderType = {
 } | {
   type: 'nexmo',
   apiKey: string,
-  apiSecret: string,
-  applicationId: string,
-  privateKey: string
+  apiSecret: string
 } | {
   type: 'twilio',
   apiKey: string,

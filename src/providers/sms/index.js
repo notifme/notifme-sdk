@@ -19,7 +19,7 @@ export default class SmsProvider {
         this.provider = new SmsLoggerProvider(config, 'sms')
         break
       case 'nexmo':
-        this.provider = new SmsNexmoProvider(config, 'sms')
+        this.provider = new SmsNexmoProvider(config)
         break
       case 'twilio':
         this.provider = new SmsTwilioProvider(config, 'sms')
