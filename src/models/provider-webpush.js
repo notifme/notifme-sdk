@@ -1,6 +1,6 @@
 /* @flow */
 
-// TODO: onesignal, urbanairship, goroost, sendpulse, wonderpush, appboy...
+// TODO?: onesignal, urbanairship, goroost, sendpulse, wonderpush, appboy...
 export type WebpushProviderType = {
   type: 'logger'
 } | {

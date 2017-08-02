@@ -25,7 +25,7 @@ export type NotificationRequestType = {|
   push?: PushRequestType,
   sms?: SmsRequestType,
   webpush?: WebpushRequestType
-  // TODO: slack, messenger, skype, telegram, kik, spark...
+  // TODO?: slack, messenger, skype, telegram, kik, spark...
 |}
 
 export type NotificationStatusType = {

@@ -1,6 +1,6 @@
 /* @flow */
 
-// TODO: other SMS providers
+// TODO?: other SMS providers
 export type SmsProviderType = {
   type: 'logger'
 } | {
