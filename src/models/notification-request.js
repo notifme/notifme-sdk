@@ -1,6 +1,11 @@
 /* @flow */
 
-export type EmailRequestType = {
+type CommonRequestType = {
+  id?: string,
+  userId?: string
+}
+
+export type EmailRequestType = CommonRequestType & {
   from: string,
   to: string,
   subject: string,
@@ -25,7 +30,7 @@ export type EmailRequestType = {
   headers?: {[string]: string | number | boolean}
 }
 
-export type PushRequestType = {
+export type PushRequestType = CommonRequestType & {
   registrationToken: string,
   title: string,
   body: string,
@@ -68,10 +73,9 @@ export type PushRequestType = {
   consolidationKey?: string // ADM
 }
 
-export type SmsRequestType = {
+export type SmsRequestType = CommonRequestType & {
   from: string,
   to: string,
-  userId?: string,
   nature?: 'marketing' | 'transactional',
   ttl?: number,
   messageClass?: 0 | 1 | 2 | 3
@@ -84,7 +88,7 @@ export type SmsRequestType = {
   | {type: 'vcard', vcard: string}
 )
 
-export type WebpushRequestType = {
+export type WebpushRequestType = CommonRequestType & {
   subscription: {
     endpoint: string,
     keys: {
