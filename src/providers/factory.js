@@ -42,8 +42,6 @@ export default class ProviderFactory {
       } else {
         return null
       }
-    } else {
-      throw new Error(`Unknown channel "${channel}".`)
     }
   }
 
