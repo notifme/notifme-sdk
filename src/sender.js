@@ -9,6 +9,7 @@ import type {QueueType} from './queue'
 export default class Sender {
   providerFactory: ProviderFactory
   requestQueue: QueueType<NotificationRequestType> | false
+  onSuccess: ?(NotificationStatusType, NotificationRequestType) => any
   onError: ?(NotificationStatusType, NotificationRequestType) => any
 
   constructor (options: OptionsType) {
@@ -17,6 +18,7 @@ export default class Sender {
       this.requestQueue = (options.requestQueue: any)
       this.nextRequest()
     }
+    this.onSuccess = options.onSuccess
     this.onError = options.onError
   }
 
@@ -50,7 +52,9 @@ export default class Sender {
       )
     }), {status: 'success'})
 
-    if (this.onError && result.status === 'error') {
+    if (this.onSuccess && result.status === 'success') {
+      this.onSuccess(result, request)
+    } else if (this.onError && result.status === 'error') {
       this.onError(result, request)
     }
 

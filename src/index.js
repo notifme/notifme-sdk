@@ -60,6 +60,7 @@ export type OptionsType = {|
     }
   },
   requestQueue?: false | 'in-memory' | QueueType<NotificationRequestType>,
+  onSuccess?: (NotificationStatusType, NotificationRequestType) => any,
   onError?: (NotificationStatusType, NotificationRequestType) => any,
   useNotificationCatcher?: boolean // if true channels are ignored
 |}
