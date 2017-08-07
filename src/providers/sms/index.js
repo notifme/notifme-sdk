@@ -1,6 +1,7 @@
 /* @flow */
 import SmsLoggerProvider from './logger'
 import SmsNexmoProvider from './nexmo'
+import SmsNotificationCatcherProvider from './notificationCatcher'
 import SmsTwilioProvider from './twilio'
 // Types
 import type {SmsRequestType} from '../../models/notification-request'
@@ -20,6 +21,9 @@ export default class SmsProvider {
         break
       case 'nexmo':
         this.provider = new SmsNexmoProvider(config)
+        break
+      case 'notificationcatcher':
+        this.provider = new SmsNotificationCatcherProvider('sms')
         break
       case 'twilio':
         this.provider = new SmsTwilioProvider(config)

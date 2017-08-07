@@ -1,6 +1,7 @@
 /* @flow */
 import WebpushGcmProvider from './gcm'
 import WebpushLoggerProvider from './logger'
+import WebpushNotificationCatcherProvider from './notificationCatcher'
 // Types
 import type {WebpushRequestType} from '../../models/notification-request'
 
@@ -16,6 +17,9 @@ export default class WebpushProvider {
     switch (type) {
       case 'gcm':
         this.provider = new WebpushGcmProvider(config)
+        break
+      case 'notificationcatcher':
+        this.provider = new WebpushNotificationCatcherProvider('webpush')
         break
       case 'logger':
         this.provider = new WebpushLoggerProvider(config, 'webpush')

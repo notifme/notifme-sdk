@@ -12,6 +12,7 @@
     "clean": "rm -rf lib/",
     "dev": "nodemon -e js -r babel-register examples/development.js",
     "lint": "yarn run flow && standard",
+    "run-catcher": "notification-catcher",
     "prepublish": "yarn run build"
   },
   "dependencies": {
@@ -33,6 +34,7 @@
     "babel-register": "6.24.1",
     "flow-bin": "0.51.0",
     "nodemon": "1.11.0",
+    "notification-catcher": "1.0.3",
     "standard": "10.0.2"
   },
   "files": [

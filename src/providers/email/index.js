@@ -1,5 +1,6 @@
 /* @flow */
 import EmailLoggerProvider from './logger'
+import EmailNotificationCatcherProvider from './notificationCatcher'
 import EmailSendmailProvider from './sendmail'
 import EmailSmtpProvider from './smtp'
 // Types
@@ -17,6 +18,9 @@ export default class EmailProvider {
     switch (type) {
       case 'logger':
         this.provider = new EmailLoggerProvider(config, 'email')
+        break
+      case 'notificationcatcher':
+        this.provider = new EmailNotificationCatcherProvider('email')
         break
       case 'sendmail':
         this.provider = new EmailSendmailProvider(config)

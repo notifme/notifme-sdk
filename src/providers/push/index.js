@@ -3,6 +3,7 @@ import PushAdmProvider from './adm'
 import PushApnProvider from './apn'
 import PushFcmProvider from './fcm'
 import PushLoggerProvider from './logger'
+import PushNotificationCatcherProvider from './notificationCatcher'
 import PushWnsProvider from './wns'
 // Types
 import type {PushRequestType} from '../../models/notification-request'
@@ -25,6 +26,9 @@ export default class PushProvider {
         break
       case 'fcm':
         this.provider = new PushFcmProvider(config)
+        break
+      case 'notificationcatcher':
+        this.provider = new PushNotificationCatcherProvider('push')
         break
       case 'logger':
         this.provider = new PushLoggerProvider(config, 'push')

@@ -1,5 +1,6 @@
 /* @flow */
 /* global $Keys */
+import NotificationCatcherProvider from './providers/notificationCatcherProvider'
 import Queue from './queue'
 import Sender from './sender'
 import logger from './util/logger'
@@ -11,13 +12,13 @@ import type {SmsProviderType} from './models/provider-sms'
 import type {WebpushProviderType} from './models/provider-webpush'
 import type {QueueType} from './queue'
 
-export const channels = {
+export const CHANNELS = {
   email: 'email',
   push: 'push',
   sms: 'sms',
   webpush: 'webpush'
 }
-export type ChannelType = $Keys<typeof channels>
+export type ChannelType = $Keys<typeof CHANNELS>
 
 export type NotificationRequestType = {|
   id?: string,
@@ -59,7 +60,8 @@ export type OptionsType = {|
     }
   },
   requestQueue?: false | 'in-memory' | QueueType<NotificationRequestType>,
-  onError?: (NotificationStatusType, NotificationRequestType) => any
+  onError?: (NotificationStatusType, NotificationRequestType) => any,
+  useNotificationCatcher?: boolean // if true channels are ignored
 |}
 
 export default class NotifmeSdk {
@@ -68,29 +70,32 @@ export default class NotifmeSdk {
 
   constructor ({channels, requestQueue, ...rest}: OptionsType) {
     this.sender = new Sender({
+      useNotificationCatcher: false,
       ...rest,
-      channels: {
-        email: {
-          providers: [],
-          multiProviderStrategy: 'fallback',
-          ...(channels ? channels.email : null)
+      channels: rest.useNotificationCatcher
+        ? NotificationCatcherProvider.getConfig(Object.keys(CHANNELS))
+        : {
+          email: {
+            providers: [],
+            multiProviderStrategy: 'fallback',
+            ...(channels ? channels.email : null)
+          },
+          push: {
+            providers: [],
+            multiProviderStrategy: 'fallback',
+            ...(channels ? channels.push : null)
+          },
+          sms: {
+            providers: [],
+            multiProviderStrategy: 'fallback',
+            ...(channels ? channels.sms : null)
+          },
+          webpush: {
+            providers: [],
+            multiProviderStrategy: 'fallback',
+            ...(channels ? channels.webpush : null)
+          }
         },
-        push: {
-          providers: [],
-          multiProviderStrategy: 'fallback',
-          ...(channels ? channels.push : null)
-        },
-        sms: {
-          providers: [],
-          multiProviderStrategy: 'fallback',
-          ...(channels ? channels.sms : null)
-        },
-        webpush: {
-          providers: [],
-          multiProviderStrategy: 'fallback',
-          ...(channels ? channels.webpush : null)
-        }
-      },
       requestQueue: typeof requestQueue === 'string' ? new Queue(requestQueue) : requestQueue
     })
   }
