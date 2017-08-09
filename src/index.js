@@ -35,6 +35,7 @@ export type NotificationStatusType = {
     id: string,
     providerId: ?string
   },
+  info?: ?Object,
   errors?: {[channel: ChannelType]: Error}
 }
 

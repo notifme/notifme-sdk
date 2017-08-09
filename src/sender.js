@@ -33,8 +33,8 @@ export default class Sender {
 
   async handleRequest (request: NotificationRequestType): Promise<NotificationStatusType> {
     if (this.requestQueue) {
-      await this.requestQueue.enqueue('notifme:request', request)
-      return {status: 'queued'}
+      const info = await this.requestQueue.enqueue('notifme:request', request)
+      return {status: 'queued', info}
     } else {
       return this.send(request)
     }

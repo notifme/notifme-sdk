@@ -2,11 +2,11 @@
 import Registry from '../util/registry'
 import InMemoryQueue from './inMemory'
 
-export type CallbackReturnType = void | Promise<void>
+export type CallbackReturnType = Promise<void>
 export type CallbackType<T> = (jobData: T) => CallbackReturnType
 
 export interface QueueType<T> {
-  enqueue(type: string, jobData: T): Promise<void>;
+  enqueue(type: string, jobData: T): Promise<?Object>;
   dequeue(type: string, callback: CallbackType<T>): void;
 }
 
@@ -23,7 +23,7 @@ export default class Queue<T> {
     }
   }
 
-  async enqueue (type: string, jobData: T): Promise<void> {
+  async enqueue (type: string, jobData: T): Promise<?Object> {
     return this.innerQueue.enqueue(type, jobData)
   }
 
