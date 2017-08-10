@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://notifme.github.io/notifme-sdk/"><img alt="Notif.me" src="https://notifme.github.io/notifme-sdk/img/logo.png" /></a>
+  <img alt="Notif.me" src="https://notifme.github.io/notifme-sdk/img/logo.png" />
 </p>
 
 <p align="center">
@@ -10,7 +10,7 @@
   <a href="https://www.npmjs.com/package/notifme-sdk"><img alt="npm-status" src="https://img.shields.io/npm/v/notifme-sdk.svg?style=flat" /></a>
   <a href="https://github.com/standard/standard"><img alt="js-standard-style" src="https://img.shields.io/badge/codestyle-standard-brightgreen.svg?style=flat" /></a>
   <a href="https://flow.org/"><img alt="flow-typed" src="https://img.shields.io/badge/typing-Flow_Type-brightgreen.svg?style=flat" /></a>
-  <a href="https://github.com/notifme/notifme-sdk/blob/master/LICENSE"><img alt="license" src="https://img.shields.io/github/license/notifme/notifme-sdk.svg?style=flat" /></a>
+  <a href="https://github.com/notifme/notifme-sdk/blob/master/LICENSE"><img alt="license" src="https://img.shields.io/badge/license-MIT_License-blue.svg?style=flat" /></a>
 </p>
 
 - [Features](#features)
@@ -56,6 +56,7 @@ notifmeSdk
 :sparkles: Congratulations, you should see the following lines in your console:
 
 ![Getting started SMS log](https://notifme.github.io/notifme-sdk/img/getting-started-sms-log.png)
+<br><br>
 
 ### [Recommended] Setup Notification Catcher for your local tests
 
@@ -90,6 +91,16 @@ notifmeSdk
 - [5. In production](#5-in-production)
 
 ### 1. General options
+
+```javascript
+new NotifmeSdk({
+  channels: ..., // Object
+  requestQueue: ..., // false | 'in-memory' | Function
+  onSuccess: ..., // Function
+  onError: ..., // Function
+  useNotificationCatcher: ... // boolean
+})
+```
 
 | Option name | Required | Type | Description |
 | --- | --- | --- | --- |
@@ -162,14 +173,6 @@ new NotifmeSdk({
 ```
 
 ### 2. Providers
-
-#### Multi-provider strategies
-
-| Strategy name | Description |
-| --- | --- |
-| `fallback` | If the used provider returns an error, try the next in the list. |
-| `roundrobin` | Use every provider in turns. If one of them returns an error, fallback to the next. |
-| `no-fallback` | Deactivates fallback strategy. |
 
 #### Email providers
 
@@ -421,6 +424,14 @@ new NotifmeSdk({
 
 See all options: [Webpush provider options](https://github.com/notifme/notifme-sdk/blob/master/src/models/provider-webpush.js)
 
+#### Multi-provider strategies
+
+| Strategy name | Description |
+| --- | --- |
+| `fallback` | If the used provider returns an error, try the next in the list. |
+| `roundrobin` | Use every provider in turns. If one of them returns an error, fallback to the next. |
+| `no-fallback` | Deactivates fallback strategy. |
+
 #### Adding a provider or a channel
 
 If you would like to see another provider or channel, please [upvote the corresponding issue](https://github.com/notifme/notifme-sdk/issues) (or create one if it does not exist yet).
@@ -597,7 +608,7 @@ Examples:
 
 ### 5. In production
 
-#### Options
+#### Recommended options
 
 | Option name | Usage in production |
 | --- | --- |
