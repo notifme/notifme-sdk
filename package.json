@@ -2,7 +2,7 @@
   "name": "notifme-sdk",
   "version": "0.0.1",
   "description": "Unified notification SDK (emails, SMS, pushes, webpushes...) for Node.js",
-  "main": "index.js",
+  "main": "lib/index.js",
   "repository": "https://github.com/notifme/notifme-sdk",
   "author": "Notif.me",
   "license": "MIT",
