@@ -9,7 +9,11 @@ export default class PushAdmProvider {
 
   constructor (config: Object) {
     this.id = 'push-adm-provider'
-    this.transporter = new PushNotifications({adm: config})
+    this.transporter = new PushNotifications({adm: {
+      ...config,
+      client_id: config.clientId,
+      client_secret: config.clientSecret
+    }})
   }
 
   async send ({registrationToken, ...request}: PushRequestType): Promise<string> {

@@ -9,7 +9,11 @@ export default class PushWnsProvider {
 
   constructor (config: Object) {
     this.id = 'push-wns-provider'
-    this.transporter = new PushNotifications({wns: config})
+    this.transporter = new PushNotifications({wns: {
+      ...config,
+      client_id: config.clientId,
+      client_secret: config.clientSecret
+    }})
   }
 
   async send ({registrationToken, ...request}: PushRequestType): Promise<string> {
