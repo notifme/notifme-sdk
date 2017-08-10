@@ -45,7 +45,10 @@ export default class Sender {
 
     const result = resultsByChannel.reduce((acc, {success, channel, providerId, ...rest}) => ({
       ...acc,
-      [channel]: {id: rest.id, providerId},
+      channels: {
+        ...(acc.channels || null),
+        [channel]: {id: rest.id, providerId}
+      },
       ...(!success
         ? {status: 'error', errors: {...acc.errors || null, [channel]: rest.error.message}}
         : null

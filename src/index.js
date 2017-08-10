@@ -31,10 +31,10 @@ export type NotificationRequestType = {|
 
 export type NotificationStatusType = {
   status: 'queued' | 'success' | 'error',
-  [channel: ChannelType]: {
+  channels?: {[channel: ChannelType]: {
     id: string,
     providerId: ?string
-  },
+  }},
   info?: ?Object,
   errors?: {[channel: ChannelType]: Error}
 }

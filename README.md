@@ -578,10 +578,10 @@ See [all parameters](https://github.com/notifme/notifme-sdk/blob/master/src/mode
 ```javascript
 type NotificationStatusType = {
   status: 'queued' | 'success' | 'error',
-  [channel: ChannelType]: {
+  channels?: {[channel: ChannelType]: {
     id: string,
     providerId: ?string
-  },
+  }},
   info?: ?Object,
   errors?: {[channel: ChannelType]: Error}
 }
@@ -591,9 +591,9 @@ Examples:
 
 | Case | Returned JSON |
 | --- | --- |
-| Success<br>(when Promise resolves) | `{status: 'success', sms: {id: 'id-116561976', providerId: 'sms-default-provider'}}` |
+| Success<br>(when Promise resolves) | `{status: 'success', channels: {sms: {id: 'id-116561976', providerId: 'sms-default-provider'}}}` |
 | Success<br>(when you use a queue for requests) | `{status: 'queued'}` |
-| Error<br>(here Notification Catcher is not running) | `{status: 'error', sms: {id: undefined, providerId: 'sms-notificationcatcher-provider'}, errors: {sms: 'connect ECONNREFUSED 127.0.0.1:1025'}}` |
+| Error<br>(here Notification Catcher is not running) | `{status: 'error', channels: {sms: {id: undefined, providerId: 'sms-notificationcatcher-provider'}}, errors: {sms: 'connect ECONNREFUSED 127.0.0.1:1025'}}` |
 
 ### 5. In production
 
