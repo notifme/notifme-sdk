@@ -588,6 +588,8 @@ See [all parameters](https://github.com/notifme/notifme-sdk/blob/master/src/mode
 
 #### Returned type
 
+`send` returns a Promise resolving with an `Object` of the following type:
+
 ```javascript
 type NotificationStatusType = {
   status: 'queued' | 'success' | 'error',
