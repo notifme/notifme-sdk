@@ -1,5 +1,7 @@
 <p align="center">
-  <img alt="Notif.me" src="https://notifme.github.io/notifme-sdk/img/logo.png" />
+  <a href="https://www.notif.me">
+    <img alt="Notif.me" src="https://notifme.github.io/notifme-sdk/img/logo.png" />
+  </a>
 </p>
 
 <p align="center">
