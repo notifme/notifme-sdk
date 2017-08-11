@@ -64,4 +64,7 @@ export type EmailProviderType = {
   rateLimit?: number,
   // Proxy options (Doc: https://nodemailer.com/smtp/proxies/)
   proxy?: string
+} | {
+  type: 'sparkpost',
+  apiKey: string
 }

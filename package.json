@@ -21,6 +21,7 @@
     "nodemailer": "4.0.1",
     "request": "2.81.0",
     "request-promise-native": "1.0.4",
+    "sparkpost": "^2.1.2",
     "web-push": "3.2.2",
     "winston": "2.3.1"
   },
