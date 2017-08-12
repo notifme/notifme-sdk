@@ -292,6 +292,24 @@ new NotifmeSdk({
 
 </p></details>
 
+<details><summary>Bulutfon</summary><p>
+
+```javascript
+new NotifmeSdk({
+  channels: {
+    sms: {
+      providers: [{
+        type: 'bulutfon',
+        defaultTitle: 'XXX',
+        accessToken: 'xxxxx'
+      }]
+    }
+  }
+})
+```
+
+</p></details>
+
 <details><summary>Logger (for development)</summary><p>
 
 ```javascript
