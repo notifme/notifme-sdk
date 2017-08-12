@@ -273,6 +273,25 @@ new NotifmeSdk({
 ```
 
 </p></details>
+
+<details><summary>46elks</summary><p>
+
+```javascript
+new NotifmeSdk({
+  channels: {
+    sms: {
+      providers: [{
+        type: '46elks',
+        apiUsername: 'xxxxx',
+        apiPassword: 'xxxxx'
+      }]
+    }
+  }
+})
+```
+
+</p></details>
+
 <details><summary>Logger (for development)</summary><p>
 
 ```javascript
