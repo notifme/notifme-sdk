@@ -4,6 +4,7 @@ import NotificationCatcherProvider from './providers/notificationCatcherProvider
 import Queue from './queue'
 import Sender from './sender'
 import logger from './util/logger'
+import Worker from './worker'
 // Types
 import type {EmailRequestType, PushRequestType, SmsRequestType, WebpushRequestType} from './models/notification-request'
 import type {EmailProviderType} from './models/provider-email'
@@ -60,6 +61,7 @@ export type OptionsType = {|
       multiProviderStrategy?: ProviderStrategyType
     }
   },
+  runWorker?: boolean, // Defaults to `true`
   requestQueue?: false | 'in-memory' | QueueType<NotificationRequestType>,
   onSuccess?: (NotificationStatusType, NotificationRequestType) => any,
   onError?: (NotificationStatusType, NotificationRequestType) => any,
@@ -70,9 +72,18 @@ export default class NotifmeSdk {
   sender: Sender
   logger: typeof logger = logger
 
-  constructor ({channels, requestQueue, ...rest}: OptionsType) {
-    this.sender = new Sender({
+  constructor (options: OptionsType) {
+    const mergedOptions = this.mergeWithDefaultConfig(options)
+    this.sender = new Sender(mergedOptions)
+    if (mergedOptions.runWorker && mergedOptions.requestQueue) {
+      new Worker(mergedOptions).run()
+    }
+  }
+
+  mergeWithDefaultConfig ({channels, requestQueue, ...rest}: OptionsType) {
+    return {
       useNotificationCatcher: false,
+      runWorker: true,
       ...rest,
       channels: rest.useNotificationCatcher
         ? NotificationCatcherProvider.getConfig(Object.keys(CHANNELS))
@@ -99,7 +110,7 @@ export default class NotifmeSdk {
           }
         },
       requestQueue: typeof requestQueue === 'string' ? new Queue(requestQueue) : requestQueue
-    })
+    }
   }
 
   send (request: NotificationRequestType): Promise<NotificationStatusType> {

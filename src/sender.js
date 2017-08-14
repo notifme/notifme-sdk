@@ -16,19 +16,9 @@ export default class Sender {
     this.providerFactory = new ProviderFactory(options.channels)
     if (options.requestQueue) {
       this.requestQueue = (options.requestQueue: any)
-      this.nextRequest()
     }
     this.onSuccess = options.onSuccess
     this.onError = options.onError
-  }
-
-  nextRequest () {
-    if (this.requestQueue) {
-      this.requestQueue.dequeue('notifme:request', async (request: NotificationRequestType) => {
-        await this.send(request)
-        this.nextRequest()
-      })
-    }
   }
 
   async handleRequest (request: NotificationRequestType): Promise<NotificationStatusType> {

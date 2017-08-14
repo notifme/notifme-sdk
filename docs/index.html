@@ -31,6 +31,7 @@
       <a href="https://github.com/standard/standard"><img alt="js-standard-style" src="https://camo.githubusercontent.com/6020318037390275c03771e4381eb74747478b03/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f636f64657374796c652d7374616e646172642d627269676874677265656e2e7376673f7374796c653d666c6174" data-canonical-src="https://img.shields.io/badge/codestyle-standard-brightgreen.svg?style=flat" style="max-width:100%;"></a>
       <a href="https://flow.org/"><img alt="flow-typed" src="https://camo.githubusercontent.com/b4314789204245437368aa09c2b04ca6628beab3/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f747970696e672d466c6f775f547970652d627269676874677265656e2e7376673f7374796c653d666c6174" data-canonical-src="https://img.shields.io/badge/typing-Flow_Type-brightgreen.svg?style=flat" style="max-width:100%;"></a>
       <a href="https://github.com/notifme/notifme-sdk/blob/master/LICENSE"><img alt="license" src="https://camo.githubusercontent.com/d2db02b966169f67c346ccd253a63f61077ea86a/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f6c6963656e73652d4d49545f4c6963656e73652d626c75652e7376673f7374796c653d666c6174" data-canonical-src="https://img.shields.io/badge/license-MIT_License-blue.svg?style=flat" style="max-width:100%;"></a>
+      <a href="https://github.com/notifme/notifme-sdk"><img alt="github-stars" src="https://img.shields.io/github/stars/notifme/notifme-sdk.svg?style=social&label=Stars" /></a>
     </p>
     <ul>
       <li><a href="#features">Features</a></li>
@@ -107,6 +108,7 @@ notifmeSdk
   requestQueue<span class="pl-k">:</span> <span class="pl-k">...</span>, <span class="pl-c"><span class="pl-c">//</span> false | 'in-memory' | Function</span>
   onSuccess<span class="pl-k">:</span> <span class="pl-k">...</span>, <span class="pl-c"><span class="pl-c">//</span> Function</span>
   onError<span class="pl-k">:</span> <span class="pl-k">...</span>, <span class="pl-c"><span class="pl-c">//</span> Function</span>
+  runWorker<span class="pl-k">:</span> <span class="pl-k">...</span>, <span class="pl-c"><span class="pl-c">//</span> boolean</span>
   useNotificationCatcher<span class="pl-k">:</span> <span class="pl-k">...</span> <span class="pl-c"><span class="pl-c">//</span> boolean</span>
 })</pre></div>
             <table>
@@ -135,13 +137,19 @@ notifmeSdk
                   <td><code>onSuccess</code></td>
                   <td><code>false</code></td>
                   <td><code>Function</code></td>
-                  <td>Callback to call when a notification has been sent with success. The first parameter is <a href="#returned-type">described below</a> and the second is your request.</td>
+                  <td>Callback to call when a notification has been sent with success. The first parameter is <a href="#returned-type">described below</a> and the second is your request.<br><br>Note: if you don't use a queue, <code>send</code> method already returns a Promise with the result.</td>
                 </tr>
                 <tr>
                   <td><code>onError</code></td>
                   <td><code>false</code></td>
                   <td><code>Function</code></td>
-                  <td>Callback to call when a notification has an error in at least one channel. The first parameter is <a href="#returned-type">described below</a> and the second is your request.</td>
+                  <td>Callback to call when a notification has an error in at least one channel. The first parameter is <a href="#returned-type">described below</a> and the second is your request.<br><br>Note: if you don't use a queue, <code>send</code> method already returns a Promise with the result.</td>
+                </tr>
+                <tr>
+                  <td><code>runWorker</code></td>
+                  <td><code>false</code></td>
+                  <td><code>boolean</code></td>
+                  <td><i>Default: <code>true</code>.</i><br>If you use a queue system, auto-start a consumer worker (on the same instance than producer).</td>
                 </tr>
                 <tr>
                   <td><code>useNotificationCatcher</code></td>
@@ -466,6 +474,7 @@ notifmeSdk
     }
   }
 })</pre></div>
+                    <p>See example: <a href="https://github.com/notifme/notifme-sdk/tree/master/examples/with-separated-queue-worker">how to run worker(s)</a>.</p>
                     <h3 id="4-send-a-notification"><a id="user-content-4-send-a-notification" class="anchor" href="#4-send-a-notification" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>4. Send a notification</h3>
                     <h4 id="parameters"><a id="user-content-parameters" class="anchor" href="#parameters" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Parameters</h4>
                     <details><summary>Send an email</summary><p>

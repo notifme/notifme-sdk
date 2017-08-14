@@ -100,6 +100,7 @@ new NotifmeSdk({
   requestQueue: ..., // false | 'in-memory' | Function
   onSuccess: ..., // Function
   onError: ..., // Function
+  runWorker: ..., // boolean
   useNotificationCatcher: ... // boolean
 })
 ```
@@ -108,8 +109,9 @@ new NotifmeSdk({
 | --- | --- | --- | --- |
 | `channels` | `false` | `Object` | Define `providers` (`Array`) and `multiProviderStrategy` (`string`) for each channel (email, sms, push, webpush).<br><br>See all details below: [2. Providers](#2-providers). |
 | `requestQueue` | `false` | `false` \| `string` \| `Function` | <i>Default: `false`.</i><br>Queue used for your notification requests.<br><br>You can pass `'in-memory'` to mimic an external queue in your local environment. To use a real queue, see [3. Use a request queue](#3-use-a-request-queue) below. |
-| `onSuccess` | `false` | `Function` | Callback to call when a notification has been sent with success. The first parameter is [described below](#returned-type) and the second is your request. |
-| `onError` | `false` | `Function` | Callback to call when a notification has an error in at least one channel. The first parameter is [described below](#returned-type) and the second is your request. |
+| `onSuccess` | `false` | `Function` | Callback to call when a notification has been sent with success. The first parameter is [described below](#returned-type) and the second is your request.<br><br>Note: if you don't use a queue, `send` method already returns a Promise with the result. |
+| `onError` | `false` | `Function` | Callback to call when a notification has an error in at least one channel. The first parameter is [described below](#returned-type) and the second is your request.<br><br>Note: if you don't use a queue, `send` method already returns a Promise with the result. |
+| `runWorker` | `false` | `boolean` | <i>Default: `true`.</i><br>If you use a queue system, auto-start a consumer worker (on the same instance than producer). |
 | `useNotificationCatcher` | `false` | `boolean` | If true, all your notifications are sent to the catcher running on localhost:1025 (channels option will be completely ignored!) |
 
 #### Complete examples
@@ -487,6 +489,8 @@ new NotifmeSdk({
   }
 })
 ```
+
+See example: [how to run worker(s)](/examples/with-separated-queue-worker).
 
 ### 4. Send a notification
 
