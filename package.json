@@ -13,7 +13,8 @@
     "dev": "nodemon -e js -r babel-register examples/with-notification-catcher.js",
     "lint": "yarn run flow && standard",
     "run-catcher": "notification-catcher",
-    "prepublish": "yarn run build"
+    "prepublish": "yarn run build",
+    "test": "yarn run lint"
   },
   "dependencies": {
     "babel-runtime": "6.23.0",
