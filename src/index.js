@@ -37,7 +37,7 @@ export type NotificationStatusType = {
     providerId: ?string
   }},
   info?: ?Object,
-  errors?: {[channel: ChannelType]: Error}
+  errors?: {[channel: ChannelType | 'queue']: Error}
 }
 
 export type ProviderStrategyType = 'no-fallback' | 'fallback' | 'roundrobin' // Defaults to fallback
