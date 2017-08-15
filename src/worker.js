@@ -19,13 +19,8 @@ export default class Worker {
   }
 
   run () {
-    this.nextRequest()
-  }
-
-  nextRequest () {
     this.requestQueue.dequeue('notifme:request', async (request: NotificationRequestType) => {
       await this.sender.send(request)
-      this.nextRequest()
     })
   }
 }
