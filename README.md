@@ -294,6 +294,23 @@ new NotifmeSdk({
 
 </p></details>
 
+<details><summary>Plivo</summary><p>
+
+```javascript
+new NotifmeSdk({
+  channels: {
+    sms: {
+      providers: [{
+        type: 'Plivo',
+        authId: 'xxxxx',
+        authToken: 'xxxxx'
+      }]
+    }
+  }
+})
+```
+</p></details>
+
 <details><summary>Logger (for development)</summary><p>
 
 ```javascript
