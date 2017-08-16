@@ -461,6 +461,26 @@ If you would like to see another provider or channel, please [upvote the corresp
 
 ### 3. Use a request queue
 
+#### RabbitMQ
+
+```shell
+$ yarn add notifme-sdk-queue-rabbitmq
+```
+
+```javascript
+import NotifmeSdk from 'notifme-sdk'
+import rabbitMq from 'notifme-sdk-queue-rabbitmq'
+
+const notifmeSdk = new NotifmeSdk({
+  requestQueue: rabbitMq('amqp://localhost'),
+  ...
+})
+```
+
+See [RabbitMQ Notif.me plugin documentation](https://github.com/notifme/notifme-sdk-queue-rabbitmq) for more details.
+
+#### Implement your own
+
 You can use your own queue system to handle notification requests. It must implement the following interface:
 
 ```javascript
@@ -471,7 +491,7 @@ interface QueueType<T> {
 }
 ```
 
-#### Example
+##### Example
 
 ```javascript
 new NotifmeSdk({
