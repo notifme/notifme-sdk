@@ -1,5 +1,6 @@
 /* @flow */
-import Request from 'request-promise-native'
+import fetch from 'node-fetch'
+import FormData from 'form-data'
 // Types
 import type {SmsRequestType} from '../../models/notification-request'
 
@@ -30,16 +31,27 @@ export default class SmsTwilioProvider {
 
   async sendTextSms (text: string, request: SmsRequestType): Promise<string> {
     const {accountSid, authToken} = this.credentials
+    const basicAuth = Buffer.from(`${accountSid}:${authToken}`).toString('base64')
     try {
-      const result = await Request
-        .post(`https://api.twilio.com/2010-04-01/Accounts/${accountSid}/Messages`)
-        .auth(accountSid, authToken, false)
-        .form({
-          From: request.from,
-          To: request.to,
-          Body: text
-        })
-      return result.match(/<Sid>(.*)<\/Sid>/)[1]
+      const form = new FormData()
+      form.append('From', request.from)
+      form.append('To', request.to)
+      form.append('Body', (request: any).text)
+      const response = await fetch(`https://api.twilio.com/2010-04-01/Accounts/${accountSid}/Messages.json`, {
+        method: 'POST',
+        headers: {
+          'Authorization': 'Basic ' + basicAuth
+        },
+        body: form
+      })
+
+      const responseBody = await response.json()
+
+      if (response.ok) {
+        return responseBody.sid
+      } else {
+        throw new Error(`${response.status} - ${responseBody.message}`)
+      }
     } catch (error) {
       throw new Error(error.message)
     }
