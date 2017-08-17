@@ -279,7 +279,7 @@ new NotifmeSdk({
   channels: {
     sms: {
       providers: [{
-        type: 'Plivo',
+        type: 'plivo',
         authId: 'xxxxx',
         authToken: 'xxxxx'
       }]
