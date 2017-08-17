@@ -4,6 +4,8 @@ import SmsNexmoProvider from './nexmo'
 import SmsNotificationCatcherProvider from './notificationCatcher'
 import SmsTwilioProvider from './twilio'
 import Sms46elksProvider from './46elks'
+import SmsBulutfonProvider from './bulutfon'
+
 // Types
 import type {SmsRequestType} from '../../models/notification-request'
 
@@ -31,6 +33,9 @@ export default class SmsProvider {
         break
       case '46elks':
         this.provider = new Sms46elksProvider(config)
+        break
+      case 'bulutfon':
+        this.provider = new SmsBulutfonProvider(config)
         break
       default:
         throw new Error(`Unknown sms provider "${type}".`)

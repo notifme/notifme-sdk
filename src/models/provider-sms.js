@@ -15,4 +15,8 @@ export type SmsProviderType = {
   type: '46elks',
   apiUsername: string,
   apiPassword: string
+} | {
+  type: 'bulutfon',
+  title: string,
+  accessToken: string
 }
