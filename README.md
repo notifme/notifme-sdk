@@ -10,19 +10,22 @@
 
 <p align="center">
   <a href="https://www.npmjs.com/package/notifme-sdk"><img alt="npm-status" src="https://img.shields.io/npm/v/notifme-sdk.svg?style=flat" /></a>
+  <a href="https://travis-ci.org/notifme/notifme-sdk"><img alt="travis-build-status" src="https://img.shields.io/travis/notifme/notifme-sdk.svg?style=flat" /></a>
   <a href="https://github.com/standard/standard"><img alt="js-standard-style" src="https://img.shields.io/badge/codestyle-standard-brightgreen.svg?style=flat" /></a>
   <a href="https://flow.org/"><img alt="flow-typed" src="https://img.shields.io/badge/typing-Flow_Type-brightgreen.svg?style=flat" /></a>
   <a href="https://github.com/notifme/notifme-sdk/blob/master/LICENSE"><img alt="license" src="https://img.shields.io/badge/license-MIT_License-blue.svg?style=flat" /></a>
+  <a href="https://slackin-notifme.now.sh"><img alt="slack" src="https://slackin-notifme.now.sh/badge.svg" /></a>
 </p>
+
+**\*New: we created a [Slack for support and discuss new features](https://slackin-notifme.now.sh).**
 
 - [Features](#features)
 - [Getting started](#getting-started)
 - [How to use](#how-to-use)
   - [1. General options](#1-general-options)
   - [2. Providers](#2-providers)
-  - [3. Use a request queue](#3-use-a-request-queue)
-  - [4. Send a notification](#4-send-a-notification)
-  - [5. In production](#5-in-production)
+  - [3. Send a notification](#3-send-a-notification)
+  - [4. In production](#4-in-production)
 - [Contributing](#contributing)
 - [Need help? Found a bug?](#need-help-found-a-bug)
 
@@ -33,8 +36,6 @@
 * **Unique documentation** — Don't look everywhere for the parameters you need to pass, just do it once. **Switching provider becomes a no-brainer**.
 
 * **Multiple providers strategies** — Want to use more than one provider? Use `fallback` and `round-robin` strategies out of the box.
-
-* **Queue system** — Plug your own external queue system to ensure delivery (if you have one).
 
 * **Tools for local testing** — Run a catcher locally to intercept all your notifications and display them in a web interface.
 
@@ -49,7 +50,7 @@ $ yarn add notifme-sdk
 ```javascript
 import NotifmeSdk from 'notifme-sdk'
 
-const notifmeSdk = new NotifmeSdk({}) // empty config = no queue and provider is console.log
+const notifmeSdk = new NotifmeSdk({}) // empty config = all providers are set to console.log
 notifmeSdk
   .send({sms: {from: '+15000000000', to: '+15000000001', text: 'Hello, how are you?'}})
   .then(console.log)
@@ -88,18 +89,14 @@ notifmeSdk
 
 - [1. General options](#1-general-options)
 - [2. Providers](#2-providers)
-- [3. Use a request queue](#3-use-a-request-queue)
-- [4. Send a notification](#4-send-a-notification)
-- [5. In production](#5-in-production)
+- [3. Send a notification](#3-send-a-notification)
+- [4. In production](#4-in-production)
 
 ### 1. General options
 
 ```javascript
 new NotifmeSdk({
   channels: ..., // Object
-  requestQueue: ..., // false | 'in-memory' | Function
-  onSuccess: ..., // Function
-  onError: ..., // Function
   useNotificationCatcher: ... // boolean
 })
 ```
@@ -107,9 +104,6 @@ new NotifmeSdk({
 | Option name | Required | Type | Description |
 | --- | --- | --- | --- |
 | `channels` | `false` | `Object` | Define `providers` (`Array`) and `multiProviderStrategy` (`string`) for each channel (email, sms, push, webpush).<br><br>See all details below: [2. Providers](#2-providers). |
-| `requestQueue` | `false` | `false` \| `string` \| `Function` | <i>Default: `false`.</i><br>Queue used for your notification requests.<br><br>You can pass `'in-memory'` to mimic an external queue in your local environment. To use a real queue, see [3. Use a request queue](#3-use-a-request-queue) below. |
-| `onSuccess` | `false` | `Function` | Callback to call when a notification has been sent with success. The first parameter is [described below](#returned-type) and the second is your request. |
-| `onError` | `false` | `Function` | Callback to call when a notification has an error in at least one channel. The first parameter is [described below](#returned-type) and the second is your request. |
 | `useNotificationCatcher` | `false` | `boolean` | If true, all your notifications are sent to the catcher running on localhost:1025 (channels option will be completely ignored!) |
 
 #### Complete examples
@@ -117,14 +111,7 @@ new NotifmeSdk({
 ```javascript
 // Env: development
 new NotifmeSdk({
-  requestQueue: false,
-  useNotificationCatcher: true,
-  onSuccess: (result, originalRequest) => {
-    console.log(`My request id ${originalRequest.id} was successful \\o/.`, result)
-  },
-  onError: (result, originalRequest) => {
-    console.log(`Oh no, my request id ${originalRequest.id} has errors.`, result.errors)
-  }
+  useNotificationCatcher: true
 })
 
 // Env: production
@@ -164,12 +151,6 @@ new NotifmeSdk({
         authToken: 'xxxxx'
       }]
     }
-  },
-  onSuccess: (result, originalRequest) => {
-    // Maybe log success in database
-  },
-  onError: (result, originalRequest) => {
-    // Maybe retry failed channel(s) later
   }
 })
 ```
@@ -289,6 +270,42 @@ new NotifmeSdk({
 ```
 
 </p></details>
+
+<details><summary>46elks</summary><p>
+
+```javascript
+new NotifmeSdk({
+  channels: {
+    sms: {
+      providers: [{
+        type: '46elks',
+        apiUsername: 'xxxxx',
+        apiPassword: 'xxxxx'
+      }]
+    }
+  }
+})
+```
+
+</p></details>
+
+<details><summary>Plivo</summary><p>
+
+```javascript
+new NotifmeSdk({
+  channels: {
+    sms: {
+      providers: [{
+        type: 'plivo',
+        authId: 'xxxxx',
+        authToken: 'xxxxx'
+      }]
+    }
+  }
+})
+```
+</p></details>
+
 <details><summary>Logger (for development)</summary><p>
 
 ```javascript
@@ -454,38 +471,7 @@ See all options: [Webpush provider options](https://github.com/notifme/notifme-s
 
 If you would like to see another provider or channel, please [upvote the corresponding issue](https://github.com/notifme/notifme-sdk/issues) (or create one if it does not exist yet).
 
-### 3. Use a request queue
-
-You can use your own queue system to handle notification requests. It must implement the following interface:
-
-```javascript
-interface QueueType<T> {
-  enqueue(type: string, jobData: T): Promise<?Object>;
-  dequeue(type: string, callback: CallbackType<T>): void;
-  // Note: callback is an async method treating a request
-}
-```
-
-#### Example
-
-```javascript
-new NotifmeSdk({
-  requestQueue: {
-    enqueue: (type, request) => { // 'type' is prefixed by 'notifme:'
-      return new Promise((resolve) => {
-        // Put request in your queue
-        resolve(/* info from your queue system */)
-      })
-    },
-    dequeue: (type, callback) => {
-      // Get a request from your queue
-      callback(request).then(/* Send ack for this request */)
-    }
-  }
-})
-```
-
-### 4. Send a notification
+### 3. Send a notification
 
 #### Parameters
 
@@ -608,12 +594,11 @@ See [all parameters](https://github.com/notifme/notifme-sdk/blob/master/src/mode
 
 ```javascript
 type NotificationStatusType = {
-  status: 'queued' | 'success' | 'error',
+  status: 'success' | 'error',
   channels?: {[channel: ChannelType]: {
     id: string,
     providerId: ?string
   }},
-  info?: ?Object,
   errors?: {[channel: ChannelType]: Error}
 }
 ```
@@ -623,17 +608,15 @@ Examples:
 | Case | Returned JSON |
 | --- | --- |
 | Success<br>(when Promise resolves) | `{status: 'success', channels: {sms: {id: 'id-116561976', providerId: 'sms-default-provider'}}}` |
-| Success<br>(when you use a queue for requests) | `{status: 'queued'}` |
 | Error<br>(here Notification Catcher is not running) | `{status: 'error', channels: {sms: {id: undefined, providerId: 'sms-notificationcatcher-provider'}}, errors: {sms: 'connect ECONNREFUSED 127.0.0.1:1025'}}` |
 
-### 5. In production
+### 4. In production
 
 #### Recommended options
 
-| Option name | Usage in production |
-| --- | --- |
-| useNotificationCatcher | `false` |
-| requestQueue | `false` \| `Function` (see [3. Use a request queue](#3-use-a-request-queue)) |
+| Option name | Usage in production | Comment |
+| --- | --- | --- |
+| useNotificationCatcher | `false` | Don't forget to deactivate notification catcher (it overrides channels configuration). |
 
 #### Logger
 
@@ -655,6 +638,10 @@ notifmeSdk.logger.configure([
 ```
 
 See [winston's documentation](https://github.com/winstonjs/winston) for more details.
+
+#### Use a request queue
+
+- RabbitMQ: see [RabbitMQ Notif.me plugin documentation](https://github.com/notifme/notifme-sdk-queue-rabbitmq).
 
 #### Send us a message
 

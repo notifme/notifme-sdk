@@ -1,5 +1,5 @@
 /* @flow */
-import Request from 'request-promise-native'
+import fetch from 'node-fetch'
 // Types
 import type {SmsRequestType} from '../../models/notification-request'
 
@@ -13,15 +13,31 @@ export default class SmsNexmoProvider {
   }
 
   async send (request: SmsRequestType): Promise<string> {
-    const result = await Request.post('https://rest.nexmo.com/sms/json').form({
-      ...this.credentials,
-      ...request
-    })
-    const message = JSON.parse(result).messages[0]
-    if (message.status !== '0') {
-      throw new Error(`status: ${message.status}, error: ${message['error-text']}`)
-    } else {
-      return message['message-id']
+    try {
+      const response = await fetch('https://rest.nexmo.com/sms/json', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          ...this.credentials,
+          ...request
+        })
+      })
+
+      if (response.ok) {
+        const responseBody = await response.json()
+        const message = responseBody.messages[0]
+
+        // !! nexmo returns always 200 even for error
+        if (message.status !== '0') {
+          throw new Error(`status: ${message.status}, error: ${message['error-text']}`)
+        } else {
+          return message['message-id']
+        }
+      } else {
+        throw new Error(response.status)
+      }
+    } catch (error) {
+      throw new Error(error.message)
     }
   }
 }

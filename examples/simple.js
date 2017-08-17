@@ -1,18 +1,9 @@
 /* @flow */
-import NotifmeSdk from '../src' // notifme-sdk
-// Types
-import type {NotificationRequestType} from '../src' // notifme-sdk
+const NotifmeSdk = require('../src').default // notifme-sdk
 
-/*
- * Note: Notification catcher must be running locally.
- * Run `yarn add --dev notification-catcher && yarn run notification-catcher`
- */
+const notifmeSdk = new NotifmeSdk({})
 
-const notifmeSdk = new NotifmeSdk({
-  useNotificationCatcher: true
-})
-
-const notificationRequest: NotificationRequestType = {
+const notificationRequest = {
   email: {
     from: 'me@example.com',
     to: 'john@example.com',
@@ -44,7 +35,4 @@ const notificationRequest: NotificationRequestType = {
   }
 }
 
-const run = async () => {
-  console.log(await notifmeSdk.send(notificationRequest))
-}
-run()
+notifmeSdk.send(notificationRequest).then(console.log)
