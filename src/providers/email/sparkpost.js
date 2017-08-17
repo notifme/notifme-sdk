@@ -8,7 +8,7 @@ export default class EmailSparkPostProvider {
   client: Object
 
   constructor (config: Object) {
-    this.id='email-sparkpost-provider'
+    this.id = 'email-sparkpost-provider'
     this.client = new SparkPost(config.apiKey, {
       stackIdentity: 'notifme'
     })
@@ -32,8 +32,8 @@ export default class EmailSparkPostProvider {
       ],
       cc: request.cc,
       bcc: request.bcc
-      //TODO: attachments
-    };
+      // TODO: attachments
+    }
     return this.client.transmissions.send(txBody)
       .then((data) => data.results.id)
   }
