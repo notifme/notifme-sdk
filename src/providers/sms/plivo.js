@@ -12,19 +12,22 @@ export default class SmsPlivoProvider {
     this.credentials = {authId: config.authId, authToken: config.authToken}
   }
 
+  /*
+   * Note: 'type', 'nature', 'ttl', 'messageClass' are not supported.
+   */
   async send (request: SmsRequestType): Promise<string> {
     const {authId, authToken} = this.credentials
-    const basicAuth = Buffer.from(`${authId}:${authToken}`).toString('base64')
+    const {from, to, text} = request
     const response = await fetch(`https://api.plivo.com/v1/Account/${authId}/Message/`, {
       method: 'POST',
       headers: {
-        'Authorization': 'Basic ' + basicAuth,
+        Authorization: `Basic ${Buffer.from(`${authId}:${authToken}`).toString('base64')}`,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        src: request.from,
-        dst: request.to,
-        text: (request: any).text
+        src: from,
+        dst: to,
+        text
       })
     })
 

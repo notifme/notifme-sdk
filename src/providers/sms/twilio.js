@@ -13,47 +13,30 @@ export default class SmsTwilioProvider {
     this.credentials = {accountSid: config.accountSid, authToken: config.authToken}
   }
 
+  /*
+   * Note: 'type', 'nature', 'messageClass' are not supported.
+   */
   async send (request: SmsRequestType): Promise<string> {
-    switch (request.type) {
-      case 'text':
-      case 'unicode':
-      case undefined:
-        return this.sendTextSms((request: any).text, request)
-
-      case 'binary':
-      case 'wappush':
-      case 'vcal':
-      case 'vcard':
-      default:
-        throw new Error(`[Twilio] Unsupported type: ${request.type ? request.type : ''}}`)
-    }
-  }
-
-  async sendTextSms (text: string, request: SmsRequestType): Promise<string> {
     const {accountSid, authToken} = this.credentials
-    const basicAuth = Buffer.from(`${accountSid}:${authToken}`).toString('base64')
-    try {
-      const form = new FormData()
-      form.append('From', request.from)
-      form.append('To', request.to)
-      form.append('Body', (request: any).text)
-      const response = await fetch(`https://api.twilio.com/2010-04-01/Accounts/${accountSid}/Messages.json`, {
-        method: 'POST',
-        headers: {
-          'Authorization': 'Basic ' + basicAuth
-        },
-        body: form
-      })
+    const {from, to, text, ttl} = request
+    const form = new FormData()
+    form.append('From', from)
+    form.append('To', to)
+    form.append('Body', text)
+    if (ttl) form.append('ValidityPeriod', ttl)
+    const response = await fetch(`https://api.twilio.com/2010-04-01/Accounts/${accountSid}/Messages.json`, {
+      method: 'POST',
+      headers: {
+        Authorization: `Basic ${Buffer.from(`${accountSid}:${authToken}`).toString('base64')}`
+      },
+      body: form
+    })
 
-      const responseBody = await response.json()
-
-      if (response.ok) {
-        return responseBody.sid
-      } else {
-        throw new Error(`${response.status} - ${responseBody.message}`)
-      }
-    } catch (error) {
-      throw new Error(error.message)
+    const responseBody = await response.json()
+    if (response.ok) {
+      return responseBody.sid
+    } else {
+      throw new Error(`${response.status} - ${responseBody.message}`)
     }
   }
 }

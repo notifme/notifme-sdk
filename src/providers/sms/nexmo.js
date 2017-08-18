@@ -12,32 +12,39 @@ export default class SmsNexmoProvider {
     this.credentials = {api_key: config.apiKey, api_secret: config.apiSecret}
   }
 
+  /*
+   * Note: 'nature' is not supported.
+   */
   async send (request: SmsRequestType): Promise<string> {
-    try {
-      const response = await fetch('https://rest.nexmo.com/sms/json', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          ...this.credentials,
-          ...request
-        })
+    const {from, to, text, type, ttl, messageClass} = request
+    const response = await fetch('https://rest.nexmo.com/sms/json', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        ...this.credentials,
+        from,
+        to,
+        text,
+        type,
+        ttl,
+        'message-class': messageClass
       })
+    })
 
-      if (response.ok) {
-        const responseBody = await response.json()
-        const message = responseBody.messages[0]
+    if (response.ok) {
+      const responseBody = await response.json()
+      const message = responseBody.messages[0]
 
-        // !! nexmo returns always 200 even for error
-        if (message.status !== '0') {
-          throw new Error(`status: ${message.status}, error: ${message['error-text']}`)
-        } else {
-          return message['message-id']
-        }
+      // Nexmo always returns 200 even for error
+      if (message.status !== '0') {
+        throw new Error(`status: ${message.status}, error: ${message['error-text']}`)
       } else {
-        throw new Error(response.status)
+        return message['message-id']
       }
-    } catch (error) {
-      throw new Error(error.message)
+    } else {
+      throw new Error(response.status)
     }
   }
 }
