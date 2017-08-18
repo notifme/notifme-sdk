@@ -3,6 +3,7 @@ import EmailLoggerProvider from './logger'
 import EmailNotificationCatcherProvider from './notificationCatcher'
 import EmailSendmailProvider from './sendmail'
 import EmailSmtpProvider from './smtp'
+import EmailSparkPostProvider from './sparkpost'
 // Types
 import type {EmailRequestType} from '../../models/notification-request'
 
@@ -27,6 +28,9 @@ export default class EmailProvider {
         break
       case 'smtp':
         this.provider = new EmailSmtpProvider(config)
+        break
+      case 'sparkpost':
+        this.provider = new EmailSparkPostProvider(config)
         break
       default:
         throw new Error(`Unknown email provider "${type}".`)
