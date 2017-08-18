@@ -2,6 +2,7 @@
 import EmailLoggerProvider from './logger'
 import EmailNotificationCatcherProvider from './notificationCatcher'
 import EmailSendmailProvider from './sendmail'
+import EmailSendGridProvider from './sendgrid'
 import EmailSmtpProvider from './smtp'
 import EmailSparkPostProvider from './sparkpost'
 // Types
@@ -28,6 +29,9 @@ export default class EmailProvider {
         break
       case 'smtp':
         this.provider = new EmailSmtpProvider(config)
+        break
+      case 'sendgrid':
+        this.provider = new EmailSendGridProvider(config)
         break
       case 'sparkpost':
         this.provider = new EmailSparkPostProvider(config)
