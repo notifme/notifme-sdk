@@ -1,7 +1,7 @@
 /* @flow */
 
 // TODO: notification-catcher API
-// TODO?: provider APIs (mailgun, SES, sendinblue, mailjet, sendgrid, postmark, mandrill, elasticemail...)
+// TODO?: provider APIs (mailgun, SES, sendinblue, mailjet, mandrill, elasticemail...)
 export type EmailProviderType = {
   type: 'logger'
 } | {
@@ -64,6 +64,9 @@ export type EmailProviderType = {
   rateLimit?: number,
   // Proxy options (Doc: https://nodemailer.com/smtp/proxies/)
   proxy?: string
+} | {
+  type: 'sendgrid',
+  apiKey: string
 } | {
   type: 'sparkpost',
   apiKey: string

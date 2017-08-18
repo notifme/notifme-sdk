@@ -24,7 +24,6 @@
     "node-fetch": "1.7.2",
     "node-pushnotifications": "1.0.18",
     "nodemailer": "4.0.1",
-    "nodemailer-sendgrid-transport": "0.2.0",
     "web-push": "3.2.2",
     "winston": "2.3.1"
   },
