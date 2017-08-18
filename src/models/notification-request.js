@@ -15,17 +15,17 @@ export type EmailRequestType = CommonRequestType & {
   text?: string,
   html?: string,
   attachments?: {
-    contentType?: string,
-    filename?: string,
-    content?: string,
-    path?: string,
-    href?: string,
-    contentDisposition?: string,
-    contentTransferEncoding?: string,
-    cid?: string,
-    raw?: string,
-    encoding?: string,
-    headers?: {[string]: string | number | boolean}
+    contentType: string,
+    filename: string,
+    content: string | Buffer
+    // path?: string,
+    // href?: string,
+    // contentDisposition?: string,
+    // contentTransferEncoding?: string,
+    // cid?: string,
+    // raw?: string,
+    // encoding?: string,
+    // headers?: {[string]: string | number | boolean}
   }[],
   headers?: {[string]: string | number | boolean}
 }
