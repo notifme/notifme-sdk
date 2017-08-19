@@ -5,6 +5,8 @@ import Queue from './queue'
 import Sender from './sender'
 import logger from './util/logger'
 import Worker from './worker'
+import providerFactory from './providers'
+import strategyProvidersFactory from './strategies/providers'
 // Types
 import type {EmailRequestType, PushRequestType, SmsRequestType, WebpushRequestType} from './models/notification-request'
 import type {EmailProviderType} from './models/provider-email'
@@ -54,7 +56,7 @@ export type OptionsType = {|
     },
     sms?: {
       providers: SmsProviderType[],
-      multiProviderStrategy?: ProviderStrategyType
+      multiProviderStrategy?: ProviderStrategyType,
     },
     webpush?: {
       providers: WebpushProviderType[],
@@ -63,8 +65,6 @@ export type OptionsType = {|
   },
   runWorker?: boolean, // Defaults to `true`
   requestQueue?: false | 'in-memory' | QueueType<NotificationRequestType>,
-  onSuccess?: (NotificationStatusType, NotificationRequestType) => any,
-  onError?: (NotificationStatusType, NotificationRequestType) => any,
   useNotificationCatcher?: boolean // if true channels are ignored
 |}
 
@@ -74,9 +74,13 @@ export default class NotifmeSdk {
 
   constructor (options: OptionsType) {
     const mergedOptions = this.mergeWithDefaultConfig(options)
-    this.sender = new Sender(mergedOptions)
+    const providers = providerFactory(mergedOptions.channels)
+    const strategies = strategyProvidersFactory(mergedOptions.channels)
+
+    this.sender = new Sender(providers, strategies, mergedOptions.requestQueue)
+
     if (mergedOptions.runWorker && mergedOptions.requestQueue) {
-      new Worker(mergedOptions).run()
+      new Worker(providers, strategies, mergedOptions.requestQueue).run()
     }
   }
 

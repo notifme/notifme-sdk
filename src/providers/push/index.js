@@ -2,47 +2,38 @@
 import PushAdmProvider from './adm'
 import PushApnProvider from './apn'
 import PushFcmProvider from './fcm'
-import PushLoggerProvider from './logger'
+import PushLoggerProvider from '../logger'
 import PushNotificationCatcherProvider from './notificationCatcher'
 import PushWnsProvider from './wns'
 // Types
 import type {PushRequestType} from '../../models/notification-request'
 
 export interface PushProviderType {
+  id: string,
   send(request: PushRequestType): Promise<string>
 }
 
-export default class PushProvider {
-  id: string
-  provider: PushProviderType
+export default function factory ({type, ...config}: Object): PushProviderType {
+  switch (type) {
+    case 'adm':
+      return new PushAdmProvider(config)
 
-  constructor (type: string, config: Object) {
-    switch (type) {
-      case 'adm':
-        this.provider = new PushAdmProvider(config)
-        break
-      case 'apn':
-        this.provider = new PushApnProvider(config)
-        break
-      case 'fcm':
-        this.provider = new PushFcmProvider(config)
-        break
-      case 'notificationcatcher':
-        this.provider = new PushNotificationCatcherProvider('push')
-        break
-      case 'logger':
-        this.provider = new PushLoggerProvider(config, 'push')
-        break
-      case 'wns':
-        this.provider = new PushWnsProvider(config)
-        break
-      default:
-        throw new Error(`Unknown push provider "${type}".`)
-    }
-    this.id = this.provider.id
-  }
+    case 'apn':
+      return new PushApnProvider(config)
 
-  send (request: PushRequestType): Promise<string> {
-    return this.provider.send(request)
+    case 'fcm':
+      return new PushFcmProvider(config)
+
+    case 'notificationcatcher':
+      return new PushNotificationCatcherProvider('push')
+
+    case 'logger':
+      return new PushLoggerProvider(config, 'push')
+
+    case 'wns':
+      return new PushWnsProvider(config)
+
+    default:
+      throw new Error(`Unknown push provider "${type}".`)
   }
 }

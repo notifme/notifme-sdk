@@ -1,5 +1,5 @@
 /* @flow */
-import EmailLoggerProvider from './logger'
+import EmailLoggerProvider from '../logger'
 import EmailNotificationCatcherProvider from './notificationCatcher'
 import EmailSendmailProvider from './sendmail'
 import EmailSmtpProvider from './smtp'
@@ -7,34 +7,25 @@ import EmailSmtpProvider from './smtp'
 import type {EmailRequestType} from '../../models/notification-request'
 
 export interface EmailProviderType {
+  id: string,
   send(request: EmailRequestType): Promise<string>
 }
 
-export default class EmailProvider {
-  id: string
-  provider: EmailProviderType
+export default function factory ({type, ...config}: Object): EmailProviderType {
+  switch (type) {
+    case 'logger':
+      return new EmailLoggerProvider(config, 'email')
 
-  constructor (type: string, config: Object) {
-    switch (type) {
-      case 'logger':
-        this.provider = new EmailLoggerProvider(config, 'email')
-        break
-      case 'notificationcatcher':
-        this.provider = new EmailNotificationCatcherProvider('email')
-        break
-      case 'sendmail':
-        this.provider = new EmailSendmailProvider(config)
-        break
-      case 'smtp':
-        this.provider = new EmailSmtpProvider(config)
-        break
-      default:
-        throw new Error(`Unknown email provider "${type}".`)
-    }
-    this.id = this.provider.id
-  }
+    case 'notificationcatcher':
+      return new EmailNotificationCatcherProvider('email')
 
-  send (request: EmailRequestType): Promise<string> {
-    return this.provider.send(request)
+    case 'sendmail':
+      return new EmailSendmailProvider(config)
+
+    case 'smtp':
+      return new EmailSmtpProvider(config)
+
+    default:
+      throw new Error(`Unknown email provider "${type}".`)
   }
 }
