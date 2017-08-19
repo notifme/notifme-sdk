@@ -30,7 +30,7 @@ export default class EmailSendGridProvider {
         }],
         from: {email: from},
         ...(replyTo ? {reply_to: {email: replyTo}} : null),
-        subject: subject,
+        subject,
         content: [
           ...(text ? [{type: 'text/plain', value: text}] : []),
           ...(html ? [{type: 'text/html', value: html}] : [])
