@@ -199,6 +199,38 @@ new NotifmeSdk({
 ```
 
 </p></details>
+<details><summary>Sendgrid</summary><p>
+
+```javascript
+new NotifmeSdk({
+  channels: {
+    email: {
+      providers: [{
+        type: 'sendgrid',
+        apiKey: 'xxxxx',
+      }]
+    }
+  }
+})
+```
+
+</p></details>
+<details><summary>SparkPost</summary><p>
+
+```javascript
+new NotifmeSdk({
+  channels: {
+    email: {
+      providers: [{
+        type: 'sparkpost',
+        apiKey: 'xxxxx',
+      }]
+    }
+  }
+})
+```
+
+</p></details>
 <details><summary>Logger (for development)</summary><p>
 
 ```javascript

@@ -9,23 +9,23 @@ export type EmailRequestType = CommonRequestType & {
   from: string,
   to: string,
   subject: string,
-  cc?: string,
-  bcc?: string,
+  cc?: string[],
+  bcc?: string[],
   replyTo?: string,
   text?: string,
   html?: string,
   attachments?: {
-    contentType?: string,
-    filename?: string,
-    content?: string,
-    path?: string,
-    href?: string,
-    contentDisposition?: string,
-    contentTransferEncoding?: string,
-    cid?: string,
-    raw?: string,
-    encoding?: string,
-    headers?: {[string]: string | number | boolean}
+    contentType: string,
+    filename: string,
+    content: string | Buffer
+    // path?: string,
+    // href?: string,
+    // contentDisposition?: string,
+    // contentTransferEncoding?: string,
+    // cid?: string,
+    // raw?: string,
+    // encoding?: string,
+    // headers?: {[string]: string | number | boolean}
   }[],
   headers?: {[string]: string | number | boolean}
 }
@@ -76,17 +76,20 @@ export type PushRequestType = CommonRequestType & {
 export type SmsRequestType = CommonRequestType & {
   from: string,
   to: string,
+  text: string,
+  type?: 'text' | 'unicode', // Defaults to 'text'
   nature?: 'marketing' | 'transactional',
   ttl?: number,
   messageClass?: 0 | 1 | 2 | 3
-} & (
-  {type?: 'text', text: string}
-  | {type: 'unicode', text: string}
-  | {type: 'binary', body: string, udh: string, protocolId: string}
-  | {type: 'wappush', title: string, url: string, validity?: number}
-  | {type: 'vcal', vcal: string}
-  | {type: 'vcard', vcard: string}
-)
+// } & (
+//   {type?: 'text', text: string}
+//   | {type: 'unicode', text: string}
+//   | {type: 'binary', body: string, udh: string, protocolId: string}
+//   | {type: 'wappush', title: string, url: string, validity?: number}
+//   | {type: 'vcal', vcal: string}
+//   | {type: 'vcard', vcard: string}
+// )
+}
 
 export type WebpushRequestType = CommonRequestType & {
   subscription: {
