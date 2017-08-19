@@ -3,6 +3,7 @@ import type {ProviderType, ChannelOptionsType} from '../../providers'
 import type {ChannelType} from '../../index'
 
 import strategyFallback from './fallback'
+import strategyNoFallback from './no-fallback'
 
 export type StrategyType = (providers: ProviderType[]) => (request: any) => Promise<{
   providerId: string,
@@ -18,8 +19,15 @@ export default function factory (channels: ChannelOptionsType): StrategiesType {
         acc[key] = strategyFallback
         break
 
+      case 'no-fallback':
+        acc[key] = strategyNoFallback
+        break
+
       default:
-        acc[key] = optionStrategy // TODO if typeof function else error
+        if (typeof optionStrategy !== 'function') {
+          throw new Error(`strategy must be a funtion or fallback|roundrobin|no-fallback, ${optionStrategy} is not a valid strategy`)
+        }
+        acc[key] = optionStrategy
     }
 
     return acc

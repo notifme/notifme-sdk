@@ -12,7 +12,8 @@ export default class NotificationCatcherProvider {
     return channels.reduce((config, channel: any) => ({
       ...config,
       [channel]: {
-        providers: [{type: 'notificationcatcher'}]
+        providers: [{type: 'notificationcatcher'}],
+        multiProviderStrategy: 'no-fallback'
       }
     }), {})
   }
