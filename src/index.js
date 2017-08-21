@@ -24,7 +24,10 @@ export const CHANNELS = {
 export type ChannelType = $Keys<typeof CHANNELS>
 
 export type NotificationRequestType = {|
-  id?: string,
+  metadata?: {
+    id?: string,
+    userId?: string
+  },
   email?: EmailRequestType,
   push?: PushRequestType,
   sms?: SmsRequestType,
@@ -77,10 +80,10 @@ export default class NotifmeSdk {
     const providers = providerFactory(mergedOptions.channels)
     const strategies = strategyProvidersFactory(mergedOptions.channels)
 
-    this.sender = new Sender(providers, strategies, mergedOptions.requestQueue)
+    this.sender = new Sender(Object.keys(CHANNELS), providers, strategies, mergedOptions.requestQueue)
 
     if (mergedOptions.runWorker && mergedOptions.requestQueue) {
-      new Worker(providers, strategies, mergedOptions.requestQueue).run()
+      new Worker(Object.keys(CHANNELS), providers, strategies, mergedOptions.requestQueue).run()
     }
   }
 

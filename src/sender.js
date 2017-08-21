@@ -9,12 +9,14 @@ import type {StrategiesType} from './strategies/providers'
 import type {QueueType} from './queue'
 
 export default class Sender {
+  channels: string[]
   providers: ProvidersType
   strategies: StrategiesType
   senders: {[ChannelType]: (request: any) => Promise<{providerId: string, id: string}>}
   requestQueue: QueueType<NotificationRequestType> | false
 
-  constructor (providers: ProvidersType, strategies: StrategiesType, requestQueue: any) {
+  constructor (channels: string[], providers: ProvidersType, strategies: StrategiesType, requestQueue: any) {
+    this.channels = channels
     this.providers = providers
     this.strategies = strategies
 
@@ -76,16 +78,18 @@ export default class Sender {
   }
 
   async sendOnEachChannel (request: NotificationRequestType): Promise<Object[]> {
-    return Promise.all(Object.keys(request).map(async (channel: any) => {
-      try {
-        return {
-          success: true,
-          channel,
-          ...await this.senders[channel](request[channel])
+    return Promise.all(Object.keys(request)
+      .filter((channel) => this.channels.includes(channel))
+      .map(async (channel: any) => {
+        try {
+          return {
+            success: true,
+            channel,
+            ...await this.senders[channel]({...request.metadata, ...request[channel]})
+          }
+        } catch (error) {
+          return {channel, success: false, error: error, providerId: error.providerId}
         }
-      } catch (error) {
-        return {channel, success: false, error: error, providerId: error.providerId}
-      }
-    }))
+      }))
   }
 }

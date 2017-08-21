@@ -4,6 +4,9 @@ const NotifmeSdk = require('../src').default // notifme-sdk
 const notifmeSdk = new NotifmeSdk({})
 
 const notificationRequest = {
+  metadata: {
+    id: '24'
+  },
   email: {
     from: 'me@example.com',
     to: 'john@example.com',

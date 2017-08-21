@@ -1,11 +1,11 @@
 /* @flow */
 
-type CommonRequestType = {
+type RequestMetadataType = {
   id?: string,
   userId?: string
 }
 
-export type EmailRequestType = CommonRequestType & {
+export type EmailRequestType = RequestMetadataType & {
   from: string,
   to: string,
   subject: string,
@@ -30,7 +30,7 @@ export type EmailRequestType = CommonRequestType & {
   headers?: {[string]: string | number | boolean}
 }
 
-export type PushRequestType = CommonRequestType & {
+export type PushRequestType = RequestMetadataType & {
   registrationToken: string,
   title: string,
   body: string,
@@ -73,7 +73,7 @@ export type PushRequestType = CommonRequestType & {
   consolidationKey?: string // ADM
 }
 
-export type SmsRequestType = CommonRequestType & {
+export type SmsRequestType = RequestMetadataType & {
   from: string,
   to: string,
   text: string,
@@ -91,7 +91,7 @@ export type SmsRequestType = CommonRequestType & {
 // )
 }
 
-export type WebpushRequestType = CommonRequestType & {
+export type WebpushRequestType = RequestMetadataType & {
   subscription: {
     endpoint: string,
     keys: {
