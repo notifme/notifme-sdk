@@ -1,5 +1,6 @@
 node_modules/
-lib
+lib/
+coverage/
 yarn-error.log
 .DS_Store
 *.vscode*

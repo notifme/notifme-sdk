@@ -7,7 +7,11 @@ import type {NotificationRequestType, NotificationStatusType, ChannelType} from 
 import type {ProvidersType} from './providers'
 import type {StrategiesType} from './strategies/providers'
 
-export default class Sender {
+export interface SenderType {
+  send(NotificationRequestType): Promise<NotificationStatusType>
+}
+
+export default class Sender implements SenderType {
   channels: string[]
   providers: ProvidersType
   strategies: StrategiesType

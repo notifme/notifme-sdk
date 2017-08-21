@@ -11,6 +11,7 @@ import type {EmailProviderType} from './models/provider-email'
 import type {PushProviderType} from './models/provider-push'
 import type {SmsProviderType} from './models/provider-sms'
 import type {WebpushProviderType} from './models/provider-webpush'
+import type SenderType from './sender'
 
 export const CHANNELS = {
   email: 'email',
@@ -67,7 +68,7 @@ export type OptionsType = {|
 |}
 
 export default class NotifmeSdk {
-  sender: Sender
+  sender: SenderType
   logger: typeof logger = logger
 
   constructor (options: OptionsType) {
