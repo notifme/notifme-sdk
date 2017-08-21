@@ -491,60 +491,64 @@ A multi-provider strategy allows you to customize the send process on a channel.
 
 You can also provide your own strategy. You have to pass a function implementing:
 
-```
+```javascript
 (Provider[]) => Sender
-
-// where Sender is
-
-Sender = (Request) => Promise<{
-  id: string, // the id returned by the provider
-  providerId: string
-}
-
-
-// Provider[] are the instances of the providers. You can call send() directly on a provider
+// See examples below for more details
 ```
 
-Examples
+Examples:
 
-<details><summary>Random Strategy</summary><p>
+<details><summary>Random strategy</summary><p>
 
 ```javascript
+/*
+ * `providers` is an array containing all the instances that were
+ * created from your configuration.
+ */
 const randomStrategy = (providers) => async (request) => {
+  // Choose one provider at random
   const provider = providers[Math.floor(Math.random() * providers.length)];
 
   try {
     const id = await provider.send(request)
     return {id, providerId: provider.id}
   } catch (error) {
-    error.providerId = provider.id // this is for a better understand of which provider
+    error.providerId = provider.id
     throw error
   }
 }
+
+new NotifmeSdk({
+  channels: {
+    email: { // Example for email channel
+      providers: [...],
+      multiProviderStrategy: randomStrategy
+    }
+  }
+})
 ```
 </p></details>
-<br>
-
-<details><summary>Cheap Sms Strategy with fallback</summary><p>
+<details><summary>Cheap SMS strategy with fallback</summary><p>
 
 ```javascript
-import strategyFallback from 'notifme-sdk/strategies/fallback'
+import strategyFallback from 'notifme-sdk/lib/strategies/fallback'
 
-// extract the country from a phone number (+33670707070) -> 'fr'
-function country_from_number(number) {..}
-// giving a country return an array of ordered providers by price
-function order_by_price(country, providers) {..}
+function getCountryFromNumber(number) {
+  // extract the country from a phone number (+33670707070) -> 'fr'
+}
+function orderProvidersByPrice(country, providers) {
+  // giving a country return an array of ordered providers by price
+}
 
 const smsCheapStrategy = (providers) => async (request) => {
-  const country = country_from_number(request.from)
-  const providersOrdered = order_by_price(country, providers)
+  const country = getCountryFromNumber(request.from)
+  const providersOrdered = orderProvidersByPrice(country, providers)
 
   return strategyFallback(providersOrdered)(request)
 }
 ```
 </p></details>
 <br>
-
 
 #### Adding a provider or a channel
 
