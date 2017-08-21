@@ -18,15 +18,17 @@ const providerStrategies = {
   roundrobin: strategyRoundrobin
 }
 
+const strategies = Object.keys(providerStrategies)
+
 export default function factory (channels: ChannelOptionsType): StrategiesType {
   return Object.keys(channels).reduce((acc, key: ChannelType): StrategiesType => {
     const optionStrategy = (channels[key]: any).multiProviderStrategy
     if (typeof optionStrategy === 'function') {
       acc[key] = optionStrategy
-    } else if (Object.keys(providerStrategies).includes(optionStrategy)) {
+    } else if (strategies.includes(optionStrategy)) {
       acc[key] = providerStrategies[optionStrategy]
     } else {
-      throw new Error(`"${optionStrategy}" is not a valid strategy. Strategy must be a funtion or fallback|roundrobin|no-fallback.`)
+      throw new Error(`"${optionStrategy}" is not a valid strategy. Strategy must be a function or ${strategies.join('|')}.`)
     }
     return acc
   }, {})
