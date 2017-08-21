@@ -1,10 +1,8 @@
 /* @flow */
 /* global $Keys */
 import NotificationCatcherProvider from './providers/notificationCatcherProvider'
-import Queue from './queue'
 import Sender from './sender'
 import logger from './util/logger'
-import Worker from './worker'
 import providerFactory from './providers'
 import strategyProvidersFactory from './strategies/providers'
 // Types
@@ -13,7 +11,6 @@ import type {EmailProviderType} from './models/provider-email'
 import type {PushProviderType} from './models/provider-push'
 import type {SmsProviderType} from './models/provider-sms'
 import type {WebpushProviderType} from './models/provider-webpush'
-import type {QueueType} from './queue'
 
 export const CHANNELS = {
   email: 'email',
@@ -36,13 +33,13 @@ export type NotificationRequestType = {|
 |}
 
 export type NotificationStatusType = {
-  status: 'queued' | 'success' | 'error',
+  status: 'success' | 'error',
   channels?: {[channel: ChannelType]: {
     id: string,
     providerId: ?string
   }},
   info?: ?Object,
-  errors?: {[channel: ChannelType | 'queue']: Error}
+  errors?: {[channel: ChannelType]: Error}
 }
 
 export type ProviderStrategyType = 'no-fallback' | 'fallback' | 'roundrobin' // Defaults to fallback
@@ -66,8 +63,6 @@ export type OptionsType = {|
       multiProviderStrategy?: ProviderStrategyType
     }
   },
-  runWorker?: boolean, // Defaults to `true`
-  requestQueue?: false | 'in-memory' | QueueType<NotificationRequestType>,
   useNotificationCatcher?: boolean // if true channels are ignored
 |}
 
@@ -80,17 +75,12 @@ export default class NotifmeSdk {
     const providers = providerFactory(mergedOptions.channels)
     const strategies = strategyProvidersFactory(mergedOptions.channels)
 
-    this.sender = new Sender(Object.keys(CHANNELS), providers, strategies, mergedOptions.requestQueue)
-
-    if (mergedOptions.runWorker && mergedOptions.requestQueue) {
-      new Worker(Object.keys(CHANNELS), providers, strategies, mergedOptions.requestQueue).run()
-    }
+    this.sender = new Sender(Object.keys(CHANNELS), providers, strategies)
   }
 
-  mergeWithDefaultConfig ({channels, requestQueue, ...rest}: OptionsType) {
+  mergeWithDefaultConfig ({channels, ...rest}: OptionsType) {
     return {
       useNotificationCatcher: false,
-      runWorker: true,
       ...rest,
       channels: rest.useNotificationCatcher
         ? NotificationCatcherProvider.getConfig(Object.keys(CHANNELS))
@@ -115,12 +105,11 @@ export default class NotifmeSdk {
             multiProviderStrategy: 'fallback',
             ...(channels ? channels.webpush : null)
           }
-        },
-      requestQueue: typeof requestQueue === 'string' ? new Queue(requestQueue) : requestQueue
+        }
     }
   }
 
   send (request: NotificationRequestType): Promise<NotificationStatusType> {
-    return this.sender.handleRequest(request)
+    return this.sender.send(request)
   }
 }

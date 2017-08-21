@@ -6,16 +6,14 @@ import Registry from './util/registry'
 import type {NotificationRequestType, NotificationStatusType, ChannelType} from './index'
 import type {ProvidersType} from './providers'
 import type {StrategiesType} from './strategies/providers'
-import type {QueueType} from './queue'
 
 export default class Sender {
   channels: string[]
   providers: ProvidersType
   strategies: StrategiesType
   senders: {[ChannelType]: (request: any) => Promise<{providerId: string, id: string}>}
-  requestQueue: QueueType<NotificationRequestType> | false
 
-  constructor (channels: string[], providers: ProvidersType, strategies: StrategiesType, requestQueue: any) {
+  constructor (channels: string[], providers: ProvidersType, strategies: StrategiesType) {
     this.channels = channels
     this.providers = providers
     this.strategies = strategies
@@ -39,24 +37,6 @@ export default class Sender {
 
       return acc
     }, {})
-
-    if (requestQueue) {
-      this.requestQueue = requestQueue
-    }
-  }
-
-  async handleRequest (request: NotificationRequestType): Promise<NotificationStatusType> {
-    if (this.requestQueue) {
-      try {
-        const info = await this.requestQueue.enqueue('notifme:request', request)
-        return {status: 'queued', info}
-      } catch (error) {
-        const errorResult = {status: 'error', errors: {queue: error}}
-        return errorResult
-      }
-    } else {
-      return this.send(request)
-    }
   }
 
   async send (request: NotificationRequestType): Promise<NotificationStatusType> {
