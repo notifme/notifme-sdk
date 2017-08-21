@@ -11,10 +11,11 @@
 <p align="center">
   <a href="https://www.npmjs.com/package/notifme-sdk"><img alt="npm-status" src="https://img.shields.io/npm/v/notifme-sdk.svg?style=flat" /></a>
   <a href="https://travis-ci.org/notifme/notifme-sdk"><img alt="travis-build-status" src="https://img.shields.io/travis/notifme/notifme-sdk.svg?style=flat" /></a>
-  <a href="https://github.com/standard/standard"><img alt="js-standard-style" src="https://img.shields.io/badge/codestyle-standard-brightgreen.svg?style=flat" /></a>
-  <a href="https://flow.org/"><img alt="flow-typed" src="https://img.shields.io/badge/typing-Flow_Type-brightgreen.svg?style=flat" /></a>
+  <a href="https://codeclimate.com/github/notifme/notifme-sdk/coverage"><img alt="codeclimate-code-coverage" src="https://img.shields.io/codeclimate/coverage/github/notifme/notifme-sdk.svg?style=flat" /></a>
+  <a href="https://codeclimate.com/github/notifme/notifme-sdk"><img alt="codeclimate" src="https://img.shields.io/codeclimate/github/notifme/notifme-sdk.svg?style=flat" /></a>
+  <a href="https://david-dm.org/notifme/notifme-sdk"><img alt="dependencies" src="https://david-dm.org/notifme/notifme-sdk.svg" /></a>
   <a href="https://github.com/notifme/notifme-sdk/blob/master/LICENSE"><img alt="license" src="https://img.shields.io/badge/license-MIT_License-blue.svg?style=flat" /></a>
-  <a href="https://slackin-notifme.now.sh"><img alt="slack" src="https://slackin-notifme.now.sh/badge.svg" /></a>
+  <a href="https://slackin-notifme.now.sh"><img alt="slack" src="https://img.shields.io/badge/Slack-Join_us!-e01563.svg" /></a>
 </p>
 
 **\*New: we created a [Slack for support and discuss new features](https://slackin-notifme.now.sh).**
@@ -231,7 +232,7 @@ new NotifmeSdk({
 ```
 
 </p></details>
-<details><summary>Logger _(for development)_</summary><p>
+<details><summary>Logger <i>(for development)</i></summary><p>
 
 ```javascript
 new NotifmeSdk({
@@ -344,7 +345,7 @@ new NotifmeSdk({
 ```
 </p></details>
 
-<details><summary>Logger _(for development)_</summary><p>
+<details><summary>Logger <i>(for development)</i></summary><p>
 
 ```javascript
 new NotifmeSdk({
@@ -458,7 +459,7 @@ new NotifmeSdk({
 ```
 
 </p></details>
-<details><summary>Logger _(for development)_</summary><p>
+<details><summary>Logger <i>(for development)</i></summary><p>
 
 ```javascript
 new NotifmeSdk({
@@ -522,7 +523,7 @@ new NotifmeSdk({
 ```
 
 </p></details>
-<details><summary>Logger _(for development)_</summary><p>
+<details><summary>Logger <i>(for development)</i></summary><p>
 
 ```javascript
 new NotifmeSdk({
@@ -819,6 +820,9 @@ See [winston's documentation](https://github.com/winstonjs/winston) for more det
 So that we can make a list of people using this library ;)
 
 ## Contributing
+
+[![js-standard-style](https://img.shields.io/badge/codestyle-standard-brightgreen.svg?style=flat)](https://github.com/standard/standard)
+[![flow-typed](https://img.shields.io/badge/typing-Flow_Type-brightgreen.svg?style=flat)](https://flow.org/)
 
 Contributions are very welcome!
 
