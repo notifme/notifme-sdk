@@ -1,8 +1,13 @@
 /* @flow */
+import type {EmailRequestType} from './notification-request'
 
 // TODO?: provider APIs (mailgun, SES, sendinblue, mailjet, mandrill, elasticemail...)
 export type EmailProviderType = {
   type: 'logger'
+} | {
+  type: 'custom',
+  id: string,
+  send: (EmailRequestType) => Promise<string>
 } | {
   // Doc: https://nodemailer.com/transports/sendmail/
   type: 'sendmail',

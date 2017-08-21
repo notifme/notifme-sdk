@@ -15,6 +15,9 @@ export interface EmailProviderType {
 
 export default function factory ({type, ...config}: Object): EmailProviderType {
   switch (type) {
+    case 'custom':
+      return config
+
     case 'logger':
       return new EmailLoggerProvider(config, 'email')
 

@@ -231,7 +231,7 @@ new NotifmeSdk({
 ```
 
 </p></details>
-<details><summary>Logger (for development)</summary><p>
+<details><summary>Logger _(for development)_</summary><p>
 
 ```javascript
 new NotifmeSdk({
@@ -244,6 +244,28 @@ new NotifmeSdk({
   }
 })
 ```
+
+</p></details>
+<details><summary>Custom</summary><p>
+
+```javascript
+new NotifmeSdk({
+  channels: {
+    email: {
+      providers: [{
+        type: 'custom',
+        id: 'my-custom-email-provider...',
+        async send: (request) => {
+          // Send email
+          return 'id...'
+        }
+      }]
+    }
+  }
+})
+```
+
+`request` being of [the following type](https://github.com/notifme/notifme-sdk/blob/master/src/models/notification-request.js#L8-L31).
 
 </p></details>
 <br>
@@ -322,7 +344,7 @@ new NotifmeSdk({
 ```
 </p></details>
 
-<details><summary>Logger (for development)</summary><p>
+<details><summary>Logger _(for development)_</summary><p>
 
 ```javascript
 new NotifmeSdk({
@@ -335,6 +357,28 @@ new NotifmeSdk({
   }
 })
 ```
+
+</p></details>
+<details><summary>Custom</summary><p>
+
+```javascript
+new NotifmeSdk({
+  channels: {
+    sms: {
+      providers: [{
+        type: 'custom',
+        id: 'my-custom-sms-provider...',
+        async send: (request) => {
+          // Send SMS
+          return 'id...'
+        }
+      }]
+    }
+  }
+})
+```
+
+`request` being of [the following type](https://github.com/notifme/notifme-sdk/blob/master/src/models/notification-request.js#L76-L92).
 
 </p></details>
 <br>
@@ -414,7 +458,7 @@ new NotifmeSdk({
 ```
 
 </p></details>
-<details><summary>Logger (for development)</summary><p>
+<details><summary>Logger _(for development)_</summary><p>
 
 ```javascript
 new NotifmeSdk({
@@ -427,6 +471,28 @@ new NotifmeSdk({
   }
 })
 ```
+
+</p></details>
+<details><summary>Custom</summary><p>
+
+```javascript
+new NotifmeSdk({
+  channels: {
+    push: {
+      providers: [{
+        type: 'custom',
+        id: 'my-custom-push-provider...',
+        async send: (request) => {
+          // Send push
+          return 'id...'
+        }
+      }]
+    }
+  }
+})
+```
+
+`request` being of [the following type](https://github.com/notifme/notifme-sdk/blob/master/src/models/notification-request.js#L33-L74).
 
 </p></details>
 <br>
@@ -456,7 +522,7 @@ new NotifmeSdk({
 ```
 
 </p></details>
-<details><summary>Logger (for development)</summary><p>
+<details><summary>Logger _(for development)_</summary><p>
 
 ```javascript
 new NotifmeSdk({
@@ -469,6 +535,28 @@ new NotifmeSdk({
   }
 })
 ```
+
+</p></details>
+<details><summary>Custom</summary><p>
+
+```javascript
+new NotifmeSdk({
+  channels: {
+    webpush: {
+      providers: [{
+        type: 'custom',
+        id: 'my-custom-webpush-provider...',
+        async send: (request) => {
+          // Send webpush
+          return 'id...'
+        }
+      }]
+    }
+  }
+})
+```
+
+`request` being of [the following type](https://github.com/notifme/notifme-sdk/blob/master/src/models/notification-request.js#L94-L115).
 
 </p></details>
 <br>

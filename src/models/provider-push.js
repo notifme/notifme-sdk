@@ -1,7 +1,12 @@
 /* @flow */
+import type {PushRequestType} from './notification-request'
 
 export type PushProviderType = {
   type: 'logger'
+} | {
+  type: 'custom',
+  id: string,
+  send: (PushRequestType) => Promise<string>
 } | {
   // Doc: https://github.com/node-apn/node-apn/blob/master/doc/provider.markdown
   type: 'apn', // Apple Push Notification

@@ -15,6 +15,9 @@ export interface SmsProviderType {
 
 export default function factory ({type, ...config}: Object): SmsProviderType {
   switch (type) {
+    case 'custom':
+      return config
+
     case 'logger':
       return new SmsLoggerProvider(config, 'sms')
 

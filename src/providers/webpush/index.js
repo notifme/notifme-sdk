@@ -12,6 +12,9 @@ export interface WebpushProviderType {
 
 export default function factory ({type, ...config}: Object): WebpushProviderType {
   switch (type) {
+    case 'custom':
+      return config
+
     case 'gcm':
       return new WebpushGcmProvider(config)
 

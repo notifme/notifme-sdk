@@ -5,12 +5,13 @@ import smsFactory from './sms'
 import webpushFactory from './webpush'
 // Types
 import type {ChannelType} from '../index'
+import type {RequestType} from '../models/notification-request'
 
 export type ChannelOptionsType = {[ChannelType]: {providers: Object[]}}
 
 export interface ProviderType {
   id: string;
-  send(Object): Promise<string>;
+  send(RequestType): Promise<string>;
 }
 
 export type ProvidersType = {[ChannelType]: ProviderType[]}

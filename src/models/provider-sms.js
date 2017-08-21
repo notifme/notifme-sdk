@@ -1,8 +1,13 @@
 /* @flow */
+import type {SmsRequestType} from './notification-request'
 
 // TODO?: other SMS providers
 export type SmsProviderType = {
   type: 'logger'
+} | {
+  type: 'custom',
+  id: string,
+  send: (SmsRequestType) => Promise<string>
 } | {
   type: 'nexmo',
   apiKey: string,

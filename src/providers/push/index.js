@@ -15,6 +15,9 @@ export interface PushProviderType {
 
 export default function factory ({type, ...config}: Object): PushProviderType {
   switch (type) {
+    case 'custom':
+      return config
+
     case 'adm':
       return new PushAdmProvider(config)
 
