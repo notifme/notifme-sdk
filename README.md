@@ -477,11 +477,74 @@ See all options: [Webpush provider options](https://github.com/notifme/notifme-s
 
 #### Multi-provider strategies
 
+A multi-provider strategy allows you to customize the send process on a channel.
+
+##### Predefined strategies
+
 | Strategy name | Description |
 | --- | --- |
 | `fallback` | If the used provider returns an error, try the next in the list. |
 | `roundrobin` | Use every provider in turns. If one of them returns an error, fallback to the next. |
 | `no-fallback` | Deactivates fallback strategy. |
+
+##### Custom
+
+You can also provide your own strategy. You have to pass a function implementing:
+
+```
+(Provider[]) => Sender
+
+// where Sender is
+
+Sender = (Request) => Promise<{
+  id: string, // the id returned by the provider
+  providerId: string
+}
+
+
+// Provider[] are the instances of the providers. You can call send() directly on a provider
+```
+
+Examples
+
+<details><summary>Random Strategy</summary><p>
+
+```javascript
+const randomStrategy = (providers) => async (request) => {
+  const provider = providers[Math.floor(Math.random() * providers.length)];
+
+  try {
+    const id = await provider.send(request)
+    return {id, providerId: provider.id}
+  } catch (error) {
+    error.providerId = provider.id // this is for a better understand of which provider
+    throw error
+  }
+}
+```
+</p></details>
+<br>
+
+<details><summary>Cheap Sms Strategy with fallback</summary><p>
+
+```javascript
+import strategyFallback from 'notifme-sdk/strategies/fallback'
+
+// extract the country from a phone number (+33670707070) -> 'fr'
+function country_from_number(number) {..}
+// giving a country return an array of ordered providers by price
+function order_by_price(country, providers) {..}
+
+const smsCheapStrategy = (providers) => async (request) => {
+  const country = country_from_number(request.from)
+  const providersOrdered = order_by_price(country, providers)
+
+  return strategyFallback(providersOrdered)(request)
+}
+```
+</p></details>
+<br>
+
 
 #### Adding a provider or a channel
 
