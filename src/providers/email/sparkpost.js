@@ -29,7 +29,10 @@ export default class EmailSparkPostProvider {
           subject,
           html,
           text,
-          headers,
+          headers: {
+            ...headers,
+            ...(cc && cc.length > 0 ? {CC: cc.join(',')} : null)
+          },
           attachments: (attachments || []).map(({contentType, filename, content}) =>
             ({
               type: contentType,
@@ -38,10 +41,10 @@ export default class EmailSparkPostProvider {
             }))
         },
         recipients: [
-          {address: to}
+          {address: {email: to}},
+          ...(cc || []).map((email) => ({address: {email, header_to: to}})),
+          ...(bcc || []).map((email) => ({address: {email, header_to: to}}))
         ],
-        cc,
-        bcc,
         metadata: {id, userId}
       })
     })
