@@ -207,7 +207,7 @@ new NotifmeSdk({
     email: {
       providers: [{
         type: 'sendgrid',
-        apiKey: 'xxxxx',
+        apiKey: 'xxxxx'
       }]
     }
   }
@@ -223,7 +223,7 @@ new NotifmeSdk({
     email: {
       providers: [{
         type: 'sparkpost',
-        apiKey: 'xxxxx',
+        apiKey: 'xxxxx'
       }]
     }
   }
