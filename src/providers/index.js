@@ -3,7 +3,7 @@ import emailFactory from './email'
 import pushFactory from './push'
 import smsFactory from './sms'
 import webpushFactory from './webpush'
-
+// Types
 import type {ChannelType} from '../index'
 
 export type ChannelOptionsType = {[ChannelType]: {providers: Object[]}}
@@ -13,27 +13,25 @@ export interface ProviderType {
   send(Object): Promise<string>;
 }
 
-export type ProvidersType = {[ChannelType]: ProviderType[]};
+export type ProvidersType = {[ChannelType]: ProviderType[]}
 
 export default function factory (channels: ChannelOptionsType): ProvidersType {
   return (Object.keys(channels): any).reduce((acc, key: ChannelType): ProvidersType => {
-    switch (key) {
-      case 'email':
-        acc[key] = channels[key].providers.map((config) => emailFactory(config))
-        break
+    acc[key] = channels[key].providers.map((config) => {
+      switch (key) {
+        case 'email':
+          return emailFactory(config)
 
-      case 'sms':
-        acc[key] = channels[key].providers.map((config) => smsFactory(config))
-        break
+        case 'sms':
+          return smsFactory(config)
 
-      case 'push':
-        acc[key] = channels[key].providers.map((config) => pushFactory(config))
-        break
+        case 'push':
+          return pushFactory(config)
 
-      case 'webpush':
-        acc[key] = channels[key].providers.map((config) => webpushFactory(config))
-        break
-    }
+        case 'webpush':
+          return webpushFactory(config)
+      }
+    })
 
     return acc
   }, {})

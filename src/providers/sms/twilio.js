@@ -5,11 +5,10 @@ import FormData from 'form-data'
 import type {SmsRequestType} from '../../models/notification-request'
 
 export default class SmsTwilioProvider {
-  id: string
+  id: string = 'sms-twilio-provider'
   credentials: Object
 
   constructor (config: Object) {
-    this.id = 'sms-twilio-provider'
     this.credentials = {accountSid: config.accountSid, authToken: config.authToken}
   }
 

@@ -4,11 +4,10 @@ import fetch from 'node-fetch'
 import type {SmsRequestType} from '../../models/notification-request'
 
 export default class SmsPlivoProvider {
-  id: string
+  id: string = 'sms-plivo-provider'
   credentials: Object
 
   constructor (config: Object) {
-    this.id = 'sms-plivo-provider'
     this.credentials = {authId: config.authId, authToken: config.authToken}
   }
 

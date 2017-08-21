@@ -4,11 +4,10 @@ import PushNotifications from 'node-pushnotifications'
 import type {PushRequestType} from '../../models/notification-request'
 
 export default class PushWnsProvider {
-  id: string
+  id: string = 'push-wns-provider'
   transporter: Object
 
   constructor (config: Object) {
-    this.id = 'push-wns-provider'
     this.transporter = new PushNotifications({wns: {
       ...config,
       client_id: config.clientId,

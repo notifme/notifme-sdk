@@ -1,8 +1,8 @@
 /* @flow */
+import logger from '../../util/logger'
+// Types
 import type {ProviderType} from '../../providers'
 import type {StrategyType} from './index'
-
-import logger from '../../util/logger'
 
 async function recursiveTry (providers: ProviderType[], request: any): Promise<{providerId: string, id: string}> {
   const [current, ...others] = providers
@@ -12,7 +12,7 @@ async function recursiveTry (providers: ProviderType[], request: any): Promise<{
     return {providerId: current.id, id}
   } catch (error) {
     logger.warn(current.id, error)
-    if (others.length === 0) { // the last one
+    if (others.length === 0) { // no more provider to try
       error.providerId = current.id
       throw error
     }

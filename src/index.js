@@ -56,7 +56,7 @@ export type OptionsType = {|
     },
     sms?: {
       providers: SmsProviderType[],
-      multiProviderStrategy?: ProviderStrategyType,
+      multiProviderStrategy?: ProviderStrategyType
     },
     webpush?: {
       providers: WebpushProviderType[],

@@ -4,11 +4,10 @@ import fetch from 'node-fetch'
 import type {EmailRequestType} from '../../models/notification-request'
 
 export default class EmailSparkPostProvider {
-  id: string
+  id: string = 'email-sparkpost-provider'
   apiKey: string
 
   constructor (config: Object) {
-    this.id = 'email-sparkpost-provider'
     this.apiKey = config.apiKey
   }
 

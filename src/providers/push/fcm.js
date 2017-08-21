@@ -4,11 +4,10 @@ import PushNotifications from 'node-pushnotifications'
 import type {PushRequestType} from '../../models/notification-request'
 
 export default class PushFcmProvider {
-  id: string
+  id: string = 'push-fcm-provider'
   transporter: Object
 
   constructor (config: Object) {
-    this.id = 'push-fcm-provider'
     this.transporter = new PushNotifications({gcm: config})
   }
 

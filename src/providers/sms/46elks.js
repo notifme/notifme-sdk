@@ -5,11 +5,10 @@ import qs from 'querystring'
 import type {SmsRequestType} from '../../models/notification-request'
 
 export default class Sms46elksProvider {
-  id: string
+  id: string = 'sms-46elks-provider'
   credentials: Object
 
   constructor (config: Object) {
-    this.id = 'sms-46elks-provider'
     this.credentials = {
       username: config.apiUsername,
       password: config.apiPassword

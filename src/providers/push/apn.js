@@ -4,11 +4,10 @@ import PushNotifications from 'node-pushnotifications'
 import type {PushRequestType} from '../../models/notification-request'
 
 export default class PushApnProvider {
-  id: string
+  id: string = 'push-apn-provider'
   transporter: Object
 
   constructor (config: Object) {
-    this.id = 'push-apn-provider'
     this.transporter = new PushNotifications({apn: config})
   }
 

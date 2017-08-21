@@ -1,16 +1,16 @@
 /* @flow */
+import logger from '../../util/logger'
+// Types
 import type {StrategyType} from './index'
 
-import logger from '../../util/logger'
-
 const strategyProvidersNoFallback: StrategyType =
-  (providers) => async (request) => {
+  ([provider]) => async (request) => {
     try {
-      const id = await providers[0].send(request)
-      return {providerId: providers[0].id, id}
+      const id = await provider.send(request)
+      return {providerId: provider.id, id}
     } catch (error) {
-      logger.warn(providers[0].id, error)
-      error.providerId = providers[0].id
+      logger.warn(provider.id, error)
+      error.providerId = provider.id
       throw error
     }
   }

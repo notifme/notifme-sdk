@@ -4,11 +4,10 @@ import webpush from 'web-push'
 import type {WebpushRequestType} from '../../models/notification-request'
 
 export default class WebpushGcmProvider {
-  id: string
+  id: string = 'webpush-gcm-provider'
   options: Object
 
   constructor ({gcmAPIKey, vapidDetails, ttl, headers}: Object) {
-    this.id = 'webpush-gcm-provider'
     this.options = {TTL: ttl, headers}
     if (gcmAPIKey) {
       webpush.setGCMAPIKey(gcmAPIKey)

@@ -113,3 +113,5 @@ export type WebpushRequestType = CommonRequestType & {
   redirects?: {[key: string]: string}, // added for local tests
   requireInteraction?: boolean // C22 F52
 }
+
+export type RequestType = EmailRequestType | PushRequestType | SmsRequestType | WebpushRequestType

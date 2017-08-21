@@ -1,8 +1,8 @@
 /* @flow */
 // "statefull" strategy
-import type {StrategyType} from './index'
-
 import strategyFallback from './fallback'
+// Types
+import type {StrategyType} from './index'
 
 function rotate<T> (arr: T[]): T[] { // /!\ mute array, the mutation is "the state"
   arr.unshift(arr.pop())

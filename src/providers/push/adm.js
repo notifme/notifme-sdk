@@ -4,11 +4,10 @@ import PushNotifications from 'node-pushnotifications'
 import type {PushRequestType} from '../../models/notification-request'
 
 export default class PushAdmProvider {
-  id: string
+  id: string = 'push-adm-provider'
   transporter: Object
 
   constructor (config: Object) {
-    this.id = 'push-adm-provider'
     this.transporter = new PushNotifications({adm: {
       ...config,
       client_id: config.clientId,

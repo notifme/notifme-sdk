@@ -4,11 +4,10 @@ import nodemailer from 'nodemailer'
 import type {EmailRequestType} from '../../models/notification-request'
 
 export default class EmailSendmailProvider {
-  id: string
+  id: string = 'email-sendmail-provider'
   transporter: Object
 
   constructor (config: Object) {
-    this.id = 'email-sendmail-provider'
     this.transporter = nodemailer.createTransport(config)
   }
 

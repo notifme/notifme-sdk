@@ -5,11 +5,10 @@ import fetch from 'node-fetch'
 import type {EmailRequestType} from '../../models/notification-request'
 
 export default class EmailSendGridProvider {
-  id: string
+  id: string = 'email-sendgrid-provider'
   apiKey: string
 
   constructor (config: Object) {
-    this.id = 'email-sendgrid-provider'
     this.apiKey = config.apiKey
   }
 

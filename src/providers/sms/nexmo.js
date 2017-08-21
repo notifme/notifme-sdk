@@ -4,11 +4,10 @@ import fetch from 'node-fetch'
 import type {SmsRequestType} from '../../models/notification-request'
 
 export default class SmsNexmoProvider {
-  id: string
+  id: string = 'sms-nexmo-provider'
   credentials: Object
 
   constructor (config: Object) {
-    this.id = 'sms-nexmo-provider'
     this.credentials = {api_key: config.apiKey, api_secret: config.apiSecret}
   }
 

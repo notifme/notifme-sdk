@@ -23,14 +23,14 @@ export default class Sender {
       acc[channel] = this.providers[channel].length > 0
         ? strategies[channel](this.providers[channel])
         : async (request) => {
-          logger.warn(`No provider registered for channel "${channel}". Use Logger`)
+          logger.warn(`No provider registered for channel "${channel}". Using logger.`)
           const provider = Registry.getInstance(`${channel}-logger-default`,
             () => new ProviderLogger({}, channel))
 
           return {
             success: true,
             channel,
-            providerId: 'no-provider-logger',
+            providerId: provider.id,
             id: await provider.send(request)
           }
         }
