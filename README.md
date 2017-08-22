@@ -375,6 +375,22 @@ new NotifmeSdk({
 })
 ```
 </p></details>
+<details><summary>Callr</summary><p>
+
+```javascript
+new NotifmeSdk({
+  channels: {
+    sms: {
+      providers: [{
+        type: 'callr',
+        login: 'xxxxx',
+        password: 'xxxxx'
+      }]
+    }
+  }
+})
+```
+</p></details>
 <details><summary>Logger <i>(for development)</i></summary><p>
 
 ```javascript

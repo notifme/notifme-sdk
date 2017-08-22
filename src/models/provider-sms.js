@@ -31,4 +31,8 @@ export type SmsProviderType = {
   type: 'infobip',
   username: string,
   password: string
+} | {
+  type: 'callr',
+  login: string,
+  password: string
 }
