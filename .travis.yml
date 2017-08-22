@@ -10,3 +10,5 @@ addons:
 after_success:
   - yarn global add codeclimate-test-reporter
   - codeclimate-test-reporter < ./coverage/lcov.info
+notifications:
+  slack: notifme:MJIOAvkBeUE4bs34W2H9sgaR
