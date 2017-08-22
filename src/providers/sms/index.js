@@ -6,6 +6,7 @@ import SmsTwilioProvider from './twilio'
 import Sms46elksProvider from './46elks'
 import SmsPlivoProvider from './plivo'
 import SmsClickatellProvider from './clickatell'
+import SmsInfobipProvider from './infobip'
 // Types
 import type {SmsRequestType} from '../../models/notification-request'
 
@@ -39,6 +40,9 @@ export default function factory ({type, ...config}: Object): SmsProviderType {
 
     case 'clickatell':
       return new SmsClickatellProvider(config)
+
+    case 'infobip':
+      return new SmsInfobipProvider(config)
 
     default:
       throw new Error(`Unknown sms provider "${type}".`)

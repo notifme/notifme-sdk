@@ -27,4 +27,8 @@ export type SmsProviderType = {
 } | {
   type: 'clickatell',
   apiKey: string // One-way integration API key
+} | {
+  type: 'infobip',
+  username: string,
+  password: string
 }

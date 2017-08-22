@@ -359,7 +359,22 @@ new NotifmeSdk({
 })
 ```
 </p></details>
+<details><summary>Infobip</summary><p>
 
+```javascript
+new NotifmeSdk({
+  channels: {
+    sms: {
+      providers: [{
+        type: 'infobip',
+        username: 'xxxxx',
+        password: 'xxxxx'
+      }]
+    }
+  }
+})
+```
+</p></details>
 <details><summary>Logger <i>(for development)</i></summary><p>
 
 ```javascript
