@@ -344,6 +344,21 @@ new NotifmeSdk({
 })
 ```
 </p></details>
+<details><summary>Clickatell</summary><p>
+
+```javascript
+new NotifmeSdk({
+  channels: {
+    sms: {
+      providers: [{
+        type: 'clickatell',
+        apiKey: 'xxxxx' // One-way integration API key
+      }]
+    }
+  }
+})
+```
+</p></details>
 
 <details><summary>Logger <i>(for development)</i></summary><p>
 

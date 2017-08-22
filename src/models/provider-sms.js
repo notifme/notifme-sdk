@@ -24,4 +24,7 @@ export type SmsProviderType = {
   type: 'plivo',
   authId: string,
   authToken: string
+} | {
+  type: 'clickatell',
+  apiKey: string // One-way integration API key
 }
