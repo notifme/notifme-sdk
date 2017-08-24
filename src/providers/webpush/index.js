@@ -12,17 +12,20 @@ export interface WebpushProviderType {
 
 export default function factory ({type, ...config}: Object): WebpushProviderType {
   switch (type) {
-    case 'custom':
-      return config
-
-    case 'gcm':
-      return new WebpushGcmProvider(config)
+    // Development
+    case 'logger':
+      return new WebpushLoggerProvider(config, 'webpush')
 
     case 'notificationcatcher':
       return new WebpushNotificationCatcherProvider('webpush')
 
-    case 'logger':
-      return new WebpushLoggerProvider(config, 'webpush')
+    // Custom
+    case 'custom':
+      return config
+
+    // Providers
+    case 'gcm':
+      return new WebpushGcmProvider(config)
 
     default:
       throw new Error(`Unknown webpush provider "${type}".`)

@@ -1,8 +1,8 @@
 /* @flow */
 import EmailLoggerProvider from '../logger'
 import EmailNotificationCatcherProvider from './notificationCatcher'
-import EmailSendmailProvider from './sendmail'
 import EmailSendGridProvider from './sendgrid'
+import EmailSendmailProvider from './sendmail'
 import EmailSmtpProvider from './smtp'
 import EmailSparkPostProvider from './sparkpost'
 // Types
@@ -15,21 +15,25 @@ export interface EmailProviderType {
 
 export default function factory ({type, ...config}: Object): EmailProviderType {
   switch (type) {
-    case 'custom':
-      return config
-
+    // Development
     case 'logger':
       return new EmailLoggerProvider(config, 'email')
 
     case 'notificationcatcher':
       return new EmailNotificationCatcherProvider('email')
 
+    // Custom
+    case 'custom':
+      return config
+
+    // Protocols
     case 'sendmail':
       return new EmailSendmailProvider(config)
 
     case 'smtp':
       return new EmailSmtpProvider(config)
 
+    // Providers
     case 'sendgrid':
       return new EmailSendGridProvider(config)
 

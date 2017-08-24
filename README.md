@@ -160,7 +160,22 @@ new NotifmeSdk({
 
 #### Email providers
 
-<details><summary>SMTP</summary><p>
+<details><summary>Logger <i>(for development)</i></summary><p>
+
+```javascript
+new NotifmeSdk({
+  channels: {
+    email: {
+      providers: [{
+        type: 'logger'
+      }]
+    }
+  }
+})
+```
+
+</p></details>
+<details><summary>SMTP <i>(can be used for almost all providers)</i></summary><p>
 
 ```javascript
 new NotifmeSdk({
@@ -232,21 +247,6 @@ new NotifmeSdk({
 ```
 
 </p></details>
-<details><summary>Logger <i>(for development)</i></summary><p>
-
-```javascript
-new NotifmeSdk({
-  channels: {
-    email: {
-      providers: [{
-        type: 'logger'
-      }]
-    }
-  }
-})
-```
-
-</p></details>
 <details><summary>Custom</summary><p>
 
 ```javascript
@@ -256,7 +256,7 @@ new NotifmeSdk({
       providers: [{
         type: 'custom',
         id: 'my-custom-email-provider...',
-        async send: (request) => {
+        send: async (request) => {
           // Send email
           return 'id...'
         }
@@ -275,16 +275,14 @@ See all options: [Email provider options](https://github.com/notifme/notifme-sdk
 
 #### SMS providers
 
-<details><summary>Nexmo</summary><p>
+<details><summary>Logger <i>(for development)</i></summary><p>
 
 ```javascript
 new NotifmeSdk({
   channels: {
     sms: {
       providers: [{
-        type: 'nexmo',
-        apiKey: 'xxxxx',
-        apiSecret: 'xxxxx'
+        type: 'logger'
       }]
     }
   }
@@ -292,24 +290,6 @@ new NotifmeSdk({
 ```
 
 </p></details>
-<details><summary>Twilio</summary><p>
-
-```javascript
-new NotifmeSdk({
-  channels: {
-    sms: {
-      providers: [{
-        type: 'twilio',
-        accountSid: 'xxxxx',
-        authToken: 'xxxxx'
-      }]
-    }
-  }
-})
-```
-
-</p></details>
-
 <details><summary>46elks</summary><p>
 
 ```javascript
@@ -327,17 +307,16 @@ new NotifmeSdk({
 ```
 
 </p></details>
-
-<details><summary>Plivo</summary><p>
+<details><summary>Callr</summary><p>
 
 ```javascript
 new NotifmeSdk({
   channels: {
     sms: {
       providers: [{
-        type: 'plivo',
-        authId: 'xxxxx',
-        authToken: 'xxxxx'
+        type: 'callr',
+        login: 'xxxxx',
+        password: 'xxxxx'
       }]
     }
   }
@@ -375,30 +354,49 @@ new NotifmeSdk({
 })
 ```
 </p></details>
-<details><summary>Callr</summary><p>
+<details><summary>Nexmo</summary><p>
 
 ```javascript
 new NotifmeSdk({
   channels: {
     sms: {
       providers: [{
-        type: 'callr',
-        login: 'xxxxx',
-        password: 'xxxxx'
+        type: 'nexmo',
+        apiKey: 'xxxxx',
+        apiSecret: 'xxxxx'
+      }]
+    }
+  }
+})
+```
+
+</p></details>
+<details><summary>Plivo</summary><p>
+
+```javascript
+new NotifmeSdk({
+  channels: {
+    sms: {
+      providers: [{
+        type: 'plivo',
+        authId: 'xxxxx',
+        authToken: 'xxxxx'
       }]
     }
   }
 })
 ```
 </p></details>
-<details><summary>Logger <i>(for development)</i></summary><p>
+<details><summary>Twilio</summary><p>
 
 ```javascript
 new NotifmeSdk({
   channels: {
     sms: {
       providers: [{
-        type: 'logger'
+        type: 'twilio',
+        accountSid: 'xxxxx',
+        authToken: 'xxxxx'
       }]
     }
   }
@@ -415,7 +413,7 @@ new NotifmeSdk({
       providers: [{
         type: 'custom',
         id: 'my-custom-sms-provider...',
-        async send: (request) => {
+        send: async (request) => {
           // Send SMS
           return 'id...'
         }
@@ -434,6 +432,21 @@ See all options: [SMS provider options](https://github.com/notifme/notifme-sdk/b
 
 #### Push providers
 
+<details><summary>Logger <i>(for development)</i></summary><p>
+
+```javascript
+new NotifmeSdk({
+  channels: {
+    push: {
+      providers: [{
+        type: 'logger'
+      }]
+    }
+  }
+})
+```
+
+</p></details>
 <details><summary>APN (Apple Push Notification)</summary><p>
 
 ```javascript
@@ -505,21 +518,6 @@ new NotifmeSdk({
 ```
 
 </p></details>
-<details><summary>Logger <i>(for development)</i></summary><p>
-
-```javascript
-new NotifmeSdk({
-  channels: {
-    push: {
-      providers: [{
-        type: 'logger'
-      }]
-    }
-  }
-})
-```
-
-</p></details>
 <details><summary>Custom</summary><p>
 
 ```javascript
@@ -529,7 +527,7 @@ new NotifmeSdk({
       providers: [{
         type: 'custom',
         id: 'my-custom-push-provider...',
-        async send: (request) => {
+        send: async (request) => {
           // Send push
           return 'id...'
         }
@@ -548,6 +546,21 @@ See all options: [Push provider options](https://github.com/notifme/notifme-sdk/
 
 #### Webpush providers
 
+<details><summary>Logger <i>(for development)</i></summary><p>
+
+```javascript
+new NotifmeSdk({
+  channels: {
+    webpush: {
+      providers: [{
+        type: 'logger'
+      }]
+    }
+  }
+})
+```
+
+</p></details>
 <details><summary>GCM (Google Cloud Messaging) - uses W3C endpoints if possible</summary><p>
 
 ```javascript
@@ -569,21 +582,6 @@ new NotifmeSdk({
 ```
 
 </p></details>
-<details><summary>Logger <i>(for development)</i></summary><p>
-
-```javascript
-new NotifmeSdk({
-  channels: {
-    webpush: {
-      providers: [{
-        type: 'logger'
-      }]
-    }
-  }
-})
-```
-
-</p></details>
 <details><summary>Custom</summary><p>
 
 ```javascript
@@ -593,7 +591,7 @@ new NotifmeSdk({
       providers: [{
         type: 'custom',
         id: 'my-custom-webpush-provider...',
-        async send: (request) => {
+        send: async (request) => {
           // Send webpush
           return 'id...'
         }
@@ -709,7 +707,6 @@ notifmeSdk.send({
 See [all parameters](https://github.com/notifme/notifme-sdk/blob/master/src/models/notification-request.js#L8).
 
 </p></details>
-
 <details><summary>Send a SMS</summary><p>
 
 ```javascript
@@ -725,7 +722,6 @@ notifmeSdk.send({
 See [all parameters](https://github.com/notifme/notifme-sdk/blob/master/src/models/notification-request.js#L76).
 
 </p></details>
-
 <details><summary>Send a push</summary><p>
 
 ```javascript
@@ -742,7 +738,6 @@ notifmeSdk.send({
 See [all parameters](https://github.com/notifme/notifme-sdk/blob/master/src/models/notification-request.js#L33).
 
 </p></details>
-
 <details><summary>Send a webpush</summary><p>
 
 ```javascript
@@ -765,7 +760,6 @@ notifmeSdk.send({
 See [all parameters](https://github.com/notifme/notifme-sdk/blob/master/src/models/notification-request.js#L91).
 
 </p></details>
-
 <details><summary>Send a multi-channel notification</summary><p>
 
 ```javascript

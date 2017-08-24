@@ -9,21 +9,13 @@ export type SmsProviderType = {
   id: string,
   send: (SmsRequestType) => Promise<string>
 } | {
-  type: 'nexmo',
-  apiKey: string,
-  apiSecret: string
-} | {
-  type: 'twilio',
-  accountSid: string,
-  authToken: string
-} | {
   type: '46elks',
   apiUsername: string,
   apiPassword: string
 } | {
-  type: 'plivo',
-  authId: string,
-  authToken: string
+  type: 'callr',
+  login: string,
+  password: string
 } | {
   type: 'clickatell',
   apiKey: string // One-way integration API key
@@ -32,7 +24,15 @@ export type SmsProviderType = {
   username: string,
   password: string
 } | {
-  type: 'callr',
-  login: string,
-  password: string
+  type: 'nexmo',
+  apiKey: string,
+  apiSecret: string
+} | {
+  type: 'plivo',
+  authId: string,
+  authToken: string
+} | {
+  type: 'twilio',
+  accountSid: string,
+  authToken: string
 }

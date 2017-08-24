@@ -1,13 +1,13 @@
 /* @flow */
 import SmsLoggerProvider from '../logger'
-import SmsNexmoProvider from './nexmo'
-import SmsNotificationCatcherProvider from './notificationCatcher'
-import SmsTwilioProvider from './twilio'
 import Sms46elksProvider from './46elks'
-import SmsPlivoProvider from './plivo'
+import SmsCallrProvider from './callr'
 import SmsClickatellProvider from './clickatell'
 import SmsInfobipProvider from './infobip'
-import SmsCallrProvider from './callr'
+import SmsNexmoProvider from './nexmo'
+import SmsNotificationCatcherProvider from './notificationCatcher'
+import SmsPlivoProvider from './plivo'
+import SmsTwilioProvider from './twilio'
 // Types
 import type {SmsRequestType} from '../../models/notification-request'
 
@@ -18,26 +18,23 @@ export interface SmsProviderType {
 
 export default function factory ({type, ...config}: Object): SmsProviderType {
   switch (type) {
-    case 'custom':
-      return config
-
+    // Development
     case 'logger':
       return new SmsLoggerProvider(config, 'sms')
-
-    case 'nexmo':
-      return new SmsNexmoProvider(config)
 
     case 'notificationcatcher':
       return new SmsNotificationCatcherProvider('sms')
 
-    case 'twilio':
-      return new SmsTwilioProvider(config)
+    // Custom
+    case 'custom':
+      return config
 
+    // Providers
     case '46elks':
       return new Sms46elksProvider(config)
 
-    case 'plivo':
-      return new SmsPlivoProvider(config)
+    case 'callr':
+      return new SmsCallrProvider(config)
 
     case 'clickatell':
       return new SmsClickatellProvider(config)
@@ -45,8 +42,14 @@ export default function factory ({type, ...config}: Object): SmsProviderType {
     case 'infobip':
       return new SmsInfobipProvider(config)
 
-    case 'callr':
-      return new SmsCallrProvider(config)
+    case 'nexmo':
+      return new SmsNexmoProvider(config)
+
+    case 'plivo':
+      return new SmsPlivoProvider(config)
+
+    case 'twilio':
+      return new SmsTwilioProvider(config)
 
     default:
       throw new Error(`Unknown sms provider "${type}".`)

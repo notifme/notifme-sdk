@@ -15,9 +15,18 @@ export interface PushProviderType {
 
 export default function factory ({type, ...config}: Object): PushProviderType {
   switch (type) {
+    // Development
+    case 'logger':
+      return new PushLoggerProvider(config, 'push')
+
+    case 'notificationcatcher':
+      return new PushNotificationCatcherProvider('push')
+
+    // Custom
     case 'custom':
       return config
 
+    // Providers
     case 'adm':
       return new PushAdmProvider(config)
 
@@ -26,12 +35,6 @@ export default function factory ({type, ...config}: Object): PushProviderType {
 
     case 'fcm':
       return new PushFcmProvider(config)
-
-    case 'notificationcatcher':
-      return new PushNotificationCatcherProvider('push')
-
-    case 'logger':
-      return new PushLoggerProvider(config, 'push')
 
     case 'wns':
       return new PushWnsProvider(config)
