@@ -1,9 +1,9 @@
 /* @flow */
 /* global jest, test, expect */
-import strategyNoFallback from '../../../strategies/providers/no-fallback'
-import logger from '../../../util/logger'
+import strategyNoFallback from '../../../src/strategies/providers/no-fallback'
+import logger from '../../../src/util/logger'
 
-jest.mock('../../../util/logger', () => ({
+jest.mock('../../../src/util/logger', () => ({
   warn: jest.fn()
 }))
 

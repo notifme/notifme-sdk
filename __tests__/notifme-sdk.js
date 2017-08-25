@@ -1,6 +1,6 @@
 /* @flow */
 /* global jest, test, expect */
-import NotifmeSdk from '..'
+import NotifmeSdk from '../src'
 
 const sdk = new NotifmeSdk({})
 // $FlowIgnore

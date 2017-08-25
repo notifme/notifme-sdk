@@ -1,9 +1,9 @@
 /* @flow */
 /* global jest, test, expect */
-import strategyRoundrobin from '../../../strategies/providers/roundrobin'
-import logger from '../../../util/logger'
+import strategyRoundrobin from '../../../src/strategies/providers/roundrobin'
+import logger from '../../../src/util/logger'
 
-jest.mock('../../../util/logger', () => ({
+jest.mock('../../../src/util/logger', () => ({
   warn: jest.fn()
 }))
 

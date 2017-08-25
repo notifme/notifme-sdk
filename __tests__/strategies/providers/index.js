@@ -1,9 +1,9 @@
 /* @flow */
 /* global test, expect */
-import strategyProvidersFactory from '../../../strategies/providers'
-import strategyFallback from '../../../strategies/providers/fallback'
-import strategyNoFallback from '../../../strategies/providers/no-fallback'
-import strategyRoundrobin from '../../../strategies/providers/roundrobin'
+import strategyProvidersFactory from '../../../src/strategies/providers'
+import strategyFallback from '../../../src/strategies/providers/fallback'
+import strategyNoFallback from '../../../src/strategies/providers/no-fallback'
+import strategyRoundrobin from '../../../src/strategies/providers/roundrobin'
 
 test('Strategy provider factory should replace provider key with its corresponding function.', () => {
   const customStrategy = () => {}
