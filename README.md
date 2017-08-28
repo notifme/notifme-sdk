@@ -679,6 +679,8 @@ If you would like to see another provider or channel, please [upvote the corresp
 
 #### Parameters
 
+_New: you can check [notifme-template](https://github.com/notifme/notifme-template) to help you define your templates._
+
 <details><summary>Send an email</summary><p>
 
 ```javascript
