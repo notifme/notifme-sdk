@@ -141,8 +141,12 @@ new NotifmeSdk({
       }]
     },
     sms: {
-      multiProviderStrategy: 'roundrobin', // Use Nexmo and Twilio in turns (and fallback if error)
+      multiProviderStrategy: 'roundrobin', // Use Plivo, Nexmo and Twilio in turns (and fallback if error)
       providers: [{
+        type: 'plivo',
+        authId: 'xxxxx',
+        authToken: 'xxxxx'
+      }, {
         type: 'nexmo',
         apiKey: 'xxxxx',
         apiSecret: 'xxxxx'
