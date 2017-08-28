@@ -15,10 +15,10 @@
   <a href="https://codeclimate.com/github/notifme/notifme-sdk"><img alt="codeclimate" src="https://img.shields.io/codeclimate/github/notifme/notifme-sdk.svg?style=flat" /></a>
   <a href="https://david-dm.org/notifme/notifme-sdk"><img alt="dependencies" src="https://david-dm.org/notifme/notifme-sdk.svg" /></a>
   <a href="https://github.com/notifme/notifme-sdk/blob/master/LICENSE"><img alt="license" src="https://img.shields.io/badge/license-MIT_License-blue.svg?style=flat" /></a>
-  <a href="https://slackin-notifme.now.sh"><img alt="slack" src="https://img.shields.io/badge/Slack-Join_us!-e01563.svg" /></a>
 </p>
 
 **\*New: we created a [Slack for support and discuss new features](https://slackin-notifme.now.sh).**
+<a href="https://slackin-notifme.now.sh"><img alt="slack" align="top" src="https://img.shields.io/badge/Slack-Join_us!-e01563.svg?style=flat" /></a>
 
 - [Features](#features)
 - [Getting started](#getting-started)
@@ -849,7 +849,8 @@ So that we can make a list of people using this library ;)
 
 ## Contributing
 
-[![js-standard-style](https://img.shields.io/badge/codestyle-standard-brightgreen.svg?style=flat)](https://github.com/standard/standard)
+[![test framework](https://img.shields.io/badge/test_framework-Jest-brightgreen.svg?style=flat)](https://facebook.github.io/jest/)
+[![js-standard-style](https://img.shields.io/badge/codestyle-Standard_JS-brightgreen.svg?style=flat)](https://github.com/standard/standard)
 [![flow-typed](https://img.shields.io/badge/typing-Flow_Type-brightgreen.svg?style=flat)](https://flow.org/)
 
 Contributions are very welcome!
