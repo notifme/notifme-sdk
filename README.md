@@ -119,37 +119,25 @@ new NotifmeSdk({
 new NotifmeSdk({
   channels: {
     email: {
-      multiProviderStrategy: 'fallback', // If Mailgun fails, use Mailjet
+      // If "Provider1" fails, use "Provider2"
+      multiProviderStrategy: 'fallback',
       providers: [{
-        type: 'smtp',
-        host: 'smtp.mailgun.org',
-        port: 465,
-        secure: true,
-        auth: {
-          user: 'postmaster@xxxxx.mailgun.org',
-          pass: 'xxxxx'
-        }
+        type: 'Provider1',
+        // ...credentials
       }, {
-        type: 'smtp',
-        host: 'in-v3.mailjet.com',
-        port: 587,
-        secure: true,
-        auth: {
-          user: 'xxxxx',
-          pass: 'xxxxx'
-        }
+        type: 'Provider2',
+        // ...credentials
       }]
     },
     sms: {
-      multiProviderStrategy: 'roundrobin', // Use Nexmo and Twilio in turns (and fallback if error)
+      // Use "Provider1" and "Provider2" in turns (and fallback if error)
+      multiProviderStrategy: 'roundrobin',
       providers: [{
-        type: 'nexmo',
-        apiKey: 'xxxxx',
-        apiSecret: 'xxxxx'
+        type: 'Provider1',
+        // ...credentials
       }, {
-        type: 'twilio',
-        accountSid: 'xxxxx',
-        authToken: 'xxxxx'
+        type: 'Provider2',
+        // ...credentials
       }]
     }
   }
