@@ -235,7 +235,7 @@ new NotifmeSdk({
 ```
 
 </p></details>
-<details><summary>Custom</summary><p>
+<details><summary>Custom <i>(define your own)</i></summary><p>
 
 ```javascript
 new NotifmeSdk({
@@ -392,7 +392,7 @@ new NotifmeSdk({
 ```
 
 </p></details>
-<details><summary>Custom</summary><p>
+<details><summary>Custom <i>(define your own)</i></summary><p>
 
 ```javascript
 new NotifmeSdk({
@@ -506,7 +506,7 @@ new NotifmeSdk({
 ```
 
 </p></details>
-<details><summary>Custom</summary><p>
+<details><summary>Custom <i>(define your own)</i></summary><p>
 
 ```javascript
 new NotifmeSdk({
@@ -570,7 +570,7 @@ new NotifmeSdk({
 ```
 
 </p></details>
-<details><summary>Custom</summary><p>
+<details><summary>Custom <i>(define your own)</i></summary><p>
 
 ```javascript
 new NotifmeSdk({
