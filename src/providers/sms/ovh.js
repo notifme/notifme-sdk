@@ -1,6 +1,5 @@
 /* @flow */
 import fetch from 'node-fetch'
-import FormData from 'form-data'
 import crypto from 'crypto'
 // Types
 import type {SmsRequestType} from '../../models/notification-request'
@@ -35,7 +34,8 @@ export default class SmsOvhProvider {
     const {appKey, consumerKey, account} = this.credentials
     
     //see options here : https://api.ovh.com/console/#/sms/%7BserviceName%7D/jobs#POST
-    const {from, to, text, smsClass, coding, differedPeriod, noStopClause, priority, receiversDocumentUrl, receiversSlotId, senderForResponse, tag, validityPeriod} = request
+    //host param : We do not expect an endpoint like ovh sdk, but a host, read more about aliased endpoints : https://github.com/ovh/node-ovh/blob/master/lib/endpoints.js
+    const {from, to, text, smsClass, coding, differedPeriod, noStopClause, priority, receiversDocumentUrl, receiversSlotId, senderForResponse, tag, validityPeriod, host} = request
 
     const body = JSON.stringify({
       'sender': from || null,
@@ -58,7 +58,9 @@ export default class SmsOvhProvider {
       return '\\u' + ('0000' + m.charCodeAt(0).toString(16)).slice(-4);
     });
     
-    const url = `https://eu.api.ovh.com/1.0/sms/${account}/jobs/`;
+    const apiHost = host || 'eu.api.ovh.com';
+    
+    const url = `https://${apiHost}/1.0/sms/${account}/jobs/`;
     
     const response = await fetch(url, {
       method: 'POST',
