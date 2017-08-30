@@ -8,6 +8,7 @@ import SmsNexmoProvider from './nexmo'
 import SmsNotificationCatcherProvider from './notificationCatcher'
 import SmsPlivoProvider from './plivo'
 import SmsTwilioProvider from './twilio'
+import SmsOvhProvider from './ovh'
 // Types
 import type {SmsRequestType} from '../../models/notification-request'
 
@@ -50,6 +51,9 @@ export default function factory ({type, ...config}: Object): SmsProviderType {
 
     case 'twilio':
       return new SmsTwilioProvider(config)
+    
+    case 'ovh':
+      return new SmsOvhProvider(config)
 
     default:
       throw new Error(`Unknown sms provider "${type}".`)

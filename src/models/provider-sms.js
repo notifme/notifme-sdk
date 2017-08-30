@@ -35,4 +35,10 @@ export type SmsProviderType = {
   type: 'twilio',
   accountSid: string,
   authToken: string
+} | {
+  type: 'ovh',
+  appKey: string,
+  appSecret: string,
+  consumerKey: string,
+  account: string
 }
