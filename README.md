@@ -359,6 +359,26 @@ new NotifmeSdk({
 ```
 
 </p></details>
+<details><summary>OVH</summary><p>
+
+```javascript
+new NotifmeSdk({
+  channels: {
+    sms: {
+      providers: [{
+        type: 'ovh',
+        appKey: 'xxxxx',
+        appSecret: 'xxxxx',
+        consumerKey: 'xxxxx',
+        account: 'xxxxx',
+        host: 'xxxxx' // https://github.com/ovh/node-ovh/blob/master/lib/endpoints.js
+      }]
+    }
+  }
+})
+```
+
+</p></details>
 <details><summary>Plivo</summary><p>
 
 ```javascript

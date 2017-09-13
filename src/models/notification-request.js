@@ -80,7 +80,7 @@ export type SmsRequestType = RequestMetadataType & {
   type?: 'text' | 'unicode', // Defaults to 'text'
   nature?: 'marketing' | 'transactional',
   ttl?: number,
-  messageClass?: 0 | 1 | 2 | 3
+  messageClass?: 0 | 1 | 2 | 3 // 0 for Flash SMS, 1 - ME-specific, 2 - SIM / USIM specific, 3 - TE-specific
 // } & (
 //   {type?: 'text', text: string}
 //   | {type: 'unicode', text: string}

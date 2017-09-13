@@ -28,6 +28,13 @@ export type SmsProviderType = {
   apiKey: string,
   apiSecret: string
 } | {
+  type: 'ovh',
+  appKey: string,
+  appSecret: string,
+  consumerKey: string,
+  account: string,
+  host: string // https://github.com/ovh/node-ovh/blob/master/lib/endpoints.js
+} | {
   type: 'plivo',
   authId: string,
   authToken: string
@@ -35,10 +42,4 @@ export type SmsProviderType = {
   type: 'twilio',
   accountSid: string,
   authToken: string
-} | {
-  type: 'ovh',
-  appKey: string,
-  appSecret: string,
-  consumerKey: string,
-  account: string
 }
