@@ -1,7 +1,7 @@
 /* @flow */
 import type {EmailRequestType} from './notification-request'
 
-// TODO?: provider APIs (mailgun, SES, sendinblue, mailjet, mandrill, elasticemail...)
+// TODO?: provider APIs (SES, sendinblue, mailjet, mandrill, elasticemail...)
 export type EmailProviderType = {
   type: 'logger'
 } | {
@@ -68,6 +68,10 @@ export type EmailProviderType = {
   rateLimit?: number,
   // Proxy options (Doc: https://nodemailer.com/smtp/proxies/)
   proxy?: string
+} | {
+  type: 'mailgun',
+  apiKey: string,
+  domainName: string
 } | {
   type: 'sendgrid',
   apiKey: string

@@ -203,6 +203,23 @@ new NotifmeSdk({
 ```
 
 </p></details>
+<details><summary>Mailgun</summary><p>
+
+```javascript
+new NotifmeSdk({
+  channels: {
+    email: {
+      providers: [{
+        type: 'mailgun',
+        apiKey: 'xxxxx',
+        domainName: 'example.com'
+      }]
+    }
+  }
+})
+```
+
+</p></details>
 <details><summary>Sendgrid</summary><p>
 
 ```javascript

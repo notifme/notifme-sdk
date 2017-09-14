@@ -15,7 +15,7 @@ export type EmailRequestType = RequestMetadataType & {
   text?: string,
   html?: string,
   attachments?: {
-    contentType: string,
+    contentType: string, // text/plain...
     filename: string,
     content: string | Buffer
     // path?: string,
