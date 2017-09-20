@@ -236,6 +236,25 @@ new NotifmeSdk({
 ```
 
 </p></details>
+<details><summary>SES</summary><p>
+
+```javascript
+new NotifmeSdk({
+  channels: {
+    email: {
+      providers: [{
+        type: 'ses',
+        region: 'xxxxx',
+        accessKeyId: 'xxxxx',
+        secretAccessKey: 'xxxxx',
+        sessionToken: 'xxxxx' // optional
+      }]
+    }
+  }
+})
+```
+
+</p></details>
 <details><summary>SparkPost</summary><p>
 
 ```javascript

@@ -3,6 +3,7 @@ import EmailLoggerProvider from '../logger'
 import EmailMailgunProvider from './mailgun'
 import EmailNotificationCatcherProvider from './notificationCatcher'
 import EmailSendGridProvider from './sendgrid'
+import EmailSesProvider from './ses'
 import EmailSendmailProvider from './sendmail'
 import EmailSmtpProvider from './smtp'
 import EmailSparkPostProvider from './sparkpost'
@@ -40,6 +41,9 @@ export default function factory ({type, ...config}: Object): EmailProviderType {
 
     case 'sendgrid':
       return new EmailSendGridProvider(config)
+
+    case 'ses':
+      return new EmailSesProvider(config)
 
     case 'sparkpost':
       return new EmailSparkPostProvider(config)

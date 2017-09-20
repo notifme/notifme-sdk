@@ -76,6 +76,12 @@ export type EmailProviderType = {
   type: 'sendgrid',
   apiKey: string
 } | {
+  type: 'ses',
+  region: string,
+  accessKeyId: string,
+  secretAccessKey: string,
+  sessionToken?: ?string
+} | {
   type: 'sparkpost',
   apiKey: string
 }
