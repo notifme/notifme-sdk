@@ -56,7 +56,7 @@ export default class EmailSesProvider {
     return new Promise((resolve, reject) => {
       const email = new MailComposer(request).compile()
       email.keepBcc = true
-      email.build(async (error, raw) => {
+      email.build((error, raw) => {
         error ? reject(error) : resolve(raw)
       })
     })
