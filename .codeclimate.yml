@@ -1,0 +1,21 @@
+engines:
+  eslint:
+    enabled: true
+    config:
+      plugins:
+      - standard
+      - babel-eslint
+      - eslint-plugin-import
+  duplication:
+    enabled: true
+    config:
+      languages:
+      - javascript:
+  # nodesecurity:
+  #   enabled: true
+ratings:
+  paths:
+  - src/**
+exclude_paths:
+- "__tests__/"
+- "flow/"
