@@ -24,8 +24,8 @@ export default class EmailSendGridProvider {
       body: JSON.stringify({
         personalizations: [{
           to: [{email: to}],
-          ...(cc && cc.length > 1 ? {cc: cc.map((email) => ({email}))} : null),
-          ...(bcc && bcc.length > 1 ? {bcc: bcc.map((email) => ({email}))} : null)
+          ...(cc && cc.length > 0 ? {cc: cc.map((email) => ({email}))} : null),
+          ...(bcc && bcc.length > 0 ? {bcc: bcc.map((email) => ({email}))} : null)
         }],
         from: {email: from},
         ...(replyTo ? {reply_to: {email: replyTo}} : null),
@@ -36,7 +36,7 @@ export default class EmailSendGridProvider {
         ],
         headers,
         custom_args: {id: generatedId, userId},
-        ...(attachments && attachments.length > 1 ? {
+        ...(attachments && attachments.length > 0 ? {
           attachments: attachments.map(({contentType, filename, content}) =>
             ({
               type: contentType,
