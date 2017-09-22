@@ -1,19 +1,17 @@
 /* https://github.com/aws/aws-sdk-js/blob/master/lib/signers/v4.js */
 import {hmac, sha256} from '../crypto'
 import v4Credentials from './v4_credentials'
-import querystring from 'querystring'
 
 /**
  * @api private
  */
 const expiresHeader = 'presigned-expires'
+const algorithm = 'AWS4-HMAC-SHA256'
 
 /**
  * @api private
  */
 export default class AWSSignersV4 {
-  algorithm = 'AWS4-HMAC-SHA256'
-
   constructor (request, serviceName, options) {
     this.request = request
     this.serviceName = serviceName
@@ -24,13 +22,7 @@ export default class AWSSignersV4 {
 
   addAuthorization (credentials, date) {
     const datetime = date.toISOString().replace(/\.\d{3}Z$/, 'Z').replace(/[:-]|\.\d{3}/g, '')
-
-    if (this.isPresigned()) {
-      this.updateForPresigned(credentials, datetime)
-    } else {
-      this.addHeaders(credentials, datetime)
-    }
-
+    this.addHeaders(credentials, datetime)
     this.request.headers['Authorization'] = this.authorization(credentials, datetime)
   }
 
@@ -41,53 +33,10 @@ export default class AWSSignersV4 {
     }
   }
 
-  updateForPresigned (credentials, datetime) {
-    const credString = this.credentialString(datetime)
-    const qs = {
-      'X-Amz-Date': datetime,
-      'X-Amz-Algorithm': this.algorithm,
-      'X-Amz-Credential': credentials.accessKeyId + '/' + credString,
-      'X-Amz-Expires': this.request.headers[expiresHeader],
-      'X-Amz-SignedHeaders': this.signedHeaders()
-    }
-
-    if (credentials.sessionToken) {
-      qs['X-Amz-Security-Token'] = credentials.sessionToken
-    }
-
-    if (this.request.headers['Content-Type']) {
-      qs['Content-Type'] = this.request.headers['Content-Type']
-    }
-    if (this.request.headers['Content-MD5']) {
-      qs['Content-MD5'] = this.request.headers['Content-MD5']
-    }
-    if (this.request.headers['Cache-Control']) {
-      qs['Cache-Control'] = this.request.headers['Cache-Control']
-    }
-
-    // need to pull in any other X-Amz-* headers
-    Object.keys(this.request.headers).forEach((key) => {
-      const value = this.request.headers[key]
-      if (key === expiresHeader) return
-      if (this.isSignableHeader(key)) {
-        const lowerKey = key.toLowerCase()
-        // Metadata should be normalized
-        if (lowerKey.indexOf('x-amz-meta-') === 0) {
-          qs[lowerKey] = value
-        } else if (lowerKey.indexOf('x-amz-') === 0) {
-          qs[key] = value
-        }
-      }
-    })
-
-    const sep = this.request.path.indexOf('?') >= 0 ? '&' : '?'
-    this.request.path += sep + querystring(qs)
-  }
-
   authorization (credentials, datetime) {
     const parts = []
     const credString = this.credentialString(datetime)
-    parts.push(this.algorithm + ' Credential=' + credentials.accessKeyId + '/' + credString)
+    parts.push(algorithm + ' Credential=' + credentials.accessKeyId + '/' + credString)
     parts.push('SignedHeaders=' + this.signedHeaders())
     parts.push('Signature=' + this.signature(credentials, datetime))
     return parts.join(', ')
@@ -106,7 +55,7 @@ export default class AWSSignersV4 {
 
   stringToSign (datetime) {
     const parts = []
-    parts.push('AWS4-HMAC-SHA256')
+    parts.push(algorithm)
     parts.push(datetime)
     parts.push(this.credentialString(datetime))
     parts.push(this.hexEncodedHash(this.canonicalString()))
@@ -188,9 +137,7 @@ export default class AWSSignersV4 {
 
   hexEncodedBodyHash () {
     const request = this.request
-    if (this.isPresigned() && this.serviceName === 's3' && !request.body) {
-      return 'UNSIGNED-PAYLOAD'
-    } else if (request.headers['X-Amz-Content-Sha256']) {
+    if (request.headers['X-Amz-Content-Sha256']) {
       return request.headers['X-Amz-Content-Sha256']
     } else {
       return this.hexEncodedHash(this.request.body || '')
