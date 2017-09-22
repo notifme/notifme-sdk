@@ -66,7 +66,7 @@
     ],
     "collectCoverageFrom": [
       "**/src/**/*.js",
-      "!**/src/providers/**",
+      "!**/src/providers/push/**",
       "!**/src/util/**"
     ],
     "coverageThreshold": {
