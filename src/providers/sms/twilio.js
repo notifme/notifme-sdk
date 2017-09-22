@@ -6,27 +6,28 @@ import type {SmsRequestType} from '../../models/notification-request'
 
 export default class SmsTwilioProvider {
   id: string = 'sms-twilio-provider'
-  credentials: Object
+  accountSid: string
+  apiKey: string
 
-  constructor (config: Object) {
-    this.credentials = {accountSid: config.accountSid, authToken: config.authToken}
+  constructor ({accountSid, authToken}: Object) {
+    this.accountSid = accountSid
+    this.apiKey = Buffer.from(`${accountSid}:${authToken}`).toString('base64')
   }
 
   /*
    * Note: 'type', 'nature', 'messageClass' are not supported.
    */
   async send (request: SmsRequestType): Promise<string> {
-    const {accountSid, authToken} = this.credentials
     const {from, to, text, ttl} = request
     const form = new FormData()
     form.append('From', from)
     form.append('To', to)
     form.append('Body', text)
     if (ttl) form.append('ValidityPeriod', ttl)
-    const response = await fetch(`https://api.twilio.com/2010-04-01/Accounts/${accountSid}/Messages.json`, {
+    const response = await fetch(`https://api.twilio.com/2010-04-01/Accounts/${this.accountSid}/Messages.json`, {
       method: 'POST',
       headers: {
-        Authorization: `Basic ${Buffer.from(`${accountSid}:${authToken}`).toString('base64')}`,
+        Authorization: `Basic ${this.apiKey}`,
         'User-Agent': 'notifme-sdk/v1 (+https://github.com/notifme/notifme-sdk)'
       },
       body: form

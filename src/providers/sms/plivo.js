@@ -5,22 +5,23 @@ import type {SmsRequestType} from '../../models/notification-request'
 
 export default class SmsPlivoProvider {
   id: string = 'sms-plivo-provider'
-  credentials: Object
+  authId: string
+  apiKey: string
 
-  constructor (config: Object) {
-    this.credentials = {authId: config.authId, authToken: config.authToken}
+  constructor ({authId, authToken}: Object) {
+    this.authId = authId
+    this.apiKey = Buffer.from(`${authId}:${authToken}`).toString('base64')
   }
 
   /*
    * Note: 'type', 'nature', 'ttl', 'messageClass' are not supported.
    */
   async send (request: SmsRequestType): Promise<string> {
-    const {authId, authToken} = this.credentials
     const {from, to, text} = request
-    const response = await fetch(`https://api.plivo.com/v1/Account/${authId}/Message/`, {
+    const response = await fetch(`https://api.plivo.com/v1/Account/${this.authId}/Message/`, {
       method: 'POST',
       headers: {
-        Authorization: `Basic ${Buffer.from(`${authId}:${authToken}`).toString('base64')}`,
+        Authorization: `Basic ${this.apiKey}`,
         'Content-Type': 'application/json',
         'User-Agent': 'notifme-sdk/v1 (+https://github.com/notifme/notifme-sdk)'
       },

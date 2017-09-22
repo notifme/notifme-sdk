@@ -6,25 +6,21 @@ import type {SmsRequestType} from '../../models/notification-request'
 
 export default class Sms46elksProvider {
   id: string = 'sms-46elks-provider'
-  credentials: Object
+  apiKey: string
 
-  constructor (config: Object) {
-    this.credentials = {
-      username: config.apiUsername,
-      password: config.apiPassword
-    }
+  constructor ({apiUsername, apiPassword}: Object) {
+    this.apiKey = Buffer.from(`${apiUsername}:${apiPassword}`).toString('base64')
   }
 
   /*
    * Note: 'type', 'nature', 'ttl', 'messageClass' are not supported.
    */
   async send (request: SmsRequestType): Promise<string> {
-    const {username, password} = this.credentials
     const {from, to, text} = request
     const response = await fetch('https://api.46elks.com/a1/sms', {
       method: 'POST',
       headers: {
-        Authorization: `Basic ${Buffer.from(`${username}:${password}`).toString('base64')}`,
+        Authorization: `Basic ${this.apiKey}`,
         'User-Agent': 'notifme-sdk/v1 (+https://github.com/notifme/notifme-sdk)'
       },
       body: qs.stringify({
