@@ -37,7 +37,7 @@ test('46Elks success with minimal parameters.', async () => {
       accept: ['*/*'],
       authorization: ['Basic dXNlcm5hbWU6cGFzc3dvcmQ='],
       'content-length': [73],
-      'user-agent': ['node-fetch/1.0 (+https://github.com/bitinn/node-fetch)']
+      'user-agent': ['notifme-sdk/v1 (+https://github.com/notifme/notifme-sdk)']
     })
   }))
   expect(result).toEqual({

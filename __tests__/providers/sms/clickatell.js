@@ -37,7 +37,7 @@ test('Clickatell success with minimal parameters.', async () => {
       authorization: ['my-key'],
       'content-length': [78],
       'content-type': ['application/json'],
-      'user-agent': ['node-fetch/1.0 (+https://github.com/bitinn/node-fetch)']
+      'user-agent': ['notifme-sdk/v1 (+https://github.com/notifme/notifme-sdk)']
     })
   }))
   expect(result).toEqual({
@@ -67,7 +67,7 @@ test('Clickatell success with all parameters.', async () => {
       authorization: ['my-key'],
       'content-length': [125],
       'content-type': ['application/json'],
-      'user-agent': ['node-fetch/1.0 (+https://github.com/bitinn/node-fetch)']
+      'user-agent': ['notifme-sdk/v1 (+https://github.com/notifme/notifme-sdk)']
     })
   }))
   expect(result).toEqual({

@@ -26,7 +26,8 @@ export default class SmsTwilioProvider {
     const response = await fetch(`https://api.twilio.com/2010-04-01/Accounts/${accountSid}/Messages.json`, {
       method: 'POST',
       headers: {
-        Authorization: `Basic ${Buffer.from(`${accountSid}:${authToken}`).toString('base64')}`
+        Authorization: `Basic ${Buffer.from(`${accountSid}:${authToken}`).toString('base64')}`,
+        'User-Agent': 'notifme-sdk/v1 (+https://github.com/notifme/notifme-sdk)'
       },
       body: form
     })

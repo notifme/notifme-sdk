@@ -42,7 +42,7 @@ test('Sparkpost success with minimal parameters.', async () => {
       authorization: ['key'],
       'content-length': [224],
       'content-type': ['application/json'],
-      'user-agent': ['node-fetch/1.0 (+https://github.com/bitinn/node-fetch)']
+      'user-agent': ['notifme-sdk/v1 (+https://github.com/notifme/notifme-sdk)']
     })
   }))
   expect(result).toEqual({
@@ -89,7 +89,7 @@ test('Sparkpost success with all parameters.', async () => {
       authorization: ['key'],
       'content-length': [619],
       'content-type': ['application/json'],
-      'user-agent': ['node-fetch/1.0 (+https://github.com/bitinn/node-fetch)']
+      'user-agent': ['notifme-sdk/v1 (+https://github.com/notifme/notifme-sdk)']
     })
   }))
   expect(result).toEqual({
@@ -131,7 +131,7 @@ test('Sparkpost success with buffered attachment.', async () => {
       authorization: ['key'],
       'content-length': [297],
       'content-type': ['application/json'],
-      'user-agent': ['node-fetch/1.0 (+https://github.com/bitinn/node-fetch)']
+      'user-agent': ['notifme-sdk/v1 (+https://github.com/notifme/notifme-sdk)']
     })
   }))
   expect(result).toEqual({

@@ -37,7 +37,8 @@ export default class EmailMailgunProvider {
     const response = await fetch(`https://api.mailgun.net/v3/${this.domainName}/messages`, {
       method: 'POST',
       headers: {
-        Authorization: `Basic ${this.apiKeyBase64}`
+        Authorization: `Basic ${this.apiKeyBase64}`,
+        'User-Agent': 'notifme-sdk/v1 (+https://github.com/notifme/notifme-sdk)'
       },
       body: form
     })

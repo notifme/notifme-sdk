@@ -19,7 +19,8 @@ export default class EmailSendGridProvider {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${this.apiKey}`,
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'User-Agent': 'notifme-sdk/v1 (+https://github.com/notifme/notifme-sdk)'
       },
       body: JSON.stringify({
         personalizations: [{

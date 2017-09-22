@@ -42,7 +42,7 @@ test('Sendgrid success with minimal parameters.', async () => {
       authorization: ['Bearer key'],
       'content-length': [239],
       'content-type': ['application/json'],
-      'user-agent': ['node-fetch/1.0 (+https://github.com/bitinn/node-fetch)']
+      'user-agent': ['notifme-sdk/v1 (+https://github.com/notifme/notifme-sdk)']
     })
   }))
   expect(result).toEqual({
@@ -89,7 +89,7 @@ test('Sendgrid success with all parameters.', async () => {
       authorization: ['Bearer key'],
       'content-length': [494],
       'content-type': ['application/json'],
-      'user-agent': ['node-fetch/1.0 (+https://github.com/bitinn/node-fetch)']
+      'user-agent': ['notifme-sdk/v1 (+https://github.com/notifme/notifme-sdk)']
     })
   }))
   expect(result).toEqual({
@@ -131,7 +131,7 @@ test('Sendgrid success with buffered attachment.', async () => {
       authorization: ['Bearer key'],
       'content-length': [296],
       'content-type': ['application/json'],
-      'user-agent': ['node-fetch/1.0 (+https://github.com/bitinn/node-fetch)']
+      'user-agent': ['notifme-sdk/v1 (+https://github.com/notifme/notifme-sdk)']
     })
   }))
   expect(result).toEqual({

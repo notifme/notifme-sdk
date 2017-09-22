@@ -42,7 +42,7 @@ test('Twilio success with minimal parameters.', async () => {
       authorization: ['Basic YWNjb3VudDp0b2tlbg=='],
       'content-length': ['406'],
       'content-type': [expect.stringContaining('multipart/form-data; boundary=')],
-      'user-agent': ['node-fetch/1.0 (+https://github.com/bitinn/node-fetch)']
+      'user-agent': ['notifme-sdk/v1 (+https://github.com/notifme/notifme-sdk)']
     })
   }))
   expect(result).toEqual({
@@ -76,7 +76,7 @@ test('Twilio success with all parameters.', async () => {
       authorization: ['Basic YWNjb3VudDp0b2tlbg=='],
       'content-length': ['523'],
       'content-type': [expect.stringContaining('multipart/form-data; boundary=')],
-      'user-agent': ['node-fetch/1.0 (+https://github.com/bitinn/node-fetch)']
+      'user-agent': ['notifme-sdk/v1 (+https://github.com/notifme/notifme-sdk)']
     })
   }))
   expect(result).toEqual({

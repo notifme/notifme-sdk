@@ -58,7 +58,8 @@ export default class SmsOvhProvider {
         'X-Ovh-Consumer': consumerKey,
         'X-Ovh-Application': appKey,
         'Content-Length': reqBody.length,
-        'Content-Type': 'application/json charset=utf-8'
+        'Content-Type': 'application/json charset=utf-8',
+        'User-Agent': 'notifme-sdk/v1 (+https://github.com/notifme/notifme-sdk)'
       },
       body
     })

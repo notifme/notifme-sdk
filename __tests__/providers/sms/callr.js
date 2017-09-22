@@ -38,7 +38,7 @@ test('Callr success with minimal parameters.', async () => {
       authorization: ['Basic bG9naW46cGFzc3dvcmQ='],
       'content-length': [127],
       'content-type': ['application/json'],
-      'user-agent': ['node-fetch/1.0 (+https://github.com/bitinn/node-fetch)']
+      'user-agent': ['notifme-sdk/v1 (+https://github.com/notifme/notifme-sdk)']
     })
   }))
   expect(result).toEqual({
@@ -68,7 +68,7 @@ test('Callr success with all parameters.', async () => {
       authorization: ['Basic bG9naW46cGFzc3dvcmQ='],
       'content-length': [149],
       'content-type': ['application/json'],
-      'user-agent': ['node-fetch/1.0 (+https://github.com/bitinn/node-fetch)']
+      'user-agent': ['notifme-sdk/v1 (+https://github.com/notifme/notifme-sdk)']
     })
   }))
   expect(result).toEqual({

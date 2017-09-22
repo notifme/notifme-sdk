@@ -17,7 +17,8 @@ export default class EmailSparkPostProvider {
       method: 'POST',
       headers: {
         Authorization: this.apiKey,
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'User-Agent': 'notifme-sdk/v1 (+https://github.com/notifme/notifme-sdk)'
       },
       body: JSON.stringify({
         options: {

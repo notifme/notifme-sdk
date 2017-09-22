@@ -19,7 +19,8 @@ export default class SmsNexmoProvider {
     const response = await fetch('https://rest.nexmo.com/sms/json', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'User-Agent': 'notifme-sdk/v1 (+https://github.com/notifme/notifme-sdk)'
       },
       body: JSON.stringify({
         ...this.credentials,

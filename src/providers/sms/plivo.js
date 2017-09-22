@@ -21,7 +21,8 @@ export default class SmsPlivoProvider {
       method: 'POST',
       headers: {
         Authorization: `Basic ${Buffer.from(`${authId}:${authToken}`).toString('base64')}`,
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'User-Agent': 'notifme-sdk/v1 (+https://github.com/notifme/notifme-sdk)'
       },
       body: JSON.stringify({
         src: from,

@@ -48,7 +48,7 @@ test('SES success with minimal parameters.', async () => {
       'x-amz-date': [datetime],
       'content-length': [425],
       'content-type': ['application/x-www-form-urlencoded; charset=utf-8'],
-      'user-agent': ['node-fetch/1.0 (+https://github.com/bitinn/node-fetch)']
+      'user-agent': ['notifme-sdk/v1 (+https://github.com/notifme/notifme-sdk)']
     })
   }))
   expect(result).toEqual({

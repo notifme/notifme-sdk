@@ -34,7 +34,8 @@ export default class EmailSesProvider {
       headers: {
         Host: host,
         'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8',
-        'X-Amz-Content-Sha256': sha256(body, 'hex')
+        'X-Amz-Content-Sha256': sha256(body, 'hex'),
+        'User-Agent': 'notifme-sdk/v1 (+https://github.com/notifme/notifme-sdk)'
       },
       body,
       region

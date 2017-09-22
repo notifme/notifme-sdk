@@ -24,7 +24,8 @@ export default class Sms46elksProvider {
     const response = await fetch('https://api.46elks.com/a1/sms', {
       method: 'POST',
       headers: {
-        Authorization: `Basic ${Buffer.from(`${username}:${password}`).toString('base64')}`
+        Authorization: `Basic ${Buffer.from(`${username}:${password}`).toString('base64')}`,
+        'User-Agent': 'notifme-sdk/v1 (+https://github.com/notifme/notifme-sdk)'
       },
       body: qs.stringify({
         from,

@@ -20,7 +20,8 @@ export default class SmsCallrProvider {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Basic ${this.apiKey}`
+        Authorization: `Basic ${this.apiKey}`,
+        'User-Agent': 'notifme-sdk/v1 (+https://github.com/notifme/notifme-sdk)'
       },
       body: JSON.stringify({
         from,

@@ -44,7 +44,7 @@ test('Ovh success with minimal parameters.', async () => {
       'x-ovh-consumer': ['ckey'],
       'x-ovh-signature': [expect.stringContaining('$1$')],
       'x-ovh-timestamp': [String(Math.round(Date.now() / 1000))],
-      'user-agent': ['node-fetch/1.0 (+https://github.com/bitinn/node-fetch)']
+      'user-agent': ['notifme-sdk/v1 (+https://github.com/notifme/notifme-sdk)']
     })
   }))
   expect(result).toEqual({

@@ -21,7 +21,8 @@ export default class SmsClickatellProvider {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: this.apiKey
+        Authorization: this.apiKey,
+        'User-Agent': 'notifme-sdk/v1 (+https://github.com/notifme/notifme-sdk)'
       },
       body: JSON.stringify({
         // no `from` for one-way integrations

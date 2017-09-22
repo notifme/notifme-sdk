@@ -47,7 +47,7 @@ test('Mailgun success with minimal parameters.', async () => {
       authorization: ['Basic YXBpOmtleQ=='],
       'content-length': ['530'],
       'content-type': [expect.stringContaining('multipart/form-data; boundary=')],
-      'user-agent': ['node-fetch/1.0 (+https://github.com/bitinn/node-fetch)']
+      'user-agent': ['notifme-sdk/v1 (+https://github.com/notifme/notifme-sdk)']
     })
   }))
   expect(result).toEqual({
@@ -98,7 +98,7 @@ test('Mailgun success with all parameters.', async () => {
       authorization: ['Basic YXBpOmtleQ=='],
       'content-length': ['1529'],
       'content-type': [expect.stringContaining('multipart/form-data; boundary=')],
-      'user-agent': ['node-fetch/1.0 (+https://github.com/bitinn/node-fetch)']
+      'user-agent': ['notifme-sdk/v1 (+https://github.com/notifme/notifme-sdk)']
     })
   }))
   expect(result).toEqual({
