@@ -6,18 +6,20 @@ import logger from './util/logger'
 import providerFactory from './providers'
 import strategyProvidersFactory from './strategies/providers'
 // Types
-import type {EmailRequestType, PushRequestType, SmsRequestType, WebpushRequestType} from './models/notification-request'
+import type {EmailRequestType, PushRequestType, SmsRequestType, WebpushRequestType, SlackRequestType} from './models/notification-request'
 import type {EmailProviderType} from './models/provider-email'
 import type {PushProviderType} from './models/provider-push'
 import type {SmsProviderType} from './models/provider-sms'
 import type {WebpushProviderType} from './models/provider-webpush'
+import type {SlackProviderType} from './models/provider-slack'
 import type SenderType from './sender'
 
 export const CHANNELS = {
   email: 'email',
   push: 'push',
   sms: 'sms',
-  webpush: 'webpush'
+  webpush: 'webpush',
+  slack: 'slack'
 }
 export type ChannelType = $Keys<typeof CHANNELS>
 
@@ -29,7 +31,8 @@ export type NotificationRequestType = {|
   email?: EmailRequestType,
   push?: PushRequestType,
   sms?: SmsRequestType,
-  webpush?: WebpushRequestType
+  webpush?: WebpushRequestType,
+  slack?: SlackRequestType
   // TODO?: other channels (slack, messenger, skype, telegram, kik, spark...)
 |}
 
@@ -61,6 +64,10 @@ export type OptionsType = {|
     },
     webpush?: {
       providers: WebpushProviderType[],
+      multiProviderStrategy?: ProviderStrategyType
+    },
+    slack?: {
+      providers: SlackProviderType[],
       multiProviderStrategy?: ProviderStrategyType
     }
   },
@@ -105,6 +112,11 @@ export default class NotifmeSdk {
             providers: [],
             multiProviderStrategy: 'fallback',
             ...(channels ? channels.webpush : null)
+          },
+          slack: {
+            providers: [],
+            multiProviderStrategy: 'fallback',
+            ...(channels ? channels.slack : null)
           }
         }
     }

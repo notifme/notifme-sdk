@@ -3,6 +3,7 @@ import emailFactory from './email'
 import pushFactory from './push'
 import smsFactory from './sms'
 import webpushFactory from './webpush'
+import slackFactory from './slack'
 // Types
 import type {ChannelType} from '../index'
 import type {RequestType} from '../models/notification-request'
@@ -31,6 +32,9 @@ export default function factory (channels: ChannelOptionsType): ProvidersType {
 
         case 'webpush':
           return webpushFactory(config)
+
+        case 'slack':
+          return slackFactory(config)
       }
     })
 
