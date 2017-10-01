@@ -32,7 +32,7 @@
 
 ## Features
 
-* **Easy channel integration** — Want to start sending `emails` | `SMS` | `pushes` | `webpushes`? Do so in no time!
+* **Easy channel integration** — Want to start sending `emails` | `SMS` | `pushes` | `webpushes` | `slack`? Do so in no time!
 
 * **Unique documentation** — Don't look everywhere for the parameters you need to pass, just do it once. **Switching provider becomes a no-brainer**.
 
@@ -104,7 +104,7 @@ new NotifmeSdk({
 
 | Option name | Required | Type | Description |
 | --- | --- | --- | --- |
-| `channels` | `false` | `Object` | Define `providers` (`Array`) and `multiProviderStrategy` (`string`) for each channel (email, sms, push, webpush).<br><br>See all details below: [2. Providers](#2-providers). |
+| `channels` | `false` | `Object` | Define `providers` (`Array`) and `multiProviderStrategy` (`string`) for each channel (email, sms, push, webpush, slack).<br><br>See all details below: [2. Providers](#2-providers). |
 | `useNotificationCatcher` | `false` | `boolean` | If true, all your notifications are sent to the catcher running on localhost:1025 (channels option will be completely ignored!) |
 
 #### Complete examples
@@ -652,6 +652,65 @@ new NotifmeSdk({
 
 See all options: [Webpush provider options](https://github.com/notifme/notifme-sdk/blob/master/src/models/provider-webpush.js)
 
+#### Slack providers
+
+<details><summary>Logger <i>(for development)</i></summary><p>
+
+```javascript
+new NotifmeSdk({
+  channels: {
+    slack: {
+      providers: [{
+        type: 'logger'
+      }]
+    }
+  }
+})
+```
+
+</p></details>
+<details><summary>Slack</summary><p>
+
+```javascript
+new NotifmeSdk({
+  channels: {
+    slack: {
+      providers: [{
+        type: 'slack',
+        webhookUrl: 'https://hooks.slack.com/services/Txxxxxxxx/Bxxxxxxxx/xxxxxxxxxxxxxxxxxxxxxxxx'
+      }]
+    }
+  }
+})
+```
+
+</p></details>
+<details><summary>Custom <i>(define your own)</i></summary><p>
+
+```javascript
+new NotifmeSdk({
+  channels: {
+    slack: {
+      providers: [{
+        type: 'custom',
+        id: 'my-custom-slack-provider...',
+        send: async (request) => {
+          // Send slack
+          return 'id...'
+        }
+      }]
+    }
+  }
+})
+```
+
+`request` being of [the following type](https://github.com/notifme/notifme-sdk/blob/master/src/models/notification-request.js#L94-L115).
+
+</p></details>
+<br>
+
+See all options: [Slack provider options](https://github.com/notifme/notifme-sdk/blob/master/src/models/provider-slack.js)
+
 #### Multi-provider strategies
 
 A multi-provider strategy allows you to customize the send process on a channel.
@@ -806,6 +865,19 @@ notifmeSdk.send({
 See [all parameters](https://github.com/notifme/notifme-sdk/blob/master/src/models/notification-request.js#L91).
 
 </p></details>
+<details><summary>Send a Slack message</summary><p>
+
+```javascript
+notifmeSdk.send({
+  slack: {
+    text: 'Slack webhook text'
+  }
+})
+```
+
+See [all parameters](https://github.com/notifme/notifme-sdk/blob/master/src/models/notification-request.js#L117).
+
+</p></details>
 <details><summary>Send a multi-channel notification</summary><p>
 
 ```javascript
@@ -838,6 +910,9 @@ notifmeSdk.send({
     title: 'Hi John',
     body: 'Hello John! How are you?',
     icon: 'https://notifme.github.io/notifme-sdk/img/icon.png'
+  },
+  slack: {
+    text: 'Slack webhook text'
   }
 })
 ```
