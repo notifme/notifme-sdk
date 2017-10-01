@@ -115,7 +115,6 @@ export type WebpushRequestType = RequestMetadataType & {
 }
 
 export type SlackRequestType = RequestMetadataType & {
-  webhookUrl: string,
   text: string
 }
 
