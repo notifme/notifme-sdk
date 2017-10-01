@@ -8,4 +8,6 @@ export type SlackProviderType = {
   type: 'custom',
   id: string,
   send: (SlackRequestType) => Promise<string>
+} | {
+  type: 'slack'
 }

@@ -1,4 +1,5 @@
 /* @flow */
+import SlackProvider from './slack'
 import SlackLoggingProvider from '../logger'
 import SlackNotificationCatcherProvider from './notificationCatcher'
 // Types
@@ -21,6 +22,10 @@ export default function factory ({type, ...config}: Object): SlackProviderType {
     // Custom
     case 'custom':
       return config
+
+    // Providers
+    case 'slack':
+      return new SlackProvider(config)
 
     default:
       throw new Error(`Unknown slack provider "${type}".`)
