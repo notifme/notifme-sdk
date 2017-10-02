@@ -26,6 +26,10 @@ test('mergeWithDefaultConfig should set default config if config is empty.', () 
         multiProviderStrategy: 'fallback',
         providers: []
       },
+      slack: {
+        multiProviderStrategy: 'fallback',
+        providers: []
+      },
       push: {
         multiProviderStrategy: 'fallback',
         providers: []
@@ -50,6 +54,10 @@ const config = {
       providers: [{type: 'logger'}]
     },
     push: {
+      multiProviderStrategy: 'no-fallback',
+      providers: [{type: 'logger'}]
+    },
+    slack: {
       multiProviderStrategy: 'no-fallback',
       providers: [{type: 'logger'}]
     },
@@ -92,6 +100,10 @@ test('mergeWithDefaultConfig should ignore config if useNotificationCatcher is t
         providers: [{type: 'notificationcatcher'}]
       },
       sms: {
+        multiProviderStrategy: 'no-fallback',
+        providers: [{type: 'notificationcatcher'}]
+      },
+      slack: {
         multiProviderStrategy: 'no-fallback',
         providers: [{type: 'notificationcatcher'}]
       },
