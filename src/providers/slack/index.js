@@ -24,7 +24,7 @@ export default function factory ({type, ...config}: Object): SlackProviderType {
       return config
 
     // Providers
-    case 'slack':
+    case 'webhook':
       return new SlackProvider(config)
 
     default:

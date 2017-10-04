@@ -676,7 +676,7 @@ new NotifmeSdk({
   channels: {
     slack: {
       providers: [{
-        type: 'slack',
+        type: 'webhook',
         webhookUrl: 'https://hooks.slack.com/services/Txxxxxxxx/Bxxxxxxxx/xxxxxxxxxxxxxxxxxxxxxxxx'
       }]
     }
