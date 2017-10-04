@@ -35,7 +35,7 @@ test('Slack success.', async () => {
   expect(result).toEqual({
     status: 'success',
     channels: {
-      slack: {id: 'ok', providerId: 'slack-provider'}
+      slack: {id: '', providerId: 'slack-provider'}
     }
   })
 })

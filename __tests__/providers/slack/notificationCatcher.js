@@ -11,24 +11,50 @@ const sdk = new NotifmeSdk({
   useNotificationCatcher: true
 })
 
-const request = {
-  slack: {
-    text: 'Hello John! How are you?'
-  }
-}
-
 test('slack notification catcher provider should use SMTP provider.', async () => {
-  const result = await sdk.send(request)
+  const result = await sdk.send({
+    slack: {
+      text: 'Hello John!'
+    }
+  })
   expect(mockSend).lastCalledWith({
+    to: 'public.channel@slack',
     from: '-',
-    subject: 'Webhook',
-    to: 'webhook@slack',
-    text: 'Hello John! How are you?'
+    subject: 'Hello John!',
+    text: 'Hello John!',
+    headers: {
+      'X-type': 'slack',
+      'X-to': '[slack public channel]'
+    }
   })
   expect(result).toEqual({
     status: 'success',
     channels: {
-      slack: {id: undefined, providerId: 'slack-notificationcatcher-provider'}
+      slack: {id: '', providerId: 'slack-notificationcatcher-provider'}
+    }
+  })
+})
+
+test('slack notification catcher provider should use SMTP provider (long message).', async () => {
+  const result = await sdk.send({
+    slack: {
+      text: 'Hello John! How are you?'
+    }
+  })
+  expect(mockSend).lastCalledWith({
+    to: 'public.channel@slack',
+    from: '-',
+    subject: 'Hello John! How are ...',
+    text: 'Hello John! How are you?',
+    headers: {
+      'X-type': 'slack',
+      'X-to': '[slack public channel]'
+    }
+  })
+  expect(result).toEqual({
+    status: 'success',
+    channels: {
+      slack: {id: '', providerId: 'slack-notificationcatcher-provider'}
     }
   })
 })
