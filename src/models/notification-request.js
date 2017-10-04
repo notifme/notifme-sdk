@@ -114,4 +114,8 @@ export type WebpushRequestType = RequestMetadataType & {
   requireInteraction?: boolean // C22 F52
 }
 
-export type RequestType = EmailRequestType | PushRequestType | SmsRequestType | WebpushRequestType
+export type SlackRequestType = RequestMetadataType & {
+  text: string
+}
+
+export type RequestType = EmailRequestType | PushRequestType | SmsRequestType | WebpushRequestType | SlackRequestType
