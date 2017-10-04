@@ -24,7 +24,7 @@ export default class SlackProvider {
 
     const responseText = await response.text()
     if (response.ok) {
-      return responseText
+      return '' // Slack only returns 'ok'
     } else {
       throw new Error(`${response.status} - ${responseText}`)
     }
