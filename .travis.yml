@@ -8,6 +8,9 @@ branches:
 addons:
   code_climate:
     repo_token: d8d04f10e1e84541a1b7b15ca5d9c3db46a6d99c2299d8a5bd0c1edffc75870d
+before_install: yarn global add greenkeeper-lockfile@1
+before_script: greenkeeper-lockfile-update
+after_script: greenkeeper-lockfile-upload
 after_success:
   - yarn global add codeclimate-test-reporter
   - codeclimate-test-reporter < ./coverage/lcov.info

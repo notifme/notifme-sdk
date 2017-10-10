@@ -38,7 +38,7 @@
     "babel-preset-stage-2": "6.24.1",
     "babel-register": "6.26.0",
     "cost-of-modules": "1.0.1",
-    "flow-bin": "0.56.0",
+    "flow-bin": "0.52.0",
     "jest": "21.2.1",
     "nodemon": "1.12.1",
     "notification-catcher": "1.1.0",
@@ -77,5 +77,10 @@
         "statements": 100
       }
     }
+  },
+  "greenkeeper": {
+    "ignore": [
+      "flow-bin"
+    ]
   }
 }
