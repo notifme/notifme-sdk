@@ -4,6 +4,7 @@ cache: yarn
 branches:
   only:
   - master
+  - /^greenkeeper/.*$/
 addons:
   code_climate:
     repo_token: d8d04f10e1e84541a1b7b15ca5d9c3db46a6d99c2299d8a5bd0c1edffc75870d
