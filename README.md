@@ -32,6 +32,8 @@
 
 ## Features
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/notifme/notifme-sdk.svg)](https://greenkeeper.io/)
+
 * **Easy channel integration** — Want to start sending `emails` | `SMS` | `pushes` | `webpushes` | `slack`? Do so in no time!
 
 * **Unique documentation** — Don't look everywhere for the parameters you need to pass, just do it once. **Switching provider becomes a no-brainer**.
