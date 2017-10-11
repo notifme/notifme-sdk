@@ -32,8 +32,6 @@
 
 ## Features
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/notifme/notifme-sdk.svg)](https://greenkeeper.io/)
-
 * **Easy channel integration** — Want to start sending `emails` | `SMS` | `pushes` | `webpushes` | `slack`? Do so in no time!
 
 * **Unique documentation** — Don't look everywhere for the parameters you need to pass, just do it once. **Switching provider becomes a no-brainer**.
@@ -987,6 +985,7 @@ So that we can make a list of people using this library ;)
 [![test framework](https://img.shields.io/badge/test_framework-Jest-brightgreen.svg?style=flat)](https://facebook.github.io/jest/)
 [![js-standard-style](https://img.shields.io/badge/codestyle-Standard_JS-brightgreen.svg?style=flat)](https://github.com/standard/standard)
 [![flow-typed](https://img.shields.io/badge/typing-Flow_Type-brightgreen.svg?style=flat)](https://flow.org/)
+[![Greenkeeper badge](https://badges.greenkeeper.io/notifme/notifme-sdk.svg)](https://greenkeeper.io/)
 
 Contributions are very welcome!
 
