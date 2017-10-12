@@ -15,10 +15,8 @@
   <a href="https://codeclimate.com/github/notifme/notifme-sdk"><img alt="codeclimate" src="https://img.shields.io/codeclimate/github/notifme/notifme-sdk.svg?style=flat" /></a>
   <a href="https://david-dm.org/notifme/notifme-sdk"><img alt="dependencies" src="https://david-dm.org/notifme/notifme-sdk.svg" /></a>
   <a href="https://github.com/notifme/notifme-sdk/blob/master/LICENSE"><img alt="license" src="https://img.shields.io/badge/license-MIT_License-blue.svg?style=flat" /></a>
+  <a href="https://slackin-notifme.now.sh"><img alt="slack" src="https://img.shields.io/badge/Slack-Join_us!-e01563.svg?style=flat" /></a>
 </p>
-
-**\*New: we created a [Slack for support and discuss new features](https://slackin-notifme.now.sh).**
-<a href="https://slackin-notifme.now.sh"><img alt="slack" align="top" src="https://img.shields.io/badge/Slack-Join_us!-e01563.svg?style=flat" /></a>
 
 - [Features](#features)
 - [Getting started](#getting-started)
@@ -29,6 +27,7 @@
   - [4. In production](#4-in-production)
 - [Contributing](#contributing)
 - [Need help? Found a bug?](#need-help-found-a-bug)
+- [Related Projects](#related-projects)
 
 ## Features
 
@@ -1012,3 +1011,13 @@ $ yarn run lint
 
 [Submit an issue](https://github.com/notifme/notifme-sdk/issues) to the project Github if you need any help.
 And, of course, feel free to submit pull requests with bug fixes or changes.
+
+## Related Projects
+
+<p align="center">
+  <a href="https://github.com/notifme/notifme-history">
+    <img alt="Notif.me SDK" src="https://notifme.github.io/notifme-history/img/logo.png" />
+  </a>
+  <br>
+  <em>A pretty history of the conversations with your users.</em>
+</p>
