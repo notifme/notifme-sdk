@@ -28,6 +28,7 @@ const request = {
 
 test('Ovh success with minimal parameters.', async () => {
   mockResponse(200, JSON.stringify({ids: ['returned-id']}))
+  const now = Math.round(Date.now() / 1000)
   const result = await sdk.send(request)
   expect(mockHttp).lastCalledWith(expect.objectContaining({
     hostname: 'eu.api.ovh.com',
@@ -43,7 +44,7 @@ test('Ovh success with minimal parameters.', async () => {
       'x-ovh-application': ['key'],
       'x-ovh-consumer': ['ckey'],
       'x-ovh-signature': [expect.stringContaining('$1$')],
-      'x-ovh-timestamp': [String(Math.round(Date.now() / 1000))],
+      'x-ovh-timestamp': [expect.stringMatching(new RegExp(`^(${now}|${now + 1})$`))],
       'user-agent': ['notifme-sdk/v1 (+https://github.com/notifme/notifme-sdk)']
     })
   }))
