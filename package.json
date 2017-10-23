@@ -24,7 +24,7 @@
     "form-data": "2.3.1",
     "node-fetch": "1.7.3",
     "node-pushnotifications": "1.0.18",
-    "nodemailer": "4.2.0",
+    "nodemailer": "4.3.0",
     "web-push": "3.2.4",
     "winston": "2.4.0"
   },
