@@ -995,10 +995,10 @@ $ git clone git@github.com:[YOUR_USERNAME]/notifme-sdk.git && cd notifme-sdk
 $ yarn install
 ```
 
-Before making a [pull request](https://help.github.com/articles/creating-a-pull-request/), check that the code respects the [Standard JS rules](https://standardjs.com/) and the [Flow type checker](https://flow.org/).
+Before making a [pull request](https://help.github.com/articles/creating-a-pull-request/), check that the code passes all the unit tests, respects the [Standard JS rules](https://standardjs.com/), and the [Flow type checker](https://flow.org/).
 
 ```shell
-$ yarn run lint
+$ yarn run test
 ```
 
 ### Next for this project
