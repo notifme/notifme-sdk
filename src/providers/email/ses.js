@@ -1,7 +1,7 @@
 /* @flow */
 import AWSSignersV4 from '../../util/aws/v4'
 import {sha256} from '../../util/crypto'
-import fetch from 'node-fetch'
+import fetch from '../../util/request'
 import MailComposer from 'nodemailer/lib/mail-composer'
 import qs from 'querystring'
 // types

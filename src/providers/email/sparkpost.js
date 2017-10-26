@@ -1,5 +1,5 @@
 /* @flow */
-import fetch from 'node-fetch'
+import fetch from '../../util/request'
 // types
 import type {EmailRequestType} from '../../models/notification-request'
 

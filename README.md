@@ -143,6 +143,15 @@ new NotifmeSdk({
 })
 ```
 
+#### HTTP proxy option
+
+If you want to use a HTTP proxy, set an environment variable `NOTIFME_HTTP_PROXY`.
+
+```shell
+$ # Example
+$ NOTIFME_HTTP_PROXY=http://127.0.0.1:8580 node your-script-using-notifme.js
+```
+
 ### 2. Providers
 
 #### Email providers
