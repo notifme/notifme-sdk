@@ -1,6 +1,6 @@
 /* @flow */
 import crypto from 'crypto'
-import fetch from 'node-fetch'
+import fetch from '../../util/request'
 // Types
 import type {EmailRequestType} from '../../models/notification-request'
 

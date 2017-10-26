@@ -1,5 +1,5 @@
 /* @flow */
-import fetch from 'node-fetch'
+import fetch from '../../util/request'
 // Types
 import type {SmsRequestType} from '../../models/notification-request'
 
