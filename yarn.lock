@@ -4863,9 +4863,9 @@ watch@~0.18.0:
     exec-sh "^0.2.0"
     minimist "^1.2.0"
 
-web-push@3.2.4:
-  version "3.2.4"
-  resolved "https://registry.yarnpkg.com/web-push/-/web-push-3.2.4.tgz#3b603489777f215853e4e4f3d8664dcb861dd2c1"
+web-push@3.2.5:
+  version "3.2.5"
+  resolved "https://registry.yarnpkg.com/web-push/-/web-push-3.2.5.tgz#7eccf17514f25587105c937be37bf4153b39a271"
   dependencies:
     asn1.js "^4.8.1"
     http_ece "^0.5.2"
