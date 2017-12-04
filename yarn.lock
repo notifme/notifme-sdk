@@ -3517,9 +3517,9 @@ nodemailer@4.4.0:
   version "4.4.0"
   resolved "https://registry.yarnpkg.com/nodemailer/-/nodemailer-4.4.0.tgz#571989e524a906fb83b1518f3e4c0d3140db24af"
 
-nodemon@1.12.1:
-  version "1.12.1"
-  resolved "https://registry.yarnpkg.com/nodemon/-/nodemon-1.12.1.tgz#996a56dc49d9f16bbf1b78a4de08f13634b3878d"
+nodemon@1.12.2:
+  version "1.12.2"
+  resolved "https://registry.yarnpkg.com/nodemon/-/nodemon-1.12.2.tgz#edc51e1589a172429ee30353b6435bfa8e7468e5"
   dependencies:
     chokidar "^1.7.0"
     debug "^2.6.8"
