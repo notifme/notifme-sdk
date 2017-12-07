@@ -43,7 +43,7 @@
     "jest": "21.2.1",
     "nodemon": "1.12.1",
     "notification-catcher": "1.1.0",
-    "regenerator-runtime": "0.11.0",
+    "regenerator-runtime": "0.11.1",
     "standard": "10.0.3"
   },
   "files": [
