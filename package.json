@@ -41,7 +41,7 @@
     "cost-of-modules": "1.0.1",
     "flow-bin": "0.52.0",
     "jest": "21.2.1",
-    "nodemon": "1.12.2",
+    "nodemon": "1.12.6",
     "notification-catcher": "1.1.0",
     "regenerator-runtime": "0.11.1",
     "standard": "10.0.3"
