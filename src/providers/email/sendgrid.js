@@ -13,7 +13,7 @@ export default class EmailSendGridProvider {
   }
 
   async send (request: EmailRequestType): Promise<string> {
-    const {id, userId, from, replyTo, subject, html, text, headers, to, cc, bcc, attachments} = request
+    const {id, userId, from, fromName, replyTo, subject, html, text, headers, to, cc, bcc, attachments} = request
     const generatedId = id || crypto.randomBytes(16).toString('hex')
     const response = await fetch('https://api.sendgrid.com/v3/mail/send', {
       method: 'POST',
@@ -28,7 +28,7 @@ export default class EmailSendGridProvider {
           ...(cc && cc.length > 0 ? {cc: cc.map((email) => ({email}))} : null),
           ...(bcc && bcc.length > 0 ? {bcc: bcc.map((email) => ({email}))} : null)
         }],
-        from: {email: from},
+        from: {email: from, ...(fromName ? {name: fromName} : null)},
         ...(replyTo ? {reply_to: {email: replyTo}} : null),
         subject,
         content: [
