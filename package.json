@@ -31,7 +31,7 @@
   },
   "devDependencies": {
     "babel-cli": "6.26.0",
-    "babel-eslint": "8.1.0",
+    "babel-eslint": "8.0.1",
     "babel-jest": "22.0.0",
     "babel-plugin-transform-flow-strip-types": "6.22.0",
     "babel-plugin-transform-runtime": "6.23.0",
@@ -40,7 +40,6 @@
     "babel-register": "6.26.0",
     "cost-of-modules": "1.0.1",
     "flow-bin": "0.52.0",
-    "nodemon": "1.12.2",
     "jest": "22.0.0",
     "nodemon": "1.12.6",
     "notification-catcher": "1.1.0",

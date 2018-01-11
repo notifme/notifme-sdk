@@ -65,7 +65,7 @@ test('SES should return an error if a parameter is not of the right type.', asyn
   expect(result).toEqual({
     status: 'error',
     errors: {
-      email: 'The "chunk" argument must be of type string/buffer'
+      email: 'The "chunk" argument must be one of type string or Buffer'
     },
     channels: {
       email: {id: undefined, providerId: 'email-ses-provider'}
