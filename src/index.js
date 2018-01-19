@@ -6,7 +6,7 @@ import logger from './util/logger'
 import providerFactory from './providers'
 import strategyProvidersFactory from './strategies/providers'
 // Types
-import type {EmailRequestType, PushRequestType, SmsRequestType, WebpushRequestType, SlackRequestType} from './models/notification-request'
+import type {EmailRequestType, PushRequestType, SmsRequestType, VoiceRequestType, WebpushRequestType, SlackRequestType} from './models/notification-request'
 import type {EmailProviderType} from './models/provider-email'
 import type {PushProviderType} from './models/provider-push'
 import type {SmsProviderType} from './models/provider-sms'
