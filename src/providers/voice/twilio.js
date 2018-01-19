@@ -18,12 +18,11 @@ export default class VoiceTwilioProvider {
    * Note: 'type', 'nature', 'messageClass' are not supported.
    */
   async send (request: VoiceRequestType): Promise<string> {
-    const {from, to, text, ttl} = request
+    const {from, to, url} = request
     const form = new FormData()
     form.append('From', from)
     form.append('To', to)
-    form.append('Body', text)
-    if (ttl) form.append('ValidityPeriod', ttl)
+    form.append('Url', url)
     const response = await fetch(`https://api.twilio.com/2010-04-01/Accounts/${this.accountSid}/Calls.json`, {
       method: 'POST',
       headers: {

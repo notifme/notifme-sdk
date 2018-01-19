@@ -5,12 +5,11 @@ import type {VoiceRequestType} from '../../models/notification-request'
 
 export default class VoiceNotificationCatcherProvider extends NotificationCatcherProvider {
   async send (request: VoiceRequestType): Promise<string> {
-    const {to, from, text} = (request: any)
+    const {to, from, url} = (request: any)
     return this.sendToCatcher({
       to: `${to}@voice`,
       from,
-      subject: `${text.substring(0, 20)}${text.length > 20 ? '...' : ''}`,
-      text,
+      url,
       headers: {
         'X-type': 'voice',
         'X-to': `[voice] ${to}`
