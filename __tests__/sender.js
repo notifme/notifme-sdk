@@ -48,6 +48,7 @@ test('Sender should send all notifications.', async () => {
     channels: {
       email: {id: undefined, providerId: 'email-provider'},
       sms: {id: '24', providerId: 'sms-provider'},
+      sms: {id: '24', providerId: 'voice-provider'},
       push: {id: (result.channels: any).push.id, providerId: 'push-logger-provider'},
       webpush: {id: undefined, providerId: 'webpush-provider'}
     },

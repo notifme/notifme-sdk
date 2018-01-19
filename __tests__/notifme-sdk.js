@@ -57,6 +57,10 @@ const config = {
       multiProviderStrategy: 'no-fallback',
       providers: [{type: 'logger'}]
     },
+    voice: {
+      multiProviderStrategy: 'no-fallback',
+      providers: [{type: 'logger'}]
+    },
     push: {
       multiProviderStrategy: 'no-fallback',
       providers: [{type: 'logger'}]
@@ -104,6 +108,10 @@ test('mergeWithDefaultConfig should ignore config if useNotificationCatcher is t
         providers: [{type: 'notificationcatcher'}]
       },
       sms: {
+        multiProviderStrategy: 'no-fallback',
+        providers: [{type: 'notificationcatcher'}]
+      },
+      voice: {
         multiProviderStrategy: 'no-fallback',
         providers: [{type: 'notificationcatcher'}]
       },
