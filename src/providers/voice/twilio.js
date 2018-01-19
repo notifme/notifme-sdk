@@ -18,11 +18,42 @@ export default class VoiceTwilioProvider {
    * Note: 'type', 'nature', 'messageClass' are not supported.
    */
   async send (request: VoiceRequestType): Promise<string> {
-    const {from, to, url} = request
+    const {
+      from,
+      to,
+      url,
+      method,
+      fallbackUrl,
+      fallbackMethod,
+      statusCallback,
+      statusCallbackMethod,
+      statusCallbackEvent,
+      sendDigits,
+      machineDetection,
+      machineDetectionTimeout,
+      timeout,
+      recordingChannels,
+      recordingStatusCallback,
+      recordingStatusCallbackEvent
+    } = request
     const form = new FormData()
     form.append('From', from)
     form.append('To', to)
     form.append('Url', url)
+    if (method) form.append('Method', method)
+    if (fallbackUrl) form.append('FallbackUrl', fallbackUrl)
+    if (fallbackMethod) form.append('FallbackMethod', fallbackMethod)
+    if (statusCallback) form.append('StatusCallback', statusCallback)
+    if (statusCallbackMethod) form.append('StatusCallbackMethod', statusCallbackMethod)
+    if (statusCallbackEvent) form.append('StatusCallbackEvent', statusCallbackEvent)
+    if (sendDigits) form.append('SendDigits', sendDigits)
+    if (machineDetection) form.append('MachineDetection', machineDetection)
+    if (machineDetectionTimeout) form.append('MachineDetectionTimeout', machineDetectionTimeout)
+    if (timeout) form.append('Timeout', timeout)
+    if (recordingChannels) form.append('RecordingChannels', recordingChannels)
+    if (recordingStatusCallback) form.append('RecordingStatusCallback', recordingStatusCallback)
+    if (recordingStatusCallbackEvent) form.append('RecordingStatusCallbackEvent', recordingStatusCallbackEvent.join(' '))
+
     const response = await fetch(`https://api.twilio.com/2010-04-01/Accounts/${this.accountSid}/Calls.json`, {
       method: 'POST',
       headers: {

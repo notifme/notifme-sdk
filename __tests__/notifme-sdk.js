@@ -26,6 +26,10 @@ test('mergeWithDefaultConfig should set default config if config is empty.', () 
         multiProviderStrategy: 'fallback',
         providers: []
       },
+      voice: {
+        multiProviderStrategy: 'fallback',
+        providers: []
+      },
       slack: {
         multiProviderStrategy: 'fallback',
         providers: []

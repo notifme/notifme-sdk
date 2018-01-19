@@ -95,9 +95,19 @@ export type VoiceRequestType = RequestMetadataType & {
   from: string,
   to: string,
   url: string,
+  method?: string,
+  fallbackUrl?: string,
+  fallbackMethod?: string,
   statusCallback?: string,
   statusCallbackMethod?: string,
   statusCallbackEvent?: string[],
+  sendDigits?: string,
+  machineDetection?: boolean,
+  machineDetectionTimeout?: number,
+  timeout?: number,
+  recordingChannels?: string,
+  recordingStatusCallback?: string,
+  recordingStatusCallbackEvent?: string[]
 }
 
 export type WebpushRequestType = RequestMetadataType & {

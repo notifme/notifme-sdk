@@ -12,17 +12,19 @@ jest.mock('../src/util/logger', () => ({
 const providers = {
   email: [{id: 'email-provider', send: jest.fn()}],
   sms: [{id: 'sms-provider', send: async () => '24'}],
+  voice: [{id: 'voice-provider', send: async () => '24'}],
   push: [], // no push provider
   webpush: [{id: 'webpush-provider', send: () => { throw new Error('webpush test error') }}]
 }
 const strategies = {
   email: strategyNoFallback,
   sms: strategyNoFallback,
+  voice: strategyNoFallback,
   push: strategyNoFallback,
   webpush: strategyNoFallback
 }
 
-const sender = new Sender(['email', 'sms', 'push', 'webpush'], providers, strategies)
+const sender = new Sender(['email', 'sms', 'voice', 'push', 'webpush'], providers, strategies)
 
 test('Sender should send all notifications.', async () => {
   const metadata = {id: '24'}
@@ -30,6 +32,7 @@ test('Sender should send all notifications.', async () => {
     metadata,
     email: {from: 'me@example.com', to: 'john@example.com', subject: 'Hi John', html: '<b>Hello John! How are you?</b>'},
     sms: {from: '+15000000000', to: '+15000000001', text: 'Hello John! How are you?'},
+    voice: {from: '+15000000000', to: '+15000000001', url: 'https://notifme.github.io'},
     push: {registrationToken: 'xxxxx', title: 'Hi John', body: 'Hello John! How are you?'},
     webpush: {subscription: {keys: {auth: 'xxxxx', p256dh: 'xxxxx'}, endpoint: 'xxxxx'}, title: 'Hi John', body: 'Hello John! How are you?'}
   }

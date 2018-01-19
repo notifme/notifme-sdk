@@ -16,6 +16,10 @@ test('Strategy provider factory should replace provider key with its correspondi
       providers: [],
       multiProviderStrategy: 'fallback'
     },
+    voice: {
+      providers: [],
+      multiProviderStrategy: 'fallback'
+    },
     push: {
       providers: [],
       multiProviderStrategy: 'roundrobin'
@@ -27,6 +31,7 @@ test('Strategy provider factory should replace provider key with its correspondi
   })).toEqual({
     email: strategyNoFallback,
     sms: strategyFallback,
+    voice: strategyFallback,
     push: strategyRoundrobin,
     webpush: customStrategy
   })
