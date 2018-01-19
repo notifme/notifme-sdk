@@ -1,8 +1,8 @@
 /* @flow */
 import type {VoiceRequestType} from './notification-request'
 
-// TODO?: other SMS providers
-export type VoiceRequestType = {
+// TODO?: other Voice providers
+export type VoiceProviderType = {
   type: 'logger'
 } | {
   type: 'custom',
