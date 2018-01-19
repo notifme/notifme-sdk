@@ -2,6 +2,7 @@
 import emailFactory from './email'
 import pushFactory from './push'
 import smsFactory from './sms'
+import voiceFactory from './voice'
 import webpushFactory from './webpush'
 import slackFactory from './slack'
 // Types
@@ -26,6 +27,9 @@ export default function factory (channels: ChannelOptionsType): ProvidersType {
 
         case 'sms':
           return smsFactory(config)
+
+        case 'voice':
+          return voiceFactory(config)
 
         case 'push':
           return pushFactory(config)

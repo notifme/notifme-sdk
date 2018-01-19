@@ -91,6 +91,15 @@ export type SmsRequestType = RequestMetadataType & {
 // )
 }
 
+export type VoiceRequestType = RequestMetadataType & {
+  from: string,
+  to: string,
+  url: string,
+  statusCallback?: string,
+  statusCallbackMethod?: string,
+  statusCallbackEvent?: string[],
+}
+
 export type WebpushRequestType = RequestMetadataType & {
   subscription: {
     endpoint: string,

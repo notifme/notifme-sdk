@@ -10,6 +10,7 @@ import type {EmailRequestType, PushRequestType, SmsRequestType, WebpushRequestTy
 import type {EmailProviderType} from './models/provider-email'
 import type {PushProviderType} from './models/provider-push'
 import type {SmsProviderType} from './models/provider-sms'
+import type {VoiceProviderType} from './models/provider-voice'
 import type {WebpushProviderType} from './models/provider-webpush'
 import type {SlackProviderType} from './models/provider-slack'
 import type SenderType from './sender'
@@ -18,6 +19,7 @@ export const CHANNELS = {
   email: 'email',
   push: 'push',
   sms: 'sms',
+  voice: 'voice',
   webpush: 'webpush',
   slack: 'slack'
 }
@@ -31,6 +33,7 @@ export type NotificationRequestType = {|
   email?: EmailRequestType,
   push?: PushRequestType,
   sms?: SmsRequestType,
+  voice?: VoiceRequestType,
   webpush?: WebpushRequestType,
   slack?: SlackRequestType
   // TODO?: other channels (slack, messenger, skype, telegram, kik, spark...)
@@ -60,6 +63,10 @@ export type OptionsType = {|
     },
     sms?: {
       providers: SmsProviderType[],
+      multiProviderStrategy?: ProviderStrategyType
+    },
+    voice?: {
+      providers: VoiceProviderType[],
       multiProviderStrategy?: ProviderStrategyType
     },
     webpush?: {
@@ -107,6 +114,11 @@ export default class NotifmeSdk {
             providers: [],
             multiProviderStrategy: 'fallback',
             ...(channels ? channels.sms : null)
+          },
+          voice: {
+            providers: [],
+            multiProviderStrategy: 'fallback',
+            ...(channels ? channels.voice : null)
           },
           webpush: {
             providers: [],
