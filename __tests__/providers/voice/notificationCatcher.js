@@ -12,7 +12,7 @@ const sdk = new NotifmeSdk({
 })
 
 const request = {
-  voice: {from: 'Notifme', to: '+15000000001', text: 'Hello John!'}
+  voice: {from: 'Notifme', to: '+15000000001', url: 'https://notifme.github.io'}
 }
 
 test('voice notification catcher provider should use SMTP provider.', async () => {
@@ -23,29 +23,8 @@ test('voice notification catcher provider should use SMTP provider.', async () =
       'X-to': '[voice] +15000000001',
       'X-type': 'voice'
     },
-    subject: 'Hello John!',
     to: '+15000000001@voice',
-    text: 'Hello John!'
-  })
-  expect(result).toEqual({
-    status: 'success',
-    channels: {
-      voice: {id: undefined, providerId: 'voice-notificationcatcher-provider'}
-    }
-  })
-})
-
-test('voice notification catcher provider should use SMTP provider (long message).', async () => {
-  const result = await sdk.send({voice: {...request.voice, text: 'very very very very very very very very long'}})
-  expect(mockSend).lastCalledWith({
-    from: 'Notifme',
-    headers: {
-      'X-to': '[voice] +15000000001',
-      'X-type': 'voice'
-    },
-    subject: 'very very very very ...',
-    to: '+15000000001@voice',
-    text: 'very very very very very very very very long'
+    url: 'https://notifme.github.io'
   })
   expect(result).toEqual({
     status: 'success',

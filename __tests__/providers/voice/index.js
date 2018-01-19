@@ -8,7 +8,7 @@ jest.mock('../../../src/util/logger', () => ({
 }))
 
 const request = {
-  voice: {from: 'Notifme', to: '+15000000001', text: 'Hello John! How are you?'}
+  voice: {from: 'Notifme', to: '+15000000001', url: 'https://notifme.github.io'}
 }
 
 test('voice unknown provider.', async () => {
