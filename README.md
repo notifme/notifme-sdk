@@ -482,6 +482,65 @@ new NotifmeSdk({
 
 See all options: [SMS provider options](https://github.com/notifme/notifme-sdk/blob/master/src/models/provider-sms.js)
 
+#### Voice providers
+
+<details><summary>Logger <i>(for development)</i></summary><p>
+
+```javascript
+new NotifmeSdk({
+  channels: {
+    voice: {
+      providers: [{
+        type: 'logger'
+      }]
+    }
+  }
+})
+```
+</p></details>
+<details><summary>Twilio</summary><p>
+
+```javascript
+new NotifmeSdk({
+  channels: {
+    voice: {
+      providers: [{
+        type: 'twilio',
+        accountSid: 'xxxxx',
+        authToken: 'xxxxx'
+      }]
+    }
+  }
+})
+```
+
+</p></details>
+<details><summary>Custom <i>(define your own)</i></summary><p>
+
+```javascript
+new NotifmeSdk({
+  channels: {
+    voice: {
+      providers: [{
+        type: 'custom',
+        id: 'my-custom-voice-provider...',
+        send: async (request) => {
+          // Send Voice
+          return 'id...'
+        }
+      }]
+    }
+  }
+})
+```
+
+`request` being of [the following type](https://github.com/notifme/notifme-sdk/blob/master/src/models/notification-request.js#L94-L111).
+
+</p></details>
+<br>
+
+See all options: [Voice provider options](https://github.com/notifme/notifme-sdk/blob/master/src/models/provider-voice.js)
+
 #### Push providers
 
 <details><summary>Logger <i>(for development)</i></summary><p>
@@ -653,7 +712,7 @@ new NotifmeSdk({
 })
 ```
 
-`request` being of [the following type](https://github.com/notifme/notifme-sdk/blob/master/src/models/notification-request.js#L94-L115).
+`request` being of [the following type](https://github.com/notifme/notifme-sdk/blob/master/src/models/notification-request.js#L113-L134).
 
 </p></details>
 <br>
@@ -712,7 +771,7 @@ new NotifmeSdk({
 })
 ```
 
-`request` being of [the following type](https://github.com/notifme/notifme-sdk/blob/master/src/models/notification-request.js#L94-L115).
+`request` being of [the following type](https://github.com/notifme/notifme-sdk/blob/master/src/models/notification-request.js#L136-L138).
 
 </p></details>
 <br>
@@ -835,6 +894,21 @@ notifmeSdk.send({
 See [all parameters](https://github.com/notifme/notifme-sdk/blob/master/src/models/notification-request.js#L76).
 
 </p></details>
+<details><summary>Call using Voice</summary><p>
+
+```javascript
+notifmeSdk.send({
+  voice: {
+    from: '+15000000000',
+    to: '+15000000001',
+    url: 'http://demo.twilio.com/docs/voice.xml'
+  }
+})
+```
+
+See [all parameters](https://github.com/notifme/notifme-sdk/blob/master/src/models/notification-request.js#L76).
+
+</p></details>
 <details><summary>Send a push</summary><p>
 
 ```javascript
@@ -870,7 +944,7 @@ notifmeSdk.send({
 })
 ```
 
-See [all parameters](https://github.com/notifme/notifme-sdk/blob/master/src/models/notification-request.js#L91).
+See [all parameters](https://github.com/notifme/notifme-sdk/blob/master/src/models/notification-request.js#L113).
 
 </p></details>
 <details><summary>Send a Slack message</summary><p>
@@ -883,7 +957,7 @@ notifmeSdk.send({
 })
 ```
 
-See [all parameters](https://github.com/notifme/notifme-sdk/blob/master/src/models/notification-request.js#L117).
+See [all parameters](https://github.com/notifme/notifme-sdk/blob/master/src/models/notification-request.js#L136).
 
 </p></details>
 <details><summary>Send a multi-channel notification</summary><p>
