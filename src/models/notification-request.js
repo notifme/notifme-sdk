@@ -137,4 +137,4 @@ export type SlackRequestType = RequestMetadataType & {
   text: string
 }
 
-export type RequestType = EmailRequestType | PushRequestType | SmsRequestType | WebpushRequestType | SlackRequestType
+export type RequestType = EmailRequestType | PushRequestType | SmsRequestType | VoiceRequestType | WebpushRequestType | SlackRequestType
