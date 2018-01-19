@@ -19,6 +19,10 @@ export default function factory ({type, ...config}: Object): VoiceProviderType {
     case 'notificationcatcher':
       return new VoiceNotificationCatcherProvider('voice')
 
+    // Custom
+    case 'custom':
+      return config
+
     case 'twilio':
       return new VoiceTwilioProvider(config)
 
