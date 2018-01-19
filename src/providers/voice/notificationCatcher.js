@@ -9,6 +9,7 @@ export default class VoiceNotificationCatcherProvider extends NotificationCatche
     return this.sendToCatcher({
       to: `${to}@voice`,
       from,
+      subject: `${to}@voice`,
       url,
       headers: {
         'X-type': 'voice',

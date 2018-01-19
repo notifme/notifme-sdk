@@ -23,6 +23,7 @@ test('voice notification catcher provider should use SMTP provider.', async () =
       'X-to': '[voice] +15000000001',
       'X-type': 'voice'
     },
+    subject: '-',
     to: '+15000000001@voice',
     url: 'https://notifme.github.io'
   })
