@@ -10,7 +10,7 @@ export default class VoiceNotificationCatcherProvider extends NotificationCatche
       to: `${to}@voice`,
       from,
       subject: `${to}@voice`,
-      url,
+      text: url,
       headers: {
         'X-type': 'voice',
         'X-to': `[voice] ${to}`

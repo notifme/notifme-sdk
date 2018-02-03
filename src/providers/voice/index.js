@@ -23,6 +23,7 @@ export default function factory ({type, ...config}: Object): VoiceProviderType {
     case 'custom':
       return config
 
+    // Providers
     case 'twilio':
       return new VoiceTwilioProvider(config)
 

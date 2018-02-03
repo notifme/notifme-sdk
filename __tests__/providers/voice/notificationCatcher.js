@@ -25,7 +25,7 @@ test('voice notification catcher provider should use SMTP provider.', async () =
     },
     subject: '+15000000001@voice',
     to: '+15000000001@voice',
-    url: 'https://notifme.github.io'
+    text: 'https://notifme.github.io'
   })
   expect(result).toEqual({
     status: 'success',

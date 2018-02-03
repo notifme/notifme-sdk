@@ -42,7 +42,7 @@
     "flow-bin": "0.52.0",
     "jest": "22.0.0",
     "nodemon": "1.12.6",
-    "notification-catcher": "1.1.0",
+    "notification-catcher": "1.2.1",
     "regenerator-runtime": "0.11.1",
     "standard": "10.0.3"
   },

@@ -3669,9 +3669,9 @@ normalize-path@^2.0.0, normalize-path@^2.0.1:
   dependencies:
     remove-trailing-separator "^1.0.1"
 
-notification-catcher@1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/notification-catcher/-/notification-catcher-1.1.0.tgz#0f14a22bbfb88fea44ea41193b808dc7ec12ba15"
+notification-catcher@1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/notification-catcher/-/notification-catcher-1.2.1.tgz#d634eec1bdceb784dbde637ae6e830ad401e58ec"
   dependencies:
     async "1.5.1"
     commander "2.9.0"
