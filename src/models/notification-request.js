@@ -130,7 +130,36 @@ export type WebpushRequestType = RequestMetadataType & {
 }
 
 export type SlackRequestType = RequestMetadataType & {
-  text: string
+  text: string,
+  unfurl_links?: boolean,
+  attachments?: {
+    fallback?: string,
+    color?: string,
+    pretext?: string,
+    author_name?: string,
+    author_link?: string,
+    author_icon?: string,
+    title?: string,
+    title_link?: string,
+    text?: string,
+    fields?: {
+      title?: string,
+      value?: string,
+      short?: boolean
+    }[],
+    actions?: {
+      type: string,
+      text: string,
+      url: string,
+      style?: string
+    }[],
+    image_url?: string,
+    thumb_url?: string,
+    footer?: string,
+    footer_icon?: string,
+    ts?: number,
+  }[],
+  webhookUrl?: string
 }
 
 export type RequestType = EmailRequestType | PushRequestType | SmsRequestType | VoiceRequestType | WebpushRequestType | SlackRequestType

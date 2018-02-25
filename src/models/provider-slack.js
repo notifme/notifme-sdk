@@ -10,5 +10,5 @@ export type SlackProviderType = {
   send: (SlackRequestType) => Promise<string>
 } | {
   type: 'webhook',
-  webhookUrl: string
+  webhookUrl?: string
 }
