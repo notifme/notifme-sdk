@@ -11,20 +11,15 @@ export default class SlackProvider {
     this.webhookUrl = config.webhookUrl
   }
 
-  async send (request: SlackRequestType): Promise<string> {
-    const webhookUrl = request.webhookUrl || this.webhookUrl
-
-    delete request.webhookUrl
-    const body = JSON.stringify(request)
+  async send ({webhookUrl, ...request}: SlackRequestType): Promise<string> {
     const apiRequest = {
       method: 'POST',
-      body
+      body: JSON.stringify(request)
     }
-
-    const response = await fetch(webhookUrl, apiRequest)
+    const response = await fetch(webhookUrl || this.webhookUrl, apiRequest)
 
     if (response.ok) {
-      return '' // Slack only returns 'ok'
+      return '' // Slack API only returns 'ok'
     } else {
       const responseText = await response.text()
       throw new Error(`${response.status} - ${responseText}`)

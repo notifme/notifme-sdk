@@ -906,7 +906,7 @@ notifmeSdk.send({
 })
 ```
 
-See [all parameters](https://github.com/notifme/notifme-sdk/blob/master/src/models/notification-request.js#L76).
+See [all parameters](https://github.com/notifme/notifme-sdk/blob/master/src/models/notification-request.js#L94).
 
 </p></details>
 <details><summary>Send a push</summary><p>
@@ -944,7 +944,7 @@ notifmeSdk.send({
 })
 ```
 
-See [all parameters](https://github.com/notifme/notifme-sdk/blob/master/src/models/notification-request.js#L113).
+See [all parameters](https://github.com/notifme/notifme-sdk/blob/master/src/models/notification-request.js#L109).
 
 </p></details>
 <details><summary>Send a Slack message</summary><p>
@@ -957,7 +957,7 @@ notifmeSdk.send({
 })
 ```
 
-See [all parameters](https://github.com/notifme/notifme-sdk/blob/master/src/models/notification-request.js#L136).
+See [all parameters](https://github.com/notifme/notifme-sdk/blob/master/src/models/notification-request.js#L132).
 
 </p></details>
 <details><summary>Send a multi-channel notification</summary><p>

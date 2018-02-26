@@ -130,6 +130,7 @@ export type WebpushRequestType = RequestMetadataType & {
 }
 
 export type SlackRequestType = RequestMetadataType & {
+  webhookUrl?: string, // Required if not configured in provider
   text: string,
   unfurl_links?: boolean,
   attachments?: {
@@ -148,18 +149,17 @@ export type SlackRequestType = RequestMetadataType & {
       short?: boolean
     }[],
     actions?: {
-      type: string,
+      type: 'button',
       text: string,
       url: string,
-      style?: string
+      style?: 'primary' | 'danger'
     }[],
     image_url?: string,
     thumb_url?: string,
     footer?: string,
     footer_icon?: string,
-    ts?: number,
-  }[],
-  webhookUrl?: string
+    ts?: number
+  }[]
 }
 
 export type RequestType = EmailRequestType | PushRequestType | SmsRequestType | VoiceRequestType | WebpushRequestType | SlackRequestType
