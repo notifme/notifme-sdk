@@ -6,13 +6,14 @@ import logger from './util/logger'
 import providerFactory from './providers'
 import strategyProvidersFactory from './strategies/providers'
 // Types
-import type {EmailRequestType, PushRequestType, SmsRequestType, VoiceRequestType, WebpushRequestType, SlackRequestType} from './models/notification-request'
+import type {EmailRequestType, PushRequestType, SmsRequestType, VoiceRequestType, WebpushRequestType, SlackRequestType, WebhookRequestType} from './models/notification-request'
 import type {EmailProviderType} from './models/provider-email'
 import type {PushProviderType} from './models/provider-push'
 import type {SmsProviderType} from './models/provider-sms'
 import type {VoiceProviderType} from './models/provider-voice'
 import type {WebpushProviderType} from './models/provider-webpush'
 import type {SlackProviderType} from './models/provider-slack'
+import type {WebhookProviderType} from './models/provider-webhook'
 import type SenderType from './sender'
 
 export const CHANNELS = {
@@ -21,7 +22,8 @@ export const CHANNELS = {
   sms: 'sms',
   voice: 'voice',
   webpush: 'webpush',
-  slack: 'slack'
+  slack: 'slack',
+  webhook: 'webhook'
 }
 export type ChannelType = $Keys<typeof CHANNELS>
 
@@ -35,7 +37,8 @@ export type NotificationRequestType = {|
   sms?: SmsRequestType,
   voice?: VoiceRequestType,
   webpush?: WebpushRequestType,
-  slack?: SlackRequestType
+  slack?: SlackRequestType,
+  webhook?: WebhookRequestType
   // TODO?: other channels (slack, messenger, skype, telegram, kik, spark...)
 |}
 
@@ -75,6 +78,10 @@ export type OptionsType = {|
     },
     slack?: {
       providers: SlackProviderType[],
+      multiProviderStrategy?: ProviderStrategyType
+    },
+    webhook?: {
+      providers: WebhookProviderType[],
       multiProviderStrategy?: ProviderStrategyType
     }
   },
@@ -129,6 +136,11 @@ export default class NotifmeSdk {
             providers: [],
             multiProviderStrategy: 'fallback',
             ...(channels ? channels.slack : null)
+          },
+          webhook: {
+            providers: [],
+            multiProviderStrategy: 'fallback',
+            ...(channels ? channels.webhook : null)
           }
         }
     }

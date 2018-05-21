@@ -5,6 +5,12 @@ type RequestMetadataType = {
   userId?: string
 }
 
+export type WebhookRequestType = RequestMetadataType & {
+  url: string,
+  event: string,
+  data: Object
+}
+
 export type EmailRequestType = RequestMetadataType & {
   from: string,
   to: string,
@@ -162,4 +168,4 @@ export type SlackRequestType = RequestMetadataType & {
   }[]
 }
 
-export type RequestType = EmailRequestType | PushRequestType | SmsRequestType | VoiceRequestType | WebpushRequestType | SlackRequestType
+export type RequestType = EmailRequestType | PushRequestType | SmsRequestType | VoiceRequestType | WebpushRequestType | SlackRequestType | WebhookRequestType

@@ -31,7 +31,7 @@
 
 ## Features
 
-* **Easy channel integration** — Want to start sending `emails` | `SMS` | `pushes` | `webpushes` | `slack`? Do so in no time!
+* **Easy channel integration** — Want to start sending `emails` | `SMS` | `pushes` | `webpushes` | `slack` | `webhook`? Do so in no time!
 
 * **Unique documentation** — Don't look everywhere for the parameters you need to pass, just do it once. **Switching provider becomes a no-brainer**.
 
@@ -778,6 +778,64 @@ new NotifmeSdk({
 
 See all options: [Slack provider options](https://github.com/notifme/notifme-sdk/blob/master/src/models/provider-slack.js)
 
+#### Webhook providers
+
+<details><summary>Logger <i>(for development)</i></summary><p>
+
+```javascript
+new NotifmeSdk({
+  channels: {
+    webhook: {
+      providers: [{
+        type: 'logger'
+      }]
+    }
+  }
+})
+```
+
+</p></details>
+<details><summary>Webhook</summary><p>
+
+```javascript
+new NotifmeSdk({
+  channels: {
+    webhook: {
+      providers: [{
+        type: 'webhook'
+      }]
+    }
+  }
+})
+```
+
+</p></details>
+<details><summary>Custom <i>(define your own)</i></summary><p>
+
+```javascript
+new NotifmeSdk({
+  channels: {
+    webhook: {
+      providers: [{
+        type: 'custom',
+        id: 'my-custom-webhook-provider...',
+        send: async (request) => {
+          // Send webhook
+          return 'id...'
+        }
+      }]
+    }
+  }
+})
+```
+
+`request` being of [the following type](https://github.com/notifme/notifme-sdk/blob/master/src/models/notification-request.js#L9-L11).
+
+</p></details>
+<br>
+
+See all options: [Webhook provider options](https://github.com/notifme/notifme-sdk/blob/master/src/models/provider-webhook.js)
+
 #### Multi-provider strategies
 
 A multi-provider strategy allows you to customize the send process on a channel.
@@ -958,6 +1016,21 @@ notifmeSdk.send({
 ```
 
 See [all parameters](https://github.com/notifme/notifme-sdk/blob/master/src/models/notification-request.js#L132).
+
+</p></details>
+
+<details><summary>Send a Webhook message</summary><p>
+
+```javascript
+notifmeSdk.send({
+  slack: {
+    event: 'custom-event',
+    data: {key: 'value'}
+  }
+})
+```
+
+See [all parameters](https://github.com/notifme/notifme-sdk/blob/master/src/models/notification-request.js#L9-L11).
 
 </p></details>
 <details><summary>Send a multi-channel notification</summary><p>
