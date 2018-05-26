@@ -85,6 +85,15 @@ notifmeSdk
 
 ![Getting started SMS catcher](https://notifme.github.io/notifme-sdk/img/getting-started-sms-catcher.png)
 
+#### Custom connection settings
+
+If you have the Notification Catcher running on a custom port, domain, or you need to change any other connection setting, set the environment variable `NOTIFME_CATCHER_OPTIONS` with your [custom connection smtp url](https://nodemailer.com/smtp/).
+
+```shell
+$ # Example
+$ NOTIFME_CATCHER_OPTIONS=smtp://127.0.0.1:3025?ignoreTLS=true node your-script-using-notifme.js
+```
+
 ## How to use
 
 - [1. General options](#1-general-options)
