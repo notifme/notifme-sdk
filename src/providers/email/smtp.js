@@ -7,7 +7,7 @@ export default class EmailSmtpProvider {
   id: string = 'email-smtp-provider'
   transporter: Object
 
-  constructor (config: Object) {
+  constructor (config: Object | string) {
     this.transporter = nodemailer.createTransport(config)
   }
 
