@@ -51,7 +51,7 @@ test('webpush notification catcher provider should use SMTP provider (with userI
   expect(mockSend).lastCalledWith({
     from: '-',
     headers: {
-      'X-payload': '{"userId":"24","title":"Hi John","body":"Hello John! How are you?","icon":"https://notifme.github.io/notifme-sdk/img/icon.png"}',
+      'X-payload': '{"title":"Hi John","userId":"24","body":"Hello John! How are you?","icon":"https://notifme.github.io/notifme-sdk/img/icon.png"}',
       'X-to': '[webpush] 24',
       'X-type': 'webpush'
     },
