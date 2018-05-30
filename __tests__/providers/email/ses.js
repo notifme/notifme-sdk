@@ -38,19 +38,21 @@ test('SES success with minimal parameters.', async () => {
     method: 'POST',
     path: '/',
     protocol: 'https:',
-    url: 'https://email.eu-west-1.amazonaws.com/',
-    body: expect.stringContaining('Action=SendRawEmail&Version=2010-12-01&RawMessage.Data='),
+    href: 'https://email.eu-west-1.amazonaws.com/',
     headers: expect.objectContaining({
-      accept: ['*/*'],
-      authorization: [expect.stringContaining(`AWS4-HMAC-SHA256 Credential=key/${datetime.substring(0, 8)}/eu-west-1/ses/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=`)],
-      host: 'email.eu-west-1.amazonaws.com',
-      'x-amz-content-sha256': [expect.stringMatching(/\w*/)],
-      'x-amz-date': [datetime],
-      'content-length': [425],
-      'content-type': ['application/x-www-form-urlencoded; charset=utf-8'],
-      'user-agent': ['notifme-sdk/v1 (+https://github.com/notifme/notifme-sdk)']
+      Accept: ['*/*'],
+      Authorization: [expect.stringContaining(`AWS4-HMAC-SHA256 Credential=key/${datetime.substring(0, 8)}/eu-west-1/ses/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=`)],
+      Host: 'email.eu-west-1.amazonaws.com',
+      'X-Amz-Content-Sha256': [expect.stringMatching(/\w*/)],
+      'X-Amz-Date': [datetime],
+      'Content-Length': ['425'],
+      'Content-Type': ['application/x-www-form-urlencoded; charset=utf-8'],
+      'User-Agent': ['notifme-sdk/v1 (+https://github.com/notifme/notifme-sdk)']
     })
   }))
+  expect(mockHttp.body).toContain(
+    'Action=SendRawEmail&Version=2010-12-01&RawMessage.Data='
+  )
   expect(result).toEqual({
     status: 'success',
     channels: {

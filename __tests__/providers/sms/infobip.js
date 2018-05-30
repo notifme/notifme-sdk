@@ -31,16 +31,18 @@ test('Infobip success with minimal parameters.', async () => {
     method: 'POST',
     path: '/sms/1/text/single',
     protocol: 'https:',
-    url: 'https://api.infobip.com/sms/1/text/single',
-    body: '{"from":"Notifme","to":"+15000000001","text":"Hello John! How are you?"}',
+    href: 'https://api.infobip.com/sms/1/text/single',
     headers: expect.objectContaining({
-      accept: ['*/*'],
-      authorization: ['Basic dXNlcm5hbWU6cGFzc3dvcmQ='],
-      'content-length': [72],
-      'content-type': ['application/json'],
-      'user-agent': ['notifme-sdk/v1 (+https://github.com/notifme/notifme-sdk)']
+      Accept: ['*/*'],
+      Authorization: ['Basic dXNlcm5hbWU6cGFzc3dvcmQ='],
+      'Content-Length': ['72'],
+      'Content-Type': ['application/json'],
+      'User-Agent': ['notifme-sdk/v1 (+https://github.com/notifme/notifme-sdk)']
     })
   }))
+  expect(mockHttp.body).toEqual(
+    '{"from":"Notifme","to":"+15000000001","text":"Hello John! How are you?"}'
+  )
   expect(result).toEqual({
     status: 'success',
     channels: {

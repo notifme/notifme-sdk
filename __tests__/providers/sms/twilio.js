@@ -31,18 +31,13 @@ test('Twilio success with minimal parameters.', async () => {
     method: 'POST',
     path: '/2010-04-01/Accounts/account/Messages.json',
     protocol: 'https:',
-    url: 'https://api.twilio.com/2010-04-01/Accounts/account/Messages.json',
-    body: expect.objectContaining({
-      _boundary: expect.stringContaining('--------------------------'),
-      _overheadLength: 307,
-      _valueLength: 43
-    }),
+    href: 'https://api.twilio.com/2010-04-01/Accounts/account/Messages.json',
     headers: expect.objectContaining({
-      accept: ['*/*'],
-      authorization: ['Basic YWNjb3VudDp0b2tlbg=='],
-      'content-length': ['406'],
-      'content-type': [expect.stringContaining('multipart/form-data; boundary=')],
-      'user-agent': ['notifme-sdk/v1 (+https://github.com/notifme/notifme-sdk)']
+      Accept: ['*/*'],
+      Authorization: ['Basic YWNjb3VudDp0b2tlbg=='],
+      'Content-Length': ['406'],
+      'Content-Type': [expect.stringContaining('multipart/form-data;boundary=')],
+      'User-Agent': ['notifme-sdk/v1 (+https://github.com/notifme/notifme-sdk)']
     })
   }))
   expect(result).toEqual({
@@ -65,18 +60,13 @@ test('Twilio success with all parameters.', async () => {
     method: 'POST',
     path: '/2010-04-01/Accounts/account/Messages.json',
     protocol: 'https:',
-    url: 'https://api.twilio.com/2010-04-01/Accounts/account/Messages.json',
-    body: expect.objectContaining({
-      _boundary: expect.stringContaining('--------------------------'),
-      _overheadLength: 420,
-      _valueLength: 47
-    }),
+    href: 'https://api.twilio.com/2010-04-01/Accounts/account/Messages.json',
     headers: expect.objectContaining({
-      accept: ['*/*'],
-      authorization: ['Basic YWNjb3VudDp0b2tlbg=='],
-      'content-length': ['523'],
-      'content-type': [expect.stringContaining('multipart/form-data; boundary=')],
-      'user-agent': ['notifme-sdk/v1 (+https://github.com/notifme/notifme-sdk)']
+      Accept: ['*/*'],
+      Authorization: ['Basic YWNjb3VudDp0b2tlbg=='],
+      'Content-Length': ['523'],
+      'Content-Type': [expect.stringContaining('multipart/form-data;boundary=')],
+      'User-Agent': ['notifme-sdk/v1 (+https://github.com/notifme/notifme-sdk)']
     })
   }))
   expect(result).toEqual({

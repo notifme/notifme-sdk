@@ -31,15 +31,17 @@ test('46Elks success with minimal parameters.', async () => {
     method: 'POST',
     path: '/a1/sms',
     protocol: 'https:',
-    url: 'https://api.46elks.com/a1/sms',
-    body: 'from=Notifme&to=%2B15000000001&message=Hello%20John!%20How%20are%20you%3F',
+    href: 'https://api.46elks.com/a1/sms',
     headers: expect.objectContaining({
-      accept: ['*/*'],
-      authorization: ['Basic dXNlcm5hbWU6cGFzc3dvcmQ='],
-      'content-length': [73],
-      'user-agent': ['notifme-sdk/v1 (+https://github.com/notifme/notifme-sdk)']
+      Accept: ['*/*'],
+      Authorization: ['Basic dXNlcm5hbWU6cGFzc3dvcmQ='],
+      'Content-Length': ['73'],
+      'User-Agent': ['notifme-sdk/v1 (+https://github.com/notifme/notifme-sdk)']
     })
   }))
+  expect(mockHttp.body).toEqual(
+    'from=Notifme&to=%2B15000000001&message=Hello%20John!%20How%20are%20you%3F'
+  )
   expect(result).toEqual({
     status: 'success',
     channels: {

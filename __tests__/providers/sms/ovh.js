@@ -35,19 +35,21 @@ test('Ovh success with minimal parameters.', async () => {
     method: 'POST',
     path: '/1.0/sms/account/jobs/',
     protocol: 'https:',
-    url: 'https://eu.api.ovh.com/1.0/sms/account/jobs/',
-    body: '{"sender":"Notifme","message":"Hello John! How are you?","receivers":["+15000000001"],"charset":"UTF-8","class":null,"noStopClause":false}',
+    href: 'https://eu.api.ovh.com/1.0/sms/account/jobs/',
     headers: expect.objectContaining({
-      accept: ['*/*'],
-      'content-length': ['138'],
-      'content-type': ['application/json charset=utf-8'],
-      'x-ovh-application': ['key'],
-      'x-ovh-consumer': ['ckey'],
-      'x-ovh-signature': [expect.stringContaining('$1$')],
-      'x-ovh-timestamp': [expect.stringMatching(new RegExp(`^(${now}|${now + 1})$`))],
-      'user-agent': ['notifme-sdk/v1 (+https://github.com/notifme/notifme-sdk)']
+      Accept: ['*/*'],
+      'Content-Length': ['138'],
+      'Content-Type': ['application/json charset=utf-8'],
+      'X-Ovh-Application': ['key'],
+      'X-Ovh-Consumer': ['ckey'],
+      'X-Ovh-Signature': [expect.stringContaining('$1$')],
+      'X-Ovh-Timestamp': [expect.stringMatching(new RegExp(`^(${now}|${now + 1})$`))],
+      'User-Agent': ['notifme-sdk/v1 (+https://github.com/notifme/notifme-sdk)']
     })
   }))
+  expect(mockHttp.body).toEqual(
+    '{"sender":"Notifme","message":"Hello John! How are you?","receivers":["+15000000001"],"charset":"UTF-8","class":null,"noStopClause":false}'
+  )
   expect(result).toEqual({
     status: 'success',
     channels: {
@@ -59,29 +61,29 @@ test('Ovh success with minimal parameters.', async () => {
 test('Ovh success with different message classes.', async () => {
   mockResponse(200, JSON.stringify({ids: ['returned-id']}))
   await sdk.send({sms: {...request.sms, messageClass: 0}})
-  expect(mockHttp).lastCalledWith(expect.objectContaining({
-    body: '{"sender":"Notifme","message":"Hello John! How are you?","receivers":["+15000000001"],"charset":"UTF-8","class":"flash","noStopClause":false}'
-  }))
+  expect(mockHttp.body).toEqual(
+    '{"sender":"Notifme","message":"Hello John! How are you?","receivers":["+15000000001"],"charset":"UTF-8","class":"flash","noStopClause":false}'
+  )
   await sdk.send({sms: {...request.sms, messageClass: 1}})
-  expect(mockHttp).lastCalledWith(expect.objectContaining({
-    body: '{"sender":"Notifme","message":"Hello John! How are you?","receivers":["+15000000001"],"charset":"UTF-8","class":"phoneDisplay","noStopClause":false}'
-  }))
+  expect(mockHttp.body).toEqual(
+    '{"sender":"Notifme","message":"Hello John! How are you?","receivers":["+15000000001"],"charset":"UTF-8","class":"phoneDisplay","noStopClause":false}'
+  )
   await sdk.send({sms: {...request.sms, messageClass: 2}})
-  expect(mockHttp).lastCalledWith(expect.objectContaining({
-    body: '{"sender":"Notifme","message":"Hello John! How are you?","receivers":["+15000000001"],"charset":"UTF-8","class":"sim","noStopClause":false}'
-  }))
+  expect(mockHttp.body).toEqual(
+    '{"sender":"Notifme","message":"Hello John! How are you?","receivers":["+15000000001"],"charset":"UTF-8","class":"sim","noStopClause":false}'
+  )
   await sdk.send({sms: {...request.sms, messageClass: 3}})
-  expect(mockHttp).lastCalledWith(expect.objectContaining({
-    body: '{"sender":"Notifme","message":"Hello John! How are you?","receivers":["+15000000001"],"charset":"UTF-8","class":"toolkit","noStopClause":false}'
-  }))
+  expect(mockHttp.body).toEqual(
+    '{"sender":"Notifme","message":"Hello John! How are you?","receivers":["+15000000001"],"charset":"UTF-8","class":"toolkit","noStopClause":false}'
+  )
 })
 
 test('Ovh success with escaped unicode.', async () => {
   mockResponse(200, JSON.stringify({ids: ['returned-id']}))
   await sdk.send({sms: {...request.sms, text: 'Hello \u0081!'}})
-  expect(mockHttp).lastCalledWith(expect.objectContaining({
-    body: '{"sender":"Notifme","message":"Hello \u0081!","receivers":["+15000000001"],"charset":"UTF-8","class":null,"noStopClause":false}'
-  }))
+  expect(mockHttp.body).toEqual(
+    '{"sender":"Notifme","message":"Hello \u0081!","receivers":["+15000000001"],"charset":"UTF-8","class":null,"noStopClause":false}'
+  )
 })
 
 test('Ovh API error.', async () => {

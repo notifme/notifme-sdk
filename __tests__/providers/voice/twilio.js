@@ -31,12 +31,12 @@ test('Twilio success with minimal parameters.', async () => {
     method: 'POST',
     path: '/2010-04-01/Accounts/account/Calls.json',
     protocol: 'https:',
-    url: 'https://api.twilio.com/2010-04-01/Accounts/account/Calls.json',
+    href: 'https://api.twilio.com/2010-04-01/Accounts/account/Calls.json',
     headers: expect.objectContaining({
-      accept: ['*/*'],
-      authorization: ['Basic YWNjb3VudDp0b2tlbg=='],
-      'content-type': [expect.stringContaining('multipart/form-data; boundary=')],
-      'user-agent': ['notifme-sdk/v1 (+https://github.com/notifme/notifme-sdk)']
+      Accept: ['*/*'],
+      Authorization: ['Basic YWNjb3VudDp0b2tlbg=='],
+      'Content-Type': [expect.stringContaining('multipart/form-data;boundary=')],
+      'User-Agent': ['notifme-sdk/v1 (+https://github.com/notifme/notifme-sdk)']
     })
   }))
   expect(result).toEqual({
@@ -68,12 +68,12 @@ test('Twilio success with all parameters.', async () => {
     method: 'POST',
     path: '/2010-04-01/Accounts/account/Calls.json',
     protocol: 'https:',
-    url: 'https://api.twilio.com/2010-04-01/Accounts/account/Calls.json',
+    href: 'https://api.twilio.com/2010-04-01/Accounts/account/Calls.json',
     headers: expect.objectContaining({
-      accept: ['*/*'],
-      authorization: ['Basic YWNjb3VudDp0b2tlbg=='],
-      'content-type': [expect.stringContaining('multipart/form-data; boundary=')],
-      'user-agent': ['notifme-sdk/v1 (+https://github.com/notifme/notifme-sdk)']
+      Accept: ['*/*'],
+      Authorization: ['Basic YWNjb3VudDp0b2tlbg=='],
+      'Content-Type': [expect.stringContaining('multipart/form-data;boundary=')],
+      'User-Agent': ['notifme-sdk/v1 (+https://github.com/notifme/notifme-sdk)']
     })
   }))
   expect(result).toEqual({

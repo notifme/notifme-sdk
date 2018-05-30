@@ -36,18 +36,13 @@ test('Mailgun success with minimal parameters.', async () => {
     method: 'POST',
     path: '/v3/example.com/messages',
     protocol: 'https:',
-    url: 'https://api.mailgun.net/v3/example.com/messages',
-    body: expect.objectContaining({
-      _boundary: expect.stringContaining('--------------------------'),
-      _overheadLength: 413,
-      _valueLength: 61
-    }),
+    href: 'https://api.mailgun.net/v3/example.com/messages',
     headers: expect.objectContaining({
-      accept: ['*/*'],
-      authorization: ['Basic YXBpOmtleQ=='],
-      'content-length': ['530'],
-      'content-type': [expect.stringContaining('multipart/form-data; boundary=')],
-      'user-agent': ['notifme-sdk/v1 (+https://github.com/notifme/notifme-sdk)']
+      Accept: ['*/*'],
+      Authorization: ['Basic YXBpOmtleQ=='],
+      'Content-Length': ['530'],
+      'Content-Type': [expect.stringContaining('multipart/form-data;boundary=')],
+      'User-Agent': ['notifme-sdk/v1 (+https://github.com/notifme/notifme-sdk)']
     })
   }))
   expect(result).toEqual({
@@ -87,18 +82,13 @@ test('Mailgun success with all parameters.', async () => {
     method: 'POST',
     path: '/v3/example.com/messages',
     protocol: 'https:',
-    url: 'https://api.mailgun.net/v3/example.com/messages',
-    body: expect.objectContaining({
-      _boundary: expect.stringContaining('--------------------------'),
-      _overheadLength: 1323,
-      _valueLength: 150
-    }),
+    href: 'https://api.mailgun.net/v3/example.com/messages',
     headers: expect.objectContaining({
-      accept: ['*/*'],
-      authorization: ['Basic YXBpOmtleQ=='],
-      'content-length': ['1529'],
-      'content-type': [expect.stringContaining('multipart/form-data; boundary=')],
-      'user-agent': ['notifme-sdk/v1 (+https://github.com/notifme/notifme-sdk)']
+      Accept: ['*/*'],
+      Authorization: ['Basic YXBpOmtleQ=='],
+      'Content-Length': ['1529'],
+      'Content-Type': [expect.stringContaining('multipart/form-data;boundary=')],
+      'User-Agent': ['notifme-sdk/v1 (+https://github.com/notifme/notifme-sdk)']
     })
   }))
   expect(result).toEqual({

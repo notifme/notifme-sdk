@@ -29,9 +29,11 @@ test('Slack success.', async () => {
   const result = await sdk.send(request)
   expect(mockHttp).lastCalledWith(expect.objectContaining({
     method: 'POST',
-    url: 'https://hooks.slack.com/services/Txxxxxxxx/Bxxxxxxxx/xxxxxxxxxxxxxxxxxxxxxxxx',
-    body: expect.stringContaining('{"text":"Hello John! How are you?"}')
+    href: 'https://hooks.slack.com/services/Txxxxxxxx/Bxxxxxxxx/xxxxxxxxxxxxxxxxxxxxxxxx'
   }))
+  expect(mockHttp.body).toContain(
+    '{"text":"Hello John! How are you?"}'
+  )
   expect(result).toEqual({
     status: 'success',
     channels: {

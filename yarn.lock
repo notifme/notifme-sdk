@@ -226,7 +226,7 @@ anymatch@^2.0.0:
     micromatch "^3.1.4"
     normalize-path "^2.1.1"
 
-apn@^2.1.1:
+apn@^2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/apn/-/apn-2.2.0.tgz#211ae4adf31b115a033342376b7ce23a5d18c393"
   dependencies:
@@ -322,9 +322,9 @@ asap@~2.0.3:
   version "2.0.6"
   resolved "https://registry.yarnpkg.com/asap/-/asap-2.0.6.tgz#e50347611d7e690943208bbdafebcbc2fb866d46"
 
-asn1.js@^4.8.1:
-  version "4.10.1"
-  resolved "https://registry.yarnpkg.com/asn1.js/-/asn1.js-4.10.1.tgz#b9c2bf5805f1e64aadeed6df3a2bfafb5a73f5a0"
+asn1.js@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/asn1.js/-/asn1.js-5.0.0.tgz#2b0abbc7fa66dc0aadd06a4683c73608c32b0696"
   dependencies:
     bn.js "^4.0.0"
     inherits "^2.0.1"
@@ -2283,12 +2283,12 @@ forever-agent@~0.6.1:
   version "0.6.1"
   resolved "https://registry.yarnpkg.com/forever-agent/-/forever-agent-0.6.1.tgz#fbc71f0c41adeb37f96c577ad1ed42d8fdacca91"
 
-form-data@2.3.1:
-  version "2.3.1"
-  resolved "https://registry.yarnpkg.com/form-data/-/form-data-2.3.1.tgz#6fb94fbd71885306d73d15cc497fe4cc4ecd44bf"
+form-data@2.3.2, form-data@~2.3.1:
+  version "2.3.2"
+  resolved "https://registry.yarnpkg.com/form-data/-/form-data-2.3.2.tgz#4970498be604c20c005d4f5c23aecd21d6b49099"
   dependencies:
     asynckit "^0.4.0"
-    combined-stream "^1.0.5"
+    combined-stream "1.0.6"
     mime-types "^2.1.12"
 
 form-data@~2.1.1:
@@ -2297,14 +2297,6 @@ form-data@~2.1.1:
   dependencies:
     asynckit "^0.4.0"
     combined-stream "^1.0.5"
-    mime-types "^2.1.12"
-
-form-data@~2.3.1:
-  version "2.3.2"
-  resolved "https://registry.yarnpkg.com/form-data/-/form-data-2.3.2.tgz#4970498be604c20c005d4f5c23aecd21d6b49099"
-  dependencies:
-    asynckit "^0.4.0"
-    combined-stream "1.0.6"
     mime-types "^2.1.12"
 
 forwarded@~0.1.0:
@@ -2630,15 +2622,15 @@ http-signature@~1.2.0:
   version "3.3.6"
   resolved "https://github.com/node-apn/node-http2/archive/apn-2.1.4.tar.gz#8333dee2d6e0089152cefad30f41ced502f9c366"
 
-http_ece@^0.5.2:
-  version "0.5.2"
-  resolved "https://registry.yarnpkg.com/http_ece/-/http_ece-0.5.2.tgz#5654d7ec9d996b749ce00a276e18d54b6d8f905f"
+http_ece@1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/http_ece/-/http_ece-1.0.5.tgz#b60660faaf14215102d1493ea720dcd92b53372f"
   dependencies:
     urlsafe-base64 "~1.0.0"
 
-https-proxy-agent@2.1.1:
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/https-proxy-agent/-/https-proxy-agent-2.1.1.tgz#a7ce4382a1ba8266ee848578778122d491260fd9"
+https-proxy-agent@2.2.1, https-proxy-agent@^2.2.1:
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/https-proxy-agent/-/https-proxy-agent-2.2.1.tgz#51552970fa04d723e04c56d04178c3f92592bbc0"
   dependencies:
     agent-base "^4.1.0"
     debug "^3.1.0"
@@ -3895,7 +3887,11 @@ node-adm@^0.9.1:
   version "0.9.1"
   resolved "https://registry.yarnpkg.com/node-adm/-/node-adm-0.9.1.tgz#f8c6a72ffadb1a7dfd6637102c950a9a9496e842"
 
-node-fetch@1.7.3, node-fetch@^1.0.1:
+node-fetch@2.1.2:
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.1.2.tgz#ab884e8e7e57e38a944753cec706f788d1768bb5"
+
+node-fetch@^1.0.1:
   version "1.7.3"
   resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-1.7.3.tgz#980f6f72d85211a5347c6b2bc18c5b84c3eb47ef"
   dependencies:
@@ -3906,7 +3902,7 @@ node-forge@^0.7.1:
   version "0.7.5"
   resolved "https://registry.yarnpkg.com/node-forge/-/node-forge-0.7.5.tgz#6c152c345ce11c52f465c2abd957e8639cd674df"
 
-node-gcm@^0.14.4:
+node-gcm@^0.14.10:
   version "0.14.10"
   resolved "https://registry.yarnpkg.com/node-gcm/-/node-gcm-0.14.10.tgz#fd1e3357dab1c62115e6e2d342ac249fe05e7360"
   dependencies:
@@ -3942,14 +3938,14 @@ node-pre-gyp@^0.10.0:
     semver "^5.3.0"
     tar "^4"
 
-node-pushnotifications@1.0.18:
-  version "1.0.18"
-  resolved "https://registry.yarnpkg.com/node-pushnotifications/-/node-pushnotifications-1.0.18.tgz#a54863b04879ef7f01f811ddc8c81db04f8e2bc3"
+node-pushnotifications@1.0.21:
+  version "1.0.21"
+  resolved "https://registry.yarnpkg.com/node-pushnotifications/-/node-pushnotifications-1.0.21.tgz#14876fad440c8b25702685703b36dd3f0d67e530"
   dependencies:
-    apn "^2.1.1"
+    apn "^2.2.0"
     node-adm "^0.9.1"
-    node-gcm "^0.14.4"
-    wns "^0.5.3"
+    node-gcm "^0.14.10"
+    wns "git://github.com/alex-friedl/wns.git#660afd2"
 
 nodemailer-fetch@1.3.0:
   version "1.3.0"
@@ -3971,9 +3967,9 @@ nodemailer-shared@^1.1.0:
   dependencies:
     nodemailer-fetch "1.6.0"
 
-nodemailer@4.4.2:
-  version "4.4.2"
-  resolved "https://registry.yarnpkg.com/nodemailer/-/nodemailer-4.4.2.tgz#f215fb88e8a1052f9f93083909e116d2b79fc8de"
+nodemailer@4.6.5:
+  version "4.6.5"
+  resolved "https://registry.yarnpkg.com/nodemailer/-/nodemailer-4.6.5.tgz#306ce18c4543f3f06e5f76665d3cb6277f872f53"
 
 nodemon@1.17.5:
   version "1.17.5"
@@ -5589,12 +5585,13 @@ watch@~0.18.0:
     exec-sh "^0.2.0"
     minimist "^1.2.0"
 
-web-push@3.2.5:
-  version "3.2.5"
-  resolved "https://registry.yarnpkg.com/web-push/-/web-push-3.2.5.tgz#7eccf17514f25587105c937be37bf4153b39a271"
+web-push@3.3.1:
+  version "3.3.1"
+  resolved "https://registry.yarnpkg.com/web-push/-/web-push-3.3.1.tgz#6d49517b927ffb97241a719d2f7f9014de130f09"
   dependencies:
-    asn1.js "^4.8.1"
-    http_ece "^0.5.2"
+    asn1.js "^5.0.0"
+    http_ece "1.0.5"
+    https-proxy-agent "^2.2.1"
     jws "^3.1.3"
     minimist "^1.2.0"
     urlsafe-base64 "^1.0.0"
@@ -5655,9 +5652,9 @@ window-size@0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/window-size/-/window-size-0.1.0.tgz#5438cd2ea93b202efa3a19fe8887aee7c94f9c9d"
 
-winston@2.4.0:
-  version "2.4.0"
-  resolved "https://registry.yarnpkg.com/winston/-/winston-2.4.0.tgz#808050b93d52661ed9fb6c26b3f0c826708b0aee"
+winston@2.4.2:
+  version "2.4.2"
+  resolved "https://registry.yarnpkg.com/winston/-/winston-2.4.2.tgz#3ca01f763116fc48db61053b7544e750431f8db0"
   dependencies:
     async "~1.0.0"
     colors "1.0.x"
@@ -5666,9 +5663,9 @@ winston@2.4.0:
     isstream "0.1.x"
     stack-trace "0.0.x"
 
-wns@^0.5.3:
-  version "0.5.3"
-  resolved "https://registry.yarnpkg.com/wns/-/wns-0.5.3.tgz#00f4e85cfcf8e3383dcbd81898906f1f6ad4845f"
+"wns@git://github.com/alex-friedl/wns.git#660afd2":
+  version "0.5.5"
+  resolved "git://github.com/alex-friedl/wns.git#660afd295b0475867a3fed9f897a54984111bb9a"
 
 wordwrap@0.0.2:
   version "0.0.2"

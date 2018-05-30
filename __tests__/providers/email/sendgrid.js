@@ -35,16 +35,18 @@ test('Sendgrid success with minimal parameters.', async () => {
     method: 'POST',
     path: '/v3/mail/send',
     protocol: 'https:',
-    url: 'https://api.sendgrid.com/v3/mail/send',
-    body: expect.stringContaining('{"personalizations":[{"to":[{"email":"john@example.com"}]}],"from":{"email":"me@example.com"},"subject":"Hi John","content":[{"type":"text/plain","value":"Hello John! How are you?"}],"custom_args":{"id":"'),
+    href: 'https://api.sendgrid.com/v3/mail/send',
     headers: expect.objectContaining({
-      accept: ['*/*'],
-      authorization: ['Bearer key'],
-      'content-length': [239],
-      'content-type': ['application/json'],
-      'user-agent': ['notifme-sdk/v1 (+https://github.com/notifme/notifme-sdk)']
+      Accept: ['*/*'],
+      Authorization: ['Bearer key'],
+      'Content-Length': ['239'],
+      'Content-Type': ['application/json'],
+      'User-Agent': ['notifme-sdk/v1 (+https://github.com/notifme/notifme-sdk)']
     })
   }))
+  expect(mockHttp.body).toContain(
+    '{"personalizations":[{"to":[{"email":"john@example.com"}]}],"from":{"email":"me@example.com"},"subject":"Hi John","content":[{"type":"text/plain","value":"Hello John! How are you?"}],"custom_args":{"id":"'
+  )
   expect(result).toEqual({
     status: 'success',
     channels: {
@@ -82,16 +84,18 @@ test('Sendgrid success with all parameters.', async () => {
     method: 'POST',
     path: '/v3/mail/send',
     protocol: 'https:',
-    url: 'https://api.sendgrid.com/v3/mail/send',
-    body: '{"personalizations":[{"to":[{"email":"to@example.com"}],"cc":[{"email":"cc1@example.com"},{"email":"cc2@example.com"}],"bcc":[{"email":"bcc@example.com"}]}],"from":{"email":"from@example.com"},"reply_to":{"email":"replyto@example.com"},"subject":"Hi John","content":[{"type":"text/html","value":"<b>Hello John! How are you?</b>"}],"headers":{"My-Custom-Header":"my-value"},"custom_args":{"id":"24","userId":"36"},"attachments":[{"type":"text/plain","filename":"test.txt","content":"aGVsbG8h"}]}',
+    href: 'https://api.sendgrid.com/v3/mail/send',
     headers: expect.objectContaining({
-      accept: ['*/*'],
-      authorization: ['Bearer key'],
-      'content-length': [494],
-      'content-type': ['application/json'],
-      'user-agent': ['notifme-sdk/v1 (+https://github.com/notifme/notifme-sdk)']
+      Accept: ['*/*'],
+      Authorization: ['Bearer key'],
+      'Content-Length': ['494'],
+      'Content-Type': ['application/json'],
+      'User-Agent': ['notifme-sdk/v1 (+https://github.com/notifme/notifme-sdk)']
     })
   }))
+  expect(mockHttp.body).toEqual(
+    '{"personalizations":[{"to":[{"email":"to@example.com"}],"cc":[{"email":"cc1@example.com"},{"email":"cc2@example.com"}],"bcc":[{"email":"bcc@example.com"}]}],"from":{"email":"from@example.com"},"reply_to":{"email":"replyto@example.com"},"subject":"Hi John","content":[{"type":"text/html","value":"<b>Hello John! How are you?</b>"}],"headers":{"My-Custom-Header":"my-value"},"custom_args":{"id":"24","userId":"36"},"attachments":[{"type":"text/plain","filename":"test.txt","content":"aGVsbG8h"}]}'
+  )
   expect(result).toEqual({
     status: 'success',
     channels: {
@@ -124,16 +128,18 @@ test('Sendgrid success with buffered attachment.', async () => {
     method: 'POST',
     path: '/v3/mail/send',
     protocol: 'https:',
-    url: 'https://api.sendgrid.com/v3/mail/send',
-    body: '{"personalizations":[{"to":[{"email":"to@example.com"}]}],"from":{"email":"from@example.com"},"subject":"Hi John","content":[{"type":"text/html","value":"<b>Hello John! How are you?</b>"}],"custom_args":{"id":"24"},"attachments":[{"type":"text/plain","filename":"test.txt","content":"aGVsbG8h"}]}',
+    href: 'https://api.sendgrid.com/v3/mail/send',
     headers: expect.objectContaining({
-      accept: ['*/*'],
-      authorization: ['Bearer key'],
-      'content-length': [296],
-      'content-type': ['application/json'],
-      'user-agent': ['notifme-sdk/v1 (+https://github.com/notifme/notifme-sdk)']
+      Accept: ['*/*'],
+      Authorization: ['Bearer key'],
+      'Content-Length': ['296'],
+      'Content-Type': ['application/json'],
+      'User-Agent': ['notifme-sdk/v1 (+https://github.com/notifme/notifme-sdk)']
     })
   }))
+  expect(mockHttp.body).toEqual(
+    '{"personalizations":[{"to":[{"email":"to@example.com"}]}],"from":{"email":"from@example.com"},"subject":"Hi John","content":[{"type":"text/html","value":"<b>Hello John! How are you?</b>"}],"custom_args":{"id":"24"},"attachments":[{"type":"text/plain","filename":"test.txt","content":"aGVsbG8h"}]}'
+  )
   expect(result).toEqual({
     status: 'success',
     channels: {

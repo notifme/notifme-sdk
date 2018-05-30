@@ -21,13 +21,13 @@
   },
   "dependencies": {
     "babel-runtime": "6.26.0",
-    "form-data": "2.3.1",
-    "https-proxy-agent": "2.1.1",
-    "node-fetch": "1.7.3",
-    "node-pushnotifications": "1.0.18",
-    "nodemailer": "4.4.2",
-    "web-push": "3.2.5",
-    "winston": "2.4.0"
+    "form-data": "2.3.2",
+    "https-proxy-agent": "2.2.1",
+    "node-fetch": "2.1.2",
+    "node-pushnotifications": "1.0.21",
+    "nodemailer": "4.6.5",
+    "web-push": "3.3.1",
+    "winston": "2.4.2"
   },
   "devDependencies": {
     "babel-cli": "6.26.0",
