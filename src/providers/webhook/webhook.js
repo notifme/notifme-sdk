@@ -6,12 +6,11 @@ import type {WebhookRequestType} from '../../models/notification-request'
 export default class WebhookProvider {
   id: string = 'webhook-provider'
 
-  async send ({url, ...request}: WebhookRequestType): Promise<string> {
+  async send ({ url, event, data }: WebhookRequestType): Promise<string> {
     const apiRequest = {
       method: 'POST',
       body: JSON.stringify({
-        event: request.event,
-        data: request.data
+        event, data
       })
     }
     const response = await fetch(url, apiRequest)

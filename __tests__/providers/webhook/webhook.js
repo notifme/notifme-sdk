@@ -30,9 +30,9 @@ test('Webhook success.', async () => {
   const result = await sdk.send(request)
   expect(mockHttp).lastCalledWith(expect.objectContaining({
     method: 'POST',
-    url: 'https://google.fr',
-    body: expect.stringContaining(JSON.stringify({event: 'custom-event', data: {key: 'value'}}))
+    href: 'https://google.fr/'
   }))
+  expect(mockHttp.body).toContain(JSON.stringify({event: 'custom-event', data: {key: 'value'}}))
   expect(result).toEqual({
     status: 'success',
     channels: {
