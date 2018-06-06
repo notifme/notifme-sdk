@@ -31,16 +31,18 @@ test('Plivo success with minimal parameters.', async () => {
     method: 'POST',
     path: '/v1/Account/id/Message/',
     protocol: 'https:',
-    url: 'https://api.plivo.com/v1/Account/id/Message/',
-    body: '{"src":"Notifme","dst":"+15000000001","text":"Hello John! How are you?"}',
+    href: 'https://api.plivo.com/v1/Account/id/Message/',
     headers: expect.objectContaining({
-      accept: ['*/*'],
-      authorization: ['Basic aWQ6dG9rZW4='],
-      'content-length': [72],
-      'content-type': ['application/json'],
-      'user-agent': ['notifme-sdk/v1 (+https://github.com/notifme/notifme-sdk)']
+      Accept: ['*/*'],
+      Authorization: ['Basic aWQ6dG9rZW4='],
+      'Content-Length': ['72'],
+      'Content-Type': ['application/json'],
+      'User-Agent': ['notifme-sdk/v1 (+https://github.com/notifme/notifme-sdk)']
     })
   }))
+  expect(mockHttp.body).toEqual(
+    '{"src":"Notifme","dst":"+15000000001","text":"Hello John! How are you?"}'
+  )
   expect(result).toEqual({
     status: 'success',
     channels: {

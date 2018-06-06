@@ -20,10 +20,13 @@ export default class NotificationCatcherProvider {
 
   constructor (channel: ChannelType) {
     this.id = `${channel}-notificationcatcher-provider`
-    this.provider = new EmailSmtpProvider({
+
+    const options = process.env.NOTIFME_CATCHER_OPTIONS || {
       port: 1025,
       ignoreTLS: true
-    })
+    }
+
+    this.provider = new EmailSmtpProvider(options)
   }
 
   async sendToCatcher (request: EmailRequestType): Promise<string> {

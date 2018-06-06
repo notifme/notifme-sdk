@@ -31,15 +31,17 @@ test('Nexmo success with minimal parameters.', async () => {
     method: 'POST',
     path: '/sms/json',
     protocol: 'https:',
-    url: 'https://rest.nexmo.com/sms/json',
-    body: '{"api_key":"key","api_secret":"secret","from":"Notifme","to":"+15000000001","text":"Hello John! How are you?"}',
+    href: 'https://rest.nexmo.com/sms/json',
     headers: expect.objectContaining({
-      accept: ['*/*'],
-      'content-length': [110],
-      'content-type': ['application/json'],
-      'user-agent': ['notifme-sdk/v1 (+https://github.com/notifme/notifme-sdk)']
+      Accept: ['*/*'],
+      'Content-Length': ['110'],
+      'Content-Type': ['application/json'],
+      'User-Agent': ['notifme-sdk/v1 (+https://github.com/notifme/notifme-sdk)']
     })
   }))
+  expect(mockHttp.body).toEqual(
+    '{"api_key":"key","api_secret":"secret","from":"Notifme","to":"+15000000001","text":"Hello John! How are you?"}'
+  )
   expect(result).toEqual({
     status: 'success',
     channels: {

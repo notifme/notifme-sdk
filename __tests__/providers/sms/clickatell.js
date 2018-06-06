@@ -30,16 +30,18 @@ test('Clickatell success with minimal parameters.', async () => {
     method: 'POST',
     path: '/messages',
     protocol: 'https:',
-    url: 'https://platform.clickatell.com/messages',
-    body: '{"to":["+15000000001"],"content":"Hello John! How are you?","charset":"UTF-8"}',
+    href: 'https://platform.clickatell.com/messages',
     headers: expect.objectContaining({
-      accept: ['*/*'],
-      authorization: ['my-key'],
-      'content-length': [78],
-      'content-type': ['application/json'],
-      'user-agent': ['notifme-sdk/v1 (+https://github.com/notifme/notifme-sdk)']
+      Accept: ['*/*'],
+      Authorization: ['my-key'],
+      'Content-Length': ['78'],
+      'Content-Type': ['application/json'],
+      'User-Agent': ['notifme-sdk/v1 (+https://github.com/notifme/notifme-sdk)']
     })
   }))
+  expect(mockHttp.body).toEqual(
+    '{"to":["+15000000001"],"content":"Hello John! How are you?","charset":"UTF-8"}'
+  )
   expect(result).toEqual({
     status: 'success',
     channels: {
@@ -60,16 +62,18 @@ test('Clickatell success with all parameters.', async () => {
     method: 'POST',
     path: '/messages',
     protocol: 'https:',
-    url: 'https://platform.clickatell.com/messages',
-    body: '{"to":["+15000000001"],"content":"Hello John! How are you?","charset":"UCS2-BE","validityPeriod":3600,"clientMessageId":"24"}',
+    href: 'https://platform.clickatell.com/messages',
     headers: expect.objectContaining({
-      accept: ['*/*'],
-      authorization: ['my-key'],
-      'content-length': [125],
-      'content-type': ['application/json'],
-      'user-agent': ['notifme-sdk/v1 (+https://github.com/notifme/notifme-sdk)']
+      Accept: ['*/*'],
+      Authorization: ['my-key'],
+      'Content-Length': ['125'],
+      'Content-Type': ['application/json'],
+      'User-Agent': ['notifme-sdk/v1 (+https://github.com/notifme/notifme-sdk)']
     })
   }))
+  expect(mockHttp.body).toEqual(
+    '{"to":["+15000000001"],"content":"Hello John! How are you?","charset":"UCS2-BE","validityPeriod":3600,"clientMessageId":"24"}'
+  )
   expect(result).toEqual({
     status: 'success',
     channels: {

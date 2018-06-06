@@ -31,16 +31,18 @@ test('Callr success with minimal parameters.', async () => {
     method: 'POST',
     path: '/rest/v1.1/sms',
     protocol: 'https:',
-    url: 'https://api.callr.com/rest/v1.1/sms',
-    body: '{"from":"Notifme","to":"+15000000001","body":"Hello John! How are you?","options":{"force_encoding":"GSM","nature":"ALERTING"}}',
+    href: 'https://api.callr.com/rest/v1.1/sms',
     headers: expect.objectContaining({
-      accept: ['*/*'],
-      authorization: ['Basic bG9naW46cGFzc3dvcmQ='],
-      'content-length': [127],
-      'content-type': ['application/json'],
-      'user-agent': ['notifme-sdk/v1 (+https://github.com/notifme/notifme-sdk)']
+      Accept: ['*/*'],
+      Authorization: ['Basic bG9naW46cGFzc3dvcmQ='],
+      'Content-Length': ['127'],
+      'Content-Type': ['application/json'],
+      'User-Agent': ['notifme-sdk/v1 (+https://github.com/notifme/notifme-sdk)']
     })
   }))
+  expect(mockHttp.body).toEqual(
+    '{"from":"Notifme","to":"+15000000001","body":"Hello John! How are you?","options":{"force_encoding":"GSM","nature":"ALERTING"}}'
+  )
   expect(result).toEqual({
     status: 'success',
     channels: {
@@ -61,16 +63,18 @@ test('Callr success with all parameters.', async () => {
     method: 'POST',
     path: '/rest/v1.1/sms',
     protocol: 'https:',
-    url: 'https://api.callr.com/rest/v1.1/sms',
-    body: '{"from":"Notifme","to":"+15000000001","body":"Hello John! How are you?","options":{"force_encoding":"UNICODE","nature":"MARKETING","user_data":"24"}}',
+    href: 'https://api.callr.com/rest/v1.1/sms',
     headers: expect.objectContaining({
-      accept: ['*/*'],
-      authorization: ['Basic bG9naW46cGFzc3dvcmQ='],
-      'content-length': [149],
-      'content-type': ['application/json'],
-      'user-agent': ['notifme-sdk/v1 (+https://github.com/notifme/notifme-sdk)']
+      Accept: ['*/*'],
+      Authorization: ['Basic bG9naW46cGFzc3dvcmQ='],
+      'Content-Length': ['149'],
+      'Content-Type': ['application/json'],
+      'User-Agent': ['notifme-sdk/v1 (+https://github.com/notifme/notifme-sdk)']
     })
   }))
+  expect(mockHttp.body).toEqual(
+    '{"from":"Notifme","to":"+15000000001","body":"Hello John! How are you?","options":{"force_encoding":"UNICODE","nature":"MARKETING","user_data":"24"}}'
+  )
   expect(result).toEqual({
     status: 'success',
     channels: {

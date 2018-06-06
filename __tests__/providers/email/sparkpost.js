@@ -35,16 +35,18 @@ test('Sparkpost success with minimal parameters.', async () => {
     method: 'POST',
     path: '/api/v1/transmissions',
     protocol: 'https:',
-    url: 'https://api.sparkpost.com/api/v1/transmissions',
-    body: '{"options":{"transactional":true},"content":{"from":"me@example.com","subject":"Hi John","text":"Hello John! How are you?","headers":{},"attachments":[]},"recipients":[{"address":{"email":"john@example.com"}}],"metadata":{}}',
+    href: 'https://api.sparkpost.com/api/v1/transmissions',
     headers: expect.objectContaining({
-      accept: ['*/*'],
-      authorization: ['key'],
-      'content-length': [224],
-      'content-type': ['application/json'],
-      'user-agent': ['notifme-sdk/v1 (+https://github.com/notifme/notifme-sdk)']
+      Accept: ['*/*'],
+      Authorization: ['key'],
+      'Content-Length': ['224'],
+      'Content-Type': ['application/json'],
+      'User-Agent': ['notifme-sdk/v1 (+https://github.com/notifme/notifme-sdk)']
     })
   }))
+  expect(mockHttp.body).toEqual(
+    '{"options":{"transactional":true},"content":{"from":"me@example.com","subject":"Hi John","text":"Hello John! How are you?","headers":{},"attachments":[]},"recipients":[{"address":{"email":"john@example.com"}}],"metadata":{}}'
+  )
   expect(result).toEqual({
     status: 'success',
     channels: {
@@ -82,16 +84,18 @@ test('Sparkpost success with all parameters.', async () => {
     method: 'POST',
     path: '/api/v1/transmissions',
     protocol: 'https:',
-    url: 'https://api.sparkpost.com/api/v1/transmissions',
-    body: '{"options":{"transactional":true},"content":{"from":"from@example.com","reply_to":"replyto@example.com","subject":"Hi John","html":"<b>Hello John! How are you?</b>","headers":{"My-Custom-Header":"my-value","CC":"cc1@example.com,cc2@example.com"},"attachments":[{"type":"text/plain","name":"test.txt","data":"aGVsbG8h"}]},"recipients":[{"address":{"email":"to@example.com"}},{"address":{"email":"cc1@example.com","header_to":"to@example.com"}},{"address":{"email":"cc2@example.com","header_to":"to@example.com"}},{"address":{"email":"bcc@example.com","header_to":"to@example.com"}}],"metadata":{"id":"24","userId":"36"}}',
+    href: 'https://api.sparkpost.com/api/v1/transmissions',
     headers: expect.objectContaining({
-      accept: ['*/*'],
-      authorization: ['key'],
-      'content-length': [619],
-      'content-type': ['application/json'],
-      'user-agent': ['notifme-sdk/v1 (+https://github.com/notifme/notifme-sdk)']
+      Accept: ['*/*'],
+      Authorization: ['key'],
+      'Content-Length': ['619'],
+      'Content-Type': ['application/json'],
+      'User-Agent': ['notifme-sdk/v1 (+https://github.com/notifme/notifme-sdk)']
     })
   }))
+  expect(mockHttp.body).toEqual(
+    '{"options":{"transactional":true},"content":{"from":"from@example.com","reply_to":"replyto@example.com","subject":"Hi John","html":"<b>Hello John! How are you?</b>","headers":{"My-Custom-Header":"my-value","CC":"cc1@example.com,cc2@example.com"},"attachments":[{"type":"text/plain","name":"test.txt","data":"aGVsbG8h"}]},"recipients":[{"address":{"email":"to@example.com"}},{"address":{"email":"cc1@example.com","header_to":"to@example.com"}},{"address":{"email":"cc2@example.com","header_to":"to@example.com"}},{"address":{"email":"bcc@example.com","header_to":"to@example.com"}}],"metadata":{"id":"24","userId":"36"}}'
+  )
   expect(result).toEqual({
     status: 'success',
     channels: {
@@ -124,16 +128,18 @@ test('Sparkpost success with buffered attachment.', async () => {
     method: 'POST',
     path: '/api/v1/transmissions',
     protocol: 'https:',
-    url: 'https://api.sparkpost.com/api/v1/transmissions',
-    body: '{"options":{"transactional":true},"content":{"from":"from@example.com","subject":"Hi John","html":"<b>Hello John! How are you?</b>","headers":{},"attachments":[{"type":"text/plain","name":"test.txt","data":"aGVsbG8h"}]},"recipients":[{"address":{"email":"to@example.com"}}],"metadata":{"id":"24"}}',
+    href: 'https://api.sparkpost.com/api/v1/transmissions',
     headers: expect.objectContaining({
-      accept: ['*/*'],
-      authorization: ['key'],
-      'content-length': [297],
-      'content-type': ['application/json'],
-      'user-agent': ['notifme-sdk/v1 (+https://github.com/notifme/notifme-sdk)']
+      Accept: ['*/*'],
+      Authorization: ['key'],
+      'Content-Length': ['297'],
+      'Content-Type': ['application/json'],
+      'User-Agent': ['notifme-sdk/v1 (+https://github.com/notifme/notifme-sdk)']
     })
   }))
+  expect(mockHttp.body).toEqual(
+    '{"options":{"transactional":true},"content":{"from":"from@example.com","subject":"Hi John","html":"<b>Hello John! How are you?</b>","headers":{},"attachments":[{"type":"text/plain","name":"test.txt","data":"aGVsbG8h"}]},"recipients":[{"address":{"email":"to@example.com"}}],"metadata":{"id":"24"}}'
+  )
   expect(result).toEqual({
     status: 'success',
     channels: {

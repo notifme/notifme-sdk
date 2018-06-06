@@ -21,7 +21,7 @@ const providerStrategies = {
 const strategies = Object.keys(providerStrategies)
 
 export default function factory (channels: ChannelOptionsType): StrategiesType {
-  return Object.keys(channels).reduce((acc, key: ChannelType): StrategiesType => {
+  return Object.keys(channels).reduce((acc, key: any): StrategiesType => {
     const optionStrategy = (channels[key]: any).multiProviderStrategy
     if (typeof optionStrategy === 'function') {
       acc[key] = optionStrategy

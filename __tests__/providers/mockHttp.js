@@ -9,9 +9,10 @@ export default mockHttp
 
 export function mockResponse (statusCode: number, body: string) {
   const mockRequest = new EventEmitter()
-  mockRequest.write = () => {}
+  mockRequest.write = (body) => (mockHttp.body = body)
   mockRequest.end = () => mockRequest.emit('response', {
     statusCode,
+    headers: {},
     pipe: () => body
   })
   https.request.mockReturnValue(mockRequest)
