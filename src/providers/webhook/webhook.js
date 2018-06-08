@@ -11,7 +11,10 @@ export default class WebhookProvider {
       method: 'POST',
       body: JSON.stringify({
         event, data
-      })
+      }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
     }
     const response = await fetch(url, apiRequest)
 
