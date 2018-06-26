@@ -39,6 +39,10 @@ export default function factory (channels: ChannelOptionsType): ProvidersType {
 
         case 'slack':
           return slackFactory(config)
+
+        default: {
+          return config
+        }
       }
     })
 

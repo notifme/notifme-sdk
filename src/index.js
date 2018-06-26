@@ -25,7 +25,7 @@ export const CHANNELS = {
 }
 export type ChannelType = $Keys<typeof CHANNELS>
 
-export type NotificationRequestType = {|
+export type NotificationRequestType = {
   metadata?: {
     id?: string,
     userId?: string
@@ -37,7 +37,7 @@ export type NotificationRequestType = {|
   webpush?: WebpushRequestType,
   slack?: SlackRequestType
   // TODO?: other channels (slack, messenger, skype, telegram, kik, spark...)
-|}
+}
 
 export type NotificationStatusType = {
   status: 'success' | 'error',
@@ -90,7 +90,7 @@ export default class NotifmeSdk {
     const providers = providerFactory(mergedOptions.channels)
     const strategies = strategyProvidersFactory(mergedOptions.channels)
 
-    this.sender = new Sender(Object.keys(CHANNELS), providers, strategies)
+    this.sender = new Sender([...(Object.keys(CHANNELS)), ...(Object.keys(providers))], providers, strategies)
   }
 
   mergeWithDefaultConfig ({channels, ...rest}: OptionsType) {
@@ -100,6 +100,7 @@ export default class NotifmeSdk {
       channels: rest.useNotificationCatcher
         ? NotificationCatcherProvider.getConfig(Object.keys(CHANNELS))
         : {
+          ...channels,
           email: {
             providers: [],
             multiProviderStrategy: 'fallback',

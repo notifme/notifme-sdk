@@ -866,7 +866,35 @@ const smsCheapStrategy = (providers) => async (request) => {
 
 If you would like to see another provider or channel, please [upvote the corresponding issue](https://github.com/notifme/notifme-sdk/issues) (or create one if it does not exist yet).
 
-### 3. Send a notification
+### 3. Custom channels
+
+If you want to have custom channels (and providers) you can add them.
+
+Example:
+
+</p></details>
+<details><summary>Custom channel and provider</summary><p>
+
+```
+new NotifmeSdk({
+  channels: {
+    socket: {
+      multiProviderStrategy: 'fallback',
+      providers: [
+        {
+          type: 'custom',
+          id: 'my-socket-sender',
+          send: async () => {
+            return 'custom-socket-id'
+          }
+        }
+      ]
+    }
+  }
+})
+```
+
+### 4. Send a notification
 
 #### Parameters
 
@@ -1034,7 +1062,7 @@ Examples:
 | Success<br>(when Promise resolves) | `{status: 'success', channels: {sms: {id: 'id-116561976', providerId: 'sms-default-provider'}}}` |
 | Error<br>(here Notification Catcher is not running) | `{status: 'error', channels: {sms: {id: undefined, providerId: 'sms-notificationcatcher-provider'}}, errors: {sms: 'connect ECONNREFUSED 127.0.0.1:1025'}}` |
 
-### 4. In production
+### 5. In production
 
 #### Recommended options
 
