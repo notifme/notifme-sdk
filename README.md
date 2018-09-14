@@ -237,6 +237,24 @@ new NotifmeSdk({
 ```
 
 </p></details>
+<details><summary>Mandrill</summary><p>
+
+```javascript
+new NotifmeSdk({
+  channels: {
+    email: {
+      providers: [{
+        type: 'mandrill',
+        auth: {
+          apiKey: 'xxxxx'
+        }
+      }]
+    }
+  }
+})
+```
+
+</p></details>
 <details><summary>Sendgrid</summary><p>
 
 ```javascript

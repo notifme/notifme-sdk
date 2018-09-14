@@ -1,6 +1,7 @@
 /* @flow */
 import EmailLoggerProvider from '../logger'
 import EmailMailgunProvider from './mailgun'
+import EmailMandrillProvider from './mandrill'
 import EmailNotificationCatcherProvider from './notificationCatcher'
 import EmailSendGridProvider from './sendgrid'
 import EmailSesProvider from './ses'
@@ -38,6 +39,9 @@ export default function factory ({type, ...config}: Object): EmailProviderType {
     // Providers
     case 'mailgun':
       return new EmailMailgunProvider(config)
+
+    case 'mandrill':
+      return new EmailMandrillProvider(config)
 
     case 'sendgrid':
       return new EmailSendGridProvider(config)

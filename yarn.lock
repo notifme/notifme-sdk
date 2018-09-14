@@ -134,7 +134,7 @@ acorn@^5.0.0, acorn@^5.3.0, acorn@^5.5.0:
   version "5.5.3"
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-5.5.3.tgz#f473dd47e0277a08e28e9bec5aeeb04751f0b8c9"
 
-addressparser@~1.0.1:
+addressparser@^1.0.1, addressparser@~1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/addressparser/-/addressparser-1.0.1.tgz#47afbe1a2a9262191db6838e4fd1d39b40821746"
 
@@ -2083,6 +2083,10 @@ extend-shallow@^3.0.0, extend-shallow@^3.0.2:
     assign-symbols "^1.0.0"
     is-extendable "^1.0.1"
 
+extend@^3.0.0:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/extend/-/extend-3.0.2.tgz#f8b1136b4071fbd8eb140aff858b1019ec2915fa"
+
 extend@~3.0.0, extend@~3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/extend/-/extend-3.0.1.tgz#a755ea7bc1adfcc5a31ce7e762dbaadc5e636444"
@@ -3596,6 +3600,10 @@ makeerror@1.0.x:
   dependencies:
     tmpl "1.0.x"
 
+mandrill-api@^1.0.45:
+  version "1.0.45"
+  resolved "https://registry.yarnpkg.com/mandrill-api/-/mandrill-api-1.0.45.tgz#163939cf486bd18277b0f3baf412c3e65d84a72d"
+
 map-cache@^0.2.2:
   version "0.2.2"
   resolved "https://registry.yarnpkg.com/map-cache/-/map-cache-0.2.2.tgz#c32abd0bd6525d9b051645bb4f26ac5dc98a0dbf"
@@ -3888,6 +3896,14 @@ nodemailer-fetch@1.3.0:
 nodemailer-fetch@1.6.0:
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/nodemailer-fetch/-/nodemailer-fetch-1.6.0.tgz#79c4908a1c0f5f375b73fe888da9828f6dc963a4"
+
+nodemailer-mandrill-transport@1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/nodemailer-mandrill-transport/-/nodemailer-mandrill-transport-1.2.0.tgz#69969029d259b46921cc12db70ca1551bf394b04"
+  dependencies:
+    addressparser "^1.0.1"
+    extend "^3.0.0"
+    mandrill-api "^1.0.45"
 
 nodemailer-shared@1.0.4:
   version "1.0.4"
