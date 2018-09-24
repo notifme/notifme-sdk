@@ -245,9 +245,7 @@ new NotifmeSdk({
     email: {
       providers: [{
         type: 'mandrill',
-        auth: {
-          apiKey: 'xxxxx'
-        }
+        apiKey: 'xxxxx'
       }]
     }
   }
