@@ -18,9 +18,7 @@ const sdk = new NotifmeSdk({
     email: {
       providers: [{
         type: 'mandrill',
-        auth: {
-          apiKey: 'apikey'
-        }
+        apiKey: 'apikey'
       }]
     }
   }

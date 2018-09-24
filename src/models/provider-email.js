@@ -75,9 +75,7 @@ export type EmailProviderType = {
 } | {
   // Options (Doc: https://github.com/Rebelmail/nodemailer-mandrill-transport)
   type: 'mandrill',
-  auth: {
-    apiKey: string
-  }
+  apiKey: string
 } | {
   type: 'sendgrid',
   apiKey: string
