@@ -1,5 +1,5 @@
 /* @flow */
-import type {SmsRequestType} from './notification-request'
+import type { SmsRequestType } from './notification-request'
 
 // TODO?: other SMS providers
 export type SmsProviderType = {

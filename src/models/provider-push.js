@@ -1,5 +1,5 @@
 /* @flow */
-import type {PushRequestType} from './notification-request'
+import type { PushRequestType } from './notification-request'
 
 export type PushProviderType = {
   type: 'logger'

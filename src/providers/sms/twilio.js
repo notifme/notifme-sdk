@@ -2,14 +2,14 @@
 import fetch from '../../util/request'
 import FormData from 'form-data'
 // Types
-import type {SmsRequestType} from '../../models/notification-request'
+import type { SmsRequestType } from '../../models/notification-request'
 
 export default class SmsTwilioProvider {
   id: string = 'sms-twilio-provider'
   accountSid: string
   apiKey: string
 
-  constructor ({accountSid, authToken}: Object) {
+  constructor ({ accountSid, authToken }: Object) {
     this.accountSid = accountSid
     this.apiKey = Buffer.from(`${accountSid}:${authToken}`).toString('base64')
   }
@@ -18,7 +18,7 @@ export default class SmsTwilioProvider {
    * Note: 'type', 'nature', 'messageClass' are not supported.
    */
   async send (request: SmsRequestType): Promise<string> {
-    const {from, to, text, ttl} = request
+    const { from, to, text, ttl } = request
     const form = new FormData()
     form.append('From', from)
     form.append('To', to)

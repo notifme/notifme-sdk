@@ -6,13 +6,13 @@ import logger from './util/logger'
 import providerFactory from './providers'
 import strategyProvidersFactory from './strategies/providers'
 // Types
-import type {EmailRequestType, PushRequestType, SmsRequestType, VoiceRequestType, WebpushRequestType, SlackRequestType} from './models/notification-request'
-import type {EmailProviderType} from './models/provider-email'
-import type {PushProviderType} from './models/provider-push'
-import type {SmsProviderType} from './models/provider-sms'
-import type {VoiceProviderType} from './models/provider-voice'
-import type {WebpushProviderType} from './models/provider-webpush'
-import type {SlackProviderType} from './models/provider-slack'
+import type { EmailRequestType, PushRequestType, SmsRequestType, VoiceRequestType, WebpushRequestType, SlackRequestType } from './models/notification-request'
+import type { EmailProviderType } from './models/provider-email'
+import type { PushProviderType } from './models/provider-push'
+import type { SmsProviderType } from './models/provider-sms'
+import type { VoiceProviderType } from './models/provider-voice'
+import type { WebpushProviderType } from './models/provider-webpush'
+import type { SlackProviderType } from './models/provider-slack'
 import type SenderType from './sender'
 
 export const CHANNELS = {
@@ -93,7 +93,7 @@ export default class NotifmeSdk {
     this.sender = new Sender(Object.keys(CHANNELS), providers, strategies)
   }
 
-  mergeWithDefaultConfig ({channels, ...rest}: OptionsType) {
+  mergeWithDefaultConfig ({ channels, ...rest }: OptionsType) {
     return {
       useNotificationCatcher: false,
       ...rest,

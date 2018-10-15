@@ -8,14 +8,14 @@ import EmailSendmailProvider from './sendmail'
 import EmailSmtpProvider from './smtp'
 import EmailSparkPostProvider from './sparkpost'
 // Types
-import type {EmailRequestType} from '../../models/notification-request'
+import type { EmailRequestType } from '../../models/notification-request'
 
 export interface EmailProviderType {
   id: string,
   send(request: EmailRequestType): Promise<string>
 }
 
-export default function factory ({type, ...config}: Object): EmailProviderType {
+export default function factory ({ type, ...config }: Object): EmailProviderType {
   switch (type) {
     // Development
     case 'logger':

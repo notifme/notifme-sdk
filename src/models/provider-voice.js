@@ -1,5 +1,5 @@
 /* @flow */
-import type {VoiceRequestType} from './notification-request'
+import type { VoiceRequestType } from './notification-request'
 
 // TODO?: other Voice providers
 export type VoiceProviderType = {

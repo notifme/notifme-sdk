@@ -1,10 +1,10 @@
 /* @flow */
 import NotificationCatcherProvider from '../notificationCatcherProvider'
 // Types
-import type {WebpushRequestType} from '../../models/notification-request'
+import type { WebpushRequestType } from '../../models/notification-request'
 
 export default class WebpushNotificationCatcherProvider extends NotificationCatcherProvider {
-  async send ({subscription, title, ...request}: WebpushRequestType): Promise<string> {
+  async send ({ subscription, title, ...request }: WebpushRequestType): Promise<string> {
     return this.sendToCatcher({
       to: `${request.userId ? request.userId : 'user'}@webpush`,
       from: '-',
@@ -12,7 +12,7 @@ export default class WebpushNotificationCatcherProvider extends NotificationCatc
       headers: {
         'X-type': 'webpush',
         'X-to': `[webpush] ${request.userId ? request.userId : ''}`,
-        'X-payload': JSON.stringify({title, ...request})
+        'X-payload': JSON.stringify({ title, ...request })
       }
     })
   }

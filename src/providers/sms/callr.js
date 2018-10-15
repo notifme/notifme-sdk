@@ -1,13 +1,13 @@
 /* @flow */
 import fetch from '../../util/request'
 // Types
-import type {SmsRequestType} from '../../models/notification-request'
+import type { SmsRequestType } from '../../models/notification-request'
 
 export default class SmsCallrProvider {
   id: string = 'sms-callr-provider'
   apiKey: string
 
-  constructor ({login, password}: Object) {
+  constructor ({ login, password }: Object) {
     this.apiKey = Buffer.from(`${login}:${password}`).toString('base64')
   }
 
@@ -15,7 +15,7 @@ export default class SmsCallrProvider {
    * Note: 'from', 'messageClass', 'ttl' are not supported.
    */
   async send (request: SmsRequestType): Promise<string> {
-    const {id, userId, from, to, text, type, nature} = request
+    const { id, userId, from, to, text, type, nature } = request
     const response = await fetch('https://api.callr.com/rest/v1.1/sms', {
       method: 'POST',
       headers: {
@@ -30,7 +30,7 @@ export default class SmsCallrProvider {
         options: {
           force_encoding: type === 'unicode' ? 'UNICODE' : 'GSM',
           nature: nature === 'marketing' ? 'MARKETING' : 'ALERTING',
-          ...(userId || id ? {user_data: userId || id} : null)
+          ...(userId || id ? { user_data: userId || id } : null)
         }
       })
     })

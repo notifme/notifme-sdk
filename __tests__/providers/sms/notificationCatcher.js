@@ -12,7 +12,7 @@ const sdk = new NotifmeSdk({
 })
 
 const request = {
-  sms: {from: 'Notifme', to: '+15000000001', text: 'Hello John!'}
+  sms: { from: 'Notifme', to: '+15000000001', text: 'Hello John!' }
 }
 
 test('sms notification catcher provider should use SMTP provider.', async () => {
@@ -30,13 +30,13 @@ test('sms notification catcher provider should use SMTP provider.', async () => 
   expect(result).toEqual({
     status: 'success',
     channels: {
-      sms: {id: undefined, providerId: 'sms-notificationcatcher-provider'}
+      sms: { id: undefined, providerId: 'sms-notificationcatcher-provider' }
     }
   })
 })
 
 test('sms notification catcher provider should use SMTP provider (long message).', async () => {
-  const result = await sdk.send({sms: {...request.sms, text: 'very very very very very very very very long'}})
+  const result = await sdk.send({ sms: { ...request.sms, text: 'very very very very very very very very long' } })
   expect(mockSend).lastCalledWith({
     from: 'Notifme',
     headers: {
@@ -50,7 +50,7 @@ test('sms notification catcher provider should use SMTP provider (long message).
   expect(result).toEqual({
     status: 'success',
     channels: {
-      sms: {id: undefined, providerId: 'sms-notificationcatcher-provider'}
+      sms: { id: undefined, providerId: 'sms-notificationcatcher-provider' }
     }
   })
 })

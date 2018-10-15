@@ -2,7 +2,7 @@
 // "statefull" strategy
 import strategyFallback from './fallback'
 // Types
-import type {StrategyType} from './index'
+import type { StrategyType } from './index'
 
 function rotate<T> (arr: T[], forward): T[] { // /!\ mute array, the mutation is "the state"
   if (forward) {

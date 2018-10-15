@@ -32,7 +32,7 @@ test('email unknown provider.', async () => {
   expect(result).toEqual({
     status: 'success',
     channels: {
-      email: {id: 'custom-returned-id', providerId: 'my-custom-email-provider'}
+      email: { id: 'custom-returned-id', providerId: 'my-custom-email-provider' }
     }
   })
 })
@@ -46,7 +46,7 @@ test('email custom provider.', async () => {
           type: 'unknown'
         }]
       }
-    }})
+    } })
   )).toThrow('Unknown email provider "unknown".')
 })
 
@@ -64,7 +64,7 @@ test('email logger provider.', async () => {
   expect(result).toEqual({
     status: 'success',
     channels: {
-      email: {id: expect.stringContaining('id-'), providerId: 'email-logger-provider'}
+      email: { id: expect.stringContaining('id-'), providerId: 'email-logger-provider' }
     }
   })
 })

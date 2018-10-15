@@ -24,14 +24,14 @@ const request = {
 
 test('email notification catcher provider should use SMTP provider.', async () => {
   const result = await sdk.send(request)
-  const {to, from, html, text, subject, replyTo} = request.email
+  const { to, from, html, text, subject, replyTo } = request.email
   expect(mockSend).lastCalledWith({
-    to, from, html, text, subject, replyTo, headers: {'X-to': `[email] ${to}`}
+    to, from, html, text, subject, replyTo, headers: { 'X-to': `[email] ${to}` }
   })
   expect(result).toEqual({
     status: 'success',
     channels: {
-      email: {id: undefined, providerId: 'email-notificationcatcher-provider'}
+      email: { id: undefined, providerId: 'email-notificationcatcher-provider' }
     }
   })
 })

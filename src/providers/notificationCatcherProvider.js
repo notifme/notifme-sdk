@@ -1,8 +1,8 @@
 /* @flow */
 import EmailSmtpProvider from './email/smtp'
 // Types
-import type {ChannelType} from '../index'
-import type {EmailRequestType} from '../models/notification-request'
+import type { ChannelType } from '../index'
+import type { EmailRequestType } from '../models/notification-request'
 
 export default class NotificationCatcherProvider {
   id: string
@@ -12,7 +12,7 @@ export default class NotificationCatcherProvider {
     return channels.reduce((config, channel: any) => ({
       ...config,
       [channel]: {
-        providers: [{type: 'notificationcatcher'}],
+        providers: [{ type: 'notificationcatcher' }],
         multiProviderStrategy: 'no-fallback'
       }
     }), {})

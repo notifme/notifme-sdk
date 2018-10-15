@@ -1,7 +1,7 @@
 /* @flow */
 /* global jest, test, expect */
 import NotifmeSdk from '../../../src'
-import mockHttp, {mockResponse} from '../mockHttp'
+import mockHttp, { mockResponse } from '../mockHttp'
 
 jest.mock('../../../src/util/logger', () => ({
   warn: jest.fn()
@@ -20,11 +20,11 @@ const sdk = new NotifmeSdk({
 })
 
 const request = {
-  voice: {from: 'Notifme', to: '+15000000001', url: 'https://notifme.github.io'}
+  voice: { from: 'Notifme', to: '+15000000001', url: 'https://notifme.github.io' }
 }
 
 test('Twilio success with minimal parameters.', async () => {
-  mockResponse(200, JSON.stringify({sid: 'returned-id'}))
+  mockResponse(200, JSON.stringify({ sid: 'returned-id' }))
   const result = await sdk.send(request)
   expect(mockHttp).lastCalledWith(expect.objectContaining({
     hostname: 'api.twilio.com',
@@ -42,14 +42,14 @@ test('Twilio success with minimal parameters.', async () => {
   expect(result).toEqual({
     status: 'success',
     channels: {
-      voice: {id: 'returned-id', providerId: 'voice-twilio-provider'}
+      voice: { id: 'returned-id', providerId: 'voice-twilio-provider' }
     }
   })
 })
 
 test('Twilio success with all parameters.', async () => {
-  mockResponse(200, JSON.stringify({sid: 'returned-id'}))
-  const result = await sdk.send({voice: {
+  mockResponse(200, JSON.stringify({ sid: 'returned-id' }))
+  const result = await sdk.send({ voice: {
     from: 'Notifme',
     to: '+15000000001',
     url: 'https://notifme.github.io',
@@ -62,7 +62,7 @@ test('Twilio success with all parameters.', async () => {
     machineDetection: 'Enable',
     machineDetectionTimeout: 30,
     timeout: 60
-  }})
+  } })
   expect(mockHttp).lastCalledWith(expect.objectContaining({
     hostname: 'api.twilio.com',
     method: 'POST',
@@ -79,13 +79,13 @@ test('Twilio success with all parameters.', async () => {
   expect(result).toEqual({
     status: 'success',
     channels: {
-      voice: {id: 'returned-id', providerId: 'voice-twilio-provider'}
+      voice: { id: 'returned-id', providerId: 'voice-twilio-provider' }
     }
   })
 })
 
 test('Twilio API error.', async () => {
-  mockResponse(400, JSON.stringify({message: 'error!'}))
+  mockResponse(400, JSON.stringify({ message: 'error!' }))
   const result = await sdk.send(request)
   expect(result).toEqual({
     status: 'error',
@@ -93,7 +93,7 @@ test('Twilio API error.', async () => {
       voice: '400 - error!'
     },
     channels: {
-      voice: {id: undefined, providerId: 'voice-twilio-provider'}
+      voice: { id: undefined, providerId: 'voice-twilio-provider' }
     }
   })
 })

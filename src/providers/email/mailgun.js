@@ -2,7 +2,7 @@
 import fetch from '../../util/request'
 import FormData from 'form-data'
 // types
-import type {EmailRequestType} from '../../models/notification-request'
+import type { EmailRequestType } from '../../models/notification-request'
 
 export default class EmailMailgunProvider {
   id: string = 'email-mailgun-provider'
@@ -15,7 +15,7 @@ export default class EmailMailgunProvider {
   }
 
   async send (request: EmailRequestType): Promise<string> {
-    const {id, userId, from, replyTo, subject, html, text, headers, to, cc, bcc, attachments} = request
+    const { id, userId, from, replyTo, subject, html, text, headers, to, cc, bcc, attachments } = request
     const form = new FormData()
     form.append('from', from)
     form.append('to', to)
@@ -26,8 +26,8 @@ export default class EmailMailgunProvider {
     if (cc && cc.length > 0) cc.forEach((email) => form.append('cc', email))
     if (bcc && bcc.length > 0) bcc.forEach((email) => form.append('bcc', email))
     if (attachments && attachments.length > 0) {
-      attachments.forEach(({contentType, filename, content}) => {
-        form.append('attachment', content, {filename, contentType})
+      attachments.forEach(({ contentType, filename, content }) => {
+        form.append('attachment', content, { filename, contentType })
       })
     }
     if (headers) Object.keys(headers).forEach((header) => form.append(`h:${header}`, headers[header]))

@@ -1,7 +1,7 @@
 /* @flow */
 /* global jest, test, expect */
 import NotifmeSdk from '../../../src'
-import mockHttp, {mockResponse} from '../mockHttp'
+import mockHttp, { mockResponse } from '../mockHttp'
 
 jest.mock('../../../src/util/logger', () => ({
   warn: jest.fn()
@@ -29,7 +29,7 @@ const request = {
 }
 
 test('Mailgun success with minimal parameters.', async () => {
-  mockResponse(200, JSON.stringify({id: 'returned-id'}))
+  mockResponse(200, JSON.stringify({ id: 'returned-id' }))
   const result = await sdk.send(request)
   expect(mockHttp).lastCalledWith(expect.objectContaining({
     hostname: 'api.mailgun.net',
@@ -48,13 +48,13 @@ test('Mailgun success with minimal parameters.', async () => {
   expect(result).toEqual({
     status: 'success',
     channels: {
-      email: {id: 'returned-id', providerId: 'email-mailgun-provider'}
+      email: { id: 'returned-id', providerId: 'email-mailgun-provider' }
     }
   })
 })
 
 test('Mailgun success with all parameters.', async () => {
-  mockResponse(200, JSON.stringify({id: 'returned-id'}))
+  mockResponse(200, JSON.stringify({ id: 'returned-id' }))
   const completeRequest = {
     metadata: {
       id: '24',
@@ -66,7 +66,7 @@ test('Mailgun success with all parameters.', async () => {
       subject: 'Hi John',
       html: '<b>Hello John! How are you?</b>',
       replyTo: 'replyto@example.com',
-      headers: {'My-Custom-Header': 'my-value'},
+      headers: { 'My-Custom-Header': 'my-value' },
       cc: ['cc1@example.com', 'cc2@example.com'],
       bcc: ['bcc@example.com'],
       attachments: [{
@@ -94,13 +94,13 @@ test('Mailgun success with all parameters.', async () => {
   expect(result).toEqual({
     status: 'success',
     channels: {
-      email: {id: 'returned-id', providerId: 'email-mailgun-provider'}
+      email: { id: 'returned-id', providerId: 'email-mailgun-provider' }
     }
   })
 })
 
 test('Mailgun API error.', async () => {
-  mockResponse(400, JSON.stringify({message: 'error!'}))
+  mockResponse(400, JSON.stringify({ message: 'error!' }))
   const result = await sdk.send(request)
   expect(result).toEqual({
     status: 'error',
@@ -108,7 +108,7 @@ test('Mailgun API error.', async () => {
       email: '400 - error!'
     },
     channels: {
-      email: {id: undefined, providerId: 'email-mailgun-provider'}
+      email: { id: undefined, providerId: 'email-mailgun-provider' }
     }
   })
 })

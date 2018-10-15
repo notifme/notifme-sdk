@@ -30,7 +30,7 @@ test('slack notification catcher provider should use SMTP provider.', async () =
   expect(result).toEqual({
     status: 'success',
     channels: {
-      slack: {id: '', providerId: 'slack-notificationcatcher-provider'}
+      slack: { id: '', providerId: 'slack-notificationcatcher-provider' }
     }
   })
 })
@@ -54,7 +54,7 @@ test('slack notification catcher provider should use SMTP provider (long message
   expect(result).toEqual({
     status: 'success',
     channels: {
-      slack: {id: '', providerId: 'slack-notificationcatcher-provider'}
+      slack: { id: '', providerId: 'slack-notificationcatcher-provider' }
     }
   })
 })

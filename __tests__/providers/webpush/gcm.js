@@ -7,7 +7,7 @@ jest.mock('web-push')
 jest.mock('../../../src/util/logger', () => ({
   warn: jest.fn()
 }))
-webpush.sendNotification.mockReturnValue({headers: {location: 'returned-id'}})
+webpush.sendNotification.mockReturnValue({ headers: { location: 'returned-id' } })
 
 const request = {
   webpush: {
@@ -40,12 +40,12 @@ test('GCM with API key.', async () => {
   expect(webpush.sendNotification).lastCalledWith(
     request.webpush.subscription,
     '{"title":"Hi John","body":"Hello John! How are you?","icon":"https://notifme.github.io/notifme-sdk/img/icon.png"}',
-    {TTL: undefined, headers: undefined}
+    { TTL: undefined, headers: undefined }
   )
   expect(result).toEqual({
     status: 'success',
     channels: {
-      webpush: {id: 'returned-id', providerId: 'webpush-gcm-provider'}
+      webpush: { id: 'returned-id', providerId: 'webpush-gcm-provider' }
     }
   })
 })
@@ -56,7 +56,7 @@ test('GCM with vapid.', async () => {
       webpush: {
         providers: [{
           type: 'gcm',
-          vapidDetails: {subject: 'xxxx', publicKey: 'xxxxx', privateKey: 'xxxxxx'}
+          vapidDetails: { subject: 'xxxx', publicKey: 'xxxxx', privateKey: 'xxxxxx' }
         }]
       }
     }
@@ -66,12 +66,12 @@ test('GCM with vapid.', async () => {
   expect(webpush.sendNotification).lastCalledWith(
     request.webpush.subscription,
     '{"title":"Hi John","body":"Hello John! How are you?","icon":"https://notifme.github.io/notifme-sdk/img/icon.png"}',
-    {TTL: undefined, headers: undefined}
+    { TTL: undefined, headers: undefined }
   )
   expect(result).toEqual({
     status: 'success',
     channels: {
-      webpush: {id: 'returned-id', providerId: 'webpush-gcm-provider'}
+      webpush: { id: 'returned-id', providerId: 'webpush-gcm-provider' }
     }
   })
 })

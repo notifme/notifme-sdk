@@ -10,7 +10,7 @@ class Logger {
     this.innerLogger = new winston.Logger()
     this.configure({
       transports: [
-        new winston.transports.Console({colorize: true})
+        new winston.transports.Console({ colorize: true })
       ]
     })
   }
@@ -20,7 +20,7 @@ class Logger {
   }
 
   mute () {
-    this.configure({transports: []})
+    this.configure({ transports: [] })
   }
 
   log (level: LevelType, info: any, extra?: any) {

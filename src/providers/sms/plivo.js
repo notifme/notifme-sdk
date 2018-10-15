@@ -1,14 +1,14 @@
 /* @flow */
 import fetch from '../../util/request'
 // Types
-import type {SmsRequestType} from '../../models/notification-request'
+import type { SmsRequestType } from '../../models/notification-request'
 
 export default class SmsPlivoProvider {
   id: string = 'sms-plivo-provider'
   authId: string
   apiKey: string
 
-  constructor ({authId, authToken}: Object) {
+  constructor ({ authId, authToken }: Object) {
     this.authId = authId
     this.apiKey = Buffer.from(`${authId}:${authToken}`).toString('base64')
   }
@@ -17,7 +17,7 @@ export default class SmsPlivoProvider {
    * Note: 'type', 'nature', 'ttl', 'messageClass' are not supported.
    */
   async send (request: SmsRequestType): Promise<string> {
-    const {from, to, text} = request
+    const { from, to, text } = request
     const response = await fetch(`https://api.plivo.com/v1/Account/${this.authId}/Message/`, {
       method: 'POST',
       headers: {

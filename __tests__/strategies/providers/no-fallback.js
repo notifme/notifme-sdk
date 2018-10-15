@@ -15,10 +15,10 @@ test('No-Fallback strategy should call first provider and return success if it s
     }
   ])
   const result = await strategy({
-    sms: {from: '+15000000000', to: '+15000000001', text: 'Hello John! How are you?'}
+    sms: { from: '+15000000000', to: '+15000000001', text: 'Hello John! How are you?' }
   })
 
-  expect(result).toEqual({providerId: 'sms-provider-1', id: '24'})
+  expect(result).toEqual({ providerId: 'sms-provider-1', id: '24' })
 })
 
 test('No-Fallback strategy should call first provider and throw error if it failed.', async () => {
@@ -35,7 +35,7 @@ test('No-Fallback strategy should call first provider and throw error if it fail
   let error
   try {
     await strategy({
-      sms: {from: '+15000000000', to: '+15000000001', text: 'Hello John! How are you?'}
+      sms: { from: '+15000000000', to: '+15000000001', text: 'Hello John! How are you?' }
     })
   } catch (e) {
     error = e

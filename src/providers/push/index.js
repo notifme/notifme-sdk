@@ -6,14 +6,14 @@ import PushLoggerProvider from '../logger'
 import PushNotificationCatcherProvider from './notificationCatcher'
 import PushWnsProvider from './wns'
 // Types
-import type {PushRequestType} from '../../models/notification-request'
+import type { PushRequestType } from '../../models/notification-request'
 
 export interface PushProviderType {
   id: string,
   send(request: PushRequestType): Promise<string>
 }
 
-export default function factory ({type, ...config}: Object): PushProviderType {
+export default function factory ({ type, ...config }: Object): PushProviderType {
   switch (type) {
     // Development
     case 'logger':

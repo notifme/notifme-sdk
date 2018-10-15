@@ -1,7 +1,7 @@
 /* @flow */
 import fetch from '../../util/request'
 // Types
-import type {SlackRequestType} from '../../models/notification-request'
+import type { SlackRequestType } from '../../models/notification-request'
 
 export default class SlackProvider {
   id: string = 'slack-provider'
@@ -11,7 +11,7 @@ export default class SlackProvider {
     this.webhookUrl = config.webhookUrl
   }
 
-  async send ({webhookUrl, ...request}: SlackRequestType): Promise<string> {
+  async send ({ webhookUrl, ...request }: SlackRequestType): Promise<string> {
     const apiRequest = {
       method: 'POST',
       body: JSON.stringify(request)

@@ -8,7 +8,7 @@ jest.mock('../../../src/util/logger', () => ({
 }))
 
 const request = {
-  sms: {from: '+15000000000', to: '+15000000001', text: 'Hello John! How are you?'}
+  sms: { from: '+15000000000', to: '+15000000001', text: 'Hello John! How are you?' }
 }
 
 test('Roundrobin strategy should call all providers in turns.', async () => {
@@ -29,20 +29,20 @@ test('Roundrobin strategy should call all providers in turns.', async () => {
   ])
 
   // First call
-  expect(await strategy(request)).toEqual({providerId: 'sms-provider-1', id: '24'})
+  expect(await strategy(request)).toEqual({ providerId: 'sms-provider-1', id: '24' })
   // Second call
-  expect(await strategy(request)).toEqual({providerId: 'sms-provider-2', id: '24'})
+  expect(await strategy(request)).toEqual({ providerId: 'sms-provider-2', id: '24' })
   // Third call
-  expect(await strategy(request)).toEqual({providerId: 'sms-provider-4', id: '24'})
+  expect(await strategy(request)).toEqual({ providerId: 'sms-provider-4', id: '24' })
   expect(logger.warn).toBeCalledWith('sms-provider-3', new Error('error provider 3'))
   // Fourth call
-  expect(await strategy(request)).toEqual({providerId: 'sms-provider-4', id: '24'})
+  expect(await strategy(request)).toEqual({ providerId: 'sms-provider-4', id: '24' })
   // Fifth call
-  expect(await strategy(request)).toEqual({providerId: 'sms-provider-1', id: '24'})
+  expect(await strategy(request)).toEqual({ providerId: 'sms-provider-1', id: '24' })
   // Sixth call
-  expect(await strategy(request)).toEqual({providerId: 'sms-provider-2', id: '24'})
+  expect(await strategy(request)).toEqual({ providerId: 'sms-provider-2', id: '24' })
   // Seventh call
-  expect(await strategy(request)).toEqual({providerId: 'sms-provider-4', id: '24'})
+  expect(await strategy(request)).toEqual({ providerId: 'sms-provider-4', id: '24' })
   expect(logger.warn).toBeCalledWith('sms-provider-3', new Error('error provider 3'))
 })
 

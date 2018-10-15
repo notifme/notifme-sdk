@@ -1,7 +1,7 @@
 /* @flow */
 /* global jest, test, expect */
 import NotifmeSdk from '../../../src'
-import mockHttp, {mockResponse} from '../mockHttp'
+import mockHttp, { mockResponse } from '../mockHttp'
 
 jest.mock('../../../src/util/logger', () => ({
   warn: jest.fn()
@@ -56,21 +56,21 @@ test('SES success with minimal parameters.', async () => {
   expect(result).toEqual({
     status: 'success',
     channels: {
-      email: {id: 'returned-id', providerId: 'email-ses-provider'}
+      email: { id: 'returned-id', providerId: 'email-ses-provider' }
     }
   })
 })
 
 test('SES should return an error if a parameter is not of the right type.', async () => {
   // $FlowIgnore
-  const result = await sdk.send({email: {text: []}})
+  const result = await sdk.send({ email: { text: [] } })
   expect(result).toEqual({
     status: 'error',
     errors: {
       email: 'The "chunk" argument must be one of type string or Buffer. Received type object'
     },
     channels: {
-      email: {id: undefined, providerId: 'email-ses-provider'}
+      email: { id: undefined, providerId: 'email-ses-provider' }
     }
   })
 })
@@ -84,7 +84,7 @@ test('SES API error.', async () => {
       email: '400 - error!'
     },
     channels: {
-      email: {id: undefined, providerId: 'email-ses-provider'}
+      email: { id: undefined, providerId: 'email-ses-provider' }
     }
   })
 })

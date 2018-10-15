@@ -1,7 +1,7 @@
 /* @flow */
 /* global jest, test, expect */
 import NotifmeSdk from '../../../src'
-import mockHttp, {mockResponse} from '../mockHttp'
+import mockHttp, { mockResponse } from '../mockHttp'
 
 jest.mock('../../../src/util/logger', () => ({
   warn: jest.fn()
@@ -50,7 +50,7 @@ test('Sendgrid success with minimal parameters.', async () => {
   expect(result).toEqual({
     status: 'success',
     channels: {
-      email: {id: expect.stringMatching(/\w*/), providerId: 'email-sendgrid-provider'}
+      email: { id: expect.stringMatching(/\w*/), providerId: 'email-sendgrid-provider' }
     }
   })
 })
@@ -68,7 +68,7 @@ test('Sendgrid success with all parameters.', async () => {
       subject: 'Hi John',
       html: '<b>Hello John! How are you?</b>',
       replyTo: 'replyto@example.com',
-      headers: {'My-Custom-Header': 'my-value'},
+      headers: { 'My-Custom-Header': 'my-value' },
       cc: ['cc1@example.com', 'cc2@example.com'],
       bcc: ['bcc@example.com'],
       attachments: [{
@@ -99,7 +99,7 @@ test('Sendgrid success with all parameters.', async () => {
   expect(result).toEqual({
     status: 'success',
     channels: {
-      email: {id: '24', providerId: 'email-sendgrid-provider'}
+      email: { id: '24', providerId: 'email-sendgrid-provider' }
     }
   })
 })
@@ -143,13 +143,13 @@ test('Sendgrid success with buffered attachment.', async () => {
   expect(result).toEqual({
     status: 'success',
     channels: {
-      email: {id: '24', providerId: 'email-sendgrid-provider'}
+      email: { id: '24', providerId: 'email-sendgrid-provider' }
     }
   })
 })
 
 test('Sendgrid API error.', async () => {
-  mockResponse(400, JSON.stringify({errors: [{code: '24', message: 'error!'}]}))
+  mockResponse(400, JSON.stringify({ errors: [{ code: '24', message: 'error!' }] }))
   const result = await sdk.send(request)
   expect(result).toEqual({
     status: 'error',
@@ -157,7 +157,7 @@ test('Sendgrid API error.', async () => {
       email: '400 - code: 24, message: error!'
     },
     channels: {
-      email: {id: undefined, providerId: 'email-sendgrid-provider'}
+      email: { id: undefined, providerId: 'email-sendgrid-provider' }
     }
   })
 })

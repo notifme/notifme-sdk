@@ -10,14 +10,14 @@ import SmsOvhProvider from './ovh'
 import SmsPlivoProvider from './plivo'
 import SmsTwilioProvider from './twilio'
 // Types
-import type {SmsRequestType} from '../../models/notification-request'
+import type { SmsRequestType } from '../../models/notification-request'
 
 export interface SmsProviderType {
   id: string,
   send(request: SmsRequestType): Promise<string>
 }
 
-export default function factory ({type, ...config}: Object): SmsProviderType {
+export default function factory ({ type, ...config }: Object): SmsProviderType {
   switch (type) {
     // Development
     case 'logger':

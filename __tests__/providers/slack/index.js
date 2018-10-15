@@ -29,7 +29,7 @@ test('slack unknown provider.', async () => {
   expect(result).toEqual({
     status: 'success',
     channels: {
-      slack: {id: 'custom-returned-id', providerId: 'my-custom-slack-provider'}
+      slack: { id: 'custom-returned-id', providerId: 'my-custom-slack-provider' }
     }
   })
 })
@@ -43,7 +43,7 @@ test('slack custom provider.', async () => {
           type: 'unknown'
         }]
       }
-    }})
+    } })
   )).toThrow('Unknown slack provider "unknown".')
 })
 
@@ -61,7 +61,7 @@ test('slack logger provider.', async () => {
   expect(result).toEqual({
     status: 'success',
     channels: {
-      slack: {id: expect.stringContaining('id-'), providerId: 'slack-logger-provider'}
+      slack: { id: expect.stringContaining('id-'), providerId: 'slack-logger-provider' }
     }
   })
 })

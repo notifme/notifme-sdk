@@ -1,7 +1,7 @@
 /* @flow */
 import fetch from '../../util/request'
 // types
-import type {EmailRequestType} from '../../models/notification-request'
+import type { EmailRequestType } from '../../models/notification-request'
 
 export default class EmailSparkPostProvider {
   id: string = 'email-sparkpost-provider'
@@ -12,7 +12,7 @@ export default class EmailSparkPostProvider {
   }
 
   async send (request: EmailRequestType): Promise<string> {
-    const {id, userId, from, replyTo, subject, html, text, headers, to, cc, bcc, attachments} = request
+    const { id, userId, from, replyTo, subject, html, text, headers, to, cc, bcc, attachments } = request
     const response = await fetch('https://api.sparkpost.com/api/v1/transmissions', {
       method: 'POST',
       headers: {
@@ -32,9 +32,9 @@ export default class EmailSparkPostProvider {
           text,
           headers: {
             ...headers,
-            ...(cc && cc.length > 0 ? {CC: cc.join(',')} : null)
+            ...(cc && cc.length > 0 ? { CC: cc.join(',') } : null)
           },
-          attachments: (attachments || []).map(({contentType, filename, content}) =>
+          attachments: (attachments || []).map(({ contentType, filename, content }) =>
             ({
               type: contentType,
               name: filename,
@@ -42,11 +42,11 @@ export default class EmailSparkPostProvider {
             }))
         },
         recipients: [
-          {address: {email: to}},
-          ...(cc || []).map((email) => ({address: {email, header_to: to}})),
-          ...(bcc || []).map((email) => ({address: {email, header_to: to}}))
+          { address: { email: to } },
+          ...(cc || []).map((email) => ({ address: { email, header_to: to } })),
+          ...(bcc || []).map((email) => ({ address: { email, header_to: to } }))
         ],
-        metadata: {id, userId}
+        metadata: { id, userId }
       })
     })
 

@@ -1,7 +1,7 @@
 /* @flow */
 import NotifmeSdk from '../src' // notifme-sdk
 // Types
-import type {NotificationRequestType} from '../src' // notifme-sdk
+import type { NotificationRequestType } from '../src' // notifme-sdk
 
 /*
  * Note: Notification catcher must be running locally.

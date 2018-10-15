@@ -4,11 +4,11 @@ import NotifmeSdk from '../src'
 
 const sdk = new NotifmeSdk({})
 // $FlowIgnore
-sdk.sender = {send: jest.fn()}
+sdk.sender = { send: jest.fn() }
 
 test('NotifmeSdk.send should call internal sender send method.', () => {
   const request = {
-    sms: {from: 'Notifme', to: '+15000000001', text: 'Hello John! How are you?'}
+    sms: { from: 'Notifme', to: '+15000000001', text: 'Hello John! How are you?' }
   }
   sdk.send(request)
   expect(sdk.sender.send).toBeCalledWith(request)
@@ -51,27 +51,27 @@ const config = {
   channels: {
     email: {
       multiProviderStrategy: 'no-fallback',
-      providers: [{type: 'logger'}]
+      providers: [{ type: 'logger' }]
     },
     sms: {
       multiProviderStrategy: 'no-fallback',
-      providers: [{type: 'logger'}]
+      providers: [{ type: 'logger' }]
     },
     voice: {
       multiProviderStrategy: 'no-fallback',
-      providers: [{type: 'logger'}]
+      providers: [{ type: 'logger' }]
     },
     push: {
       multiProviderStrategy: 'no-fallback',
-      providers: [{type: 'logger'}]
+      providers: [{ type: 'logger' }]
     },
     slack: {
       multiProviderStrategy: 'no-fallback',
-      providers: [{type: 'logger'}]
+      providers: [{ type: 'logger' }]
     },
     webpush: {
       multiProviderStrategy: 'no-fallback',
-      providers: [{type: 'logger'}]
+      providers: [{ type: 'logger' }]
     }
   }
 }
@@ -100,32 +100,32 @@ test('mergeWithDefaultConfig should merge config with default if not complete.',
 })
 
 test('mergeWithDefaultConfig should ignore config if useNotificationCatcher is true.', () => {
-  expect(sdk.mergeWithDefaultConfig({...config, useNotificationCatcher: true})).toEqual({
+  expect(sdk.mergeWithDefaultConfig({ ...config, useNotificationCatcher: true })).toEqual({
     useNotificationCatcher: true,
     channels: {
       email: {
         multiProviderStrategy: 'no-fallback',
-        providers: [{type: 'notificationcatcher'}]
+        providers: [{ type: 'notificationcatcher' }]
       },
       sms: {
         multiProviderStrategy: 'no-fallback',
-        providers: [{type: 'notificationcatcher'}]
+        providers: [{ type: 'notificationcatcher' }]
       },
       voice: {
         multiProviderStrategy: 'no-fallback',
-        providers: [{type: 'notificationcatcher'}]
+        providers: [{ type: 'notificationcatcher' }]
       },
       slack: {
         multiProviderStrategy: 'no-fallback',
-        providers: [{type: 'notificationcatcher'}]
+        providers: [{ type: 'notificationcatcher' }]
       },
       push: {
         multiProviderStrategy: 'no-fallback',
-        providers: [{type: 'notificationcatcher'}]
+        providers: [{ type: 'notificationcatcher' }]
       },
       webpush: {
         multiProviderStrategy: 'no-fallback',
-        providers: [{type: 'notificationcatcher'}]
+        providers: [{ type: 'notificationcatcher' }]
       }
     }
   })

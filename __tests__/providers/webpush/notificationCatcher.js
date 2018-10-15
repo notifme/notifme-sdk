@@ -41,13 +41,13 @@ test('webpush notification catcher provider should use SMTP provider.', async ()
   expect(result).toEqual({
     status: 'success',
     channels: {
-      webpush: {id: undefined, providerId: 'webpush-notificationcatcher-provider'}
+      webpush: { id: undefined, providerId: 'webpush-notificationcatcher-provider' }
     }
   })
 })
 
 test('webpush notification catcher provider should use SMTP provider (with userId).', async () => {
-  const result = await sdk.send({metadata: {userId: '24'}, ...request})
+  const result = await sdk.send({ metadata: { userId: '24' }, ...request })
   expect(mockSend).lastCalledWith({
     from: '-',
     headers: {
@@ -61,7 +61,7 @@ test('webpush notification catcher provider should use SMTP provider (with userI
   expect(result).toEqual({
     status: 'success',
     channels: {
-      webpush: {id: undefined, providerId: 'webpush-notificationcatcher-provider'}
+      webpush: { id: undefined, providerId: 'webpush-notificationcatcher-provider' }
     }
   })
 })

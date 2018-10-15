@@ -2,7 +2,7 @@
 import crypto from 'crypto'
 import fetch from '../../util/request'
 // Types
-import type {EmailRequestType} from '../../models/notification-request'
+import type { EmailRequestType } from '../../models/notification-request'
 
 export default class EmailSendGridProvider {
   id: string = 'email-sendgrid-provider'
@@ -13,7 +13,7 @@ export default class EmailSendGridProvider {
   }
 
   async send (request: EmailRequestType): Promise<string> {
-    const {id, userId, from, replyTo, subject, html, text, headers, to, cc, bcc, attachments} = request
+    const { id, userId, from, replyTo, subject, html, text, headers, to, cc, bcc, attachments } = request
     const generatedId = id || crypto.randomBytes(16).toString('hex')
     const response = await fetch('https://api.sendgrid.com/v3/mail/send', {
       method: 'POST',
@@ -24,21 +24,21 @@ export default class EmailSendGridProvider {
       },
       body: JSON.stringify({
         personalizations: [{
-          to: [{email: to}],
-          ...(cc && cc.length > 0 ? {cc: cc.map((email) => ({email}))} : null),
-          ...(bcc && bcc.length > 0 ? {bcc: bcc.map((email) => ({email}))} : null)
+          to: [{ email: to }],
+          ...(cc && cc.length > 0 ? { cc: cc.map((email) => ({ email })) } : null),
+          ...(bcc && bcc.length > 0 ? { bcc: bcc.map((email) => ({ email })) } : null)
         }],
-        from: {email: from},
-        ...(replyTo ? {reply_to: {email: replyTo}} : null),
+        from: { email: from },
+        ...(replyTo ? { reply_to: { email: replyTo } } : null),
         subject,
         content: [
-          ...(text ? [{type: 'text/plain', value: text}] : []),
-          ...(html ? [{type: 'text/html', value: html}] : [])
+          ...(text ? [{ type: 'text/plain', value: text }] : []),
+          ...(html ? [{ type: 'text/html', value: html }] : [])
         ],
         headers,
-        custom_args: {id: generatedId, userId},
+        custom_args: { id: generatedId, userId },
         ...(attachments && attachments.length > 0 ? {
-          attachments: attachments.map(({contentType, filename, content}) =>
+          attachments: attachments.map(({ contentType, filename, content }) =>
             ({
               type: contentType,
               filename,

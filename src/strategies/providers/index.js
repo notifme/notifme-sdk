@@ -3,8 +3,8 @@ import strategyFallback from './fallback'
 import strategyNoFallback from './no-fallback'
 import strategyRoundrobin from './roundrobin'
 // Types
-import type {ProviderType, ChannelOptionsType} from '../../providers'
-import type {ChannelType} from '../../index'
+import type { ProviderType, ChannelOptionsType } from '../../providers'
+import type { ChannelType } from '../../index'
 
 export type StrategyType = (providers: ProviderType[]) => (request: any) => Promise<{
   providerId: string,

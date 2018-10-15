@@ -1,10 +1,10 @@
 /* @flow */
 import NotificationCatcherProvider from '../notificationCatcherProvider'
 // Types
-import type {SlackRequestType} from '../../models/notification-request'
+import type { SlackRequestType } from '../../models/notification-request'
 
 export default class SlackCatcherProvider extends NotificationCatcherProvider {
-  async send ({text}: SlackRequestType): Promise<string> {
+  async send ({ text }: SlackRequestType): Promise<string> {
     this.sendToCatcher({
       to: 'public.channel@slack',
       from: '-',

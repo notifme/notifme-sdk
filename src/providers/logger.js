@@ -1,8 +1,8 @@
 /* @flow */
 import logger from '../util/logger'
 // Types
-import type {ChannelType} from '../index'
-import type {RequestType} from '../models/notification-request'
+import type { ChannelType } from '../index'
+import type { RequestType } from '../models/notification-request'
 
 export default class LoggerProvider {
   id: string

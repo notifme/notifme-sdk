@@ -1,5 +1,5 @@
 /* https://github.com/aws/aws-sdk-js/blob/master/lib/signers/v4.js */
-import {hmac, sha256} from '../crypto'
+import { hmac, sha256 } from '../crypto'
 import v4Credentials from './v4_credentials'
 
 /**

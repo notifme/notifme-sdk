@@ -3,9 +3,9 @@ import logger from './util/logger'
 import ProviderLogger from './providers/logger'
 import Registry from './util/registry'
 // Types
-import type {NotificationRequestType, NotificationStatusType, ChannelType} from './index'
-import type {ProvidersType} from './providers'
-import type {StrategiesType} from './strategies/providers'
+import type { NotificationRequestType, NotificationStatusType, ChannelType } from './index'
+import type { ProvidersType } from './providers'
+import type { StrategiesType } from './strategies/providers'
 
 export interface SenderType {
   send(NotificationRequestType): Promise<NotificationStatusType>
@@ -46,17 +46,17 @@ export default class Sender implements SenderType {
   async send (request: NotificationRequestType): Promise<NotificationStatusType> {
     const resultsByChannel = await this.sendOnEachChannel(request)
 
-    const result = resultsByChannel.reduce((acc, {success, channel, providerId, ...rest}) => ({
+    const result = resultsByChannel.reduce((acc, { success, channel, providerId, ...rest }) => ({
       ...acc,
       channels: {
         ...(acc.channels || null),
-        [channel]: {id: rest.id, providerId}
+        [channel]: { id: rest.id, providerId }
       },
       ...(!success
-        ? {status: 'error', errors: {...acc.errors || null, [channel]: rest.error.message}}
+        ? { status: 'error', errors: { ...acc.errors || null, [channel]: rest.error.message } }
         : null
       )
-    }), {status: 'success'})
+    }), { status: 'success' })
 
     return result
   }
@@ -69,10 +69,10 @@ export default class Sender implements SenderType {
           return {
             success: true,
             channel,
-            ...await this.senders[channel]({...request.metadata, ...request[channel]})
+            ...await this.senders[channel]({ ...request.metadata, ...request[channel] })
           }
         } catch (error) {
-          return {channel, success: false, error: error, providerId: error.providerId}
+          return { channel, success: false, error: error, providerId: error.providerId }
         }
       }))
   }

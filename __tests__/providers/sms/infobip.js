@@ -1,7 +1,7 @@
 /* @flow */
 /* global jest, test, expect */
 import NotifmeSdk from '../../../src'
-import mockHttp, {mockResponse} from '../mockHttp'
+import mockHttp, { mockResponse } from '../mockHttp'
 
 jest.mock('../../../src/util/logger', () => ({
   warn: jest.fn()
@@ -20,11 +20,11 @@ const sdk = new NotifmeSdk({
 })
 
 const request = {
-  sms: {from: 'Notifme', to: '+15000000001', text: 'Hello John! How are you?'}
+  sms: { from: 'Notifme', to: '+15000000001', text: 'Hello John! How are you?' }
 }
 
 test('Infobip success with minimal parameters.', async () => {
-  mockResponse(200, JSON.stringify({messages: [{status: {groupId: 1}, messageId: 'returned-id'}]}))
+  mockResponse(200, JSON.stringify({ messages: [{ status: { groupId: 1 }, messageId: 'returned-id' }] }))
   const result = await sdk.send(request)
   expect(mockHttp).lastCalledWith(expect.objectContaining({
     hostname: 'api.infobip.com',
@@ -46,13 +46,13 @@ test('Infobip success with minimal parameters.', async () => {
   expect(result).toEqual({
     status: 'success',
     channels: {
-      sms: {id: 'returned-id', providerId: 'sms-infobip-provider'}
+      sms: { id: 'returned-id', providerId: 'sms-infobip-provider' }
     }
   })
 })
 
 test('Infobip API error.', async () => {
-  mockResponse(400, JSON.stringify({requestError: {serviceException: {code: '32', message: 'error!'}}}))
+  mockResponse(400, JSON.stringify({ requestError: { serviceException: { code: '32', message: 'error!' } } }))
   const result = await sdk.send(request)
   expect(result).toEqual({
     status: 'error',
@@ -60,13 +60,13 @@ test('Infobip API error.', async () => {
       sms: 'code: 32, message: error!'
     },
     channels: {
-      sms: {id: undefined, providerId: 'sms-infobip-provider'}
+      sms: { id: undefined, providerId: 'sms-infobip-provider' }
     }
   })
 })
 
 test('Infobip API error (unknown format).', async () => {
-  mockResponse(400, JSON.stringify({error: 'error!'}))
+  mockResponse(400, JSON.stringify({ error: 'error!' }))
   const result = await sdk.send(request)
   expect(result).toEqual({
     status: 'error',
@@ -74,13 +74,13 @@ test('Infobip API error (unknown format).', async () => {
       sms: '{"error":"error!"}'
     },
     channels: {
-      sms: {id: undefined, providerId: 'sms-infobip-provider'}
+      sms: { id: undefined, providerId: 'sms-infobip-provider' }
     }
   })
 })
 
 test('Infobip error.', async () => {
-  mockResponse(200, JSON.stringify({messages: [{status: {groupId: 0, message: 'error!'}}]}))
+  mockResponse(200, JSON.stringify({ messages: [{ status: { groupId: 0, message: 'error!' } }] }))
   const result = await sdk.send(request)
   expect(result).toEqual({
     status: 'error',
@@ -88,7 +88,7 @@ test('Infobip error.', async () => {
       sms: 'groupId: 0, message: error!'
     },
     channels: {
-      sms: {id: undefined, providerId: 'sms-infobip-provider'}
+      sms: { id: undefined, providerId: 'sms-infobip-provider' }
     }
   })
 })

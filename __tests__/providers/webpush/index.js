@@ -38,7 +38,7 @@ test('webpush unknown provider.', async () => {
   expect(result).toEqual({
     status: 'success',
     channels: {
-      webpush: {id: 'custom-returned-id', providerId: 'my-custom-webpush-provider'}
+      webpush: { id: 'custom-returned-id', providerId: 'my-custom-webpush-provider' }
     }
   })
 })
@@ -52,7 +52,7 @@ test('webpush custom provider.', async () => {
           type: 'unknown'
         }]
       }
-    }})
+    } })
   )).toThrow('Unknown webpush provider "unknown".')
 })
 
@@ -70,7 +70,7 @@ test('webpush logger provider.', async () => {
   expect(result).toEqual({
     status: 'success',
     channels: {
-      webpush: {id: expect.stringContaining('id-'), providerId: 'webpush-logger-provider'}
+      webpush: { id: expect.stringContaining('id-'), providerId: 'webpush-logger-provider' }
     }
   })
 })

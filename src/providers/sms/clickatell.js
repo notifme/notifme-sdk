@@ -1,7 +1,7 @@
 /* @flow */
 import fetch from '../../util/request'
 // Types
-import type {SmsRequestType} from '../../models/notification-request'
+import type { SmsRequestType } from '../../models/notification-request'
 
 export default class SmsClickatellProvider {
   id: string = 'sms-clickatell-provider'
@@ -16,7 +16,7 @@ export default class SmsClickatellProvider {
    * Note: 'from', 'nature', 'messageClass' are not supported.
    */
   async send (request: SmsRequestType): Promise<string> {
-    const {id, to, text, type, ttl} = request
+    const { id, to, text, type, ttl } = request
     const response = await fetch('https://platform.clickatell.com/messages', {
       method: 'POST',
       headers: {
@@ -29,8 +29,8 @@ export default class SmsClickatellProvider {
         to: [to],
         content: text,
         charset: type === 'unicode' ? 'UCS2-BE' : 'UTF-8',
-        ...(ttl ? {validityPeriod: ttl} : null),
-        ...(id ? {clientMessageId: id} : null)
+        ...(ttl ? { validityPeriod: ttl } : null),
+        ...(id ? { clientMessageId: id } : null)
       })
     })
 

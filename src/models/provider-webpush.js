@@ -1,5 +1,5 @@
 /* @flow */
-import type {WebpushRequestType} from './notification-request'
+import type { WebpushRequestType } from './notification-request'
 
 // TODO?: onesignal, urbanairship, goroost, sendpulse, wonderpush, appboy...
 export type WebpushProviderType = {

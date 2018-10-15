@@ -2,18 +2,18 @@
 import fetch from '../../util/request'
 import crypto from 'crypto'
 // Types
-import type {SmsRequestType} from '../../models/notification-request'
+import type { SmsRequestType } from '../../models/notification-request'
 
 export default class SmsOvhProvider {
   id: string = 'sms-ovh-provider'
   credentials: Object
 
-  constructor ({appKey, appSecret, consumerKey, account, host}: Object) {
-    this.credentials = {appKey, appSecret, consumerKey, account, host}
+  constructor ({ appKey, appSecret, consumerKey, account, host }: Object) {
+    this.credentials = { appKey, appSecret, consumerKey, account, host }
   }
 
   signRequest (httpMethod: string, url: string, body: string, timestamp: number) {
-    const {appSecret, consumerKey} = this.credentials
+    const { appSecret, consumerKey } = this.credentials
     const signature = [appSecret, consumerKey, httpMethod, url, body, timestamp]
     return '$1$' + crypto.createHash('sha1').update(signature.join('+')).digest('hex')
   }
@@ -23,11 +23,11 @@ export default class SmsOvhProvider {
    * https://www.ovh.com/fr/g1639.envoyer_des_sms_avec_lapi_ovh_en_php
    */
   async send (request: SmsRequestType): Promise<string> {
-    const {appKey, consumerKey, account, host} = this.credentials
+    const { appKey, consumerKey, account, host } = this.credentials
     const timestamp = Math.round(Date.now() / 1000)
 
     // Documentation: https://api.ovh.com/console/#/sms/%7BserviceName%7D/jobs#POST
-    const {from, to, text, type, ttl, messageClass} = request
+    const { from, to, text, type, ttl, messageClass } = request
 
     const body = JSON.stringify({
       sender: from,

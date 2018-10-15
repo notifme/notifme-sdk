@@ -1,13 +1,13 @@
 /* @flow */
 import fetch from '../../util/request'
 // Types
-import type {SmsRequestType} from '../../models/notification-request'
+import type { SmsRequestType } from '../../models/notification-request'
 
 export default class SmsInfobipProvider {
   id: string = 'sms-infobip-provider'
   apiKey: string
 
-  constructor ({username, password}: Object) {
+  constructor ({ username, password }: Object) {
     this.apiKey = Buffer.from(`${username}:${password}`).toString('base64')
   }
 
@@ -15,7 +15,7 @@ export default class SmsInfobipProvider {
    * Note: 'nature', 'messageClass', 'type', 'ttl' are not supported.
    */
   async send (request: SmsRequestType): Promise<string> {
-    const {from, to, text} = request
+    const { from, to, text } = request
     const response = await fetch('https://api.infobip.com/sms/1/text/single', {
       method: 'POST',
       headers: {

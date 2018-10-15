@@ -6,8 +6,8 @@ import voiceFactory from './voice'
 import webpushFactory from './webpush'
 import slackFactory from './slack'
 // Types
-import type {ChannelType} from '../index'
-import type {RequestType} from '../models/notification-request'
+import type { ChannelType } from '../index'
+import type { RequestType } from '../models/notification-request'
 
 export type ChannelOptionsType = {[ChannelType]: {providers: Object[]}}
 

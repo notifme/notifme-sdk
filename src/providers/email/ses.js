@@ -1,11 +1,11 @@
 /* @flow */
 import AWSSignersV4 from '../../util/aws/v4'
-import {sha256} from '../../util/crypto'
+import { sha256 } from '../../util/crypto'
 import fetch from '../../util/request'
 import MailComposer from 'nodemailer/lib/mail-composer'
 import qs from 'querystring'
 // types
-import type {EmailRequestType} from '../../models/notification-request'
+import type { EmailRequestType } from '../../models/notification-request'
 
 export default class EmailSesProvider {
   id: string = 'email-ses-provider'
@@ -16,12 +16,12 @@ export default class EmailSesProvider {
     sessionToken: ?string
   }
 
-  constructor ({region, accessKeyId, secretAccessKey, sessionToken}: Object) {
-    this.credentials = {region, accessKeyId, secretAccessKey, sessionToken}
+  constructor ({ region, accessKeyId, secretAccessKey, sessionToken }: Object) {
+    this.credentials = { region, accessKeyId, secretAccessKey, sessionToken }
   }
 
   async send (request: EmailRequestType): Promise<string> {
-    const {region} = this.credentials
+    const { region } = this.credentials
     const host = `email.${region}.amazonaws.com`
     const body = qs.stringify({
       Action: 'SendRawEmail',

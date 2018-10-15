@@ -1,5 +1,5 @@
 /* @flow */
-import type {EmailRequestType} from './notification-request'
+import type { EmailRequestType } from './notification-request'
 
 // TODO?: provider APIs (SES, sendinblue, mailjet, mandrill, elasticemail...)
 export type EmailProviderType = {

@@ -8,7 +8,7 @@ jest.mock('../../../src/util/logger', () => ({
 }))
 
 const request = {
-  voice: {from: 'Notifme', to: '+15000000001', url: 'https://notifme.github.io'}
+  voice: { from: 'Notifme', to: '+15000000001', url: 'https://notifme.github.io' }
 }
 
 test('voice unknown provider.', async () => {
@@ -27,7 +27,7 @@ test('voice unknown provider.', async () => {
   expect(result).toEqual({
     status: 'success',
     channels: {
-      voice: {id: 'custom-returned-id', providerId: 'my-custom-voice-provider'}
+      voice: { id: 'custom-returned-id', providerId: 'my-custom-voice-provider' }
     }
   })
 })
@@ -41,7 +41,7 @@ test('voice custom provider.', async () => {
           type: 'unknown'
         }]
       }
-    }})
+    } })
   )).toThrow('Unknown voice provider "unknown".')
 })
 
@@ -59,7 +59,7 @@ test('voice logger provider.', async () => {
   expect(result).toEqual({
     status: 'success',
     channels: {
-      voice: {id: expect.stringContaining('id-'), providerId: 'voice-logger-provider'}
+      voice: { id: expect.stringContaining('id-'), providerId: 'voice-logger-provider' }
     }
   })
 })

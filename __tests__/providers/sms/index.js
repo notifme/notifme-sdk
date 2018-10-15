@@ -8,7 +8,7 @@ jest.mock('../../../src/util/logger', () => ({
 }))
 
 const request = {
-  sms: {from: 'Notifme', to: '+15000000001', text: 'Hello John! How are you?'}
+  sms: { from: 'Notifme', to: '+15000000001', text: 'Hello John! How are you?' }
 }
 
 test('sms unknown provider.', async () => {
@@ -27,7 +27,7 @@ test('sms unknown provider.', async () => {
   expect(result).toEqual({
     status: 'success',
     channels: {
-      sms: {id: 'custom-returned-id', providerId: 'my-custom-sms-provider'}
+      sms: { id: 'custom-returned-id', providerId: 'my-custom-sms-provider' }
     }
   })
 })
@@ -41,7 +41,7 @@ test('sms custom provider.', async () => {
           type: 'unknown'
         }]
       }
-    }})
+    } })
   )).toThrow('Unknown sms provider "unknown".')
 })
 
@@ -59,7 +59,7 @@ test('sms logger provider.', async () => {
   expect(result).toEqual({
     status: 'success',
     channels: {
-      sms: {id: expect.stringContaining('id-'), providerId: 'sms-logger-provider'}
+      sms: { id: expect.stringContaining('id-'), providerId: 'sms-logger-provider' }
     }
   })
 })
