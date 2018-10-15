@@ -7,7 +7,7 @@ class Logger {
   innerLogger: winston
 
   constructor () {
-    this.innerLogger = new winston.Logger()
+    this.innerLogger = winston.createLogger()
     this.configure({
       transports: [
         new winston.transports.Console({ colorize: true })
