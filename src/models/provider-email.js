@@ -73,7 +73,6 @@ export type EmailProviderType = {
   apiKey: string,
   domainName: string
 } | {
-  // Options (Doc: https://github.com/Rebelmail/nodemailer-mandrill-transport)
   type: 'mandrill',
   apiKey: string
 } | {
