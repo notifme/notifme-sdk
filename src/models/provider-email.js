@@ -73,6 +73,9 @@ export type EmailProviderType = {
   apiKey: string,
   domainName: string
 } | {
+  type: 'mandrill',
+  apiKey: string
+} | {
   type: 'sendgrid',
   apiKey: string
 } | {
