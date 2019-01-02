@@ -10,9 +10,8 @@
 
 <p align="center">
   <a href="https://www.npmjs.com/package/notifme-sdk"><img alt="npm-status" src="https://img.shields.io/npm/v/notifme-sdk.svg?style=flat" /></a>
-  <a href="https://travis-ci.org/notifme/notifme-sdk"><img alt="travis-build-status" src="https://img.shields.io/travis/notifme/notifme-sdk.svg?style=flat" /></a>
-  <a href="https://codeclimate.com/github/notifme/notifme-sdk/coverage"><img alt="codeclimate-code-coverage" src="https://img.shields.io/codeclimate/coverage/github/notifme/notifme-sdk.svg?style=flat" /></a>
-  <a href="https://codeclimate.com/github/notifme/notifme-sdk"><img alt="codeclimate" src="https://img.shields.io/codeclimate/github/notifme/notifme-sdk.svg?style=flat" /></a>
+  <a href="https://travis-ci.org/notifme/notifme-sdk"><img alt="travis-build-status" src="https://api.travis-ci.org/notifme/notifme-sdk.svg" /></a>
+  <a href="https://codeclimate.com/github/notifme/notifme-sdk/test_coverage"><img src="https://api.codeclimate.com/v1/badges/2d2cc6d915094ddb50b7/test_coverage" /></a>
   <a href="https://david-dm.org/notifme/notifme-sdk"><img alt="dependencies" src="https://david-dm.org/notifme/notifme-sdk.svg" /></a>
   <a href="https://github.com/notifme/notifme-sdk/blob/master/LICENSE"><img alt="license" src="https://img.shields.io/badge/license-MIT_License-blue.svg?style=flat" /></a>
   <a href="https://slackin-notifme.now.sh"><img alt="slack" src="https://img.shields.io/badge/Slack-Join_us!-e01563.svg?style=flat" /></a>
