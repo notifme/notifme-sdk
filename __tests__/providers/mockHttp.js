@@ -13,7 +13,8 @@ export function mockResponse (statusCode: number, body: string) {
   mockRequest.end = () => mockRequest.emit('response', {
     statusCode,
     headers: {},
-    pipe: () => body
+    pipe: () => body,
+    once: () => {}
   })
   https.request.mockReturnValue(mockRequest)
 }
