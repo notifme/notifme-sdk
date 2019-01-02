@@ -58,3 +58,22 @@ test('slack notification catcher provider should use SMTP provider (long message
     }
   })
 })
+
+test('slack customized success.', async () => {
+  await sdk.send({
+    slack: {
+      text: '',
+      customize: async (provider, request) => ({ text: 'Hello John! How are you?' })
+    }
+  })
+  expect(mockSend).lastCalledWith({
+    to: 'public.channel@slack',
+    from: '-',
+    subject: 'Hello John! How are ...',
+    text: 'Hello John! How are you?',
+    headers: {
+      'X-type': 'slack',
+      'X-to': '[slack public channel]'
+    }
+  })
+})

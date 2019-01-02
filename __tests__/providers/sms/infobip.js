@@ -51,6 +51,41 @@ test('Infobip success with minimal parameters.', async () => {
   })
 })
 
+test('Infobip success with all parameters.', async () => {
+  mockResponse(200, JSON.stringify({ messages: [{ status: { groupId: 1 }, messageId: 'returned-id' }] }))
+  const result = await sdk.send({
+    sms: {
+      from: 'Notifme',
+      to: '+15000000001',
+      text: 'Hello John! How are you?',
+      customize: async (provider, request) => ({ ...request, text: 'Hello John! How are you??' })
+    }
+  })
+  expect(mockHttp).lastCalledWith(expect.objectContaining({
+    hostname: 'api.infobip.com',
+    method: 'POST',
+    path: '/sms/1/text/single',
+    protocol: 'https:',
+    href: 'https://api.infobip.com/sms/1/text/single',
+    headers: expect.objectContaining({
+      Accept: ['*/*'],
+      Authorization: ['Basic dXNlcm5hbWU6cGFzc3dvcmQ='],
+      'Content-Length': ['73'],
+      'Content-Type': ['application/json'],
+      'User-Agent': ['notifme-sdk/v1 (+https://github.com/notifme/notifme-sdk)']
+    })
+  }))
+  expect(mockHttp.body).toEqual(
+    '{"from":"Notifme","to":"+15000000001","text":"Hello John! How are you??"}'
+  )
+  expect(result).toEqual({
+    status: 'success',
+    channels: {
+      sms: { id: 'returned-id', providerId: 'sms-infobip-provider' }
+    }
+  })
+})
+
 test('Infobip API error.', async () => {
   mockResponse(400, JSON.stringify({ requestError: { serviceException: { code: '32', message: 'error!' } } }))
   const result = await sdk.send(request)

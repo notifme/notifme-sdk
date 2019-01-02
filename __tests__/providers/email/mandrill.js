@@ -74,7 +74,8 @@ test('Mandrill success with all parameters.', async () => {
         contentType: 'text/plain',
         filename: 'test.txt',
         content: 'hello!'
-      }]
+      }],
+      customize: async (provider, request) => ({ ...request, subject: 'Hi John!' })
     }
   }
   const result = await sdk.send(completeRequest)
@@ -86,13 +87,13 @@ test('Mandrill success with all parameters.', async () => {
     href: 'https://mandrillapp.com/api/1.0/messages/send.json',
     headers: expect.objectContaining({
       Accept: ['*/*'],
-      'Content-Length': ['488'],
+      'Content-Length': ['489'],
       'Content-Type': ['application/json'],
       'User-Agent': ['notifme-sdk/v1 (+https://github.com/notifme/notifme-sdk)']
     })
   }))
   expect(mockHttp.body).toEqual(
-    '{"key":"key","message":{"from_email":"from@example.com","to":[{"email":"to@example.com","type":"to"},{"email":"cc1@example.com","type":"cc"},{"email":"cc2@example.com","type":"cc"},{"email":"bcc@example.com","type":"bcc"}],"subject":"Hi John","html":"<b>Hello John! How are you?</b>","headers":{"Reply-To":"replyto@example.com","My-Custom-Header":"my-value"},"attachments":[{"type":"text/plain","name":"test.txt","content":"aGVsbG8h"}],"metadata":{"id":"24","userId":"36"}},"async":false}'
+    '{"key":"key","message":{"from_email":"from@example.com","to":[{"email":"to@example.com","type":"to"},{"email":"cc1@example.com","type":"cc"},{"email":"cc2@example.com","type":"cc"},{"email":"bcc@example.com","type":"bcc"}],"subject":"Hi John!","html":"<b>Hello John! How are you?</b>","headers":{"Reply-To":"replyto@example.com","My-Custom-Header":"my-value"},"attachments":[{"type":"text/plain","name":"test.txt","content":"aGVsbG8h"}],"metadata":{"id":"24","userId":"36"}},"async":false}'
   )
   expect(result).toEqual({
     status: 'success',

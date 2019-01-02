@@ -18,7 +18,7 @@ export default class SmsTwilioProvider {
    * Note: 'type', 'nature', 'messageClass' are not supported.
    */
   async send (request: SmsRequestType): Promise<string> {
-    const { from, to, text, ttl } = request
+    const { from, to, text, ttl } = request.customize ? (await request.customize(this.id, request)) : request
     const form = new FormData()
     form.append('From', from)
     form.append('To', to)

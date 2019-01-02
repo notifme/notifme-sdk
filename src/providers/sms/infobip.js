@@ -15,7 +15,7 @@ export default class SmsInfobipProvider {
    * Note: 'nature', 'messageClass', 'type', 'ttl' are not supported.
    */
   async send (request: SmsRequestType): Promise<string> {
-    const { from, to, text } = request
+    const { from, to, text } = request.customize ? (await request.customize(this.id, request)) : request
     const response = await fetch('https://api.infobip.com/sms/1/text/single', {
       method: 'POST',
       headers: {

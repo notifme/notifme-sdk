@@ -4,7 +4,8 @@ import NotificationCatcherProvider from '../notificationCatcherProvider'
 import type { SlackRequestType } from '../../models/notification-request'
 
 export default class SlackCatcherProvider extends NotificationCatcherProvider {
-  async send ({ text }: SlackRequestType): Promise<string> {
+  async send (request: SlackRequestType): Promise<string> {
+    const { text } = request.customize ? (await request.customize(this.id, request)) : request
     this.sendToCatcher({
       to: 'public.channel@slack',
       from: '-',

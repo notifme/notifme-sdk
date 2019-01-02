@@ -17,7 +17,7 @@ export default class SmsPlivoProvider {
    * Note: 'type', 'nature', 'ttl', 'messageClass' are not supported.
    */
   async send (request: SmsRequestType): Promise<string> {
-    const { from, to, text } = request
+    const { from, to, text } = request.customize ? (await request.customize(this.id, request)) : request
     const response = await fetch(`https://api.plivo.com/v1/Account/${this.authId}/Message/`, {
       method: 'POST',
       headers: {

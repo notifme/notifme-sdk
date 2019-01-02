@@ -61,7 +61,8 @@ test('Twilio success with all parameters.', async () => {
     sendDigits: 'ww1234',
     machineDetection: 'Enable',
     machineDetectionTimeout: 30,
-    timeout: 60
+    timeout: 60,
+    customize: async (provider, request) => ({ ...request, url: 'url...' })
   } })
   expect(mockHttp).lastCalledWith(expect.objectContaining({
     hostname: 'api.twilio.com',

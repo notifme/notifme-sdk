@@ -15,7 +15,8 @@ export default class EmailMailgunProvider {
   }
 
   async send (request: EmailRequestType): Promise<string> {
-    const { id, userId, from, replyTo, subject, html, text, headers, to, cc, bcc, attachments } = request
+    const { id, userId, from, replyTo, subject, html, text, headers, to, cc, bcc, attachments } =
+      request.customize ? (await request.customize(this.id, request)) : request
     const form = new FormData()
     form.append('from', from)
     form.append('to', to)

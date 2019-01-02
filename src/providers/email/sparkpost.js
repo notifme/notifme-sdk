@@ -12,7 +12,8 @@ export default class EmailSparkPostProvider {
   }
 
   async send (request: EmailRequestType): Promise<string> {
-    const { id, userId, from, replyTo, subject, html, text, headers, to, cc, bcc, attachments } = request
+    const { id, userId, from, replyTo, subject, html, text, headers, to, cc, bcc, attachments } =
+      request.customize ? (await request.customize(this.id, request)) : request
     const response = await fetch('https://api.sparkpost.com/api/v1/transmissions', {
       method: 'POST',
       headers: {

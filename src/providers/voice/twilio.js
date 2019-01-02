@@ -28,7 +28,7 @@ export default class VoiceTwilioProvider {
       machineDetection,
       machineDetectionTimeout,
       timeout
-    } = request
+    } = request.customize ? (await request.customize(this.id, request)) : request
     const form = new FormData()
     form.append('From', from)
     form.append('To', to)

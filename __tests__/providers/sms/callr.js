@@ -55,7 +55,16 @@ test('Callr success with all parameters.', async () => {
   mockResponse(200, JSON.stringify({ data: 'returned-id' }))
   const completeRequest = {
     metadata: { id: '24' },
-    sms: { from: 'Notifme', to: '+15000000001', text: 'Hello John! How are you?', type: 'unicode', nature: 'marketing', ttl: 3600, messageClass: 1 }
+    sms: {
+      from: 'Notifme',
+      to: '+15000000001',
+      text: 'Hello John! How are you?',
+      type: 'unicode',
+      nature: 'marketing',
+      ttl: 3600,
+      messageClass: 1,
+      customize: async (provider, request) => ({ ...request, text: 'Hello John! How are you??' })
+    }
   }
   const result = await sdk.send(completeRequest)
   expect(mockHttp).lastCalledWith(expect.objectContaining({
@@ -67,13 +76,13 @@ test('Callr success with all parameters.', async () => {
     headers: expect.objectContaining({
       Accept: ['*/*'],
       Authorization: ['Basic bG9naW46cGFzc3dvcmQ='],
-      'Content-Length': ['149'],
+      'Content-Length': ['150'],
       'Content-Type': ['application/json'],
       'User-Agent': ['notifme-sdk/v1 (+https://github.com/notifme/notifme-sdk)']
     })
   }))
   expect(mockHttp.body).toEqual(
-    '{"from":"Notifme","to":"+15000000001","body":"Hello John! How are you?","options":{"force_encoding":"UNICODE","nature":"MARKETING","user_data":"24"}}'
+    '{"from":"Notifme","to":"+15000000001","body":"Hello John! How are you??","options":{"force_encoding":"UNICODE","nature":"MARKETING","user_data":"24"}}'
   )
   expect(result).toEqual({
     status: 'success',

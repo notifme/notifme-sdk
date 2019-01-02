@@ -16,7 +16,7 @@ export default class SmsClickatellProvider {
    * Note: 'from', 'nature', 'messageClass' are not supported.
    */
   async send (request: SmsRequestType): Promise<string> {
-    const { id, to, text, type, ttl } = request
+    const { id, to, text, type, ttl } = request.customize ? (await request.customize(this.id, request)) : request
     const response = await fetch('https://platform.clickatell.com/messages', {
       method: 'POST',
       headers: {

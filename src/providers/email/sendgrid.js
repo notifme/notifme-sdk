@@ -13,7 +13,8 @@ export default class EmailSendGridProvider {
   }
 
   async send (request: EmailRequestType): Promise<string> {
-    const { id, userId, from, replyTo, subject, html, text, headers, to, cc, bcc, attachments } = request
+    const { id, userId, from, replyTo, subject, html, text, headers, to, cc, bcc, attachments } =
+      request.customize ? (await request.customize(this.id, request)) : request
     const generatedId = id || crypto.randomBytes(16).toString('hex')
     const response = await fetch('https://api.sendgrid.com/v3/mail/send', {
       method: 'POST',

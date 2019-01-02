@@ -18,8 +18,10 @@ export default class WebpushGcmProvider {
     }
   }
 
-  async send ({ subscription, ...request }: WebpushRequestType): Promise<string> {
-    const result = await webpush.sendNotification(subscription, JSON.stringify(request), this.options)
+  async send (request: WebpushRequestType): Promise<string> {
+    const { subscription, ...rest } =
+      request.customize ? (await request.customize(this.id, request)) : request
+    const result = await webpush.sendNotification(subscription, JSON.stringify(rest), this.options)
     return result.headers.location
   }
 }

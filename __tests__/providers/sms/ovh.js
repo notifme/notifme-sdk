@@ -86,6 +86,20 @@ test('Ovh success with escaped unicode.', async () => {
   )
 })
 
+test('Ovh should customize requests.', async () => {
+  mockResponse(200, JSON.stringify({ ids: ['returned-id'] }))
+  await sdk.send({
+    sms: {
+      ...request.sms,
+      text: '',
+      customize: async (provider, request) => ({ ...request, text: 'Hello John! How are you??' })
+    }
+  })
+  expect(mockHttp.body).toEqual(
+    '{"sender":"Notifme","message":"Hello John! How are you??","receivers":["+15000000001"],"charset":"UTF-8","class":null,"noStopClause":false}'
+  )
+})
+
 test('Ovh API error.', async () => {
   mockResponse(400, JSON.stringify({ message: 'error!' }))
   const result = await sdk.send(request)

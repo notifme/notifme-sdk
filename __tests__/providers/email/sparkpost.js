@@ -75,7 +75,8 @@ test('Sparkpost success with all parameters.', async () => {
         contentType: 'text/plain',
         filename: 'test.txt',
         content: 'hello!'
-      }]
+      }],
+      customize: async (provider, request) => ({ ...request, subject: 'Hi John!' })
     }
   }
   const result = await sdk.send(completeRequest)
@@ -88,13 +89,13 @@ test('Sparkpost success with all parameters.', async () => {
     headers: expect.objectContaining({
       Accept: ['*/*'],
       Authorization: ['key'],
-      'Content-Length': ['619'],
+      'Content-Length': ['620'],
       'Content-Type': ['application/json'],
       'User-Agent': ['notifme-sdk/v1 (+https://github.com/notifme/notifme-sdk)']
     })
   }))
   expect(mockHttp.body).toEqual(
-    '{"options":{"transactional":true},"content":{"from":"from@example.com","reply_to":"replyto@example.com","subject":"Hi John","html":"<b>Hello John! How are you?</b>","headers":{"My-Custom-Header":"my-value","CC":"cc1@example.com,cc2@example.com"},"attachments":[{"type":"text/plain","name":"test.txt","data":"aGVsbG8h"}]},"recipients":[{"address":{"email":"to@example.com"}},{"address":{"email":"cc1@example.com","header_to":"to@example.com"}},{"address":{"email":"cc2@example.com","header_to":"to@example.com"}},{"address":{"email":"bcc@example.com","header_to":"to@example.com"}}],"metadata":{"id":"24","userId":"36"}}'
+    '{"options":{"transactional":true},"content":{"from":"from@example.com","reply_to":"replyto@example.com","subject":"Hi John!","html":"<b>Hello John! How are you?</b>","headers":{"My-Custom-Header":"my-value","CC":"cc1@example.com,cc2@example.com"},"attachments":[{"type":"text/plain","name":"test.txt","data":"aGVsbG8h"}]},"recipients":[{"address":{"email":"to@example.com"}},{"address":{"email":"cc1@example.com","header_to":"to@example.com"}},{"address":{"email":"cc2@example.com","header_to":"to@example.com"}},{"address":{"email":"bcc@example.com","header_to":"to@example.com"}}],"metadata":{"id":"24","userId":"36"}}'
   )
   expect(result).toEqual({
     status: 'success',

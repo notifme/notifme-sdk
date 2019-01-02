@@ -46,3 +46,13 @@ test('Smtp should use nodemailer.', async () => {
     }
   })
 })
+
+test('Smtp should customize requests.', async () => {
+  await sdk.send({
+    email: {
+      ...request.email,
+      customize: async (provider, request) => ({ ...request, subject: 'Hi John!' })
+    }
+  })
+  expect(mockSendMail).lastCalledWith({ ...request.email, subject: 'Hi John!' })
+})
