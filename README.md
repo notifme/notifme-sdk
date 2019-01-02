@@ -890,7 +890,6 @@ If you want to have custom channels (and providers) you can add them.
 
 Example:
 
-</p></details>
 <details><summary>Custom channel and provider</summary><p>
 
 ```
@@ -911,6 +910,8 @@ new NotifmeSdk({
   }
 })
 ```
+
+</p></details>
 
 ### 4. Send a notification
 
