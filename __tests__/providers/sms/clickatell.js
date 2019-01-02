@@ -54,7 +54,16 @@ test('Clickatell success with all parameters.', async () => {
   mockResponse(200, JSON.stringify({ messages: [{ apiMessageId: 'returned-id' }] }))
   const completeRequest = {
     metadata: { id: '24' },
-    sms: { from: 'Notifme', to: '+15000000001', text: 'Hello John! How are you?', type: 'unicode', nature: 'marketing', ttl: 3600, messageClass: 1 }
+    sms: {
+      from: 'Notifme',
+      to: '+15000000001',
+      text: 'Hello John! How are you?',
+      type: 'unicode',
+      nature: 'marketing',
+      ttl: 3600,
+      messageClass: 1,
+      customize: async (provider, request) => ({ ...request, text: 'Hello John! How are you??' })
+    }
   }
   const result = await sdk.send(completeRequest)
   expect(mockHttp).lastCalledWith(expect.objectContaining({
@@ -66,13 +75,13 @@ test('Clickatell success with all parameters.', async () => {
     headers: expect.objectContaining({
       Accept: ['*/*'],
       Authorization: ['my-key'],
-      'Content-Length': ['125'],
+      'Content-Length': ['126'],
       'Content-Type': ['application/json'],
       'User-Agent': ['notifme-sdk/v1 (+https://github.com/notifme/notifme-sdk)']
     })
   }))
   expect(mockHttp.body).toEqual(
-    '{"to":["+15000000001"],"content":"Hello John! How are you?","charset":"UCS2-BE","validityPeriod":3600,"clientMessageId":"24"}'
+    '{"to":["+15000000001"],"content":"Hello John! How are you??","charset":"UCS2-BE","validityPeriod":3600,"clientMessageId":"24"}'
   )
   expect(result).toEqual({
     status: 'success',

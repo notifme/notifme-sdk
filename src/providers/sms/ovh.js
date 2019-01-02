@@ -27,7 +27,8 @@ export default class SmsOvhProvider {
     const timestamp = Math.round(Date.now() / 1000)
 
     // Documentation: https://api.ovh.com/console/#/sms/%7BserviceName%7D/jobs#POST
-    const { from, to, text, type, ttl, messageClass } = request
+    const { from, to, text, type, ttl, messageClass } =
+      request.customize ? (await request.customize(this.id, request)) : request
 
     const body = JSON.stringify({
       sender: from,

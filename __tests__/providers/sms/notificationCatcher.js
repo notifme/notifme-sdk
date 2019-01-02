@@ -36,7 +36,12 @@ test('sms notification catcher provider should use SMTP provider.', async () => 
 })
 
 test('sms notification catcher provider should use SMTP provider (long message).', async () => {
-  const result = await sdk.send({ sms: { ...request.sms, text: 'very very very very very very very very long' } })
+  const result = await sdk.send({
+    sms: {
+      ...request.sms,
+      customize: async (provider, request) => ({ ...request, text: 'very very very very very very very very long' })
+    }
+  })
   expect(mockSend).lastCalledWith({
     from: 'Notifme',
     headers: {

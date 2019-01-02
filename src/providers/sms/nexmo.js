@@ -15,7 +15,8 @@ export default class SmsNexmoProvider {
    * Note: 'nature' is not supported.
    */
   async send (request: SmsRequestType): Promise<string> {
-    const { from, to, text, type, ttl, messageClass } = request
+    const { from, to, text, type, ttl, messageClass } =
+      request.customize ? (await request.customize(this.id, request)) : request
     const response = await fetch('https://rest.nexmo.com/sms/json', {
       method: 'POST',
       headers: {

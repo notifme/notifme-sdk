@@ -15,8 +15,10 @@ export default class PushAdmProvider {
     } })
   }
 
-  async send ({ registrationToken, ...request }: PushRequestType): Promise<string> {
-    const result = await this.transporter.send([registrationToken], request)
+  async send (request: PushRequestType): Promise<string> {
+    const { registrationToken, ...rest } =
+      request.customize ? (await request.customize(this.id, request)) : request
+    const result = await this.transporter.send([registrationToken], rest)
     if (result[0].failure > 0) {
       throw new Error(result[0].message[0].error)
     } else {

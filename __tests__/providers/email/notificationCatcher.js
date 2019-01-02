@@ -35,3 +35,16 @@ test('email notification catcher provider should use SMTP provider.', async () =
     }
   })
 })
+
+test('email notification catcher provider should customize requests.', async () => {
+  await sdk.send({
+    email: {
+      ...request.email,
+      customize: async (provider, request) => ({ ...request, subject: 'Hi John!' })
+    }
+  })
+  const { to, from, html, text, replyTo } = request.email
+  expect(mockSend).lastCalledWith({
+    to, from, html, text, subject: 'Hi John!', replyTo, headers: { 'X-to': `[email] ${to}` }
+  })
+})

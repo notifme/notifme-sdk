@@ -16,7 +16,7 @@ export default class Sms46elksProvider {
    * Note: 'type', 'nature', 'ttl', 'messageClass' are not supported.
    */
   async send (request: SmsRequestType): Promise<string> {
-    const { from, to, text } = request
+    const { from, to, text } = request.customize ? (await request.customize(this.id, request)) : request
     const response = await fetch('https://api.46elks.com/a1/sms', {
       method: 'POST',
       headers: {

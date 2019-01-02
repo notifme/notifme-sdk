@@ -52,7 +52,16 @@ test('Twilio success with all parameters.', async () => {
   mockResponse(200, JSON.stringify({ sid: 'returned-id' }))
   const completeRequest = {
     metadata: { id: '24' },
-    sms: { from: 'Notifme', to: '+15000000001', text: 'Hello John! How are you?', type: 'unicode', nature: 'marketing', ttl: 3600, messageClass: 1 }
+    sms: {
+      from: 'Notifme',
+      to: '+15000000001',
+      text: 'Hello John! How are you?',
+      type: 'unicode',
+      nature: 'marketing',
+      ttl: 3600,
+      messageClass: 1,
+      customize: async (provider, request) => ({ ...request, text: 'Hello John! How are you??' })
+    }
   }
   const result = await sdk.send(completeRequest)
   expect(mockHttp).lastCalledWith(expect.objectContaining({
@@ -64,7 +73,7 @@ test('Twilio success with all parameters.', async () => {
     headers: expect.objectContaining({
       Accept: ['*/*'],
       Authorization: ['Basic YWNjb3VudDp0b2tlbg=='],
-      'Content-Length': ['523'],
+      'Content-Length': ['524'],
       'Content-Type': [expect.stringContaining('multipart/form-data;boundary=')],
       'User-Agent': ['notifme-sdk/v1 (+https://github.com/notifme/notifme-sdk)']
     })

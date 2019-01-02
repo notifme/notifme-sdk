@@ -75,3 +75,27 @@ test('GCM with vapid.', async () => {
     }
   })
 })
+
+test('GCM should customize requests.', async () => {
+  const sdk = new NotifmeSdk({
+    channels: {
+      webpush: {
+        providers: [{
+          type: 'gcm',
+          vapidDetails: { subject: 'xxxx', publicKey: 'xxxxx', privateKey: 'xxxxxx' }
+        }]
+      }
+    }
+  })
+  await sdk.send({
+    webpush: {
+      ...request.webpush,
+      customize: async (provider, request) => ({ ...request, title: 'Hi John!' })
+    }
+  })
+  expect(webpush.sendNotification).lastCalledWith(
+    request.webpush.subscription,
+    '{"title":"Hi John!","body":"Hello John! How are you?","icon":"https://notifme.github.io/notifme-sdk/img/icon.png"}',
+    { TTL: undefined, headers: undefined }
+  )
+})

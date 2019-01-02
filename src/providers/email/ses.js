@@ -23,10 +23,13 @@ export default class EmailSesProvider {
   async send (request: EmailRequestType): Promise<string> {
     const { region } = this.credentials
     const host = `email.${region}.amazonaws.com`
+    const raw = (await this.getRaw(
+      request.customize ? (await request.customize(this.id, request)) : request)
+    ).toString('base64')
     const body = qs.stringify({
       Action: 'SendRawEmail',
       Version: '2010-12-01',
-      'RawMessage.Data': (await this.getRaw(request)).toString('base64')
+      'RawMessage.Data': raw
     })
     const apiRequest = {
       method: 'POST',
@@ -53,7 +56,7 @@ export default class EmailSesProvider {
     }
   }
 
-  getRaw (request: EmailRequestType): Promise<Buffer> {
+  getRaw ({ customize, ...request }: EmailRequestType): Promise<Buffer> {
     return new Promise((resolve, reject) => {
       const email = new MailComposer(request).compile()
       email.keepBcc = true

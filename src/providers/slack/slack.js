@@ -11,10 +11,11 @@ export default class SlackProvider {
     this.webhookUrl = config.webhookUrl
   }
 
-  async send ({ webhookUrl, ...request }: SlackRequestType): Promise<string> {
+  async send (request: SlackRequestType): Promise<string> {
+    const { webhookUrl, ...rest } = request.customize ? (await request.customize(this.id, request)) : request
     const apiRequest = {
       method: 'POST',
-      body: JSON.stringify(request)
+      body: JSON.stringify(rest)
     }
     const response = await fetch(webhookUrl || this.webhookUrl, apiRequest)
 

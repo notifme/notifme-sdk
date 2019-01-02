@@ -73,7 +73,8 @@ test('Mailgun success with all parameters.', async () => {
         contentType: 'text/plain',
         filename: 'test.txt',
         content: 'hello!'
-      }]
+      }],
+      customize: async (provider, request) => ({ ...request, subject: 'Hi John!' })
     }
   }
   const result = await sdk.send(completeRequest)
@@ -86,7 +87,7 @@ test('Mailgun success with all parameters.', async () => {
     headers: expect.objectContaining({
       Accept: ['*/*'],
       Authorization: ['Basic YXBpOmtleQ=='],
-      'Content-Length': ['1529'],
+      'Content-Length': ['1530'],
       'Content-Type': [expect.stringContaining('multipart/form-data;boundary=')],
       'User-Agent': ['notifme-sdk/v1 (+https://github.com/notifme/notifme-sdk)']
     })

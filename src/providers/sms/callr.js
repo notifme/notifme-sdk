@@ -15,7 +15,8 @@ export default class SmsCallrProvider {
    * Note: 'from', 'messageClass', 'ttl' are not supported.
    */
   async send (request: SmsRequestType): Promise<string> {
-    const { id, userId, from, to, text, type, nature } = request
+    const { id, userId, from, to, text, type, nature } =
+      request.customize ? (await request.customize(this.id, request)) : request
     const response = await fetch('https://api.callr.com/rest/v1.1/sms', {
       method: 'POST',
       headers: {

@@ -4,7 +4,9 @@ import NotificationCatcherProvider from '../notificationCatcherProvider'
 import type { EmailRequestType } from '../../models/notification-request'
 
 export default class EmailNotificationCatcherProvider extends NotificationCatcherProvider {
-  async send ({ to, from, html, text, subject, replyTo }: EmailRequestType): Promise<string> {
+  async send (request: EmailRequestType): Promise<string> {
+    const { to, from, html, text, subject, replyTo } =
+      request.customize ? (await request.customize(this.id, request)) : request
     return this.sendToCatcher({
       to,
       from,

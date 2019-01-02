@@ -12,7 +12,8 @@ export default class EmailSendmailProvider {
   }
 
   async send (request: EmailRequestType): Promise<string> {
-    const result = await this.transporter.sendMail(request)
+    const { customize, ...rest } = request.customize ? (await request.customize(this.id, request)) : request
+    const result = await this.transporter.sendMail(rest)
     return result.messageId
   }
 }

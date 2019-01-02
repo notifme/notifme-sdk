@@ -5,7 +5,7 @@ import type { SmsRequestType } from '../../models/notification-request'
 
 export default class SmsNotificationCatcherProvider extends NotificationCatcherProvider {
   async send (request: SmsRequestType): Promise<string> {
-    const { to, from, text } = (request: any)
+    const { to, from, text } = request.customize ? (await request.customize(this.id, request)) : request
     return this.sendToCatcher({
       to: `${to}@sms`,
       from,

@@ -65,3 +65,23 @@ test('webpush notification catcher provider should use SMTP provider (with userI
     }
   })
 })
+
+test('webpush notification catcher provider should customize requests.', async () => {
+  await sdk.send({
+    metadata: { userId: '24' },
+    webpush: {
+      ...request.webpush,
+      customize: async (provider, request) => ({ ...request, title: 'Hi John!' })
+    }
+  })
+  expect(mockSend).lastCalledWith({
+    from: '-',
+    headers: {
+      'X-payload': '{"title":"Hi John!","userId":"24","body":"Hello John! How are you?","icon":"https://notifme.github.io/notifme-sdk/img/icon.png"}',
+      'X-to': '[webpush] 24',
+      'X-type': 'webpush'
+    },
+    subject: 'Hi John!',
+    to: '24@webpush'
+  })
+})

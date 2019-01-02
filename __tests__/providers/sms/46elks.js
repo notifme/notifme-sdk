@@ -20,7 +20,11 @@ const sdk = new NotifmeSdk({
 })
 
 const request = {
-  sms: { from: 'Notifme', to: '+15000000001', text: 'Hello John! How are you?' }
+  sms: {
+    from: 'Notifme',
+    to: '+15000000001',
+    text: 'Hello John! How are you?'
+  }
 }
 
 test('46Elks success with minimal parameters.', async () => {
@@ -48,6 +52,19 @@ test('46Elks success with minimal parameters.', async () => {
       sms: { id: 'returned-id', providerId: 'sms-46elks-provider' }
     }
   })
+})
+
+test('46Elks shouls customize requests.', async () => {
+  mockResponse(200, JSON.stringify({ id: 'returned-id' }))
+  await sdk.send({
+    sms: {
+      ...request.sms,
+      customize: async (provider, request) => ({ ...request, text: 'Hello John! How are you??' })
+    }
+  })
+  expect(mockHttp).lastCalledWith(expect.objectContaining({
+    headers: expect.objectContaining({ 'Content-Length': ['76'] })
+  }))
 })
 
 test('46Elks error.', async () => {

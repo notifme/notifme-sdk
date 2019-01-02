@@ -42,6 +42,19 @@ test('Slack success.', async () => {
   })
 })
 
+test('Slack customized success.', async () => {
+  mockResponse(200, 'ok')
+  await sdk.send({
+    slack: {
+      text: '',
+      customize: async (provider, request) => ({ text: 'Hello John! How are you?' })
+    }
+  })
+  expect(mockHttp.body).toContain(
+    '{"text":"Hello John! How are you?"}'
+  )
+})
+
 test('Slack with no message.', async () => {
   mockResponse(500, 'missing_text_or_fallback_or_attachments')
   // $FlowIgnore

@@ -75,7 +75,8 @@ test('Sendgrid success with all parameters.', async () => {
         contentType: 'text/plain',
         filename: 'test.txt',
         content: 'hello!'
-      }]
+      }],
+      customize: async (provider, request) => ({ ...request, subject: 'Hi John!' })
     }
   }
   const result = await sdk.send(completeRequest)
@@ -88,13 +89,13 @@ test('Sendgrid success with all parameters.', async () => {
     headers: expect.objectContaining({
       Accept: ['*/*'],
       Authorization: ['Bearer key'],
-      'Content-Length': ['494'],
+      'Content-Length': ['495'],
       'Content-Type': ['application/json'],
       'User-Agent': ['notifme-sdk/v1 (+https://github.com/notifme/notifme-sdk)']
     })
   }))
   expect(mockHttp.body).toEqual(
-    '{"personalizations":[{"to":[{"email":"to@example.com"}],"cc":[{"email":"cc1@example.com"},{"email":"cc2@example.com"}],"bcc":[{"email":"bcc@example.com"}]}],"from":{"email":"from@example.com"},"reply_to":{"email":"replyto@example.com"},"subject":"Hi John","content":[{"type":"text/html","value":"<b>Hello John! How are you?</b>"}],"headers":{"My-Custom-Header":"my-value"},"custom_args":{"id":"24","userId":"36"},"attachments":[{"type":"text/plain","filename":"test.txt","content":"aGVsbG8h"}]}'
+    '{"personalizations":[{"to":[{"email":"to@example.com"}],"cc":[{"email":"cc1@example.com"},{"email":"cc2@example.com"}],"bcc":[{"email":"bcc@example.com"}]}],"from":{"email":"from@example.com"},"reply_to":{"email":"replyto@example.com"},"subject":"Hi John!","content":[{"type":"text/html","value":"<b>Hello John! How are you?</b>"}],"headers":{"My-Custom-Header":"my-value"},"custom_args":{"id":"24","userId":"36"},"attachments":[{"type":"text/plain","filename":"test.txt","content":"aGVsbG8h"}]}'
   )
   expect(result).toEqual({
     status: 'success',
