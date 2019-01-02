@@ -23,8 +23,9 @@
 - [How to use](#how-to-use)
   - [1. General options](#1-general-options)
   - [2. Providers](#2-providers)
-  - [3. Send a notification](#3-send-a-notification)
-  - [4. In production](#4-in-production)
+  - [3. Custom channels](#3-custom-channels)
+  - [4. Send a notification](#4-send-a-notification)
+  - [5. In production](#5-in-production)
 - [Contributing](#contributing)
 - [Need help? Found a bug?](#need-help-found-a-bug)
 - [Related Projects](#related-projects)
@@ -98,8 +99,9 @@ $ NOTIFME_CATCHER_OPTIONS=smtp://127.0.0.1:3025?ignoreTLS=true node your-script-
 
 - [1. General options](#1-general-options)
 - [2. Providers](#2-providers)
-- [3. Send a notification](#3-send-a-notification)
-- [4. In production](#4-in-production)
+- [3. Custom channels](#3-custom-channels)
+- [4. Send a notification](#4-send-a-notification)
+- [5. In production](#5-in-production)
 
 ### 1. General options
 
