@@ -22,7 +22,7 @@
   "dependencies": {
     "babel-runtime": "6.26.0",
     "form-data": "2.3.3",
-    "https-proxy-agent": "2.2.1",
+    "https-proxy-agent": "2.2.3",
     "node-fetch": "2.3.0",
     "node-pushnotifications": "1.1.8",
     "nodemailer": "5.0.0",
