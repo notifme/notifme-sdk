@@ -43,7 +43,8 @@ test('slack custom provider.', async () => {
           type: 'unknown'
         }]
       }
-    } })
+    }
+  })
   )).toThrow('Unknown slack provider "unknown".')
 })
 

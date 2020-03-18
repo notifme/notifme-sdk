@@ -52,7 +52,8 @@ test('webpush custom provider.', async () => {
           type: 'unknown'
         }]
       }
-    } })
+    }
+  })
   )).toThrow('Unknown webpush provider "unknown".')
 })
 

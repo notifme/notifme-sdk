@@ -41,7 +41,8 @@ test('voice custom provider.', async () => {
           type: 'unknown'
         }]
       }
-    } })
+    }
+  })
   )).toThrow('Unknown voice provider "unknown".')
 })
 

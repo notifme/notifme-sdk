@@ -49,21 +49,23 @@ test('Twilio success with minimal parameters.', async () => {
 
 test('Twilio success with all parameters.', async () => {
   mockResponse(200, JSON.stringify({ sid: 'returned-id' }))
-  const result = await sdk.send({ voice: {
-    from: 'Notifme',
-    to: '+15000000001',
-    url: 'https://notifme.github.io',
-    method: 'POST',
-    fallbackUrl: 'http://example.com',
-    fallbackMethod: 'POST',
-    statusCallback: 'http://example.com',
-    statusCallbackEvent: ['initiated', 'ringing', 'answered', 'completed'],
-    sendDigits: 'ww1234',
-    machineDetection: 'Enable',
-    machineDetectionTimeout: 30,
-    timeout: 60,
-    customize: async (provider, request) => ({ ...request, url: 'url...' })
-  } })
+  const result = await sdk.send({
+    voice: {
+      from: 'Notifme',
+      to: '+15000000001',
+      url: 'https://notifme.github.io',
+      method: 'POST',
+      fallbackUrl: 'http://example.com',
+      fallbackMethod: 'POST',
+      statusCallback: 'http://example.com',
+      statusCallbackEvent: ['initiated', 'ringing', 'answered', 'completed'],
+      sendDigits: 'ww1234',
+      machineDetection: 'Enable',
+      machineDetectionTimeout: 30,
+      timeout: 60,
+      customize: async (provider, request) => ({ ...request, url: 'url...' })
+    }
+  })
   expect(mockHttp).lastCalledWith(expect.objectContaining({
     hostname: 'api.twilio.com',
     method: 'POST',

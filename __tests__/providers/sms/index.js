@@ -41,7 +41,8 @@ test('sms custom provider.', async () => {
           type: 'unknown'
         }]
       }
-    } })
+    }
+  })
   )).toThrow('Unknown sms provider "unknown".')
 })
 

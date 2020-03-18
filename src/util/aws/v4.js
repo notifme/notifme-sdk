@@ -23,7 +23,7 @@ export default class AWSSignersV4 {
   addAuthorization (credentials, date) {
     const datetime = date.toISOString().replace(/\.\d{3}Z$/, 'Z').replace(/[:-]|\.\d{3}/g, '')
     this.addHeaders(credentials, datetime)
-    this.request.headers['Authorization'] = this.authorization(credentials, datetime)
+    this.request.headers.Authorization = this.authorization(credentials, datetime)
   }
 
   addHeaders (credentials, datetime) {

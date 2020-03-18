@@ -46,7 +46,8 @@ test('email custom provider.', async () => {
           type: 'unknown'
         }]
       }
-    } })
+    }
+  })
   )).toThrow('Unknown email provider "unknown".')
 })
 
