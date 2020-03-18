@@ -1,6 +1,6 @@
 {
   "name": "notifme-sdk",
-  "version": "1.9.2",
+  "version": "1.9.3",
   "description": "Unified notification SDK (emails, SMS, pushes, webpushes...) for Node.js",
   "main": "lib/index.js",
   "repository": "https://github.com/notifme/notifme-sdk",
