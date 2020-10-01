@@ -21,6 +21,17 @@ export default class EmailSesProvider {
   }
 
   async send (request: EmailRequestType): Promise<string> {
+    if (
+      request.text &&
+      typeof request.text !== 'string' &&
+      !(request.text instanceof Buffer) &&
+      !(request.text instanceof Uint8Array)
+    ) {
+      throw new Error(
+        'The "chunk" argument must be of type string or an instance of Buffer or Uint8Array.'
+      )
+    }
+
     const { region } = this.credentials
     const host = `email.${region}.amazonaws.com`
     const raw = (await this.getRaw(
@@ -56,13 +67,9 @@ export default class EmailSesProvider {
     }
   }
 
-  getRaw ({ customize, ...request }: EmailRequestType): Promise<Buffer> {
-    return new Promise((resolve, reject) => {
-      const email = new MailComposer(request).compile()
-      email.keepBcc = true
-      email.build((error, raw) => {
-        error ? reject(error) : resolve(raw)
-      })
-    })
+  async getRaw ({ customize, ...request }: EmailRequestType): Promise<Buffer> {
+    const email = new MailComposer(request).compile()
+    email.keepBcc = true
+    return email.build()
   }
 }
