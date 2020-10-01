@@ -45,7 +45,7 @@ test('SES success with minimal parameters.', async () => {
       Host: 'email.eu-west-1.amazonaws.com',
       'X-Amz-Content-Sha256': [expect.stringMatching(/\w*/)],
       'X-Amz-Date': [datetime],
-      'Content-Length': ['425'],
+      'Content-Length': ['445'],
       'Content-Type': ['application/x-www-form-urlencoded; charset=utf-8'],
       'User-Agent': ['notifme-sdk/v1 (+https://github.com/notifme/notifme-sdk)']
     })
@@ -99,7 +99,7 @@ test('SES success with all parameters.', async () => {
       Host: 'email.eu-west-1.amazonaws.com',
       'X-Amz-Content-Sha256': [expect.stringMatching(/\w*/)],
       'X-Amz-Date': [datetime],
-      'Content-Length': ['1017'],
+      'Content-Length': ['1037'],
       'Content-Type': ['application/x-www-form-urlencoded; charset=utf-8'],
       'User-Agent': ['notifme-sdk/v1 (+https://github.com/notifme/notifme-sdk)']
     })
@@ -121,7 +121,7 @@ test('SES should return an error if a parameter is not of the right type.', asyn
   expect(result).toEqual({
     status: 'error',
     errors: {
-      email: 'The "chunk" argument must be one of type string or Buffer. Received type object'
+      email: expect.stringContaining('The "chunk" argument must be of type string or an instance of Buffer or Uint8Array.')
     },
     channels: {
       email: { id: undefined, providerId: 'email-ses-provider' }
