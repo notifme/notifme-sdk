@@ -14,8 +14,8 @@ export default class EmailMailgunProvider {
   constructor (config: Object) {
     this.apiKeyBase64 = Buffer.from(`api:${config.apiKey}`).toString('base64')
     this.domainName = config.domainName
-    this.host = config.host || 'api.mailgun.net';
-    this.version = config.version || 'v3';
+    this.host = config.host || 'api.mailgun.net'
+    this.version = config.version || 'v3'
   }
 
   async send (request: EmailRequestType): Promise<string> {
