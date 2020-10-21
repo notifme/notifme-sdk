@@ -19,7 +19,7 @@ export default class EmailMailgunProvider {
       request.customize ? (await request.customize(this.id, request)) : request
     const form = new FormData()
     form.append('from', from)
-    form.append('to', to)
+    if (to && to.length > 0) to.forEach((email) => form.append("to", email))
     form.append('subject', subject)
     if (text) form.append('text', text)
     if (html) form.append('html', html)

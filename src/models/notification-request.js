@@ -7,7 +7,7 @@ type RequestMetadataType = {
 
 export type EmailRequestType = RequestMetadataType & {
   from: string,
-  to: string,
+  to: string[],
   subject: string,
   cc?: string[],
   bcc?: string[],

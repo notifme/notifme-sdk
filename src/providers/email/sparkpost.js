@@ -43,7 +43,7 @@ export default class EmailSparkPostProvider {
             }))
         },
         recipients: [
-          { address: { email: to } },
+          ...(to || []).map((email) => ({ address: { email, header_to: to } })),
           ...(cc || []).map((email) => ({ address: { email, header_to: to } })),
           ...(bcc || []).map((email) => ({ address: { email, header_to: to } }))
         ],

@@ -21,7 +21,7 @@ const sdk = new NotifmeSdk({
 const request = {
   email: {
     from: 'me@example.com',
-    to: 'john@example.com',
+    to: ['john@example.com'],
     subject: 'Hi John',
     text: 'Hello John! How are you?'
   }
@@ -63,7 +63,7 @@ test('Mandrill success with all parameters.', async () => {
     },
     email: {
       from: 'from@example.com',
-      to: 'to@example.com',
+      to: ['to@example.com'],
       subject: 'Hi John',
       html: '<b>Hello John! How are you?</b>',
       replyTo: 'replyto@example.com',
@@ -111,7 +111,7 @@ test('Mandrill success with buffered attachment.', async () => {
     },
     email: {
       from: 'from@example.com',
-      to: 'to@example.com',
+      to: ['to@example.com'],
       subject: 'Hi John',
       html: '<b>Hello John! How are you?</b>',
       attachments: [{

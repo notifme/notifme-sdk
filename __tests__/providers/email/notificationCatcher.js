@@ -14,7 +14,7 @@ const sdk = new NotifmeSdk({
 const request = {
   email: {
     from: 'me@example.com',
-    to: 'john@example.com',
+    to: ['john@example.com'],
     subject: 'Hi John',
     html: '<b>Hello John! How are you?</b>',
     text: 'Hello John! How are you?',

@@ -25,7 +25,7 @@ export default class EmailSendGridProvider {
       },
       body: JSON.stringify({
         personalizations: [{
-          to: [{ email: to }],
+          ...(to && to.length > 0 ? { to: to.map((email) => ({ email })) } : null),
           ...(cc && cc.length > 0 ? { cc: cc.map((email) => ({ email })) } : null),
           ...(bcc && bcc.length > 0 ? { bcc: bcc.map((email) => ({ email })) } : null)
         }],

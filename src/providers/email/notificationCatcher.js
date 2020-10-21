@@ -15,7 +15,7 @@ export default class EmailNotificationCatcherProvider extends NotificationCatche
       subject,
       replyTo,
       headers: {
-        'X-to': `[email] ${to}`
+        "X-to": `[email] ${to}`,
       }
     })
   }

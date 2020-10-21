@@ -924,7 +924,7 @@ _New: you can check [notifme-template](https://github.com/notifme/notifme-templa
 notifmeSdk.send({
   email: {
     from: 'me@example.com',
-    to: 'john@example.com',
+    to: ['john@example.com'],
     subject: 'Hi John',
     html: '<b>Hello John! How are you?</b>'
   }

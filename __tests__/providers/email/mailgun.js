@@ -22,7 +22,7 @@ const sdk = new NotifmeSdk({
 const request = {
   email: {
     from: 'me@example.com',
-    to: 'john@example.com',
+    to: ['john@example.com'],
     subject: 'Hi John',
     text: 'Hello John! How are you?'
   }

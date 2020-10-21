@@ -25,7 +25,7 @@ export default class EmailMandrillProvider {
         message: {
           from_email: from,
           to: [
-            { email: to, type: 'to' },
+            ...(to && to.length ? to.map((email) => ({ email, type: "to" })) : []),
             ...(cc && cc.length ? cc.map(email => ({ email, type: 'cc' })) : []),
             ...(bcc && bcc.length ? bcc.map(email => ({ email, type: 'bcc' })) : [])
           ],
