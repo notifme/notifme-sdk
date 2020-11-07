@@ -7,13 +7,14 @@ import logger from './util/logger'
 import providerFactory from './providers'
 import strategyProvidersFactory from './strategies/providers'
 // Types
-import type { EmailRequestType, PushRequestType, SmsRequestType, VoiceRequestType, WebpushRequestType, SlackRequestType } from './models/notification-request'
+import type { EmailRequestType, PushRequestType, SmsRequestType, VoiceRequestType, WebpushRequestType, SlackRequestType, TelegramRequestType} from './models/notification-request'
 import type { EmailProviderType } from './models/provider-email'
 import type { PushProviderType } from './models/provider-push'
 import type { SmsProviderType } from './models/provider-sms'
 import type { VoiceProviderType } from './models/provider-voice'
 import type { WebpushProviderType } from './models/provider-webpush'
 import type { SlackProviderType } from './models/provider-slack'
+import type { TelegramProviderType } from './models/provider-telegram'
 import type SenderType from './sender'
 
 export const CHANNELS = {
@@ -22,7 +23,8 @@ export const CHANNELS = {
   sms: 'sms',
   voice: 'voice',
   webpush: 'webpush',
-  slack: 'slack'
+  slack: 'slack',
+  telegram: 'telegram'
 }
 export type ChannelType = $Keys<typeof CHANNELS>
 
@@ -36,7 +38,8 @@ export type NotificationRequestType = {
   sms?: SmsRequestType,
   voice?: VoiceRequestType,
   webpush?: WebpushRequestType,
-  slack?: SlackRequestType
+  slack?: SlackRequestType,
+  telegram?: TelegramRequestType
   // TODO?: other channels (messenger, skype, telegram, kik, spark...)
 }
 
@@ -76,6 +79,10 @@ export type OptionsType = {|
     },
     slack?: {
       providers: SlackProviderType[],
+      multiProviderStrategy?: ProviderStrategyType
+    },
+    telegram?: {
+      providers: TelegramProviderType[],
       multiProviderStrategy?: ProviderStrategyType
     }
   },
@@ -135,6 +142,11 @@ export default class NotifmeSdk {
             providers: [],
             multiProviderStrategy: 'fallback',
             ...(channels ? channels.slack : null)
+          },
+          telegram: {
+            providers: [],
+            multiProviderStrategy: 'fallback',
+            ...(channels ? channels.telegram : null)
           }
         }
     }

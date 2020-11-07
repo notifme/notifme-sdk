@@ -5,6 +5,7 @@ import smsFactory from './sms'
 import voiceFactory from './voice'
 import webpushFactory from './webpush'
 import slackFactory from './slack'
+import telegramFactory from './telegram'
 // Types
 import type { ChannelType } from '../index'
 import type { RequestType } from '../models/notification-request'
@@ -39,6 +40,9 @@ export default function factory (channels: ChannelOptionsType): ProvidersType {
 
         case 'slack':
           return slackFactory(config)
+
+        case 'telegram':
+          return telegramFactory(config)
 
         default:
           return config

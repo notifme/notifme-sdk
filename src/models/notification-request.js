@@ -168,4 +168,11 @@ export type SlackRequestType = RequestMetadataType & {
   customize?: (string, SlackRequestType) => Promise<SlackRequestType>
 }
 
-export type RequestType = EmailRequestType | PushRequestType | SmsRequestType | VoiceRequestType | WebpushRequestType | SlackRequestType
+export type TelegramRequestType = RequestMetadataType & {
+  chat_id: string, 
+  message: string, 
+  parse_mode?: string,
+  customize?: (string, TelegramRequestType) => Promise<TelegramRequestType>
+}
+
+export type RequestType = EmailRequestType | PushRequestType | SmsRequestType | VoiceRequestType | WebpushRequestType | SlackRequestType | TelegramRequestType

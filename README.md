@@ -803,6 +803,65 @@ new NotifmeSdk({
 <br>
 
 See all options: [Slack provider options](https://github.com/notifme/notifme-sdk/blob/master/src/models/provider-slack.js)
+#### Telegram providers
+
+<details><summary>Logger <i>(for development)</i></summary><p>
+
+```javascript
+new NotifmeSdk({
+  channels: {
+    telegram: {
+      providers: [{
+        type: 'logger'
+      }]
+    }
+  }
+})
+```
+
+</p></details>
+<details><summary>Telegram</summary><p>
+
+```javascript
+new NotifmeSdk({
+  channels: {
+    telegram: {
+      providers: [{
+        type: 'webhook',
+        bot_token: "bot_token",
+        base_url: "base_url"
+      }]
+    }
+  }
+})
+```
+
+</p></details>
+<details><summary>Custom <i>(define your own)</i></summary><p>
+
+```javascript
+new NotifmeSdk({
+  channels: {
+    telegram: {
+      providers: [{
+        type: 'custom',
+        id: 'my-custom-telegram-provider...',
+        send: async (request) => {
+          // Send telegram
+          return 'id...'
+        }
+      }]
+    }
+  }
+})
+```
+
+`request` being of [the following type](https://github.com/notifme/notifme-sdk/blob/master/src/models/notification-request.js#L136-L138).
+
+</p></details>
+<br>
+
+See all options: [Telegram provider options](https://github.com/notifme/notifme-sdk/blob/master/src/models/provider-telegram.js)
 
 #### Multi-provider strategies
 
@@ -1012,6 +1071,20 @@ notifmeSdk.send({
 })
 ```
 
+See [all parameters](https://github.com/notifme/notifme-sdk/blob/master/src/models/notification-request.js#L109).
+
+</p></details>
+<details><summary>Send a Telegram message</summary><p>
+
+```javascript
+notifmeSdk.send({
+  telegram: {
+    chat_id: "chat_id",
+    message: "message",
+  }
+})
+```
+
 See [all parameters](https://github.com/notifme/notifme-sdk/blob/master/src/models/notification-request.js#L132).
 
 </p></details>
@@ -1050,6 +1123,10 @@ notifmeSdk.send({
   },
   slack: {
     text: 'Slack webhook text'
+  },
+  telegram: {
+    chat_id: "chat_id",
+    message: "message",
   }
 })
 ```
