@@ -1,9 +1,12 @@
 {
-  "name": "notifme-sdk",
+  "name": "@duydatpham/notifme-sdk",
   "version": "1.10.0",
   "description": "Unified notification SDK (emails, SMS, pushes, webpushes...) for Node.js",
   "main": "lib/index.js",
-  "repository": "https://github.com/notifme/notifme-sdk",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/notifme/notifme-sdk.git"
+  },
   "author": "Notif.me",
   "license": "MIT",
   "scripts": {
@@ -84,5 +87,14 @@
     "ignore": [
       "flow-bin"
     ]
+  },
+  "bugs": {
+    "url": "https://github.com/notifme/notifme-sdk/issues"
+  },
+  "homepage": "https://github.com/notifme/notifme-sdk#readme",
+  "directories": {
+    "doc": "docs",
+    "example": "examples",
+    "lib": "lib"
   }
 }
