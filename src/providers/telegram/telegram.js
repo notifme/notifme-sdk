@@ -7,10 +7,10 @@ import type { TelegramRequestType } from '../../models/notification-request'
 export default class TelegramProvider {
   id: string = 'telegram-provider'
   bot_token: string
-  base_url: string
+  base_url?: string
 
   constructor(config: Object) {
-    this.base_url = config.base_url
+    this.base_url = config.base_url || 'https://api.telegram.org'
     this.bot_token = config.bot_token
   }
 
