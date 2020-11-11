@@ -6,16 +6,16 @@ import type { TelegramRequestType } from '../../models/notification-request'
 
 export default class TelegramProvider {
   id: string = 'telegram-provider'
-  bot_token: string
-  base_url: string
+  botToken: string
+  baseUrl: string
 
-  constructor(config: Object) {
-    this.base_url = config.base_url || 'https://api.telegram.org'
-    this.bot_token = config.bot_token
+  constructor (config: Object) {
+    this.baseUrl = config.baseUrl || 'https://api.telegram.org'
+    this.botToken = config.botToken
   }
 
-  async send(request: TelegramRequestType): Promise<string> {
-    const { chat_id, message, parse_mode, ...rest } = request.customize ? (await request.customize(this.id, request)) : request
+  async send (request: TelegramRequestType): Promise<string> {
+    const { chatId, message, parseMode } = request.customize ? (await request.customize(this.id, request)) : request
     const apiRequest = {
       method: 'POST',
       headers: {
@@ -23,16 +23,16 @@ export default class TelegramProvider {
         // 'Content-Type': 'application/x-www-form-urlencoded',
       },
       body: JSON.stringify({
-        chat_id,
+        chatId,
         text: message,
-        parse_mode: parse_mode || 'html'
+        parseMode: parseMode || 'html'
       })
     }
-    const response = await fetch(`${this.base_url}/${this.bot_token}/sendMessage`, apiRequest)
+    const response = await fetch(`${this.baseUrl}/${this.botToken}/sendMessage`, apiRequest)
 
     if (response.ok) {
       try {
-        let result = await response.json()
+        const result = await response.json()
         return result.result.message_id // Telegram API only returns 'ok'
       } catch (error) {
         return crypto.randomBytes(16).toString('hex')

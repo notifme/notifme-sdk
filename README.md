@@ -828,8 +828,8 @@ new NotifmeSdk({
     telegram: {
       providers: [{
         type: 'webhook',
-        bot_token: "bot_token",
-        base_url: "base_url"
+        botToken: "bot_token",
+        baseUrl: "base_url"
       }]
     }
   }
@@ -1079,7 +1079,7 @@ See [all parameters](https://github.com/notifme/notifme-sdk/blob/master/src/mode
 ```javascript
 notifmeSdk.send({
   telegram: {
-    chat_id: "chat_id",
+    chatId: "chatId",
     message: "message",
   }
 })
@@ -1125,7 +1125,7 @@ notifmeSdk.send({
     text: 'Slack webhook text'
   },
   telegram: {
-    chat_id: "chat_id",
+    chatId: "chatId",
     message: "message",
   }
 })

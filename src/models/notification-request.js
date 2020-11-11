@@ -169,9 +169,9 @@ export type SlackRequestType = RequestMetadataType & {
 }
 
 export type TelegramRequestType = RequestMetadataType & {
-  chat_id: string, 
-  message: string, 
-  parse_mode?: string,
+  chatId: string,
+  message: string,
+  parseMode?: string,
   customize?: (string, TelegramRequestType) => Promise<TelegramRequestType>
 }
 
