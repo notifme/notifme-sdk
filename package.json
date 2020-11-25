@@ -25,8 +25,8 @@
     "form-data": "3.0.0",
     "https-proxy-agent": "5.0.0",
     "node-fetch": "2.6.1",
-    "node-pushnotifications": "1.4.1",
-    "nodemailer": "6.4.12",
+    "node-pushnotifications": "1.5.0",
+    "nodemailer": "6.4.16",
     "web-push": "3.4.4",
     "winston": "3.3.3"
   },
