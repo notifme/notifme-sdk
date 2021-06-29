@@ -8,10 +8,14 @@ export default class EmailMailgunProvider {
   id: string = 'email-mailgun-provider'
   apiKeyBase64: string
   domainName: string
+  host: string
+  version: string
 
   constructor (config: Object) {
     this.apiKeyBase64 = Buffer.from(`api:${config.apiKey}`).toString('base64')
     this.domainName = config.domainName
+    this.host = config.host || 'api.mailgun.net'
+    this.version = config.version || 'v3'
   }
 
   async send (request: EmailRequestType): Promise<string> {
@@ -35,7 +39,7 @@ export default class EmailMailgunProvider {
     if (id) form.append('v:Notification-Id', id)
     if (userId) form.append('v:User-Id', userId)
 
-    const response = await fetch(`https://api.mailgun.net/v3/${this.domainName}/messages`, {
+    const response = await fetch(`https://${this.host}/${this.version}/${this.domainName}/messages`, {
       method: 'POST',
       headers: {
         Authorization: `Basic ${this.apiKeyBase64}`,
