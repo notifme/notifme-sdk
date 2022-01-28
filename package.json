@@ -1,6 +1,6 @@
 {
   "name": "notifme-sdk",
-  "version": "1.10.0",
+  "version": "1.11.0",
   "description": "Unified notification SDK (emails, SMS, pushes, webpushes...) for Node.js",
   "main": "lib/index.js",
   "repository": "https://github.com/notifme/notifme-sdk",
@@ -22,12 +22,12 @@
   },
   "dependencies": {
     "babel-runtime": "6.26.0",
-    "form-data": "3.0.0",
+    "form-data": "4.0.0",
     "https-proxy-agent": "5.0.0",
     "node-fetch": "2.6.1",
-    "node-pushnotifications": "1.4.1",
-    "nodemailer": "6.4.12",
-    "web-push": "3.4.4",
+    "node-pushnotifications": "1.7.1",
+    "nodemailer": "6.6.2",
+    "web-push": "3.4.5",
     "winston": "3.3.3"
   },
   "devDependencies": {
