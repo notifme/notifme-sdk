@@ -82,7 +82,7 @@ export type OptionsType = {|
   useNotificationCatcher?: boolean // if true channels are ignored
 |}
 
-export default class NotifmeSdk {
+export class NotifmeSdk {
   sender: SenderType
   logger: typeof logger = logger
 
