@@ -48,7 +48,7 @@ $ yarn add notifme-sdk
 ```
 
 ```javascript
-import NotifmeSdk from 'notifme-sdk'
+import {NotifmeSdk} from 'notifme-sdk'
 
 const notifmeSdk = new NotifmeSdk({}) // empty config = all providers are set to console.log
 notifmeSdk
