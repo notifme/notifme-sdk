@@ -333,15 +333,15 @@
     "@types/yargs" "^15.0.0"
     chalk "^4.0.0"
 
-"@parse/node-apn@4.1.1":
-  version "4.1.1"
-  resolved "https://registry.yarnpkg.com/@parse/node-apn/-/node-apn-4.1.1.tgz#ff1e59fea9a788795f9f0105b77cb10ec91eccbf"
-  integrity sha512-stWlQE95w5T0vkVYscoq/S3eXPQ1qzdQbKKQ8GAdw4CSNxRWLWgOH50byUR30thnQ93RshLCH5ROkvXMqzzLtw==
+"@parse/node-apn@5.1.3":
+  version "5.1.3"
+  resolved "https://registry.yarnpkg.com/@parse/node-apn/-/node-apn-5.1.3.tgz#58cdecf14d872e3183046c58f2cfb87d41afb5e1"
+  integrity sha512-Bwhmbm895lEIF2772PJ8dSvBjrtOG9/q/TDMxmX40IgZxQFoXS73+JUIKTq3CA7SUB/Szu5roJINQ0L2U/1MJw==
   dependencies:
-    debug "4.3.2"
+    debug "4.3.3"
     jsonwebtoken "8.5.1"
-    node-forge "0.10.0"
-    verror "1.10.0"
+    node-forge "1.3.0"
+    verror "1.10.1"
 
 "@types/babel__core@^7.0.0", "@types/babel__core@^7.1.7":
   version "7.1.10"
@@ -1993,10 +1993,10 @@ debug@4, debug@^4, debug@^4.0.1, debug@^4.1.0, debug@^4.3.4:
   dependencies:
     ms "2.1.2"
 
-debug@4.3.2:
-  version "4.3.2"
-  resolved "https://registry.yarnpkg.com/debug/-/debug-4.3.2.tgz#f0a49c18ac8779e31d4a0c6029dfb76873c7428b"
-  integrity sha512-mOp8wKcvj7XxC78zLgw/ZA+6TSgkoE2C/ienthhRD298T7UNwAg9diBpLRxC0mOezLl4B0xV7M0cCO6P/O0Xhw==
+debug@4.3.3:
+  version "4.3.3"
+  resolved "https://registry.yarnpkg.com/debug/-/debug-4.3.3.tgz#04266e0b70a98d4462e6e288e38259213332b664"
+  integrity sha512-/zxw5+vh1Tfv+4Qn7a5nsbcJKPaSvCDhojn6FEl9vupwK2VCSDtEiEtqr8DFtzYFOdz63LBkxec7DYuc2jon6Q==
   dependencies:
     ms "2.1.2"
 
@@ -4333,7 +4333,7 @@ lodash@^4.17.19:
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.20.tgz#b44a9b6297bcb698f1c51a3545a2b3b368d59c52"
   integrity sha512-PlhdFcillOINfeV7Ni6oF1TAEayyZBoZ8bcshTHqOYJYlrqzRK5hagpagky5o4HfCzzd1TRkXPMFq6cKk9rGmA==
 
-lodash@^4.17.20:
+lodash@^4.17.21:
   version "4.17.21"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.21.tgz#679591c564c3bffaae8454cf0b3df370c3d6911c"
   integrity sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==
@@ -4658,18 +4658,18 @@ node-fetch@2.7.0:
   dependencies:
     whatwg-url "^5.0.0"
 
-node-forge@0.10.0:
-  version "0.10.0"
-  resolved "https://registry.yarnpkg.com/node-forge/-/node-forge-0.10.0.tgz#32dea2afb3e9926f02ee5ce8794902691a676bf3"
-  integrity sha512-PPmu8eEeG9saEUvI97fm4OYxXVB6bFvyNTyiUOBichBpFG8A1Ljw3bY62+5oOjDEMHRnd0Y7HQ+x7uzxOzC6JA==
+node-forge@1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/node-forge/-/node-forge-1.3.0.tgz#37a874ea723855f37db091e6c186e5b67a01d4b2"
+  integrity sha512-08ARB91bUi6zNKzVmaj3QO7cr397uiDT2nJ63cHjyNtCTWIgvS47j3eT0WfzUwS9+6Z5YshRaoasFkXCKrIYbA==
 
-node-gcm@1.0.4:
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/node-gcm/-/node-gcm-1.0.4.tgz#fdd6f96a5b0b61f8c891f46844cbd42c2520b3d3"
-  integrity sha512-g12XH5LoJQnNFK0LQcxcJlT44Zye6Vc8tVLCC0ou0OFRv4xn9QW+30Db0HHouWX5rrew62tgh6MiN5fmEGFAsA==
+node-gcm@1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/node-gcm/-/node-gcm-1.0.5.tgz#712e9ba8fbc30d93fb371abd96f5754f639c6235"
+  integrity sha512-yTN0q31xUxA3MwStkvT4UIgHw1khg8rrKywMdSEVjmMpK/aWIHVVZ4ia3P41+ppPH3O8+teMHs/bk3xZ8C4n1A==
   dependencies:
     debug "^3.1.0"
-    lodash "^4.17.20"
+    lodash "^4.17.21"
     request "^2.88.0"
 
 node-int64@^0.4.0:
@@ -4707,16 +4707,16 @@ node-pre-gyp@^0.10.0:
     semver "^5.3.0"
     tar "^4"
 
-node-pushnotifications@1.7.1:
-  version "1.7.1"
-  resolved "https://registry.yarnpkg.com/node-pushnotifications/-/node-pushnotifications-1.7.1.tgz#19a9812d2f31d82d476a4a778c95e5a8c7fbb476"
-  integrity sha512-tUnVx/i8tB9tLKo18mot3IW0E0XdNxYTHdJGmPNYu+ngNx1fvqj5k898qzuMEm7F5d8ayV80y3ZU0Lki53iRkw==
+node-pushnotifications@2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/node-pushnotifications/-/node-pushnotifications-2.1.0.tgz#9644c3454c839df8c71327f58caa5586ac8c0cd1"
+  integrity sha512-42QRQuwrj7LecZdMtE30NbXnmHoeZi7pun99hln7CK/T5srt50Q/g4jEgICXHgXbrKVoqsNEnctIZYYKjO9P1A==
   dependencies:
-    "@parse/node-apn" "4.1.1"
+    "@parse/node-apn" "5.1.3"
     node-adm "0.9.1"
-    node-gcm "1.0.4"
-    ramda "0.27.1"
-    web-push "3.4.4"
+    node-gcm "1.0.5"
+    ramda "0.28.0"
+    web-push "3.4.5"
     wns "0.5.4"
 
 nodemailer-fetch@1.3.0:
@@ -5361,10 +5361,10 @@ qs@~6.5.2:
   version "6.5.2"
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.5.2.tgz#cb3ae806e8740444584ef154ce8ee98d403f3e36"
 
-ramda@0.27.1:
-  version "0.27.1"
-  resolved "https://registry.yarnpkg.com/ramda/-/ramda-0.27.1.tgz#66fc2df3ef873874ffc2da6aa8984658abacf5c9"
-  integrity sha512-PgIdVpn5y5Yns8vqb8FzBUEYn98V3xcPgawAkkgj0YJ0qDsnHCiNmZYfOGMgOvoB0eWFLpYbhxUR3mxfDIMvpw==
+ramda@0.28.0:
+  version "0.28.0"
+  resolved "https://registry.yarnpkg.com/ramda/-/ramda-0.28.0.tgz#acd785690100337e8b063cab3470019be427cc97"
+  integrity sha512-9QnLuG/kPVgWvMQ4aODhsBUFKOUmnbUnsSXACv+NCQZcHbeb+v8Lodp8OVxtRULN1/xOyYLLaL6npE6dMq5QTA==
 
 randomatic@^3.0.0:
   version "3.1.0"
@@ -6597,6 +6597,15 @@ verror@1.10.0:
     core-util-is "1.0.2"
     extsprintf "^1.2.0"
 
+verror@1.10.1:
+  version "1.10.1"
+  resolved "https://registry.yarnpkg.com/verror/-/verror-1.10.1.tgz#4bf09eeccf4563b109ed4b3d458380c972b0cdeb"
+  integrity sha512-veufcmxri4e3XSrT0xwfUR7kguIkaxBeosDg00yDWhk49wdwkSUrvvsm7nc75e1PUyvIeZj6nS8VQRYz2/S4Xg==
+  dependencies:
+    assert-plus "^1.0.0"
+    core-util-is "1.0.2"
+    extsprintf "^1.2.0"
+
 w3c-hr-time@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/w3c-hr-time/-/w3c-hr-time-1.0.1.tgz#82ac2bff63d950ea9e3189a58a65625fedf19045"
@@ -6618,10 +6627,10 @@ watch@~0.18.0:
     exec-sh "^0.2.0"
     minimist "^1.2.0"
 
-web-push@3.4.4:
-  version "3.4.4"
-  resolved "https://registry.yarnpkg.com/web-push/-/web-push-3.4.4.tgz#b11523ada0f4b8c2481f65d1d059acd45ba27ca0"
-  integrity sha512-tB0F+ccobsfw5jTWBinWJKyd/YdCdRbKj+CFSnsJeEgFYysOULvWFYyeCxn9KuQvG/3UF1t3cTAcJzBec5LCWA==
+web-push@3.4.5:
+  version "3.4.5"
+  resolved "https://registry.yarnpkg.com/web-push/-/web-push-3.4.5.tgz#f94074ff150538872c7183e4d8881c8305920cf1"
+  integrity sha512-2njbTqZ6Q7ZqqK14YpK1GGmaZs3NmuGYF5b7abCXulUIWFSlSYcZ3NBJQRFcMiQDceD7vQknb8FUuvI1F7Qe/g==
   dependencies:
     asn1.js "^5.3.0"
     http_ece "1.1.0"
