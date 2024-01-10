@@ -1,0 +1,35 @@
+name: Dependabot auto-merge
+
+on:
+  pull_request:
+    branches: [master]
+
+jobs:
+  if-dependabot:
+    if: ${{ github.actor == 'dependabot[bot]' }}
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - run: echo The PR is from dependabot!
+
+  test:
+    uses: ./.github/workflows/ci-test.yml
+
+    needs: if-dependabot
+
+  dependabot-auto-merge:
+    runs-on: ubuntu-latest
+
+    needs: test
+
+    permissions:
+      contents: write # to be able to publish a GitHub release
+      pull-requests: write # to be able to comment on released pull requests
+
+    steps:
+      - name: Enable auto-merge for Dependabot PRs
+        run: gh pr merge --auto --merge "$PR_URL"
+        env:
+          PR_URL: ${{github.event.pull_request.html_url}}
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
