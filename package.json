@@ -27,7 +27,7 @@
     "node-fetch": "2.6.1",
     "node-pushnotifications": "1.7.1",
     "nodemailer": "6.6.2",
-    "web-push": "3.4.5",
+    "web-push": "3.6.6",
     "winston": "3.3.3"
   },
   "devDependencies": {
