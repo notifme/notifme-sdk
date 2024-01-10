@@ -28,7 +28,7 @@
     "node-pushnotifications": "1.7.1",
     "nodemailer": "6.9.8",
     "web-push": "3.6.6",
-    "winston": "3.3.3"
+    "winston": "3.11.0"
   },
   "devDependencies": {
     "babel-cli": "6.26.0",
