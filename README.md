@@ -1135,6 +1135,8 @@ $ yarn install
 
 Before making a [pull request](https://help.github.com/articles/creating-a-pull-request/), check that the code passes all the unit tests, respects the [Standard JS rules](https://standardjs.com/), and the [Flow type checker](https://flow.org/).
 
+Tests will also run automatically with GitHub Actions when you open a PR.
+
 ```shell
 $ yarn run test
 ```
