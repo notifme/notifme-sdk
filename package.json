@@ -14,8 +14,9 @@
     "dev": "nodemon -e js -r babel-register examples/with-notification-catcher.js",
     "lint": "yarn run flow && standard",
     "lint-fix": "standard --fix",
-    "run-catcher": "notification-catcher",
     "prepublish": "yarn run build",
+    "run-catcher": "notification-catcher",
+    "semantic-release": "semantic-release",
     "size": "echo 'Notif.me build size:' && du -hs lib/ && cost-of-modules --yarn",
     "test": "yarn run lint && yarn run testonly",
     "testonly": "jest"
@@ -31,6 +32,7 @@
     "winston": "3.11.0"
   },
   "devDependencies": {
+    "@semantic-release/git": "10.0.1",
     "babel-cli": "6.26.0",
     "babel-eslint": "10.1.0",
     "babel-jest": "29.7.0",
@@ -79,6 +81,28 @@
         "statements": 100
       }
     }
+  },
+  "release": {
+    "branches": [
+      "master"
+    ],
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/github",
+      "@semantic-release/npm",
+      [
+        "@semantic-release/git",
+        {
+          "assets": [
+            "lib/**/*.{js,ts,map}",
+            "docs",
+            "package.json"
+          ],
+          "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+        }
+      ]
+    ]
   },
   "greenkeeper": {
     "ignore": [
