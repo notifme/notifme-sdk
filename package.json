@@ -49,6 +49,7 @@
     "regenerator-runtime": "0.14.1",
     "standard": "14.3.4"
   },
+  "type": "module",
   "files": [
     "lib"
   ],
