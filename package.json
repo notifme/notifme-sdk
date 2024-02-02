@@ -42,7 +42,7 @@
     "babel-preset-stage-2": "6.24.1",
     "babel-register": "6.26.0",
     "cost-of-modules": "1.0.1",
-    "flow-bin": "0.89.0",
+    "flow-bin": "0.228.0",
     "jest": "23.6.0",
     "nodemon": "3.0.3",
     "notification-catcher": "1.2.1",
