@@ -29,7 +29,7 @@
     "node-pushnotifications": "2.1.0",
     "nodemailer": "6.9.10",
     "web-push": "3.6.7",
-    "winston": "3.11.0"
+    "winston": "3.12.0"
   },
   "devDependencies": {
     "@semantic-release/git": "10.0.1",
