@@ -1,5 +1,12 @@
 [ignore]
 <PROJECT_ROOT>/lib/.*
+<PROJECT_ROOT>/node_modules/array.prototype.reduce/node_modules/es-abstract/tsconfig.tmp.json
+<PROJECT_ROOT>/node_modules/arraybuffer.prototype.slice/node_modules/es-abstract/tsconfig.tmp.json
+<PROJECT_ROOT>/node_modules/function.prototype.name/node_modules/es-abstract/tsconfig.tmp.json
+<PROJECT_ROOT>/node_modules/object.getownpropertydescriptors/node_modules/es-abstract/tsconfig.tmp.json
+<PROJECT_ROOT>/node_modules/string.prototype.trim/node_modules/es-abstract/tsconfig.tmp.json
+<PROJECT_ROOT>/node_modules/string.prototype.trimend/node_modules/es-abstract/tsconfig.tmp.json
+<PROJECT_ROOT>/node_modules/string.prototype.trimstart/node_modules/es-abstract/tsconfig.tmp.json
 
 [include]
 
