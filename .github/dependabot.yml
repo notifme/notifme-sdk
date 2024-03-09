@@ -12,3 +12,7 @@ updates:
     directory: "/"
     schedule:
       interval: "daily"
+    commit-message:
+      prefix: fix
+      prefix-development: chore
+      include: scope
