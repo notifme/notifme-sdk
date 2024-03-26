@@ -62,7 +62,7 @@ test('seven success with minimal parameters.', async () => {
     href: 'https://gateway.seven.io/api/sms',
     headers: expect.objectContaining({
       Accept: ['application/json'],
-      'Content-Length': ['102'],
+      'Content-Length': ['94'],
       'Content-Type': ['application/json'],
       SentWith: ['Notifme'],
       'User-Agent': ['notifme-sdk/v1 (+https://github.com/notifme/notifme-sdk)'],
@@ -70,7 +70,7 @@ test('seven success with minimal parameters.', async () => {
     })
   }))
   expect(mockHttp.body).toEqual(
-    '{"flash":false,"from":"Notifme","text":"Hello John! How are you?","to":"+15000000001","unicode":false}'
+    '{"flash":0,"from":"Notifme","text":"Hello John! How are you?","to":"+15000000001","unicode":0}'
   )
   expect(result).toEqual({
     status: 'success',
@@ -85,12 +85,17 @@ test('seven should customize requests.', async () => {
   await sdk.send({
     sms: {
       ...request.sms,
-      customize: async (provider, request) => ({ ...request, text: 'Hello John! How are you?' })
+      customize: async (provider, request) => ({
+        ...request,
+        text: 'a totally new message',
+        messageClass: 0,
+        type: 'unicode'
+      })
     }
   })
-  expect(mockHttp).lastCalledWith(expect.objectContaining({
-    headers: expect.objectContaining({ 'Content-Length': ['103'] })
-  }))
+  expect(mockHttp.body).toEqual(
+    '{"flash":1,"from":"Notifme","text":"a totally new message","to":"+15000000001","unicode":1}'
+  )
 })
 
 test('seven error.', async () => {

@@ -17,12 +17,12 @@ export default class SmsSevenProvider {
   async send (request: SmsRequestType): Promise<string> {
     const { from, text, to, type, ttl, messageClass } = request.customize ? (await request.customize(this.id, request)) : request
     const params = {
-      flash: messageClass === 0,
+      flash: messageClass === 0 ? 1 : 0,
       from,
       text,
       to,
       ttl,
-      unicode: type === 'unicode'
+      unicode: type === 'unicode' ? 1 : 0
     }
     const response = await fetch('https://gateway.seven.io/api/sms', {
       body: JSON.stringify(params),
