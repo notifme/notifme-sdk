@@ -1,6 +1,7 @@
 name: Publish Package
 
 on:
+  workflow_call:
   push:
     branches: [master]
 

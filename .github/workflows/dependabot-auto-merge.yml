@@ -33,3 +33,8 @@ jobs:
         env:
           PR_URL: ${{github.event.pull_request.html_url}}
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
+  publish-package:
+    uses: ./.github/workflows/publish-package.yml
+
+    needs: dependabot-auto-merge
