@@ -11,6 +11,7 @@ import SmsPlivoProvider from './plivo'
 import SmsTwilioProvider from './twilio'
 // Types
 import type { SmsRequestType } from '../../models/notification-request'
+import SmsSevenProvider from './seven'
 
 export interface SmsProviderType {
   id: string,
@@ -54,6 +55,9 @@ export default function factory ({ type, ...config }: Object): SmsProviderType {
 
     case 'twilio':
       return new SmsTwilioProvider(config)
+
+    case 'seven':
+      return new SmsSevenProvider(config)
 
     default:
       throw new Error(`Unknown sms provider "${type}".`)

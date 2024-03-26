@@ -480,6 +480,24 @@ new NotifmeSdk({
 ```
 
 </p></details>
+
+<details><summary>Seven</summary><p>
+
+```javascript
+new NotifmeSdk({
+  channels: {
+    sms: {
+      providers: [{
+        type: 'seven',
+        apiKey: 'xxxxx'
+      }]
+    }
+  }
+})
+```
+
+</p></details>
+
 <details><summary>Custom <i>(define your own)</i></summary><p>
 
 ```javascript
