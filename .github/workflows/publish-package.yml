@@ -1,9 +1,11 @@
 name: Publish Package
 
 on:
-  workflow_call:
   push:
     branches: [master]
+  workflow_run:
+    workflows: ["Dependabot auto-merge"]
+    types: [completed]
 
 # Ensure unicity by branch name
 concurrency:
