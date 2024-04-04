@@ -1435,10 +1435,10 @@
   resolved "https://registry.yarnpkg.com/@nicolo-ribaudo/chokidar-2/-/chokidar-2-2.1.8-no-fsevents.3.tgz#323d72dd25103d0c4fbdce89dadf574a787b1f9b"
   integrity sha512-s88O1aVtXftvp5bCPB7WnmXc5IwOZZ7YPuwNPt+GtOOXpPvad1LfbmjYv+qII7zP6RU2QGnqve27dnLycEnyEQ==
 
-"@parse/node-apn@5.2.3":
-  version "5.2.3"
-  resolved "https://registry.yarnpkg.com/@parse/node-apn/-/node-apn-5.2.3.tgz#40cab41458f213a8da988df8fc94b79fa444e828"
-  integrity sha512-uBUTTbzk0YyMOcE5qTcNdit5v1BdaECCRSQYbMGU/qY1eHwBaqeWOYd8rwi2Caga3K7IZyQGhpvL4/56H+uvrQ==
+"@parse/node-apn@6.0.1":
+  version "6.0.1"
+  resolved "https://registry.yarnpkg.com/@parse/node-apn/-/node-apn-6.0.1.tgz#8d17e3c1b974fa8a10602c96ca5d6cae068031b3"
+  integrity sha512-QQxqEN/zbtEkSgj41oX/tQUavML+G+JHeQi2YVlgZlponnwIxA3fb5tEbXPm+fdR6rL1pi2/z2PcOwINOyx2eA==
   dependencies:
     debug "4.3.3"
     jsonwebtoken "9.0.0"
@@ -3409,13 +3409,6 @@ http-errors@~1.3.1:
     inherits "~2.0.1"
     statuses "1"
 
-http_ece@1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/http_ece/-/http_ece-1.1.0.tgz#74780c6eb32d8ddfe9e36a83abcd81fe0cd4fb75"
-  integrity sha512-bptAfCDdPJxOs5zYSe7Y3lpr772s1G346R4Td5LgRUeCwIGpCGDUTJxRrhTNcAXbx37spge0kWEIH7QAYWNTlA==
-  dependencies:
-    urlsafe-base64 "~1.0.0"
-
 http_ece@1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/http_ece/-/http_ece-1.2.0.tgz#84d5885f052eae8c9b075eee4d2eb5105f114479"
@@ -4585,16 +4578,16 @@ node-int64@^0.4.0:
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/node-int64/-/node-int64-0.4.0.tgz#87a9065cdb355d3182d8f94ce11188b825c68a3b"
 
-node-pushnotifications@2.1.1:
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/node-pushnotifications/-/node-pushnotifications-2.1.1.tgz#2dd8936163412765fe43a571ea07288274ffd37c"
-  integrity sha512-X1qXvCvum9bDA711IUA+PksBQQ5ssfGW//5fCQIRfQpzuyNVtx0cQU75IIlDH1nX+KXV+y/xO3x3MU32y7KcbA==
+node-pushnotifications@3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/node-pushnotifications/-/node-pushnotifications-3.0.0.tgz#67784e5084269cc48d199e9b52b90b0817521530"
+  integrity sha512-VQNvzmhQlEIv/+QdhVtKKtiSILioDAf6DbLWtQneJYJoU4DAxyUgbAcBkVi8giMaqXX724Rogy3XeBl9GhAudA==
   dependencies:
-    "@parse/node-apn" "5.2.3"
+    "@parse/node-apn" "6.0.1"
     node-adm "0.9.1"
     node-gcm "1.1.3"
-    ramda "0.28.0"
-    web-push "3.6.6"
+    ramda "0.29.1"
+    web-push "3.6.7"
     wns "0.5.4"
 
 node-releases@^2.0.14:
@@ -5129,10 +5122,10 @@ qs@4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/qs/-/qs-4.0.0.tgz#c31d9b74ec27df75e543a86c78728ed8d4623607"
 
-ramda@0.28.0:
-  version "0.28.0"
-  resolved "https://registry.yarnpkg.com/ramda/-/ramda-0.28.0.tgz#acd785690100337e8b063cab3470019be427cc97"
-  integrity sha512-9QnLuG/kPVgWvMQ4aODhsBUFKOUmnbUnsSXACv+NCQZcHbeb+v8Lodp8OVxtRULN1/xOyYLLaL6npE6dMq5QTA==
+ramda@0.29.1:
+  version "0.29.1"
+  resolved "https://registry.yarnpkg.com/ramda/-/ramda-0.29.1.tgz#408a6165b9555b7ba2fc62555804b6c5a2eca196"
+  integrity sha512-OfxIeWzd4xdUNxlWhgFazxsA/nl3mS4/jGZI5n00uWOoSSFRhC1b6gl6xvmzUamgmqELraWp0J/qqVlXYPDPyA==
 
 range-parser@~1.0.3:
   version "1.0.3"
@@ -6060,10 +6053,6 @@ uri-js@^4.2.2:
   dependencies:
     punycode "^2.1.0"
 
-urlsafe-base64@~1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/urlsafe-base64/-/urlsafe-base64-1.0.0.tgz#23f89069a6c62f46cf3a1d3b00169cefb90be0c6"
-
 util-deprecate@^1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/util-deprecate/-/util-deprecate-1.0.2.tgz#450d4dc9fa70de732762fbd2d4a28981419a0ccf"
@@ -6126,17 +6115,6 @@ walker@^1.0.8:
   integrity sha512-ts/8E8l5b7kY0vlWLewOkDXMmPdLcVV4GmOQLyxuSswIJsweeFZtAsMF7k1Nszz+TYBQrlYRmzOnr398y1JemQ==
   dependencies:
     makeerror "1.0.12"
-
-web-push@3.6.6:
-  version "3.6.6"
-  resolved "https://registry.yarnpkg.com/web-push/-/web-push-3.6.6.tgz#592facb26116187136b0d543768ef85675791ac8"
-  integrity sha512-SyteEck9fiCskNmPxs/GFhJsZrIyLfRvjWNmcUwULLJyCU0f1oxo2sWTokXA1mDAq9vxk4e4gVcb/8agq73NkQ==
-  dependencies:
-    asn1.js "^5.3.0"
-    http_ece "1.1.0"
-    https-proxy-agent "^7.0.0"
-    jws "^4.0.0"
-    minimist "^1.2.5"
 
 web-push@3.6.7:
   version "3.6.7"
