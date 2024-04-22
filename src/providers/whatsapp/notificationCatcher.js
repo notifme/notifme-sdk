@@ -6,6 +6,7 @@ import type { WhatsappRequestType } from '../../models/notification-request'
 export default class WhatsappCatcherProvider extends NotificationCatcherProvider {
   async send (request: WhatsappRequestType): Promise<string> {
     const { content } = request.customize ? (await request.customize(this.id, request)) : request
+    console.log('TEEEEST')
     this.sendToCatcher({
       to: `${to}@whatsapp`,
       from,

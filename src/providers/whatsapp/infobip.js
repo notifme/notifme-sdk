@@ -14,26 +14,27 @@ export default class WhatsappInfobipProvider {
   }
 
   async send (request: WhatsappRequestType): Promise<string> {
-    const { from, to, content, messageId, callbackData, notifyUrl } = request.customize ? (await request.customize(this.id, request)) : request
-    const response = await fetch(this.baseUrl, {
+    const { from, to, content, messageId, mediaType, callbackData, notifyUrl } = request.customize ? (await request.customize(this.id, request)) : request
+    const payload = {
+      from,
+      to,
+      content,
+      messageId,
+      callbackData,
+      notifyUrl,
+      urlOptions: {
+        shortenUrl: false,
+        trackClicks: false,
+      },
+    }
+    const response = await fetch(`${this.baseUrl}/whatsapp/1/message/${mediaType}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         Authorization: `App ${this.apiKey}`,
         'User-Agent': 'notifme-sdk/v1 (+https://github.com/notifme/notifme-sdk)'
       },
-      body: JSON.stringify({
-        from,
-        to,
-        content,
-        messageId,
-        callbackData,
-        notifyUrl,
-        urlOptions: {
-          shortenUrl: false,
-          trackClicks: false,
-        },
-      })
+      body: mediaType === 'template' ? JSON.stringify({ messages: [payload] }) : JSON.stringify(payload)
     })
 
     const responseBody = await response.json()
