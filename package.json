@@ -3,9 +3,11 @@
   "version": "1.15.4",
   "description": "Unified notification SDK (emails, SMS, pushes, webpushes...) for Node.js",
   "main": "lib/index.js",
-  "repository": "https://github.com/notifme/notifme-sdk",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/notifme/notifme-sdk.git"
+  },
   "author": "Notif.me",
-  "private": true,
   "license": "MIT",
   "scripts": {
     "build": "yarn run clean && babel src --out-dir lib && yarn run build-dot-flow",
