@@ -5,6 +5,7 @@
   "main": "lib/index.js",
   "repository": "https://github.com/notifme/notifme-sdk",
   "author": "Notif.me",
+  "private": true,
   "license": "MIT",
   "scripts": {
     "build": "yarn run clean && babel src --out-dir lib && yarn run build-dot-flow",
@@ -47,6 +48,7 @@
     "@babel/plugin-transform-flow-strip-types": "^7.0.0",
     "@babel/plugin-transform-runtime": "^7.0.0",
     "@babel/preset-env": "^7.0.0",
+    "@babel/preset-flow": "^7.0.0",
     "@babel/register": "^7.0.0",
     "@semantic-release/git": "10.0.1",
     "babel-core": "^7.0.0-bridge.0",
@@ -58,8 +60,7 @@
     "nodemon": "3.1.0",
     "notification-catcher": "1.2.1",
     "regenerator-runtime": "0.14.1",
-    "standard": "14.3.4",
-    "@babel/preset-flow": "^7.0.0"
+    "standard": "14.3.4"
   },
   "files": [
     "lib"
