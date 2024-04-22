@@ -175,7 +175,7 @@ export type WhatsappRequestType = RequestMetadataType & {
   messageId: string,
   callbackData?: string,
   notifyUrl?: string,
-  mediaTemplate: string,
+  mediaType: string,
   customize?: (string, WhatsappRequestType) => Promise<WhatsappRequestType>
 }
 
