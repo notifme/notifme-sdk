@@ -14,6 +14,7 @@ import type { SmsProviderType } from './models/provider-sms'
 import type { VoiceProviderType } from './models/provider-voice'
 import type { WebpushProviderType } from './models/provider-webpush'
 import type { SlackProviderType } from './models/provider-slack'
+import type { WhatsappProviderType } from './models/provider-whatsapp'
 import type SenderType from './sender'
 
 export const CHANNELS = {
@@ -76,6 +77,10 @@ export type OptionsType = {|
     },
     slack?: {
       providers: SlackProviderType[],
+      multiProviderStrategy?: ProviderStrategyType
+    },
+    whatsapp?: {
+      providers: WhatsappProviderType[],
       multiProviderStrategy?: ProviderStrategyType
     }
   },
