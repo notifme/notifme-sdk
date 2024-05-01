@@ -11,9 +11,9 @@
     "@jridgewell/trace-mapping" "^0.3.9"
 
 "@babel/cli@^7.0.0":
-  version "7.24.1"
-  resolved "https://registry.yarnpkg.com/@babel/cli/-/cli-7.24.1.tgz#2e11e071e32fe82850b4fe514f56b9c9e1c44911"
-  integrity sha512-HbmrtxyFUr34LwAlV9jS+sSIjUp4FpdtIMGwgufY3AsxrIfsh/HxlMTywsONAZsU0RMYbZtbZFpUCrSGs7o0EA==
+  version "7.24.5"
+  resolved "https://registry.yarnpkg.com/@babel/cli/-/cli-7.24.5.tgz#9eba21699f289c32e63a28aedf82f888dc134b30"
+  integrity sha512-2qg1mYtJRsOOWF6IUwLP5jI42P8Cc0hQ5TmnjLrik/4DKouO8dFJN80HEz81VmVeUs97yuuf3vQ/9j7Elrcjlg==
   dependencies:
     "@jridgewell/trace-mapping" "^0.3.25"
     commander "^4.0.1"
