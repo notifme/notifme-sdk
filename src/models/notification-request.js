@@ -171,13 +171,13 @@ export type SlackRequestType = RequestMetadataType & {
 export type WhatsappRequestType = RequestMetadataType & {
   from: string,
   to: string,
-  content?: object,
-  messageId: string,
-  callbackData?: string,
-  notifyUrl?: string,
-  mediaType: string,
-  language: string,
+  type: 'template' | 'text' | 'document' | 'image' | 'audio' | 'video' | 'sticker', // | 'location' | 'contact',
+  text?: string,
+  mediaUrl?: string,
+  templateName?: string,
+  templateData?: Object,
+  messageId?: string,
   customize?: (string, WhatsappRequestType) => Promise<WhatsappRequestType>
 }
 
-export type RequestType = EmailRequestType | PushRequestType | SmsRequestType | VoiceRequestType | WebpushRequestType | SlackRequestType
+export type RequestType = EmailRequestType | PushRequestType | SmsRequestType | VoiceRequestType | WebpushRequestType | SlackRequestType | WhatsappRequestType

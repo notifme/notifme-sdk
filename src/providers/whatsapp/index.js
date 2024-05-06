@@ -14,10 +14,10 @@ export default function factory ({ type, ...config }: Object): WhatsappProviderT
   switch (type) {
     // Development
     case 'logger':
-      return new WhatsappLoggingProvider(config, 'Whatsapp')
+      return new WhatsappLoggingProvider(config, 'whatsapp')
 
     case 'notificationcatcher':
-      return new WhatsappNotificationCatcherProvider('Whatsapp')
+      return new WhatsappNotificationCatcherProvider('whatsapp')
 
     // Custom
     case 'custom':
@@ -28,6 +28,6 @@ export default function factory ({ type, ...config }: Object): WhatsappProviderT
       return new WhatsappInfobipProvider(config)
 
     default:
-      throw new Error(`Unknown Whatsapp provider "${type}".`)
+      throw new Error(`Unknown whatsapp provider "${type}".`)
   }
 }

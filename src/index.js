@@ -7,7 +7,7 @@ import logger from './util/logger'
 import providerFactory from './providers'
 import strategyProvidersFactory from './strategies/providers'
 // Types
-import type { EmailRequestType, PushRequestType, SmsRequestType, VoiceRequestType, WebpushRequestType, SlackRequestType } from './models/notification-request'
+import type { EmailRequestType, PushRequestType, SmsRequestType, VoiceRequestType, WebpushRequestType, SlackRequestType, WhatsappRequestType } from './models/notification-request'
 import type { EmailProviderType } from './models/provider-email'
 import type { PushProviderType } from './models/provider-push'
 import type { SmsProviderType } from './models/provider-sms'
@@ -23,7 +23,8 @@ export const CHANNELS = {
   sms: 'sms',
   voice: 'voice',
   webpush: 'webpush',
-  slack: 'slack'
+  slack: 'slack',
+  whatsapp: 'whatsapp'
 }
 export type ChannelType = $Keys<typeof CHANNELS>
 
@@ -37,7 +38,8 @@ export type NotificationRequestType = {
   sms?: SmsRequestType,
   voice?: VoiceRequestType,
   webpush?: WebpushRequestType,
-  slack?: SlackRequestType
+  slack?: SlackRequestType,
+  whatsapp?: WhatsappRequestType
   // TODO?: other channels (messenger, skype, telegram, kik, spark...)
 }
 
@@ -140,6 +142,11 @@ export default class NotifmeSdk {
             providers: [],
             multiProviderStrategy: 'fallback',
             ...(channels ? channels.slack : null)
+          },
+          whatsapp: {
+            providers: [],
+            multiProviderStrategy: 'fallback',
+            ...(channels ? channels.whatsapp : null)
           }
         }
     }

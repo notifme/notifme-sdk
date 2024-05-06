@@ -13,40 +13,38 @@ export default class WhatsappInfobipProvider {
     this.apiKey = apiKey
   }
 
-  async send(request: WhatsappRequestType): Promise<string> {
-    const { from, to, content, messageId, mediaType, callbackData, notifyUrl } = request.customize ? (await request.customize(this.id, request)) : request
+  async send (request: WhatsappRequestType): Promise<string> {
+    const { from, to, type, messageId, text, mediaUrl, templateName, templateData, ...rest } = request.customize ? (await request.customize(this.id, request)) : request
 
     // Construct the payload
     const payload = {
-      from: from.replace('+', ''),
-      to: to.replace('+', ''),
+      from: (from || '').replace('+', ''),
+      to: (to || '').replace('+', ''),
       messageId,
-      callbackData,
-      notifyUrl,
-      content,
+      content: {
+        text,
+        mediaUrl,
+        templateName,
+        templateData
+      },
+      ...rest
     }
 
-    const response = await fetch(`${this.baseUrl}/whatsapp/1/message/${mediaType}`, {
+    const response = await fetch(`${this.baseUrl}/whatsapp/1/message/${type}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         Authorization: `App ${this.apiKey}`,
         'User-Agent': 'notifme-sdk/v1 (+https://github.com/notifme/notifme-sdk)'
       },
-      body: JSON.stringify({ messages: [payload] })  // Ensure the payload is correctly wrapped
+      body: JSON.stringify(type === 'template' ? [payload] : payload)
     })
 
     const responseBody = await response.json()
     if (response.ok) {
       // Handle the potential array or single object response
-      const messages = Array.isArray(responseBody.messages) ? responseBody.messages : [responseBody];
-      const message = messages[0]
-      if (['PENDING', 'DELIVERED'].includes(message.status.groupName)) {
-        return message.messageId
-      } else {
-        const error = message.status
-        throw new Error(Object.keys(error).map((key) => `${key}: ${error[key]}`).join(', '))
-      }
+      const [message] = Array.isArray(responseBody.messages) ? responseBody.messages : [responseBody]
+      return message.messageId
     } else {
       if (responseBody.requestError && responseBody.requestError.serviceException) {
         const error = responseBody.requestError.serviceException

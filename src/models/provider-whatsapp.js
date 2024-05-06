@@ -7,7 +7,7 @@ export type WhatsappProviderType = {
 } | {
   type: 'custom',
   id: string,
-  send: (SlackRequestType) => Promise<string>
+  send: (WhatsappRequestType) => Promise<string>
 } | {
   type: 'infobip',
   baseUrl: string,
