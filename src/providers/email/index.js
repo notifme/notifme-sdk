@@ -53,7 +53,7 @@ export default function factory ({ type, ...config }: Object): EmailProviderType
     case 'sparkpost':
       return new EmailSparkPostProvider(config)
 
-    case 'mailersend': // Add case for MailerSend
+    case 'mailersend':
       return new EmailMailerSendProvider(config)
 
     default:

@@ -79,6 +79,9 @@ export type EmailProviderType = {
   type: 'sendgrid',
   apiKey: string
 } | {
+  type: 'mailersend',
+  apiKey: string
+} | {
   type: 'ses',
   region: string,
   accessKeyId: string,
