@@ -14,8 +14,21 @@ export default class EmailMailerSendProvider {
   }
 
   async send (request: EmailRequestType): Promise<string> {
-    const { id, userId, from, replyTo, subject, html, text, headers, to, cc, bcc, attachments } =
-      request.customize ? (await request.customize(this.id, request)) : request
+    const {
+      id,
+      userId,
+      from,
+      replyTo,
+      subject,
+      html,
+      text,
+      headers,
+      to,
+      cc,
+      bcc,
+      attachments,
+      messageId // New field for overriding the message ID
+    } = request.customize ? (await request.customize(this.id, request)) : request
     const generatedId = id || crypto.randomBytes(16).toString('hex')
     const parsedFrom = parseEmailString(from)
     const parsedTo = parseEmailString(to)
@@ -23,25 +36,38 @@ export default class EmailMailerSendProvider {
     const data = {
       from: {
         email: parsedFrom.email,
-        name: parsedFrom.name
+        ...(parsedFrom.name ? { name: parsedFrom.name } : {})
       },
       to: [{
         email: parsedTo.email,
-        name: parsedTo.name
+        ...(parsedTo.name ? { name: parsedTo.name } : {})
       }],
       subject,
       html,
       text,
-      reply_to: replyTo ? [{ email: replyTo }] : undefined,
-      cc: cc && cc.length ? cc.map(email => parseEmailString(email)) : undefined,
-      bcc: bcc && bcc.length ? bcc.map(email => parseEmailString(email)) : undefined,
-      attachments: attachments && attachments.length > 0 ? attachments.map(({ contentType, filename, content }) => ({
-        type: contentType,
-        filename,
-        content: (typeof content === 'string' ? Buffer.from(content) : content).toString('base64')
-      })) : undefined,
+      ...(replyTo ? { reply_to: [{ email: replyTo }] } : {}),
+      ...(cc && cc.length ? {
+        cc: cc.map(email => {
+          const parsed = parseEmailString(email)
+          return { email: parsed.email, ...(parsed.name ? { name: parsed.name } : {}) }
+        })
+      } : {}),
+      ...(bcc && bcc.length ? {
+        bcc: bcc.map(email => {
+          const parsed = parseEmailString(email)
+          return { email: parsed.email, ...(parsed.name ? { name: parsed.name } : {}) }
+        })
+      } : {}),
+      ...(attachments && attachments.length ? {
+        attachments: attachments.map(({ contentType, filename, content }) => ({
+          type: contentType,
+          filename,
+          content: (typeof content === 'string' ? Buffer.from(content) : content).toString('base64')
+        }))
+      } : {}),
       headers,
-      custom_args: { id: generatedId, userId }
+      custom_args: { id: generatedId, userId },
+      ...(messageId ? { message_id: messageId } : {}) // Include message_id if provided
     }
 
     const response = await fetch('https://api.mailersend.com/v1/email', {
