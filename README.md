@@ -16,15 +16,36 @@
 </p>
 
 - [Features](#features)
-- [Getting started](#getting-started)
+- [Getting Started](#getting-started)
+  - [\[Recommended\] Setup Notification Catcher for your local tests](#recommended-setup-notification-catcher-for-your-local-tests)
+    - [Custom connection settings](#custom-connection-settings)
 - [How to use](#how-to-use)
   - [1. General options](#1-general-options)
+    - [Complete examples](#complete-examples)
+    - [HTTP proxy option](#http-proxy-option)
   - [2. Providers](#2-providers)
+    - [Email providers](#email-providers)
+    - [SMS providers](#sms-providers)
+    - [Voice providers](#voice-providers)
+    - [Push providers](#push-providers)
+    - [Webpush providers](#webpush-providers)
+    - [Slack providers](#slack-providers)
+    - [Multi-provider strategies](#multi-provider-strategies)
+      - [Predefined strategies](#predefined-strategies)
+      - [Custom](#custom)
+    - [Adding a provider or a channel](#adding-a-provider-or-a-channel)
   - [3. Custom channels](#3-custom-channels)
   - [4. Send a notification](#4-send-a-notification)
+    - [Parameters](#parameters)
+    - [Returned type](#returned-type)
   - [5. In production](#5-in-production)
+    - [Recommended options](#recommended-options)
+    - [Logger](#logger)
+    - [Use a request queue](#use-a-request-queue)
+    - [Send us a message](#send-us-a-message)
 - [Contributing](#contributing)
-- [Need help? Found a bug?](#need-help-found-a-bug)
+  - [Next for this project](#next-for-this-project)
+- [Need Help? Found a bug?](#need-help-found-a-bug)
 - [Related Projects](#related-projects)
 
 ## Features
@@ -260,6 +281,22 @@ new NotifmeSdk({
     email: {
       providers: [{
         type: 'sendgrid',
+        apiKey: 'xxxxx'
+      }]
+    }
+  }
+})
+```
+
+</p></details>
+<details><summary>MailerSend</summary><p>
+
+```javascript
+new NotifmeSdk({
+  channels: {
+    email: {
+      providers: [{
+        type: 'mailersend',
         apiKey: 'xxxxx'
       }]
     }
