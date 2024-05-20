@@ -13,7 +13,7 @@ export default class EmailMailerSendProvider {
     this.apiKey = config.apiKey
   }
 
-  async send (request: EmailRequestType): Promise<string> {
+  async send(request: EmailRequestType): Promise<string> {
     const {
       id,
       userId,
@@ -28,10 +28,11 @@ export default class EmailMailerSendProvider {
       bcc,
       attachments,
       messageId // New field for overriding the message ID
-    } = request.customize ? (await request.customize(this.id, request)) : request
-    const generatedId = id || crypto.randomBytes(16).toString('hex')
-    const parsedFrom = parseEmailString(from)
-    const parsedTo = parseEmailString(to)
+    } = request.customize ? (await request.customize(this.id, request)) : request;
+
+    const generatedId = id || crypto.randomBytes(16).toString('hex');
+    const parsedFrom = parseEmailString(from);
+    const parsedTo = parseEmailString(to);
 
     const data = {
       from: {
@@ -48,14 +49,14 @@ export default class EmailMailerSendProvider {
       ...(replyTo ? { reply_to: [{ email: replyTo }] } : {}),
       ...(cc && cc.length ? {
         cc: cc.map(email => {
-          const parsed = parseEmailString(email)
-          return { email: parsed.email, ...(parsed.name ? { name: parsed.name } : {}) }
+          const parsed = parseEmailString(email);
+          return { email: parsed.email, ...(parsed.name ? { name: parsed.name } : {}) };
         })
       } : {}),
       ...(bcc && bcc.length ? {
         bcc: bcc.map(email => {
-          const parsed = parseEmailString(email)
-          return { email: parsed.email, ...(parsed.name ? { name: parsed.name } : {}) }
+          const parsed = parseEmailString(email);
+          return { email: parsed.email, ...(parsed.name ? { name: parsed.name } : {}) };
         })
       } : {}),
       ...(attachments && attachments.length ? {
@@ -68,7 +69,7 @@ export default class EmailMailerSendProvider {
       headers,
       custom_args: { id: generatedId, userId },
       ...(messageId ? { message_id: messageId } : {}) // Include message_id if provided
-    }
+    };
 
     const response = await fetch('https://api.mailersend.com/v1/email', {
       method: 'POST',
@@ -78,20 +79,24 @@ export default class EmailMailerSendProvider {
         'User-Agent': 'notifme-sdk/v1 (+https://github.com/notifme/notifme-sdk)'
       },
       body: JSON.stringify(data)
-    })
+    });
 
     if (response.ok) {
-      const responseHeaders = response.headers
-      const messageId = responseHeaders.get('x-message-id')
+      const responseHeaders = response.headers;
+      const messageId = responseHeaders.get('x-message-id');
       if (!messageId) {
-        throw new Error('Failed to send email: No ID returned in response.')
+        throw new Error('Failed to send email: No ID returned in response.');
       }
-      return messageId
+      return messageId;
     } else {
-      const responseBody = await response.json()
-      const [firstError] = responseBody.errors
-      const message = Object.keys(firstError).map((key) => `${key}: ${firstError[key]}`).join(', ')
-      throw new Error(`${response.status} - ${message}`)
+      const responseBody = await response.json();
+      const firstError = Array.isArray(responseBody.errors) ? responseBody.errors[0] : null;
+      if (firstError) {
+        const message = Object.keys(firstError).map((key) => `${key}: ${firstError[key]}`).join(', ');
+        throw new Error(`${response.status} - ${message}`);
+      } else {
+        throw new Error(`${response.status} - Unknown error`);
+      }
     }
   }
 }
