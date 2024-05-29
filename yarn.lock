@@ -292,12 +292,12 @@
     picocolors "^1.0.0"
 
 "@babel/node@^7.0.0":
-  version "7.23.9"
-  resolved "https://registry.yarnpkg.com/@babel/node/-/node-7.23.9.tgz#fc40dc371439f1a45535ebf515232f4f046ef7a9"
-  integrity sha512-/d4ju/POwlGIJlZ+NqWH1qu61wt6ZlTZZZutrK2MOSdaH1JCh726nLw/GSvAjG+LTY6CO9SsB8uWcttnFKm6yg==
+  version "7.24.6"
+  resolved "https://registry.yarnpkg.com/@babel/node/-/node-7.24.6.tgz#cefca562b9c569583431f1f07a0965101614b223"
+  integrity sha512-63bD/Kbh1Vl6HapTZLSsyaGlQhhpF1/GpyS1oJotroJKoamOgKKEEKk3iHZAkicjcr+n4V4zdB0V+8siv6AZ5Q==
   dependencies:
-    "@babel/register" "^7.23.7"
-    commander "^4.0.1"
+    "@babel/register" "^7.24.6"
+    commander "^6.2.0"
     core-js "^3.30.2"
     node-environment-flags "^1.0.5"
     regenerator-runtime "^0.14.0"
@@ -1091,7 +1091,7 @@
     "@babel/types" "^7.4.4"
     esutils "^2.0.2"
 
-"@babel/register@^7.0.0", "@babel/register@^7.23.7":
+"@babel/register@^7.0.0", "@babel/register@^7.24.6":
   version "7.24.6"
   resolved "https://registry.yarnpkg.com/@babel/register/-/register-7.24.6.tgz#59e21dcc79e1d04eed5377633b0f88029a6bef9e"
   integrity sha512-WSuFCc2wCqMeXkz/i3yfAAsxwWflEgbVkZzivgAmXl/MxrXeoYFZOOPllbC8R8WTF7u61wSRQtDVZ1879cdu6w==
@@ -2200,11 +2200,6 @@ commander@2.9.0:
   integrity sha512-bmkUukX8wAOjHdN26xj5c4ctEV22TQ7dQYhSmuckKhToXrkUn0iIaolHdIxYYqD55nhpSPA9zPQ1yP57GdXP2A==
   dependencies:
     graceful-readlink ">= 1.0.0"
-
-commander@^4.0.1:
-  version "4.1.1"
-  resolved "https://registry.yarnpkg.com/commander/-/commander-4.1.1.tgz#9fd602bd936294e9e9ef46a3f4d6964044b18068"
-  integrity sha512-NOKm8xhkzAjzFx8B2v5OAHT+u5pRQc2UCa2Vq9jYL/31o2wi9mxBA7LIFs3sV5VSC49z6pEhfbMULvShKj26WA==
 
 commander@^6.2.0:
   version "6.2.1"
