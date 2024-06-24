@@ -5396,10 +5396,10 @@ node-int64@^0.4.0:
   resolved "https://registry.yarnpkg.com/node-int64/-/node-int64-0.4.0.tgz#87a9065cdb355d3182d8f94ce11188b825c68a3b"
   integrity sha512-O5lz91xSOeoXP6DulyHfllpq+Eg00MWitZIbtPfoSEvqIHdl5gfcY6hYzDWnj0qD5tz52PI08u9qUvSVeUBeHw==
 
-node-pushnotifications@3.1.0:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/node-pushnotifications/-/node-pushnotifications-3.1.0.tgz#f6a762cbd1d61f7110da1cfc5f02aab5b431c114"
-  integrity sha512-RC+zUJYzZ+QVdWw8krX1D/wKmuyaXGmGeW2FK36cZ844k+2P47wswOxC5u8ekMHAR5qNpjKb0Az3QNSGZj1o+A==
+node-pushnotifications@3.1.1:
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/node-pushnotifications/-/node-pushnotifications-3.1.1.tgz#1fac3ec9ea61a85a1dfe93ee8d2971ea75e523ed"
+  integrity sha512-rgA6jvs5DbSZPhUBhbbym3h0iZvncN9s8wpSDpQ0rt8+ICKkCmMDVzzQFjcd1nRL91zdF7zpLKYptCxdsmv6Aw==
   dependencies:
     "@parse/node-apn" "6.0.1"
     firebase-admin "12.1.1"
