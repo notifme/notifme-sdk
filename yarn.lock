@@ -530,12 +530,12 @@
   integrity sha512-SOSkfJDddaM7mak6cPEpswyTRnuRltl429hMraQEglW+OkovnCzsiszTmsrlY//qLFjCpQDFRvjdm2wA5pPm9w==
 
 "@babel/plugin-proposal-throw-expressions@^7.0.0":
-  version "7.24.7"
-  resolved "https://registry.yarnpkg.com/@babel/plugin-proposal-throw-expressions/-/plugin-proposal-throw-expressions-7.24.7.tgz#8a386bcb77965d82f5b926508b27919d9ac9450f"
-  integrity sha512-Rh4WoHyWKgsxvdkEMqDEZtKuGnZw+JwicMCvcZaIjYaQ3fK+a8JZYLhgcac9dKcL47Xqf+SG3MopTx+8BACdrQ==
+  version "7.25.7"
+  resolved "https://registry.yarnpkg.com/@babel/plugin-proposal-throw-expressions/-/plugin-proposal-throw-expressions-7.25.7.tgz#2359c72ed372d910ab02d6071154d67468ed5d5e"
+  integrity sha512-dRhgWKBKoe5o0RqP6sRE0wpVzyMKPE9VPyRObwDG34GnC4KuGx2OIDs4vbrm5BVT4EZy1h9uJlSUfKS4vSKiXA==
   dependencies:
-    "@babel/helper-plugin-utils" "^7.24.7"
-    "@babel/plugin-syntax-throw-expressions" "^7.24.7"
+    "@babel/helper-plugin-utils" "^7.25.7"
+    "@babel/plugin-syntax-throw-expressions" "^7.25.7"
 
 "@babel/plugin-syntax-async-generators@^7.8.4":
   version "7.8.4"
@@ -684,12 +684,12 @@
   dependencies:
     "@babel/helper-plugin-utils" "^7.14.5"
 
-"@babel/plugin-syntax-throw-expressions@^7.24.7":
-  version "7.24.7"
-  resolved "https://registry.yarnpkg.com/@babel/plugin-syntax-throw-expressions/-/plugin-syntax-throw-expressions-7.24.7.tgz#30887b54c478120831bc95881e73ec1984584930"
-  integrity sha512-b1bdlAmUTy9VQ/g2cnBuJFwd7jeARNW2F65c9Gcn8qyNYGuVy/cYyqpiSL6SVmUAJTDbIYL2FzlZ8nH1qUCBXA==
+"@babel/plugin-syntax-throw-expressions@^7.25.7":
+  version "7.25.7"
+  resolved "https://registry.yarnpkg.com/@babel/plugin-syntax-throw-expressions/-/plugin-syntax-throw-expressions-7.25.7.tgz#6ddccb389800b3db0ad74aebb3eb6d5803fba488"
+  integrity sha512-UydaKYt9Iw3iay5ylLxE/nEUYjGAptjqrzi+VZvkm9bx0dzPw4R0CXBvataxrlEeWX2YRvWmX6CxkD9Tn6o+LA==
   dependencies:
-    "@babel/helper-plugin-utils" "^7.24.7"
+    "@babel/helper-plugin-utils" "^7.25.7"
 
 "@babel/plugin-syntax-top-level-await@^7.14.5", "@babel/plugin-syntax-top-level-await@^7.8.3":
   version "7.14.5"
