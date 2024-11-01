@@ -363,11 +363,11 @@
   integrity sha512-SOSkfJDddaM7mak6cPEpswyTRnuRltl429hMraQEglW+OkovnCzsiszTmsrlY//qLFjCpQDFRvjdm2wA5pPm9w==
 
 "@babel/plugin-proposal-throw-expressions@^7.0.0":
-  version "7.25.8"
-  resolved "https://registry.yarnpkg.com/@babel/plugin-proposal-throw-expressions/-/plugin-proposal-throw-expressions-7.25.8.tgz#2faa5f9bb65edbe7b3989f30658a70f6432c3a63"
-  integrity sha512-fUbBboA4uVoAM59iVBTbJuKUBB9LRKdkVC4366I+u3OcAQDa30lhx3vrscxFqAYYhvJLfVFcRjlY5eqHc/cmlQ==
+  version "7.25.9"
+  resolved "https://registry.yarnpkg.com/@babel/plugin-proposal-throw-expressions/-/plugin-proposal-throw-expressions-7.25.9.tgz#9bfba4a4b775dbadfc5ca91a9f22097754142b56"
+  integrity sha512-Zw62DP6cdbXXEtTNMWYY10rIOPGAWPk8qdqM+AT3JbHtFq8ook0JXJCWdQJTlSVACHo0R6lvoNKO9B1ZVkjClg==
   dependencies:
-    "@babel/helper-plugin-utils" "^7.25.7"
+    "@babel/helper-plugin-utils" "^7.25.9"
 
 "@babel/plugin-syntax-async-generators@^7.8.4":
   version "7.8.4"
