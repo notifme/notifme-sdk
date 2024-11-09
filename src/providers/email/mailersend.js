@@ -46,7 +46,7 @@ export default class EmailMailerSendProvider {
       subject,
       html,
       text,
-      ...(replyTo ? { reply_to: [{ email: replyTo }] } : {}),
+      ...(replyTo ? { reply_to: { email: replyTo } } : {}),
       ...(cc && cc.length ? {
         cc: cc.map(email => {
           const parsed = parseEmailString(email);
