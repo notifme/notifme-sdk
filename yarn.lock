@@ -3509,10 +3509,10 @@ flatted@^2.0.0:
   resolved "https://registry.yarnpkg.com/flatted/-/flatted-2.0.2.tgz#4575b21e2bcee7434aa9be662f4b7b5f9c2b5138"
   integrity sha512-r5wGx7YeOwNWNlCA0wQ86zKyDLMQr+/RB8xy74M4hTphfmjlijTSSXGuH8rnvKZnfT9i+75zmd8jcKdMR4O6jA==
 
-flow-bin@0.89.0:
-  version "0.89.0"
-  resolved "https://registry.yarnpkg.com/flow-bin/-/flow-bin-0.89.0.tgz#6bd29c2af7e0f429797f820662f33749105c32fa"
-  integrity sha512-DkO4PsXYrl53V6G5+t5HbRMC5ajYUQej2LEGPUZ+j9okTb41Sn5j9vfxsCpXMEAslYnQoysHhYu4GUZsQX/DrQ==
+flow-bin@0.254.1:
+  version "0.254.1"
+  resolved "https://registry.yarnpkg.com/flow-bin/-/flow-bin-0.254.1.tgz#31a20e8e018b9b86f531c7f40949448f93fac570"
+  integrity sha512-XV9Qv8RFcaSkwkp3TmGzAEnpg2Vp1mz48gXZEQmOZiPKfZiukyOLEuMb19C9CRKLT3ycxuXr3btl5POml3h89g==
 
 fn.name@1.x.x:
   version "1.1.0"
