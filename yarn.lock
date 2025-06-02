@@ -295,11 +295,11 @@
     "@babel/types" "^7.27.3"
 
 "@babel/node@^7.0.0":
-  version "7.26.0"
-  resolved "https://registry.yarnpkg.com/@babel/node/-/node-7.26.0.tgz#4b126f4eb56a05a97990a650fae0a24ad9b0c583"
-  integrity sha512-5ASMjh42hbnqyCOK68Q5chh1jKAqn91IswFTN+niwt4FLABhEWCT1tEuuo6mlNQ4WG/oFQLvJ71PaHAKtWtJyA==
+  version "7.27.1"
+  resolved "https://registry.yarnpkg.com/@babel/node/-/node-7.27.1.tgz#6d213576428430368b2c3561e2659bc3991d5ce0"
+  integrity sha512-ef8ZrhxIku9LrphvyNywpiMf1UJsYQll7S4eKa228ivswPcwmObp98o5h5wL2n9FrSAuo1dsMwJ8cS1LEcBSog==
   dependencies:
-    "@babel/register" "^7.25.9"
+    "@babel/register" "^7.27.1"
     commander "^6.2.0"
     core-js "^3.30.2"
     node-environment-flags "^1.0.5"
@@ -1061,10 +1061,10 @@
     "@babel/types" "^7.4.4"
     esutils "^2.0.2"
 
-"@babel/register@^7.0.0", "@babel/register@^7.25.9":
-  version "7.25.9"
-  resolved "https://registry.yarnpkg.com/@babel/register/-/register-7.25.9.tgz#1c465acf7dc983d70ccc318eb5b887ecb04f021b"
-  integrity sha512-8D43jXtGsYmEeDvm4MWHYUpWf8iiXgWYx3fW7E7Wb7Oe6FWqJPl5K6TuFW0dOwNZzEE5rjlaSJYH9JjrUKJszA==
+"@babel/register@^7.0.0", "@babel/register@^7.27.1":
+  version "7.27.1"
+  resolved "https://registry.yarnpkg.com/@babel/register/-/register-7.27.1.tgz#ea4d701649d788d7cb8a064b7540fd21083147f1"
+  integrity sha512-K13lQpoV54LATKkzBpBAEu1GGSIRzxR9f4IN4V8DCDgiUMo2UDGagEZr3lPeVNJPLkWUi5JE4hCHKneVTwQlYQ==
   dependencies:
     clone-deep "^4.0.1"
     find-cache-dir "^2.0.0"
